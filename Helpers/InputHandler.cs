@@ -47,7 +47,6 @@ namespace PxgBot.Helpers
 
         public void SendKey()
         {
-
         }
     }
 }

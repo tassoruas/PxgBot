@@ -17,7 +17,7 @@ namespace PxgBot.Classes
             int Y { get; set; }
             int Z { get; set; }
 
-            Position(int X, int Y, int Z)
+            public Position(int X, int Y, int Z)
             {
                 this.X = X;
                 this.Y = Y;

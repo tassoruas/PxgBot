@@ -6,13 +6,14 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using PxgBot.Helpers;
 
 namespace PxgBot.Classes
 {
     static class GUI
     {
-        public static Rectangle BattlePos { get; set; }
+        public static Rectangle BattleRect { get; set; }
 
 
         [DllImport("User32.dll")]
@@ -32,30 +33,34 @@ namespace PxgBot.Classes
 
         public static string GetBattleList()
         {
-            Bitmap print = ImageSearcher.GetPxgScreenshoot();
-            Bitmap output = new Bitmap(BattlePos.Width, BattlePos.Height);
-            using (Graphics g = Graphics.FromImage(output))
+            try
             {
-                g.DrawImage(print, new Rectangle(0, 0, BattlePos.Width, BattlePos.Height), BattlePos, GraphicsUnit.Pixel);
+                DrawOnScreen(BattleRect);
+                Bitmap print = ImageSearcher.GetPxgScreenshoot(BattleRect);
+                Bitmap resizedImage1 = new Bitmap(print, new Size(print.Width * 3, Convert.ToInt32(print.Height * 1.5)));
+                Bitmap resizedImage2 = new Bitmap(print, new Size(print.Width * 8, print.Height * 5));
+                Random rnd = new Random();
+                int newNumber = rnd.Next(0, 999999);
+                resizedImage1.Save("resized1" + newNumber + ".bmp");
+                resizedImage2.Save("resized2" + newNumber + ".bmp");
+
+                string resizedText1 = ImageSearcher.Tesseract("resized1" + newNumber + ".bmp");
+                string resizedText2 = ImageSearcher.Tesseract("resized2" + newNumber + ".bmp");
+                resizedText1 = Regex.Replace(resizedText1, @"[^0-9a-zA-Z:,\n]+", "");
+                resizedText2 = Regex.Replace(resizedText2, @"[^0-9a-zA-Z:,\n]+", "");
+                print.Dispose();
+                resizedImage1.Dispose();
+                resizedImage2.Dispose();
+                System.IO.File.Delete("resized1" + newNumber + ".bmp");
+                System.IO.File.Delete("resized2" + newNumber + ".bmp");
+
+                return resizedText1 + '\n' + resizedText2;
             }
-            Bitmap resizedImage = new Bitmap(output, new Size(output.Width * 3, Convert.ToInt32(output.Height * 1.5)));
-            Random rnd = new Random();
-            int newNumber = rnd.Next(0, 999999);
-            resizedImage.Save("resized" + newNumber + ".bmp");
-
-            string resizedText = ImageSearcher.Tesseract("resized" + newNumber + ".bmp");
-            resizedText = Regex.Replace(resizedText, @"[^0-9a-zA-Z:,\n]+", "");
-            resizedImage.Dispose();
-            System.IO.File.Delete("resized" + newNumber + ".bmp");
-
-            return resizedText;
-        }
-
-        public static bool FishAvailable(Rectangle rect)
-        {
-            Bitmap fishing = ImageSearcher.GetPxgScreenshoot();
-            ImageSearcher.UseImageSearch("", 10);
-            return false;
+            catch (Exception ex)
+            {
+                MessageBox.Show("GUI: GetBattleList: " + ex.Message);
+                return "error";
+            }
         }
     }
 }

@@ -1,18 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace PxgBot.Classes
 {
     static class Cavebot
     {
-        public static void ExecuteNextStep(CavebotAction cbAction)
+        public async static void Start()
+        {
+            Func<bool> condition = () => Pokemon.HP > 200;
+            CavebotAction cavebotAction = new CavebotAction(StepTypes.Action, null, ActionTypes.Fishing, new string[] { "1004", "549" }, condition);
+            await ExecuteNextStep(cavebotAction);
+        }
+        private async static Task<bool> ExecuteNextStep(CavebotAction cbAction)
         {
             if (cbAction.Step == StepTypes.Action)
             {
-                ExecuteAction(cbAction);
+                if (cbAction.Condition != null)
+                {
+                    while (cbAction.Condition())
+                    {
+                        await ExecuteAction(cbAction);
+                    }
+                }
+                else
+                {
+                    await ExecuteAction(cbAction);
+                }
             }
             else if (cbAction.Step == StepTypes.Walk)
             {
@@ -22,26 +36,26 @@ namespace PxgBot.Classes
             {
                 ExecuteWait(cbAction);
             }
+
+            return true;
         }
 
-        public static void ExecuteAction(CavebotAction cbAction)
+        private async static Task<bool> ExecuteAction(CavebotAction cbAction)
         {
-            if (cbAction.Action == ActionTypes.StartFishing)
+            if (cbAction.Action == ActionTypes.Fishing)
             {
-                Actions.Fishing.StartFishing();
+                return await Actions.Fishing.StartFishing(int.Parse(cbAction.Arguments[0]), int.Parse(cbAction.Arguments[1]));
             }
-            else if (cbAction.Action == ActionTypes.WaitFish)
-            {
-                Actions.Fishing.WaitFish();
-            }
+
+            return false;
         }
 
-        public static void ExecuteWalk(CavebotAction cbAction)
+        private static void ExecuteWalk(CavebotAction cbAction)
         {
             Actions.Walk.WalkTo(cbAction.Position);
         }
 
-        public async static void ExecuteWait(CavebotAction cbAction)
+        private async static void ExecuteWait(CavebotAction cbAction)
         {
             await Task.Delay(Convert.ToInt32(cbAction.Arguments[0]));
         }
@@ -60,8 +74,7 @@ namespace PxgBot.Classes
 
     enum ActionTypes
     {
-        StartFishing,
-        WaitFish,
+        Fishing,
     }
 
     class CavebotAction
@@ -72,17 +85,34 @@ namespace PxgBot.Classes
 
         public string[] Arguments { get; set; }
 
-        CavebotAction(StepTypes step, PXG.Position position)
+        public Func<bool> Condition { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="step"></param>
+        /// <param name="position"></param>
+        public CavebotAction(StepTypes step, PXG.Position position)
         {
             Step = step;
             Position = position;
         }
-        CavebotAction(StepTypes step, PXG.Position position, ActionTypes action, string[] args)
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="step"></param>
+        /// <param name="position"></param>
+        /// <param name="action"></param>
+        /// <param name="args"></param>
+        /// <param name="condition"></param>
+        public CavebotAction(StepTypes step, PXG.Position position, ActionTypes action, string[] args, Func<bool> condition = null)
         {
             Step = step;
             Position = position;
             Action = action;
             Arguments = args;
+            Condition = condition;
         }
     }
 }

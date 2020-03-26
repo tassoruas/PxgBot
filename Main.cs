@@ -3,8 +3,6 @@ using System.Windows.Forms;
 using PxgBot.Helpers;
 using PxgBot.Classes;
 using System.Drawing;
-using System.Runtime.InteropServices;
-using System.Threading.Tasks;
 
 namespace PxgBot
 {
@@ -18,14 +16,14 @@ namespace PxgBot
             InitializeComponent();
             Addresses.RegisterHandle();
             memoryManager = new MemoryManager(Addresses.PxgPointerAddress, Addresses.PxgProcessName);
-            GUI.BattlePos = new Rectangle(1750, 341, 144, 242);
+            GUI.BattleRect = new Rectangle(1750, 341, 144, 242);
 
 
 
             ///
             /// Tests
             ///
-            int[] imgSearchResult = ImageSearcher.UseImageSearch("ImageSearchTest.png", 10);
+            int[] imgSearchResult = ImageSearcher.UseImageSearch("ImageSearchTest.png");
             if (imgSearchResult != null)
                 Console.WriteLine("imgSearchResult: " + imgSearchResult[0] + ", " + imgSearchResult[1]);
             else
@@ -47,13 +45,35 @@ namespace PxgBot
             Character.PosX = memoryManager.ReadInt((int)Addresses.Offsets.PosX, 8);
             Character.PosY = memoryManager.ReadInt((int)Addresses.Offsets.PosY, 8);
             Character.PosZ = memoryManager.ReadInt((int)Addresses.Offsets.PosZ, 8);
+            Character.DestinX = memoryManager.ReadInt((int)Addresses.Offsets.DestinX, 8);
+            Character.DestinY = memoryManager.ReadInt((int)Addresses.Offsets.DestinY, 8);
+            Character.isAttacking.ToString();
+
+            lblPokeHP.Text = Pokemon.HP.ToString();
+            lblCharHP.Text = Character.HP.ToString();
+            lblPosX.Text = Character.PosX.ToString();
+            lblPosY.Text = Character.PosY.ToString();
+            lblPosZ.Text = Character.PosZ.ToString();
+            lblDestinX.Text = Character.DestinX.ToString();
+            lblDestinY.Text = Character.DestinY.ToString();
             //input.Click(963, 498, Addresses.PxgProcessName);
         }
 
-        private async void tmrTest_Tick(object sender, EventArgs e)
+        private void tmrTest_Tick(object sender, EventArgs e)
         {
-            GUI.DrawOnScreen(GUI.BattlePos);
-            string result = await Task.Run(() => GUI.GetBattleList());
+            //string result = await Task.Run(() => GUI.GetBattleList());
+            //bool fishReady = Classes.Actions.Fishing.FishReady();
+            //Console.WriteLine("Fish Ready: " + fishReady.ToString());
+        }
+
+        private void btnTest_Click(object sender, EventArgs e)
+        {
+            Cavebot.Start();
+        }
+
+        private void btnGetBattleList_Click(object sender, EventArgs e)
+        {
+            txtTests.Text = GUI.GetBattleList();
         }
     }
 }
