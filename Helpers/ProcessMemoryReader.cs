@@ -36,10 +36,11 @@ namespace PxgBot
             return buffer;
         }
 
-        public void WriteMemory(IntPtr memoryAddress, byte[] bytesToWrite, out int bytesWritten)
+        public void WriteMemory(IntPtr memoryAddress, byte[] bytesToWrite, out int bytesWritten, uint bytesLength = 0)
         {
+            if (bytesLength == 0) bytesLength = (uint)bytesToWrite.Length;
             IntPtr pointerBytesWritten = IntPtr.Zero;
-            ProcessMemoryReaderApi.WriteProcessMemory(handle, memoryAddress, bytesToWrite, (uint)bytesToWrite.Length, out pointerBytesWritten);
+            ProcessMemoryReaderApi.WriteProcessMemory(handle, memoryAddress, bytesToWrite, bytesLength, out pointerBytesWritten);
             bytesWritten = pointerBytesWritten.ToInt32();
         }
     }

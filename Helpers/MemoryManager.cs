@@ -5,13 +5,13 @@ using System.Windows.Forms;
 
 namespace PxgBot.Helpers
 {
-    class MemoryManager
+    static class MemoryManager
     {
-        uint Pointer { get; set; }
-        string ProcessName { get; set; }
-        ProcessMemoryReader mReader;
+        static uint Pointer { get; set; }
+        static string ProcessName { get; set; }
+        static ProcessMemoryReader mReader;
 
-        public MemoryManager(uint BasePointer, string BaseProcessName)
+        public static void StartMemoryManager(uint BasePointer, string BaseProcessName)
         {
             try
             {
@@ -27,7 +27,7 @@ namespace PxgBot.Helpers
                 }
                 else
                 {
-                    throw new Exception("Couldnt find process");
+                    throw new Exception("Couldn't find process");
                 }
             }
             catch (Exception ex)
@@ -36,20 +36,20 @@ namespace PxgBot.Helpers
             }
         }
 
-        public int ReadInt(int pointerOffset, uint bytesToRead)
+        public static int ReadInt(int pointerOffset, uint bytesToRead)
         {
             try
             {
                 int bytesReadOut = 0;
                 byte[] memoryRead = mReader.ReadMemory((IntPtr)(Pointer), bytesToRead, out bytesReadOut);
-                var offset = BitConverter.ToUInt32(memoryRead, 0);
+                var address = BitConverter.ToUInt32(memoryRead, 0);
 
                 if (pointerOffset < 0)
-                    offset -= (uint)(Math.Abs(pointerOffset));
+                    address -= (uint)(Math.Abs(pointerOffset));
                 else
-                    offset += (uint)pointerOffset;
+                    address += (uint)pointerOffset;
 
-                byte[] buffer = mReader.ReadMemory((IntPtr)offset, bytesToRead, out bytesReadOut);
+                byte[] buffer = mReader.ReadMemory((IntPtr)address, bytesToRead, out bytesReadOut);
 
                 int intValue = BitConverter.ToInt16(buffer, 0);
 
@@ -62,11 +62,10 @@ namespace PxgBot.Helpers
             }
         }
 
-        public double ReadDouble(int pointerOffset, uint bytesToRead)
+        public static double ReadDouble(int pointerOffset, uint bytesToRead)
         {
             try
             {
-
                 int bytesReadOut = 0;
 
                 byte[] memoryRead = mReader.ReadMemory((IntPtr)(Pointer), bytesToRead, out bytesReadOut);
@@ -88,6 +87,22 @@ namespace PxgBot.Helpers
                 MessageBox.Show("MemoryManager: ReadMemory(double): error " + ex.Message);
                 return 0;
             }
+        }
+
+        public static void WriteOnMemory(int pointerOffset, uint bytesToWrite)
+        {
+            int bytesReadOut = 0;
+
+            byte[] memoryRead = mReader.ReadMemory((IntPtr)(Pointer), bytesToWrite, out bytesReadOut);
+            var offset = BitConverter.ToUInt32(memoryRead, 0);
+
+            if (pointerOffset < 0)
+                offset -= (uint)(Math.Abs(pointerOffset));
+            else
+                offset += (uint)pointerOffset;
+
+            mReader.WriteMemory((IntPtr)offset, BitConverter.GetBytes(bytesToWrite), out bytesReadOut);
+            Console.WriteLine("WriteOnMemory: " + bytesReadOut + ", " + offset);
         }
     }
 }

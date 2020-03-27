@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using PxgBot.Helpers;
 
@@ -13,7 +9,12 @@ namespace PxgBot.Classes
 {
     static class GUI
     {
+        public static Rectangle ScreenRect { get; set; }
+        public static double sqmWidth { get; set; }
+        public static double sqmHeight { get; set; }
+        public static Rectangle[,] ScreenGrid { get; set; }
         public static Rectangle BattleRect { get; set; }
+
 
 
         [DllImport("User32.dll")]
@@ -29,6 +30,19 @@ namespace PxgBot.Classes
                 g.DrawRectangle(Pens.Red, rect);
             }
             ReleaseDC(IntPtr.Zero, desktop);
+        }
+
+        public static void OpenBattleList()
+        {
+            if (ImageSearcher.UseImageSearch("Battle.png", tolerance: 20) == null)
+            {
+                Console.WriteLine("Battle is not open");
+                InputHandler.SendKeys(new string[] { "{CTRLDOWN}", "{b}", "{CTRLUP}" }, 100);
+            }
+            else
+            {
+                Console.WriteLine("Battle is already open");
+            }
         }
 
         public static string GetBattleList()
@@ -60,6 +74,54 @@ namespace PxgBot.Classes
             {
                 MessageBox.Show("GUI: GetBattleList: " + ex.Message);
                 return "error";
+            }
+        }
+
+        public static void SetBattleBorders()
+        {
+            OpenBattleList();
+            int[] battleIcon = ImageSearcher.UseImageSearch("Battle.png", tolerance: 20);
+
+            if (battleIcon == null) return;
+            int[] battleListEnd = ImageSearcher.UseImageSearch("Screen\\BattleBottomRight.png", battleIcon[0], battleIcon[1], tolerance: 10);
+
+            if (battleListEnd == null)
+            {
+                battleListEnd = ImageSearcher.UseImageSearch("Screen\\BattleBottomRightWhite.png", battleIcon[0], battleIcon[1], tolerance: 10);
+            }
+            if (battleListEnd == null) return;
+
+            BattleRect = new Rectangle(battleIcon[0], battleIcon[1], battleListEnd[0] - battleIcon[0], battleListEnd[1] - battleIcon[1] + 15);
+        }
+
+        public static void SetScreenBorders()
+        {
+            int[] topLeft = ImageSearcher.UseImageSearch("Screen\\ScreenTopLeftBorder.png", transparency: "0xFFFFFF");
+            int[] bottomRight = ImageSearcher.UseImageSearch("Screen\\ScreenBottomRightBorder.png", transparency: "0xFFFFFF");
+            Image screenBottom = Image.FromFile("Images\\Screen\\ScreenBottomRightBorder.png");
+
+            if (topLeft == null || bottomRight == null) return;
+
+            ScreenRect = new Rectangle(topLeft[0], topLeft[1], (bottomRight[0] + screenBottom.Width) - topLeft[0], (bottomRight[1] + screenBottom.Height) - topLeft[1]);
+        }
+
+        public static void SetScreenGrid()
+        {
+            ScreenGrid = new Rectangle[11, 15];
+            sqmWidth = ScreenRect.Width / 15;
+            sqmHeight = ScreenRect.Height / 11;
+
+            double height = ScreenRect.Y;
+            for (int i = 0; i < 11; i++)
+            {
+                double width = ScreenRect.X;
+                for (int j = 0; j < 15; j++)
+                {
+                    Rectangle rec = new Rectangle(Convert.ToInt32(width), Convert.ToInt32(height), Convert.ToInt32(sqmWidth), Convert.ToInt32(sqmHeight));
+                    ScreenGrid[i, j] = rec;
+                    width += sqmWidth;
+                }
+                height += sqmHeight;
             }
         }
     }

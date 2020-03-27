@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoIt;
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Windows.Forms;
 
 namespace PxgBot.Helpers
 {
-    class InputHandler
+    public static class InputHandler
     {
         [DllImport("user32.dll")]
         static extern void mouse_event(int dwFlags, int dx, int dy, int dwData, int dwExtraInfo);
@@ -32,7 +33,7 @@ namespace PxgBot.Helpers
             RIGHTUP = 0x00000010
         }
 
-        public async void Click(int posX, int posY, string processName)
+        public async static void Click(int posX, int posY, string processName)
         {
             Process process = Process.GetProcessesByName(processName).ToList().FirstOrDefault();
             SetForegroundWindow(process.MainWindowHandle);
@@ -45,8 +46,15 @@ namespace PxgBot.Helpers
             //Cursor.Position = oldMousePosition;
         }
 
-        public void SendKey()
+        public static void SendKeys(string[] Keys, int DelayBetweenKeys)
         {
+            AutoItX.WinActivate(Addresses.PxgHandle);
+            AutoItX.Sleep(100);
+            foreach (string key in Keys)
+            {
+                AutoItX.Send(key);
+                AutoItX.Sleep(DelayBetweenKeys);
+            }
         }
     }
 }

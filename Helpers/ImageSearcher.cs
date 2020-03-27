@@ -22,9 +22,14 @@ namespace PxgBot.Helpers
         /// <param name="imgPath">File path</param>
         /// <param name="tolerance">0 to 255</param>
         /// <returns></returns>
-        public static int[] UseImageSearch(string imgName, int x = 0, int y = 0, int width = 1920, int height = 1080, int tolerance = 0, string transparency = "0xFF0000")
+        public static int[] UseImageSearch(string imgName, int x = 0, int y = 0, int width = 1920, int height = 1080, int tolerance = 10, string transparency = "0xFF0000")
         {
             string imgPath = Application.StartupPath + "\\Images\\" + imgName;
+            if (System.IO.File.Exists(imgPath) == false)
+            {
+                Console.WriteLine("Image '" + imgName + "' does not exist on path +" + imgPath);
+                return null;
+            }
 
             if (transparency != "" && transparency != null)
             {
@@ -47,14 +52,11 @@ namespace PxgBot.Helpers
             int.TryParse(data[1], out resX);
             int.TryParse(data[2], out resY);
 
-            Console.WriteLine("Found on: " + resX + ", " + resY);
-
             return new int[] { resX, resY };
         }
 
         public static string Tesseract(string imgName)
         {
-            Console.WriteLine("img name: " + imgName);
             string imgPath = Application.StartupPath + "\\Images\\" + imgName;
             Process proc = new Process();
             ProcessStartInfo start = new ProcessStartInfo
