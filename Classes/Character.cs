@@ -29,9 +29,17 @@ namespace PxgBot.Classes
         {
             get => MemoryManager.ReadInt((int)Addresses.Offsets.DestinX, 8);
         }
+        public static int DestinXConf
+        {
+            get => MemoryManager.ReadInt((int)Addresses.Offsets.DestinXConf, 8);
+        }
         public static int DestinY
         {
             get => MemoryManager.ReadInt((int)Addresses.Offsets.DestinY, 8);
+        }
+        public static int DestinYConf
+        {
+            get => MemoryManager.ReadInt((int)Addresses.Offsets.DestinYConf, 8);
         }
 
         public static Task<bool> isAttacking

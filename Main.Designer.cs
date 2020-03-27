@@ -71,9 +71,9 @@
             // 
             // btnGetBattleList
             // 
-            this.btnGetBattleList.Location = new System.Drawing.Point(16, 213);
+            this.btnGetBattleList.Location = new System.Drawing.Point(4, 213);
             this.btnGetBattleList.Name = "btnGetBattleList";
-            this.btnGetBattleList.Size = new System.Drawing.Size(110, 23);
+            this.btnGetBattleList.Size = new System.Drawing.Size(143, 23);
             this.btnGetBattleList.TabIndex = 1;
             this.btnGetBattleList.Text = "GetBattleList";
             this.btnGetBattleList.UseVisualStyleBackColor = true;
@@ -81,7 +81,7 @@
             // 
             // txtTests
             // 
-            this.txtTests.Location = new System.Drawing.Point(132, 155);
+            this.txtTests.Location = new System.Drawing.Point(153, 155);
             this.txtTests.Name = "txtTests";
             this.txtTests.Size = new System.Drawing.Size(117, 230);
             this.txtTests.TabIndex = 2;
@@ -287,20 +287,19 @@
             // 
             // btnStartCavebot
             // 
-            this.btnStartCavebot.Location = new System.Drawing.Point(15, 155);
+            this.btnStartCavebot.Location = new System.Drawing.Point(4, 155);
             this.btnStartCavebot.Name = "btnStartCavebot";
-            this.btnStartCavebot.Size = new System.Drawing.Size(110, 23);
+            this.btnStartCavebot.Size = new System.Drawing.Size(143, 23);
             this.btnStartCavebot.TabIndex = 22;
-            this.btnStartCavebot.Text = "Cavebot: ";
+            this.btnStartCavebot.Text = "Cavebot: False";
             this.btnStartCavebot.UseVisualStyleBackColor = true;
-            this.btnStartCavebot.Visible = false;
             this.btnStartCavebot.Click += new System.EventHandler(this.btnStartCavebot_Click);
             // 
             // btnTest
             // 
-            this.btnTest.Location = new System.Drawing.Point(17, 242);
+            this.btnTest.Location = new System.Drawing.Point(4, 242);
             this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(110, 23);
+            this.btnTest.Size = new System.Drawing.Size(143, 23);
             this.btnTest.TabIndex = 23;
             this.btnTest.Text = "Write on memory";
             this.btnTest.UseVisualStyleBackColor = true;
@@ -314,11 +313,11 @@
             // 
             // btnCavebotAttack
             // 
-            this.btnCavebotAttack.Location = new System.Drawing.Point(15, 184);
+            this.btnCavebotAttack.Location = new System.Drawing.Point(4, 184);
             this.btnCavebotAttack.Name = "btnCavebotAttack";
-            this.btnCavebotAttack.Size = new System.Drawing.Size(110, 23);
+            this.btnCavebotAttack.Size = new System.Drawing.Size(143, 23);
             this.btnCavebotAttack.TabIndex = 25;
-            this.btnCavebotAttack.Text = "Cavebot Attack: ";
+            this.btnCavebotAttack.Text = "Attacker: False";
             this.btnCavebotAttack.UseVisualStyleBackColor = true;
             this.btnCavebotAttack.Click += new System.EventHandler(this.btnCavebotAttack_Click);
             // 

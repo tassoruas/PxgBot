@@ -24,7 +24,17 @@ namespace PxgBot
 
             UpdateGUI();
 
-            CavebotAttack.Start();
+            Pokemon.AddSpell("F1", 10);
+            Pokemon.AddSpell("F2", 15);
+            Pokemon.AddSpell("F3", 20);
+
+
+            CavebotAttack.MonstersToAttack.Add("Pidgey");
+
+            //CavebotAction cavebotAction1 = new CavebotAction(null, ActionTypes.Fishing, new string[] { "894", "741" }, () => Pokemon.HP > 1000);
+            //CavebotAction cavebotAction1 = new CavebotAction(new PXG.Position(4081, 3452, 5), ActionTypes.Walk);
+            //CavebotAction cavebotAction2 = new CavebotAction(new PXG.Position(4085, 3434, 5), ActionTypes.Walk);
+            //Cavebot.CavebotScript = new CavebotAction[] { cavebotAction1, cavebotAction2 };
         }
 
         private async void tmrUpdateInfo_Tick(object sender, EventArgs e)
@@ -73,6 +83,8 @@ namespace PxgBot
 
         private void tmrTest_Tick(object sender, EventArgs e)
         {
+            //GUI.DrawOnScreen(GUI.ScreenRect);
+            //GUI.DrawOnScreen(GUI.BattleRect);
             /// Show all SQMs
             //for (int i = 0; i < 11; i++)
             //{
@@ -82,6 +94,24 @@ namespace PxgBot
             //            GUI.DrawOnScreen(GUI.ScreenGrid[i, j]);
             //        }
             //    }
+            //}
+
+            //var res = ImageSearcher.UseImageSearch("Monsters\\Doduo.png", GUI.ScreenRect.X, GUI.ScreenRect.Y, GUI.ScreenRect.Width, GUI.ScreenRect.Height, tolerance: 10);
+            //if (res != null)
+            //{
+            //    /// Find where of the screen Doduo is:
+            //    int x = res[0];
+            //    int y = (int)(res[1] + GUI.ScreenRect.Height * 0.08);
+
+            //    int posOnMatrixI = (int)Math.Floor((y - GUI.ScreenRect.Y) / GUI.sqmHeight);
+            //    int posOnMatrixJ = (int)Math.Floor((x - GUI.ScreenRect.X) / GUI.sqmWidth);
+
+            //    Rectangle monsterPos = GUI.ScreenGrid[posOnMatrixI, posOnMatrixJ];
+            //    Console.WriteLine("Pos: " + posOnMatrixI + "," + posOnMatrixJ);
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Not Found");
             //}
         }
 
@@ -99,12 +129,8 @@ namespace PxgBot
             else
             {
                 Cavebot.Start();
-
             }
             btnStartCavebot.Text = "Cavebot: " + Cavebot.Enabled;
-        }
-        private void btnStopCavebot_Click(object sender, EventArgs e)
-        {
         }
 
         private void btnTest_Click(object sender, EventArgs e)
@@ -123,7 +149,7 @@ namespace PxgBot
             {
                 CavebotAttack.Start();
             }
-            btnCavebotAttack.Text = "Cavebot Attacking: " + Cavebot.Enabled;
+            btnCavebotAttack.Text = "Attacker: " + CavebotAttack.isEnabled();
         }
     }
 }

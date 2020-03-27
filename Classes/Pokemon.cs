@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Timers;
 using PxgBot.Helpers;
 
 namespace PxgBot.Classes
 {
-    static class Pokemon
+    public static class Pokemon
     {
         public static double HP
         {
@@ -15,36 +16,29 @@ namespace PxgBot.Classes
             }
         }
 
-        public static List<PokemonSpell> PokemonSpells { get; set; }
+        public static List<PokemonSpell> PokemonSpells = new List<PokemonSpell>();
         public static bool Ready { get; } // TODO
+        public static void AddSpell(string hotkey, int cooldown)
+        {
+            PokemonSpell newSpell = new PokemonSpell();
+            newSpell.SpellHotkey = "{" + hotkey + "}";
+            newSpell.Cooldown = cooldown;
+            newSpell.Available = true;
+            PokemonSpells.Add(newSpell);
+        }
     }
 
-    class PokemonSpell
+
+    public class PokemonSpell
     {
-        string SpellHotkey { get; set; }
-        int Cooldown { get; set; }
-        int Order { get; set; }
-        bool Available
-        {
-            get { return Available; }
-            set
-            {
-                if (value == true)
-                    Available = value;
-                else
-                {
+        public string SpellHotkey { get; set; }
+        public int Cooldown { get; set; }
+        public int Order { get; set; }
+        public bool Available { get; set; }
 
-                }
-            }
-        }
-        //Timer cooldownTimer { set; }
-
-        public void startCooldownTimer()
+        public void Execute()
         {
-            //Timer cooldownTimer = new Timer();
-            //cooldownTimer.Interval = Cooldown;
-            //cooldownTimer.Elapsed += new EventHandler(() => { });
-            //cooldownTimer.Start();
+            InputHandler.SendKeys(new string[] { SpellHotkey }, 100);
         }
     }
 }

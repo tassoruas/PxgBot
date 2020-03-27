@@ -17,23 +17,17 @@ namespace PxgBot.Classes
             {
                 Enabled = true;
                 int CurrentAction = 0;
-                CavebotAction cavebotAction1 = new CavebotAction(null, ActionTypes.Fishing, new string[] { "894", "741" }, () => Pokemon.HP > 1000);
-                CavebotAction cavebotAction2 = new CavebotAction(new PXG.Position(4080, 3942, 7), ActionTypes.Walk);
-                CavebotScript = new CavebotAction[] { cavebotAction1, cavebotAction2 };
                 while (Enabled && CurrentAction < CavebotScript.Length)
                 {
                     await ExecuteStep(CavebotScript[CurrentAction]);
                     CurrentAction++;
                 }
+                if (Enabled)
+                    Start();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Cavebot error: " + ex.Message);
-            }
-            finally
-            {
-                if (Enabled)
-                    Start();
             }
         }
 
@@ -82,7 +76,6 @@ namespace PxgBot.Classes
             else if (cbAction.Action == ActionTypes.Talk)
             {
                 return Actions.Talk.TalkToNurse();
-                //return await Actions.Walk.WalkTo(cbAction.Position);
             }
 
             return false;
