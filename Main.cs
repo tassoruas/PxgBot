@@ -4,7 +4,6 @@ using PxgBot.Helpers;
 using PxgBot.Classes;
 using System.Drawing;
 using AutoIt;
-using System.Threading.Tasks;
 
 namespace PxgBot
 {
@@ -14,6 +13,8 @@ namespace PxgBot
         {
             InitializeComponent();
 
+            this.TransparencyKey = BackColor;
+
             AutoItX.WinActivate(Addresses.PxgClientName);
 
             /// Find PXG Handle
@@ -21,16 +22,9 @@ namespace PxgBot
             /// Start reading from memory
             MemoryManager.StartMemoryManager(Addresses.PxgPointerAddress, Addresses.PxgProcessName);
 
-            GUI.OpenBattleList();
+            UpdateGUI();
 
-            // Set Screen Rect
-            GUI.SetScreenBorders();
-
-            /// Set BattleList Rect
-            GUI.SetBattleBorders();
-
-            /// Set Screen Grid => Squares on screen to see SQMs;
-            GUI.SetScreenGrid();
+            CavebotAttack.Start();
         }
 
         private async void tmrUpdateInfo_Tick(object sender, EventArgs e)
@@ -50,21 +44,35 @@ namespace PxgBot
             lblIsFishing.Text = isFishing.ToString();
             bool isAttacking = await Character.isAttacking;
             lblIsAttacking.Text = isAttacking.ToString();
-            //input.Click(963, 498, Addresses.PxgProcessName);
         }
         private void tmrUpdateGUI_Tick(object sender, EventArgs e)
         {
-            // Set Screen Rect
+            UpdateGUI();
+        }
+
+        private void UpdateGUI()
+        {
+            GUI.OpenBattleList();
+
+            // Set Game Screen Rect
             GUI.SetScreenBorders();
 
             /// Set BattleList Rect
             GUI.SetBattleBorders();
+
+            /// Set the PXG Client window size to WindowRect
+            GUI.SetWindowRect();
+
+            /// Set Screen Grid => Squares on screen to see SQMs
+            GUI.SetScreenGrid();
+
+            /// Set window size
+            this.Location = new Point(GUI.WindowRect.X, GUI.WindowRect.Y);
+            this.Size = new Size(GUI.WindowRect.Width, GUI.WindowRect.Height);
         }
 
         private void tmrTest_Tick(object sender, EventArgs e)
         {
-
-
             /// Show all SQMs
             //for (int i = 0; i < 11; i++)
             //{
@@ -75,27 +83,6 @@ namespace PxgBot
             //        }
             //    }
             //}
-
-            GUI.DrawOnScreen(GUI.ScreenRect);
-            GUI.DrawOnScreen(GUI.BattleRect);
-            var res = ImageSearcher.UseImageSearch("Monsters\\Doduo.png", GUI.ScreenRect.X, GUI.ScreenRect.Y, GUI.ScreenRect.Width, GUI.ScreenRect.Height, tolerance: 10);
-            if (res != null)
-            {
-                Console.WriteLine("Found");
-
-                /// Find where of the screen Doduo is:
-                int x = res[0];
-                int y = (int)(res[1] + GUI.ScreenRect.Height * 0.08);
-
-                int posOnMatrixI = (int)Math.Floor((y - GUI.ScreenRect.Y) / GUI.sqmHeight);
-                int posOnMatrixJ = (int)Math.Floor((x - GUI.ScreenRect.X) / GUI.sqmWidth);
-
-                Rectangle monsterPos = GUI.ScreenGrid[posOnMatrixI, posOnMatrixJ];
-            }
-            else
-            {
-                Console.WriteLine("Not Found");
-            }
         }
 
         private void btnGetBattleList_Click(object sender, EventArgs e)
@@ -105,19 +92,38 @@ namespace PxgBot
 
         private void btnStartCavebot_Click(object sender, EventArgs e)
         {
-            Cavebot.Start();
-            btnStopCavebot.Visible = !btnStopCavebot.Visible;
+            if (Cavebot.Enabled)
+            {
+                Cavebot.Stop();
+            }
+            else
+            {
+                Cavebot.Start();
+
+            }
+            btnStartCavebot.Text = "Cavebot: " + Cavebot.Enabled;
         }
         private void btnStopCavebot_Click(object sender, EventArgs e)
         {
-            Cavebot.Stop();
-            btnStartCavebot.Visible = !btnStartCavebot.Visible;
         }
 
         private void btnTest_Click(object sender, EventArgs e)
         {
             MemoryManager.WriteOnMemory((int)Addresses.Offsets.DestinX, 4072);
             MemoryManager.WriteOnMemory((int)Addresses.Offsets.DestinY, 3491);
+        }
+
+        private void btnCavebotAttack_Click(object sender, EventArgs e)
+        {
+            if (CavebotAttack.isEnabled())
+            {
+                CavebotAttack.Stop();
+            }
+            else
+            {
+                CavebotAttack.Start();
+            }
+            btnCavebotAttack.Text = "Cavebot Attacking: " + Cavebot.Enabled;
         }
     }
 }

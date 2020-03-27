@@ -9,6 +9,7 @@ namespace PxgBot.Classes
 {
     static class GUI
     {
+        public static Rectangle WindowRect { get; set; }
         public static Rectangle ScreenRect { get; set; }
         public static double sqmWidth { get; set; }
         public static double sqmHeight { get; set; }
@@ -17,6 +18,8 @@ namespace PxgBot.Classes
 
 
 
+        [DllImport("User32.dll")]
+        public static extern bool GetWindowRect(IntPtr hwnd, ref Rectangle WindowRect);
         [DllImport("User32.dll")]
         public static extern IntPtr GetDC(IntPtr hwnd);
         [DllImport("User32.dll")]
@@ -122,6 +125,20 @@ namespace PxgBot.Classes
                     width += sqmWidth;
                 }
                 height += sqmHeight;
+            }
+        }
+
+        public static void SetWindowRect()
+        {
+            Rectangle outRect = new Rectangle();
+            bool windowFound = GetWindowRect(Addresses.PxgHandle, ref outRect);
+            if (windowFound)
+            {
+                WindowRect = outRect;
+            }
+            else
+            {
+                Console.WriteLine("SetWindowRect: Window not found");
             }
         }
     }

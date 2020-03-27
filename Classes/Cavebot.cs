@@ -89,28 +89,6 @@ namespace PxgBot.Classes
         }
     }
 
-    public static class CavebotAttack
-    {
-        static bool Enabled;
-        public static List<string> MonstersToAttack { get; set; }
-
-        public async static void StartCavebotAttack()
-        {
-            Enabled = true;
-            while (Enabled)
-            {
-                foreach (string monster in MonstersToAttack)
-                {
-                    await Task.Run(() => ImageSearcher.UseImageSearch("Monsters\\" + monster + ".png"));
-                }
-            }
-        }
-        public static void StopCavebotAttack()
-        {
-            Enabled = false;
-        }
-    }
-
     enum ActionTypes
     {
         Fishing,

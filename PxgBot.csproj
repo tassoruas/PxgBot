@@ -57,7 +57,7 @@
   <ItemGroup>
     <Reference Include="AutoItX3.Assembly, Version=3.0.0.0, Culture=neutral, PublicKeyToken=a646454c8d475470, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\Program Files (x86)\AutoIt3\AutoItX\AutoItX3.Assembly.dll</HintPath>
+      <HintPath>External\AutoItX3.Assembly.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -76,6 +76,7 @@
     <Compile Include="Classes\Actions\Talk.cs" />
     <Compile Include="Classes\Actions\Walk.cs" />
     <Compile Include="Classes\Cavebot.cs" />
+    <Compile Include="Classes\CavebotAttack.cs" />
     <Compile Include="Classes\Character.cs" />
     <Compile Include="Classes\GUI.cs" />
     <Compile Include="Classes\Pokemon.cs" />
@@ -129,6 +130,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AutoItX3.Assembly.xml" />
+    <Content Include="External\AutoItX3.Assembly.dll" />
     <Content Include="External\AutoItX3.dll" />
     <Content Include="ImageSearch.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

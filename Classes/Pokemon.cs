@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Timers;
 using PxgBot.Helpers;
 
 namespace PxgBot.Classes
@@ -16,6 +14,37 @@ namespace PxgBot.Classes
                 return MemoryManager.ReadDouble((int)Addresses.Offsets.PokeHP, 8);
             }
         }
-        public static bool Ready { get; }
+
+        public static List<PokemonSpell> PokemonSpells { get; set; }
+        public static bool Ready { get; } // TODO
+    }
+
+    class PokemonSpell
+    {
+        string SpellHotkey { get; set; }
+        int Cooldown { get; set; }
+        int Order { get; set; }
+        bool Available
+        {
+            get { return Available; }
+            set
+            {
+                if (value == true)
+                    Available = value;
+                else
+                {
+
+                }
+            }
+        }
+        //Timer cooldownTimer { set; }
+
+        public void startCooldownTimer()
+        {
+            //Timer cooldownTimer = new Timer();
+            //cooldownTimer.Interval = Cooldown;
+            //cooldownTimer.Elapsed += new EventHandler(() => { });
+            //cooldownTimer.Start();
+        }
     }
 }
