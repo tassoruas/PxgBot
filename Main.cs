@@ -53,7 +53,7 @@ namespace PxgBot
             /// 
             lblPokeHP.Text = Pokemon.HP.ToString();
 
-            if (Pokemon.HP < 1200 && Pokemon.Reviving == false && Character.HP != 0) Pokemon.Revive();
+            if (Pokemon.AutoRevive && Pokemon.HP < Pokemon.HpToRevive && Pokemon.Reviving == false && Character.HP != 0) Pokemon.Revive();
 
             lblCharHP.Text = Character.HP.ToString();
             lblPosX.Text = Character.PosX.ToString();
