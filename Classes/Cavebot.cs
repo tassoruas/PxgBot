@@ -10,20 +10,20 @@ namespace PxgBot.Classes
     static class Cavebot
     {
         public static bool Enabled { get; set; }
-        public static CavebotAction[] CavebotScript;
+        public static List<CavebotAction> CavebotScript = new List<CavebotAction>();
         public async static void Start()
         {
             try
             {
                 Enabled = true;
-                int CurrentAction = 0;
-                while (Enabled && CurrentAction < CavebotScript.Length)
+                while (Enabled)
                 {
-                    await ExecuteStep(CavebotScript[CurrentAction]);
-                    CurrentAction++;
+                    foreach (CavebotAction action in CavebotScript)
+                    {
+                        await ExecuteStep(action);
+                        if (Enabled == false) break;
+                    }
                 }
-                if (Enabled)
-                    Start();
             }
             catch (Exception ex)
             {

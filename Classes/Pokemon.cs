@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Threading.Tasks;
 using System.Timers;
+using AutoIt;
 using PxgBot.Helpers;
 
 namespace PxgBot.Classes
@@ -17,14 +19,62 @@ namespace PxgBot.Classes
         }
 
         public static List<PokemonSpell> PokemonSpells = new List<PokemonSpell>();
-        public static bool Ready { get; } // TODO
-        public static void AddSpell(string hotkey, int cooldown)
+        public static bool Outside { get; set; } // TODO
+        public static bool AutoRevive { get; set; }
+        public static int HpToRevive { get; set; }
+        public static bool Reviving { get; set; }
+        public static void AddSpell(string hotkey, int cooldown, bool enabled)
         {
             PokemonSpell newSpell = new PokemonSpell();
-            newSpell.SpellHotkey = "{" + hotkey + "}";
+            newSpell.SpellHotkey = hotkey;
             newSpell.Cooldown = cooldown;
             newSpell.Available = true;
+            newSpell.Enabled = enabled;
             PokemonSpells.Add(newSpell);
+        }
+
+        public static void Revive()
+        {
+            Console.WriteLine("Will revive");
+            Reviving = true;
+            if (Pokemon.isOutside())
+            {
+                AutoItX.MouseClick("right", GUI.PokeballPosition.X, GUI.PokeballPosition.Y, speed: 1);
+                AutoItX.Sleep(10);
+            }
+            InputHandler.SendKeys(new string[] { Character.ReviveHotkey });
+            AutoItX.Sleep(10);
+            AutoItX.MouseClick("left", GUI.PokeballPosition.X, GUI.PokeballPosition.Y, speed: 1);
+            AutoItX.Sleep(50);
+            AutoItX.MouseClick("right", GUI.PokeballPosition.X, GUI.PokeballPosition.Y, speed: 1);
+            AutoItX.Sleep(100);
+            AutoItX.MouseMove(500, 500, 1);
+            if (Pokemon.isOutside() == false)
+            {
+                AutoItX.MouseClick("right", GUI.PokeballPosition.X, GUI.PokeballPosition.Y, speed: 1);
+            }
+            AutoItX.Sleep(1000);
+            Reviving = false;
+        }
+
+        public static bool isOutside()
+        {
+            int[] pokeInside = ImageSearcher.UseImageSearch("PokeInside.png", x: GUI.ScreenRect.X, y: GUI.ScreenRect.Y, height: GUI.BattleRect.Y, tolerance: 5);
+            if (pokeInside != null)
+            {
+                Outside = false;
+                GUI.PokeballPosition = new Point(pokeInside[0], pokeInside[1]);
+                return false;
+            }
+
+            int[] pokeOutside = ImageSearcher.UseImageSearch("PokeOutside.png", x: GUI.ScreenRect.X, y: GUI.ScreenRect.Y, height: GUI.BattleRect.Y, tolerance: 5);
+            if (pokeOutside != null)
+            {
+                Outside = true;
+                GUI.PokeballPosition = new Point(pokeOutside[0], pokeOutside[1]);
+                return true;
+            }
+            return false;
         }
     }
 
@@ -35,6 +85,7 @@ namespace PxgBot.Classes
         public int Cooldown { get; set; }
         public int Order { get; set; }
         public bool Available { get; set; }
+        public bool Enabled { get; set; }
 
         public void Execute()
         {

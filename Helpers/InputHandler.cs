@@ -46,7 +46,7 @@ namespace PxgBot.Helpers
             //Cursor.Position = oldMousePosition;
         }
 
-        public static void SendKeys(string[] Keys, int DelayBetweenKeys)
+        public static void SendKeys(string[] Keys, int DelayBetweenKeys = 100)
         {
             AutoItX.WinActivate(Addresses.PxgHandle);
             AutoItX.Sleep(100);
