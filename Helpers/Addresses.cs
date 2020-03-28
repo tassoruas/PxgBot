@@ -21,6 +21,7 @@ namespace PxgBot.Helpers
         {
             PokeHP = 0x3e8, // Pokemon current HP
             CharHP = 0x3b0, // Character current HP
+            CharName = 0x28,
             PosX = 0xC, // Position X of character
             PosY = 0x10, // Position Y of character
             PosZ = 0x14, // Position Z of character

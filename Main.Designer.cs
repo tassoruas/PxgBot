@@ -792,6 +792,7 @@
             this.btnAddMonsterAttack.TabIndex = 2;
             this.btnAddMonsterAttack.Text = ">";
             this.btnAddMonsterAttack.UseVisualStyleBackColor = true;
+            this.btnAddMonsterAttack.Click += new System.EventHandler(this.btnAddMonsterAttack_Click);
             // 
             // btnRemoveMonsterAttack
             // 
@@ -801,6 +802,7 @@
             this.btnRemoveMonsterAttack.TabIndex = 3;
             this.btnRemoveMonsterAttack.Text = "<";
             this.btnRemoveMonsterAttack.UseVisualStyleBackColor = true;
+            this.btnRemoveMonsterAttack.Click += new System.EventHandler(this.btnRemoveMonsterAttack_Click);
             // 
             // label20
             // 

@@ -4,6 +4,7 @@ using PxgBot.Helpers;
 using PxgBot.Classes;
 using System.Drawing;
 using AutoIt;
+using System.IO;
 
 namespace PxgBot
 {
@@ -37,13 +38,13 @@ namespace PxgBot
             Pokemon.AddSpell("{F8}", 0, false);
             Pokemon.AddSpell("{F9}", 0, false);
 
-            CavebotAttack.MonstersToAttack.Add("Pidgey");
-
             //CavebotAction cavebotAction1 = new CavebotAction(null, ActionTypes.Fishing, new string[] { "894", "741" }, () => Pokemon.HP > 1000);
             CavebotAction cavebotAction1 = new CavebotAction(new PXG.Position(4081, 3452, 5), ActionTypes.Walk);
             CavebotAction cavebotAction2 = new CavebotAction(new PXG.Position(4085, 3434, 5), ActionTypes.Walk);
             Cavebot.CavebotScript.Add(cavebotAction1);
             Cavebot.CavebotScript.Add(cavebotAction2);
+
+            LoadAvailableMonsters();
         }
 
         private async void tmrUpdateInfo_Tick(object sender, EventArgs e)
@@ -53,7 +54,7 @@ namespace PxgBot
             /// 
             lblPokeHP.Text = Pokemon.HP.ToString();
 
-            if (Pokemon.HP < 1200) if (Pokemon.Reviving == false) Pokemon.Revive();
+            if (Pokemon.HP < 1200 && Pokemon.Reviving == false && Character.HP != 0) Pokemon.Revive();
 
             lblCharHP.Text = Character.HP.ToString();
             lblPosX.Text = Character.PosX.ToString();
@@ -163,7 +164,7 @@ namespace PxgBot
         }
 
 
-        #region Settings Screen
+        #region Pokemon Settings Screen
         /// 
         /// 
         ///
@@ -284,5 +285,46 @@ namespace PxgBot
         }
 
         #endregion
+
+        #region Attacker Settings Screen
+
+        private void LoadAvailableMonsters()
+        {
+            string[] monsters = Directory.GetFiles("Images\\Monsters");
+            for (int i = 0; i < monsters.Length; i++)
+            {
+                monsters[i] = monsters[i].Replace("Images\\Monsters\\", "").Replace(".png", "");
+            }
+            foreach (string monster in monsters)
+            {
+                listAvailableMonsters.Items.Add(monster);
+            }
+        }
+
+        private void btnAddMonsterAttack_Click(object sender, EventArgs e)
+        {
+            listMonstersToAttack.Items.Add(listAvailableMonsters.SelectedItem);
+            listAvailableMonsters.Items.Remove(listAvailableMonsters.SelectedItem);
+            UpdateMonstersToAttack();
+        }
+        private void btnRemoveMonsterAttack_Click(object sender, EventArgs e)
+        {
+            listAvailableMonsters.Items.Add(listMonstersToAttack.SelectedItem);
+            listMonstersToAttack.Items.Remove(listMonstersToAttack.SelectedItem);
+            UpdateMonstersToAttack();
+        }
+
+        private void UpdateMonstersToAttack()
+        {
+            CavebotAttack.MonstersToAttack.Clear();
+            foreach (var monster in listMonstersToAttack.Items)
+            {
+                Console.WriteLine("monster: " + monster.ToString());
+                CavebotAttack.MonstersToAttack.Add(monster.ToString());
+            }
+        }
+
+        #endregion
+
     }
 }
