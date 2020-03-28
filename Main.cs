@@ -30,7 +30,6 @@ namespace PxgBot
             Pokemon.AddSpell("{F1}", 0, false);
             Pokemon.AddSpell("{F2}", 0, false);
             Pokemon.AddSpell("{F3}", 0, false);
-            Pokemon.AddSpell("{F3}", 0, false);
             Pokemon.AddSpell("{F4}", 0, false);
             Pokemon.AddSpell("{F5}", 0, false);
             Pokemon.AddSpell("{F6}", 0, false);
