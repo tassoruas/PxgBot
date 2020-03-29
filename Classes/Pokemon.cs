@@ -21,8 +21,23 @@ namespace PxgBot.Classes
         public static List<PokemonSpell> PokemonSpells = new List<PokemonSpell>();
         public static bool Outside { get; set; } // TODO
         public static bool AutoRevive { get; set; }
-        public static int HpToRevive { get; set; }
+        public static int AutoReviveHP { get; set; }
+        public static string AutoReviveHotkey { get; set; }
         public static bool Reviving { get; set; }
+
+        public static void Init()
+        {
+            Pokemon.AddSpell("{F1}", 0, false);
+            Pokemon.AddSpell("{F2}", 0, false);
+            Pokemon.AddSpell("{F3}", 0, false);
+            Pokemon.AddSpell("{F4}", 0, false);
+            Pokemon.AddSpell("{F5}", 0, false);
+            Pokemon.AddSpell("{F6}", 0, false);
+            Pokemon.AddSpell("{F7}", 0, false);
+            Pokemon.AddSpell("{F8}", 0, false);
+            Pokemon.AddSpell("{F9}", 0, false);
+        }
+
         public static void AddSpell(string hotkey, int cooldown, bool enabled)
         {
             PokemonSpell newSpell = new PokemonSpell();
@@ -37,24 +52,29 @@ namespace PxgBot.Classes
         {
             Console.WriteLine("Will revive");
             Reviving = true;
-            if (Pokemon.isOutside())
+            if (isOutside())
             {
-                AutoItX.MouseClick("right", GUI.PokeballPosition.X, GUI.PokeballPosition.Y, speed: 1);
-                AutoItX.Sleep(10);
+                PutInOrOut();
             }
-            InputHandler.SendKeys(new string[] { Character.ReviveHotkey });
+            InputHandler.SendKeys(new string[] { Pokemon.AutoReviveHotkey });
             AutoItX.Sleep(10);
             AutoItX.MouseClick("left", GUI.PokeballPosition.X, GUI.PokeballPosition.Y, speed: 1);
             AutoItX.Sleep(50);
-            AutoItX.MouseClick("right", GUI.PokeballPosition.X, GUI.PokeballPosition.Y, speed: 1);
+            PutInOrOut();
             AutoItX.Sleep(100);
             AutoItX.MouseMove(500, 500, 1);
-            if (Pokemon.isOutside() == false)
+            if (isOutside() == false)
             {
-                AutoItX.MouseClick("right", GUI.PokeballPosition.X, GUI.PokeballPosition.Y, speed: 1);
+                PutInOrOut();
             }
             AutoItX.Sleep(1000);
             Reviving = false;
+        }
+
+        public static void PutInOrOut()
+        {
+            AutoItX.MouseClick("right", GUI.PokeballPosition.X, GUI.PokeballPosition.Y, speed: 1);
+            AutoItX.Sleep(10);
         }
 
         public static bool isOutside()
@@ -87,7 +107,7 @@ namespace PxgBot.Classes
         public bool Available { get; set; }
         public bool Enabled { get; set; }
 
-        public void Execute()
+        public void UseSpell()
         {
             InputHandler.SendKeys(new string[] { SpellHotkey }, 100);
         }

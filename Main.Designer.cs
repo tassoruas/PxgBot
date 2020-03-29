@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.tmrUpdateInfo = new System.Windows.Forms.Timer(this.components);
             this.tmrTest = new System.Windows.Forms.Timer(this.components);
             this.label1 = new System.Windows.Forms.Label();
@@ -51,72 +50,75 @@
             this.lblIsFishing = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.tmrUpdateGUI = new System.Windows.Forms.Timer(this.components);
-            this.btnCavebotAttack = new System.Windows.Forms.Button();
-            this.btnStartCavebot = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
             this.pnlSettings = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPokemon = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.cmbReviveHotkey = new System.Windows.Forms.ComboBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.txtCooldownF9 = new System.Windows.Forms.NumericUpDown();
+            this.label18 = new System.Windows.Forms.Label();
+            this.txtCooldownF8 = new System.Windows.Forms.NumericUpDown();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txtCooldownF7 = new System.Windows.Forms.NumericUpDown();
+            this.label16 = new System.Windows.Forms.Label();
+            this.txtCooldownF6 = new System.Windows.Forms.NumericUpDown();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtCooldownF5 = new System.Windows.Forms.NumericUpDown();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtCooldownF4 = new System.Windows.Forms.NumericUpDown();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtCooldownF3 = new System.Windows.Forms.NumericUpDown();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtCooldownF2 = new System.Windows.Forms.NumericUpDown();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtCooldownF1 = new System.Windows.Forms.NumericUpDown();
+            this.chbSpellF9 = new System.Windows.Forms.CheckBox();
+            this.chbSpellF8 = new System.Windows.Forms.CheckBox();
+            this.chbSpellF7 = new System.Windows.Forms.CheckBox();
+            this.chbSpellF6 = new System.Windows.Forms.CheckBox();
+            this.chbSpellF5 = new System.Windows.Forms.CheckBox();
+            this.chbSpellF4 = new System.Windows.Forms.CheckBox();
+            this.chbSpellF3 = new System.Windows.Forms.CheckBox();
+            this.chbSpellF2 = new System.Windows.Forms.CheckBox();
+            this.chbSpellF1 = new System.Windows.Forms.CheckBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtHpToRevive = new System.Windows.Forms.NumericUpDown();
             this.chbAutoRevive = new System.Windows.Forms.CheckBox();
-            this.chbSpellF1 = new System.Windows.Forms.CheckBox();
-            this.chbSpellF2 = new System.Windows.Forms.CheckBox();
-            this.chbSpellF3 = new System.Windows.Forms.CheckBox();
-            this.chbSpellF4 = new System.Windows.Forms.CheckBox();
-            this.chbSpellF5 = new System.Windows.Forms.CheckBox();
-            this.chbSpellF6 = new System.Windows.Forms.CheckBox();
-            this.chbSpellF7 = new System.Windows.Forms.CheckBox();
-            this.chbSpellF8 = new System.Windows.Forms.CheckBox();
-            this.chbSpellF9 = new System.Windows.Forms.CheckBox();
-            this.txtCooldownF1 = new System.Windows.Forms.NumericUpDown();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.txtCooldownF2 = new System.Windows.Forms.NumericUpDown();
-            this.label13 = new System.Windows.Forms.Label();
-            this.txtCooldownF3 = new System.Windows.Forms.NumericUpDown();
-            this.label14 = new System.Windows.Forms.Label();
-            this.txtCooldownF4 = new System.Windows.Forms.NumericUpDown();
-            this.label15 = new System.Windows.Forms.Label();
-            this.txtCooldownF5 = new System.Windows.Forms.NumericUpDown();
-            this.label16 = new System.Windows.Forms.Label();
-            this.txtCooldownF6 = new System.Windows.Forms.NumericUpDown();
-            this.label17 = new System.Windows.Forms.Label();
-            this.txtCooldownF7 = new System.Windows.Forms.NumericUpDown();
-            this.label18 = new System.Windows.Forms.Label();
-            this.txtCooldownF8 = new System.Windows.Forms.NumericUpDown();
-            this.label19 = new System.Windows.Forms.Label();
-            this.txtCooldownF9 = new System.Windows.Forms.NumericUpDown();
             this.tabCavebot = new System.Windows.Forms.TabPage();
-            this.tabAttacker = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tabAttacker = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.listAvailableMonsters = new System.Windows.Forms.ListBox();
-            this.listMonstersToAttack = new System.Windows.Forms.ListBox();
-            this.btnAddMonsterAttack = new System.Windows.Forms.Button();
-            this.btnRemoveMonsterAttack = new System.Windows.Forms.Button();
-            this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.cmbReviveHotkey = new System.Windows.Forms.ComboBox();
-            this.label22 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.btnRemoveMonsterAttack = new System.Windows.Forms.Button();
+            this.btnAddMonsterAttack = new System.Windows.Forms.Button();
+            this.listMonstersToAttack = new System.Windows.Forms.ListBox();
+            this.listAvailableMonsters = new System.Windows.Forms.ListBox();
+            this.btnCavebotAttack = new System.Windows.Forms.Button();
+            this.btnStartCavebot = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnSaveSettings = new System.Windows.Forms.Button();
             this.pnlSettings.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPokemon.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtHpToRevive)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtHpToRevive)).BeginInit();
             this.tabCavebot.SuspendLayout();
             this.tabAttacker.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tmrUpdateInfo
@@ -332,40 +334,14 @@
             // tmrUpdateGUI
             // 
             this.tmrUpdateGUI.Enabled = true;
-            this.tmrUpdateGUI.Interval = 30000;
+            this.tmrUpdateGUI.Interval = 60000;
             this.tmrUpdateGUI.Tick += new System.EventHandler(this.tmrUpdateGUI_Tick);
-            // 
-            // btnCavebotAttack
-            // 
-            this.btnCavebotAttack.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnCavebotAttack.BackgroundImage")));
-            this.btnCavebotAttack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnCavebotAttack.Location = new System.Drawing.Point(23, 247);
-            this.btnCavebotAttack.Name = "btnCavebotAttack";
-            this.btnCavebotAttack.Size = new System.Drawing.Size(119, 77);
-            this.btnCavebotAttack.TabIndex = 25;
-            this.btnCavebotAttack.Text = "Attacker: Stopped";
-            this.btnCavebotAttack.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnCavebotAttack.UseVisualStyleBackColor = true;
-            this.btnCavebotAttack.Click += new System.EventHandler(this.btnCavebotAttack_Click);
-            // 
-            // btnStartCavebot
-            // 
-            this.btnStartCavebot.BackgroundImage = global::PxgBot.Properties.Resources.Hunting_512;
-            this.btnStartCavebot.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnStartCavebot.Location = new System.Drawing.Point(23, 157);
-            this.btnStartCavebot.Name = "btnStartCavebot";
-            this.btnStartCavebot.Size = new System.Drawing.Size(119, 84);
-            this.btnStartCavebot.TabIndex = 22;
-            this.btnStartCavebot.Text = "Cavebot: Stopped";
-            this.btnStartCavebot.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnStartCavebot.UseVisualStyleBackColor = true;
-            this.btnStartCavebot.Click += new System.EventHandler(this.btnStartCavebot_Click);
             // 
             // btnSettings
             // 
             this.btnSettings.Location = new System.Drawing.Point(23, 330);
             this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(119, 23);
+            this.btnSettings.Size = new System.Drawing.Size(107, 23);
             this.btnSettings.TabIndex = 26;
             this.btnSettings.Text = "Settings >>";
             this.btnSettings.UseVisualStyleBackColor = true;
@@ -373,10 +349,11 @@
             // 
             // pnlSettings
             // 
+            this.pnlSettings.Controls.Add(this.panel1);
             this.pnlSettings.Controls.Add(this.tabControl1);
             this.pnlSettings.Location = new System.Drawing.Point(166, 157);
             this.pnlSettings.Name = "pnlSettings";
-            this.pnlSettings.Size = new System.Drawing.Size(294, 501);
+            this.pnlSettings.Size = new System.Drawing.Size(294, 525);
             this.pnlSettings.TabIndex = 27;
             this.pnlSettings.Visible = false;
             // 
@@ -389,7 +366,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(294, 501);
+            this.tabControl1.Size = new System.Drawing.Size(294, 525);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPokemon
@@ -398,7 +375,7 @@
             this.tabPokemon.Location = new System.Drawing.Point(4, 22);
             this.tabPokemon.Name = "tabPokemon";
             this.tabPokemon.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPokemon.Size = new System.Drawing.Size(286, 475);
+            this.tabPokemon.Size = new System.Drawing.Size(286, 499);
             this.tabPokemon.TabIndex = 2;
             this.tabPokemon.Text = "Pokemon";
             this.tabPokemon.UseVisualStyleBackColor = true;
@@ -439,388 +416,19 @@
             this.groupBox2.Controls.Add(this.chbAutoRevive);
             this.groupBox2.Location = new System.Drawing.Point(6, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(274, 462);
+            this.groupBox2.Size = new System.Drawing.Size(274, 449);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Pokemon";
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(97, 23);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(72, 39);
-            this.label8.TabIndex = 2;
-            this.label8.Text = "HP to revive: \r\n(0 means \r\nwhen dead)";
-            // 
-            // txtHpToRevive
-            // 
-            this.txtHpToRevive.Location = new System.Drawing.Point(175, 26);
-            this.txtHpToRevive.Name = "txtHpToRevive";
-            this.txtHpToRevive.Size = new System.Drawing.Size(58, 20);
-            this.txtHpToRevive.TabIndex = 1;
-            this.txtHpToRevive.ValueChanged += new System.EventHandler(this.txtHpToRevive_ValueChanged);
-            // 
-            // chbAutoRevive
-            // 
-            this.chbAutoRevive.AutoSize = true;
-            this.chbAutoRevive.Location = new System.Drawing.Point(6, 27);
-            this.chbAutoRevive.Name = "chbAutoRevive";
-            this.chbAutoRevive.Size = new System.Drawing.Size(85, 17);
-            this.chbAutoRevive.TabIndex = 0;
-            this.chbAutoRevive.Text = "Auto Revive";
-            this.chbAutoRevive.UseVisualStyleBackColor = true;
-            this.chbAutoRevive.CheckedChanged += new System.EventHandler(this.chbAutoRevive_CheckedChanged);
-            // 
-            // chbSpellF1
-            // 
-            this.chbSpellF1.AutoSize = true;
-            this.chbSpellF1.Location = new System.Drawing.Point(6, 121);
-            this.chbSpellF1.Name = "chbSpellF1";
-            this.chbSpellF1.Size = new System.Drawing.Size(38, 17);
-            this.chbSpellF1.TabIndex = 3;
-            this.chbSpellF1.Text = "F1";
-            this.chbSpellF1.UseVisualStyleBackColor = true;
-            this.chbSpellF1.CheckedChanged += new System.EventHandler(this.chbSpellF1_CheckedChanged);
-            // 
-            // chbSpellF2
-            // 
-            this.chbSpellF2.AutoSize = true;
-            this.chbSpellF2.Location = new System.Drawing.Point(6, 144);
-            this.chbSpellF2.Name = "chbSpellF2";
-            this.chbSpellF2.Size = new System.Drawing.Size(38, 17);
-            this.chbSpellF2.TabIndex = 4;
-            this.chbSpellF2.Text = "F2";
-            this.chbSpellF2.UseVisualStyleBackColor = true;
-            this.chbSpellF2.CheckedChanged += new System.EventHandler(this.chbSpellF2_CheckedChanged);
-            // 
-            // chbSpellF3
-            // 
-            this.chbSpellF3.AutoSize = true;
-            this.chbSpellF3.Location = new System.Drawing.Point(6, 167);
-            this.chbSpellF3.Name = "chbSpellF3";
-            this.chbSpellF3.Size = new System.Drawing.Size(38, 17);
-            this.chbSpellF3.TabIndex = 5;
-            this.chbSpellF3.Text = "F3";
-            this.chbSpellF3.UseVisualStyleBackColor = true;
-            this.chbSpellF3.CheckedChanged += new System.EventHandler(this.chbSpellF3_CheckedChanged);
-            // 
-            // chbSpellF4
-            // 
-            this.chbSpellF4.AutoSize = true;
-            this.chbSpellF4.Location = new System.Drawing.Point(6, 190);
-            this.chbSpellF4.Name = "chbSpellF4";
-            this.chbSpellF4.Size = new System.Drawing.Size(38, 17);
-            this.chbSpellF4.TabIndex = 6;
-            this.chbSpellF4.Text = "F4";
-            this.chbSpellF4.UseVisualStyleBackColor = true;
-            this.chbSpellF4.CheckedChanged += new System.EventHandler(this.chbSpellF4_CheckedChanged);
-            // 
-            // chbSpellF5
-            // 
-            this.chbSpellF5.AutoSize = true;
-            this.chbSpellF5.Location = new System.Drawing.Point(6, 213);
-            this.chbSpellF5.Name = "chbSpellF5";
-            this.chbSpellF5.Size = new System.Drawing.Size(38, 17);
-            this.chbSpellF5.TabIndex = 7;
-            this.chbSpellF5.Text = "F5";
-            this.chbSpellF5.UseVisualStyleBackColor = true;
-            this.chbSpellF5.CheckedChanged += new System.EventHandler(this.chbSpellF5_CheckedChanged);
-            // 
-            // chbSpellF6
-            // 
-            this.chbSpellF6.AutoSize = true;
-            this.chbSpellF6.Location = new System.Drawing.Point(6, 236);
-            this.chbSpellF6.Name = "chbSpellF6";
-            this.chbSpellF6.Size = new System.Drawing.Size(38, 17);
-            this.chbSpellF6.TabIndex = 8;
-            this.chbSpellF6.Text = "F6";
-            this.chbSpellF6.UseVisualStyleBackColor = true;
-            this.chbSpellF6.CheckedChanged += new System.EventHandler(this.chbSpellF6_CheckedChanged);
-            // 
-            // chbSpellF7
-            // 
-            this.chbSpellF7.AutoSize = true;
-            this.chbSpellF7.Location = new System.Drawing.Point(6, 259);
-            this.chbSpellF7.Name = "chbSpellF7";
-            this.chbSpellF7.Size = new System.Drawing.Size(38, 17);
-            this.chbSpellF7.TabIndex = 9;
-            this.chbSpellF7.Text = "F7";
-            this.chbSpellF7.UseVisualStyleBackColor = true;
-            this.chbSpellF7.CheckedChanged += new System.EventHandler(this.chbSpellF7_CheckedChanged);
-            // 
-            // chbSpellF8
-            // 
-            this.chbSpellF8.AutoSize = true;
-            this.chbSpellF8.Location = new System.Drawing.Point(6, 282);
-            this.chbSpellF8.Name = "chbSpellF8";
-            this.chbSpellF8.Size = new System.Drawing.Size(38, 17);
-            this.chbSpellF8.TabIndex = 10;
-            this.chbSpellF8.Text = "F8";
-            this.chbSpellF8.UseVisualStyleBackColor = true;
-            this.chbSpellF8.CheckedChanged += new System.EventHandler(this.chbSpellF8_CheckedChanged);
-            // 
-            // chbSpellF9
-            // 
-            this.chbSpellF9.AutoSize = true;
-            this.chbSpellF9.Location = new System.Drawing.Point(6, 305);
-            this.chbSpellF9.Name = "chbSpellF9";
-            this.chbSpellF9.Size = new System.Drawing.Size(38, 17);
-            this.chbSpellF9.TabIndex = 11;
-            this.chbSpellF9.Text = "F9";
-            this.chbSpellF9.UseVisualStyleBackColor = true;
-            this.chbSpellF9.CheckedChanged += new System.EventHandler(this.chbSpellF9_CheckedChanged);
-            // 
-            // txtCooldownF1
-            // 
-            this.txtCooldownF1.Location = new System.Drawing.Point(175, 120);
-            this.txtCooldownF1.Name = "txtCooldownF1";
-            this.txtCooldownF1.Size = new System.Drawing.Size(58, 20);
-            this.txtCooldownF1.TabIndex = 12;
-            this.txtCooldownF1.ValueChanged += new System.EventHandler(this.txtCooldownF1_ValueChanged);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(109, 122);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(60, 13);
-            this.label10.TabIndex = 13;
-            this.label10.Text = "Cooldown: ";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(109, 145);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(60, 13);
-            this.label12.TabIndex = 15;
-            this.label12.Text = "Cooldown: ";
-            // 
-            // txtCooldownF2
-            // 
-            this.txtCooldownF2.Location = new System.Drawing.Point(175, 143);
-            this.txtCooldownF2.Name = "txtCooldownF2";
-            this.txtCooldownF2.Size = new System.Drawing.Size(58, 20);
-            this.txtCooldownF2.TabIndex = 14;
-            this.txtCooldownF2.ValueChanged += new System.EventHandler(this.txtCooldownF2_ValueChanged);
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(109, 168);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(60, 13);
-            this.label13.TabIndex = 17;
-            this.label13.Text = "Cooldown: ";
-            // 
-            // txtCooldownF3
-            // 
-            this.txtCooldownF3.Location = new System.Drawing.Point(175, 166);
-            this.txtCooldownF3.Name = "txtCooldownF3";
-            this.txtCooldownF3.Size = new System.Drawing.Size(58, 20);
-            this.txtCooldownF3.TabIndex = 16;
-            this.txtCooldownF3.ValueChanged += new System.EventHandler(this.txtCooldownF3_ValueChanged);
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(109, 190);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(60, 13);
-            this.label14.TabIndex = 19;
-            this.label14.Text = "Cooldown: ";
-            // 
-            // txtCooldownF4
-            // 
-            this.txtCooldownF4.Location = new System.Drawing.Point(175, 188);
-            this.txtCooldownF4.Name = "txtCooldownF4";
-            this.txtCooldownF4.Size = new System.Drawing.Size(58, 20);
-            this.txtCooldownF4.TabIndex = 18;
-            this.txtCooldownF4.ValueChanged += new System.EventHandler(this.txtCooldownF4_ValueChanged);
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(109, 214);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(60, 13);
-            this.label15.TabIndex = 21;
-            this.label15.Text = "Cooldown: ";
-            // 
-            // txtCooldownF5
-            // 
-            this.txtCooldownF5.Location = new System.Drawing.Point(175, 212);
-            this.txtCooldownF5.Name = "txtCooldownF5";
-            this.txtCooldownF5.Size = new System.Drawing.Size(58, 20);
-            this.txtCooldownF5.TabIndex = 20;
-            this.txtCooldownF5.ValueChanged += new System.EventHandler(this.txtCooldownF5_ValueChanged);
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(109, 237);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(60, 13);
-            this.label16.TabIndex = 23;
-            this.label16.Text = "Cooldown: ";
-            // 
-            // txtCooldownF6
-            // 
-            this.txtCooldownF6.Location = new System.Drawing.Point(175, 235);
-            this.txtCooldownF6.Name = "txtCooldownF6";
-            this.txtCooldownF6.Size = new System.Drawing.Size(58, 20);
-            this.txtCooldownF6.TabIndex = 22;
-            this.txtCooldownF6.ValueChanged += new System.EventHandler(this.txtCooldownF6_ValueChanged);
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(109, 260);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(60, 13);
-            this.label17.TabIndex = 25;
-            this.label17.Text = "Cooldown: ";
-            // 
-            // txtCooldownF7
-            // 
-            this.txtCooldownF7.Location = new System.Drawing.Point(175, 258);
-            this.txtCooldownF7.Name = "txtCooldownF7";
-            this.txtCooldownF7.Size = new System.Drawing.Size(58, 20);
-            this.txtCooldownF7.TabIndex = 24;
-            this.txtCooldownF7.ValueChanged += new System.EventHandler(this.txtCooldownF7_ValueChanged);
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(109, 283);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(60, 13);
-            this.label18.TabIndex = 27;
-            this.label18.Text = "Cooldown: ";
-            // 
-            // txtCooldownF8
-            // 
-            this.txtCooldownF8.Location = new System.Drawing.Point(175, 281);
-            this.txtCooldownF8.Name = "txtCooldownF8";
-            this.txtCooldownF8.Size = new System.Drawing.Size(58, 20);
-            this.txtCooldownF8.TabIndex = 26;
-            this.txtCooldownF8.ValueChanged += new System.EventHandler(this.txtCooldownF8_ValueChanged);
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(109, 306);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(60, 13);
-            this.label19.TabIndex = 29;
-            this.label19.Text = "Cooldown: ";
-            // 
-            // txtCooldownF9
-            // 
-            this.txtCooldownF9.Location = new System.Drawing.Point(175, 304);
-            this.txtCooldownF9.Name = "txtCooldownF9";
-            this.txtCooldownF9.Size = new System.Drawing.Size(58, 20);
-            this.txtCooldownF9.TabIndex = 28;
-            this.txtCooldownF9.ValueChanged += new System.EventHandler(this.txtCooldownF9_ValueChanged);
-            // 
-            // tabCavebot
-            // 
-            this.tabCavebot.Controls.Add(this.groupBox1);
-            this.tabCavebot.Location = new System.Drawing.Point(4, 22);
-            this.tabCavebot.Name = "tabCavebot";
-            this.tabCavebot.Size = new System.Drawing.Size(286, 475);
-            this.tabCavebot.TabIndex = 3;
-            this.tabCavebot.Text = "Cavebot";
-            this.tabCavebot.UseVisualStyleBackColor = true;
-            // 
-            // tabAttacker
-            // 
-            this.tabAttacker.Controls.Add(this.groupBox3);
-            this.tabAttacker.Location = new System.Drawing.Point(4, 22);
-            this.tabAttacker.Name = "tabAttacker";
-            this.tabAttacker.Size = new System.Drawing.Size(286, 475);
-            this.tabAttacker.TabIndex = 4;
-            this.tabAttacker.Text = "Attacker";
-            this.tabAttacker.UseVisualStyleBackColor = true;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(280, 469);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Cavebot";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.label21);
-            this.groupBox3.Controls.Add(this.label20);
-            this.groupBox3.Controls.Add(this.btnRemoveMonsterAttack);
-            this.groupBox3.Controls.Add(this.btnAddMonsterAttack);
-            this.groupBox3.Controls.Add(this.listMonstersToAttack);
-            this.groupBox3.Controls.Add(this.listAvailableMonsters);
-            this.groupBox3.Location = new System.Drawing.Point(3, 3);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(280, 469);
-            this.groupBox3.TabIndex = 1;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Attacker";
-            // 
-            // listAvailableMonsters
-            // 
-            this.listAvailableMonsters.FormattingEnabled = true;
-            this.listAvailableMonsters.Location = new System.Drawing.Point(6, 47);
-            this.listAvailableMonsters.Name = "listAvailableMonsters";
-            this.listAvailableMonsters.Size = new System.Drawing.Size(105, 264);
-            this.listAvailableMonsters.TabIndex = 0;
-            // 
-            // listMonstersToAttack
-            // 
-            this.listMonstersToAttack.FormattingEnabled = true;
-            this.listMonstersToAttack.Location = new System.Drawing.Point(169, 47);
-            this.listMonstersToAttack.Name = "listMonstersToAttack";
-            this.listMonstersToAttack.Size = new System.Drawing.Size(105, 264);
-            this.listMonstersToAttack.TabIndex = 1;
-            // 
-            // btnAddMonsterAttack
-            // 
-            this.btnAddMonsterAttack.Location = new System.Drawing.Point(126, 134);
-            this.btnAddMonsterAttack.Name = "btnAddMonsterAttack";
-            this.btnAddMonsterAttack.Size = new System.Drawing.Size(37, 23);
-            this.btnAddMonsterAttack.TabIndex = 2;
-            this.btnAddMonsterAttack.Text = ">";
-            this.btnAddMonsterAttack.UseVisualStyleBackColor = true;
-            this.btnAddMonsterAttack.Click += new System.EventHandler(this.btnAddMonsterAttack_Click);
-            // 
-            // btnRemoveMonsterAttack
-            // 
-            this.btnRemoveMonsterAttack.Location = new System.Drawing.Point(126, 163);
-            this.btnRemoveMonsterAttack.Name = "btnRemoveMonsterAttack";
-            this.btnRemoveMonsterAttack.Size = new System.Drawing.Size(37, 23);
-            this.btnRemoveMonsterAttack.TabIndex = 3;
-            this.btnRemoveMonsterAttack.Text = "<";
-            this.btnRemoveMonsterAttack.UseVisualStyleBackColor = true;
-            this.btnRemoveMonsterAttack.Click += new System.EventHandler(this.btnRemoveMonsterAttack_Click);
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(166, 31);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(101, 13);
-            this.label20.TabIndex = 4;
-            this.label20.Text = "Monsters to attack: ";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(3, 31);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(101, 13);
-            this.label21.TabIndex = 5;
-            this.label21.Text = "Available monsters: ";
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(2, 80);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(104, 13);
+            this.label22.TabIndex = 31;
+            this.label22.Text = "Revive item hotkey: ";
             // 
             // cmbReviveHotkey
             // 
@@ -844,14 +452,490 @@
             this.cmbReviveHotkey.TabIndex = 30;
             this.cmbReviveHotkey.SelectedValueChanged += new System.EventHandler(this.cmbReviveHotkey_SelectedValueChanged);
             // 
-            // label22
+            // label19
             // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(2, 80);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(104, 13);
-            this.label22.TabIndex = 31;
-            this.label22.Text = "Revive item hotkey: ";
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(109, 306);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(60, 13);
+            this.label19.TabIndex = 29;
+            this.label19.Text = "Cooldown: ";
+            // 
+            // txtCooldownF9
+            // 
+            this.txtCooldownF9.Enabled = false;
+            this.txtCooldownF9.Location = new System.Drawing.Point(175, 304);
+            this.txtCooldownF9.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            this.txtCooldownF9.Name = "txtCooldownF9";
+            this.txtCooldownF9.Size = new System.Drawing.Size(58, 20);
+            this.txtCooldownF9.TabIndex = 28;
+            this.txtCooldownF9.ValueChanged += new System.EventHandler(this.txtCooldownF9_ValueChanged);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(109, 283);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(60, 13);
+            this.label18.TabIndex = 27;
+            this.label18.Text = "Cooldown: ";
+            // 
+            // txtCooldownF8
+            // 
+            this.txtCooldownF8.Enabled = false;
+            this.txtCooldownF8.Location = new System.Drawing.Point(175, 281);
+            this.txtCooldownF8.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            this.txtCooldownF8.Name = "txtCooldownF8";
+            this.txtCooldownF8.Size = new System.Drawing.Size(58, 20);
+            this.txtCooldownF8.TabIndex = 26;
+            this.txtCooldownF8.ValueChanged += new System.EventHandler(this.txtCooldownF8_ValueChanged);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(109, 260);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(60, 13);
+            this.label17.TabIndex = 25;
+            this.label17.Text = "Cooldown: ";
+            // 
+            // txtCooldownF7
+            // 
+            this.txtCooldownF7.Enabled = false;
+            this.txtCooldownF7.Location = new System.Drawing.Point(175, 258);
+            this.txtCooldownF7.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            this.txtCooldownF7.Name = "txtCooldownF7";
+            this.txtCooldownF7.Size = new System.Drawing.Size(58, 20);
+            this.txtCooldownF7.TabIndex = 24;
+            this.txtCooldownF7.ValueChanged += new System.EventHandler(this.txtCooldownF7_ValueChanged);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(109, 237);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(60, 13);
+            this.label16.TabIndex = 23;
+            this.label16.Text = "Cooldown: ";
+            // 
+            // txtCooldownF6
+            // 
+            this.txtCooldownF6.Enabled = false;
+            this.txtCooldownF6.Location = new System.Drawing.Point(175, 235);
+            this.txtCooldownF6.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            this.txtCooldownF6.Name = "txtCooldownF6";
+            this.txtCooldownF6.Size = new System.Drawing.Size(58, 20);
+            this.txtCooldownF6.TabIndex = 22;
+            this.txtCooldownF6.ValueChanged += new System.EventHandler(this.txtCooldownF6_ValueChanged);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(109, 214);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(60, 13);
+            this.label15.TabIndex = 21;
+            this.label15.Text = "Cooldown: ";
+            // 
+            // txtCooldownF5
+            // 
+            this.txtCooldownF5.Enabled = false;
+            this.txtCooldownF5.Location = new System.Drawing.Point(175, 212);
+            this.txtCooldownF5.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            this.txtCooldownF5.Name = "txtCooldownF5";
+            this.txtCooldownF5.Size = new System.Drawing.Size(58, 20);
+            this.txtCooldownF5.TabIndex = 20;
+            this.txtCooldownF5.ValueChanged += new System.EventHandler(this.txtCooldownF5_ValueChanged);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(109, 190);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(60, 13);
+            this.label14.TabIndex = 19;
+            this.label14.Text = "Cooldown: ";
+            // 
+            // txtCooldownF4
+            // 
+            this.txtCooldownF4.Enabled = false;
+            this.txtCooldownF4.Location = new System.Drawing.Point(175, 188);
+            this.txtCooldownF4.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            this.txtCooldownF4.Name = "txtCooldownF4";
+            this.txtCooldownF4.Size = new System.Drawing.Size(58, 20);
+            this.txtCooldownF4.TabIndex = 18;
+            this.txtCooldownF4.ValueChanged += new System.EventHandler(this.txtCooldownF4_ValueChanged);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(109, 168);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(60, 13);
+            this.label13.TabIndex = 17;
+            this.label13.Text = "Cooldown: ";
+            // 
+            // txtCooldownF3
+            // 
+            this.txtCooldownF3.Enabled = false;
+            this.txtCooldownF3.Location = new System.Drawing.Point(175, 166);
+            this.txtCooldownF3.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            this.txtCooldownF3.Name = "txtCooldownF3";
+            this.txtCooldownF3.Size = new System.Drawing.Size(58, 20);
+            this.txtCooldownF3.TabIndex = 16;
+            this.txtCooldownF3.ValueChanged += new System.EventHandler(this.txtCooldownF3_ValueChanged);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(109, 145);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(60, 13);
+            this.label12.TabIndex = 15;
+            this.label12.Text = "Cooldown: ";
+            // 
+            // txtCooldownF2
+            // 
+            this.txtCooldownF2.Enabled = false;
+            this.txtCooldownF2.Location = new System.Drawing.Point(175, 143);
+            this.txtCooldownF2.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            this.txtCooldownF2.Name = "txtCooldownF2";
+            this.txtCooldownF2.Size = new System.Drawing.Size(58, 20);
+            this.txtCooldownF2.TabIndex = 14;
+            this.txtCooldownF2.ValueChanged += new System.EventHandler(this.txtCooldownF2_ValueChanged);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(109, 122);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(60, 13);
+            this.label10.TabIndex = 13;
+            this.label10.Text = "Cooldown: ";
+            // 
+            // txtCooldownF1
+            // 
+            this.txtCooldownF1.Enabled = false;
+            this.txtCooldownF1.Location = new System.Drawing.Point(175, 120);
+            this.txtCooldownF1.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            this.txtCooldownF1.Name = "txtCooldownF1";
+            this.txtCooldownF1.Size = new System.Drawing.Size(58, 20);
+            this.txtCooldownF1.TabIndex = 12;
+            this.txtCooldownF1.ValueChanged += new System.EventHandler(this.txtCooldownF1_ValueChanged);
+            // 
+            // chbSpellF9
+            // 
+            this.chbSpellF9.AutoSize = true;
+            this.chbSpellF9.Location = new System.Drawing.Point(6, 305);
+            this.chbSpellF9.Name = "chbSpellF9";
+            this.chbSpellF9.Size = new System.Drawing.Size(38, 17);
+            this.chbSpellF9.TabIndex = 11;
+            this.chbSpellF9.Text = "F9";
+            this.chbSpellF9.UseVisualStyleBackColor = true;
+            this.chbSpellF9.CheckedChanged += new System.EventHandler(this.chbSpellF9_CheckedChanged);
+            // 
+            // chbSpellF8
+            // 
+            this.chbSpellF8.AutoSize = true;
+            this.chbSpellF8.Location = new System.Drawing.Point(6, 282);
+            this.chbSpellF8.Name = "chbSpellF8";
+            this.chbSpellF8.Size = new System.Drawing.Size(38, 17);
+            this.chbSpellF8.TabIndex = 10;
+            this.chbSpellF8.Text = "F8";
+            this.chbSpellF8.UseVisualStyleBackColor = true;
+            this.chbSpellF8.CheckedChanged += new System.EventHandler(this.chbSpellF8_CheckedChanged);
+            // 
+            // chbSpellF7
+            // 
+            this.chbSpellF7.AutoSize = true;
+            this.chbSpellF7.Location = new System.Drawing.Point(6, 259);
+            this.chbSpellF7.Name = "chbSpellF7";
+            this.chbSpellF7.Size = new System.Drawing.Size(38, 17);
+            this.chbSpellF7.TabIndex = 9;
+            this.chbSpellF7.Text = "F7";
+            this.chbSpellF7.UseVisualStyleBackColor = true;
+            this.chbSpellF7.CheckedChanged += new System.EventHandler(this.chbSpellF7_CheckedChanged);
+            // 
+            // chbSpellF6
+            // 
+            this.chbSpellF6.AutoSize = true;
+            this.chbSpellF6.Location = new System.Drawing.Point(6, 236);
+            this.chbSpellF6.Name = "chbSpellF6";
+            this.chbSpellF6.Size = new System.Drawing.Size(38, 17);
+            this.chbSpellF6.TabIndex = 8;
+            this.chbSpellF6.Text = "F6";
+            this.chbSpellF6.UseVisualStyleBackColor = true;
+            this.chbSpellF6.CheckedChanged += new System.EventHandler(this.chbSpellF6_CheckedChanged);
+            // 
+            // chbSpellF5
+            // 
+            this.chbSpellF5.AutoSize = true;
+            this.chbSpellF5.Location = new System.Drawing.Point(6, 213);
+            this.chbSpellF5.Name = "chbSpellF5";
+            this.chbSpellF5.Size = new System.Drawing.Size(38, 17);
+            this.chbSpellF5.TabIndex = 7;
+            this.chbSpellF5.Text = "F5";
+            this.chbSpellF5.UseVisualStyleBackColor = true;
+            this.chbSpellF5.CheckedChanged += new System.EventHandler(this.chbSpellF5_CheckedChanged);
+            // 
+            // chbSpellF4
+            // 
+            this.chbSpellF4.AutoSize = true;
+            this.chbSpellF4.Location = new System.Drawing.Point(6, 190);
+            this.chbSpellF4.Name = "chbSpellF4";
+            this.chbSpellF4.Size = new System.Drawing.Size(38, 17);
+            this.chbSpellF4.TabIndex = 6;
+            this.chbSpellF4.Text = "F4";
+            this.chbSpellF4.UseVisualStyleBackColor = true;
+            this.chbSpellF4.CheckedChanged += new System.EventHandler(this.chbSpellF4_CheckedChanged);
+            // 
+            // chbSpellF3
+            // 
+            this.chbSpellF3.AutoSize = true;
+            this.chbSpellF3.Location = new System.Drawing.Point(6, 167);
+            this.chbSpellF3.Name = "chbSpellF3";
+            this.chbSpellF3.Size = new System.Drawing.Size(38, 17);
+            this.chbSpellF3.TabIndex = 5;
+            this.chbSpellF3.Text = "F3";
+            this.chbSpellF3.UseVisualStyleBackColor = true;
+            this.chbSpellF3.CheckedChanged += new System.EventHandler(this.chbSpellF3_CheckedChanged);
+            // 
+            // chbSpellF2
+            // 
+            this.chbSpellF2.AutoSize = true;
+            this.chbSpellF2.Location = new System.Drawing.Point(6, 144);
+            this.chbSpellF2.Name = "chbSpellF2";
+            this.chbSpellF2.Size = new System.Drawing.Size(38, 17);
+            this.chbSpellF2.TabIndex = 4;
+            this.chbSpellF2.Text = "F2";
+            this.chbSpellF2.UseVisualStyleBackColor = true;
+            this.chbSpellF2.CheckedChanged += new System.EventHandler(this.chbSpellF2_CheckedChanged);
+            // 
+            // chbSpellF1
+            // 
+            this.chbSpellF1.AutoSize = true;
+            this.chbSpellF1.Location = new System.Drawing.Point(6, 121);
+            this.chbSpellF1.Name = "chbSpellF1";
+            this.chbSpellF1.Size = new System.Drawing.Size(38, 17);
+            this.chbSpellF1.TabIndex = 3;
+            this.chbSpellF1.Text = "F1";
+            this.chbSpellF1.UseVisualStyleBackColor = true;
+            this.chbSpellF1.CheckedChanged += new System.EventHandler(this.chbSpellF1_CheckedChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(97, 23);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(72, 39);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "HP to revive: \r\n(0 means \r\nwhen dead)";
+            // 
+            // txtHpToRevive
+            // 
+            this.txtHpToRevive.Enabled = false;
+            this.txtHpToRevive.Location = new System.Drawing.Point(175, 26);
+            this.txtHpToRevive.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.txtHpToRevive.Name = "txtHpToRevive";
+            this.txtHpToRevive.Size = new System.Drawing.Size(58, 20);
+            this.txtHpToRevive.TabIndex = 1;
+            this.txtHpToRevive.ValueChanged += new System.EventHandler(this.txtHpToRevive_ValueChanged);
+            // 
+            // chbAutoRevive
+            // 
+            this.chbAutoRevive.AutoSize = true;
+            this.chbAutoRevive.Location = new System.Drawing.Point(6, 27);
+            this.chbAutoRevive.Name = "chbAutoRevive";
+            this.chbAutoRevive.Size = new System.Drawing.Size(85, 17);
+            this.chbAutoRevive.TabIndex = 0;
+            this.chbAutoRevive.Text = "Auto Revive";
+            this.chbAutoRevive.UseVisualStyleBackColor = true;
+            this.chbAutoRevive.CheckedChanged += new System.EventHandler(this.chbAutoRevive_CheckedChanged);
+            // 
+            // tabCavebot
+            // 
+            this.tabCavebot.Controls.Add(this.groupBox1);
+            this.tabCavebot.Location = new System.Drawing.Point(4, 22);
+            this.tabCavebot.Name = "tabCavebot";
+            this.tabCavebot.Size = new System.Drawing.Size(286, 499);
+            this.tabCavebot.TabIndex = 3;
+            this.tabCavebot.Text = "Cavebot";
+            this.tabCavebot.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(280, 453);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Cavebot";
+            // 
+            // tabAttacker
+            // 
+            this.tabAttacker.Controls.Add(this.groupBox3);
+            this.tabAttacker.Location = new System.Drawing.Point(4, 22);
+            this.tabAttacker.Name = "tabAttacker";
+            this.tabAttacker.Size = new System.Drawing.Size(286, 499);
+            this.tabAttacker.TabIndex = 4;
+            this.tabAttacker.Text = "Attacker";
+            this.tabAttacker.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label21);
+            this.groupBox3.Controls.Add(this.label20);
+            this.groupBox3.Controls.Add(this.btnRemoveMonsterAttack);
+            this.groupBox3.Controls.Add(this.btnAddMonsterAttack);
+            this.groupBox3.Controls.Add(this.listMonstersToAttack);
+            this.groupBox3.Controls.Add(this.listAvailableMonsters);
+            this.groupBox3.Location = new System.Drawing.Point(3, 3);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(280, 453);
+            this.groupBox3.TabIndex = 1;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Attacker";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(3, 31);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(101, 13);
+            this.label21.TabIndex = 5;
+            this.label21.Text = "Available monsters: ";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(166, 31);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(101, 13);
+            this.label20.TabIndex = 4;
+            this.label20.Text = "Monsters to attack: ";
+            // 
+            // btnRemoveMonsterAttack
+            // 
+            this.btnRemoveMonsterAttack.Location = new System.Drawing.Point(126, 163);
+            this.btnRemoveMonsterAttack.Name = "btnRemoveMonsterAttack";
+            this.btnRemoveMonsterAttack.Size = new System.Drawing.Size(37, 23);
+            this.btnRemoveMonsterAttack.TabIndex = 3;
+            this.btnRemoveMonsterAttack.Text = "<";
+            this.btnRemoveMonsterAttack.UseVisualStyleBackColor = true;
+            this.btnRemoveMonsterAttack.Click += new System.EventHandler(this.btnRemoveMonsterAttack_Click);
+            // 
+            // btnAddMonsterAttack
+            // 
+            this.btnAddMonsterAttack.Location = new System.Drawing.Point(126, 134);
+            this.btnAddMonsterAttack.Name = "btnAddMonsterAttack";
+            this.btnAddMonsterAttack.Size = new System.Drawing.Size(37, 23);
+            this.btnAddMonsterAttack.TabIndex = 2;
+            this.btnAddMonsterAttack.Text = ">";
+            this.btnAddMonsterAttack.UseVisualStyleBackColor = true;
+            this.btnAddMonsterAttack.Click += new System.EventHandler(this.btnAddMonsterAttack_Click);
+            // 
+            // listMonstersToAttack
+            // 
+            this.listMonstersToAttack.FormattingEnabled = true;
+            this.listMonstersToAttack.Location = new System.Drawing.Point(169, 47);
+            this.listMonstersToAttack.Name = "listMonstersToAttack";
+            this.listMonstersToAttack.Size = new System.Drawing.Size(105, 264);
+            this.listMonstersToAttack.TabIndex = 1;
+            // 
+            // listAvailableMonsters
+            // 
+            this.listAvailableMonsters.FormattingEnabled = true;
+            this.listAvailableMonsters.Location = new System.Drawing.Point(6, 47);
+            this.listAvailableMonsters.Name = "listAvailableMonsters";
+            this.listAvailableMonsters.Size = new System.Drawing.Size(105, 264);
+            this.listAvailableMonsters.TabIndex = 0;
+            // 
+            // btnCavebotAttack
+            // 
+            this.btnCavebotAttack.BackgroundImage = global::PxgBot.Properties.Resources.Attack;
+            this.btnCavebotAttack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCavebotAttack.Location = new System.Drawing.Point(23, 247);
+            this.btnCavebotAttack.Name = "btnCavebotAttack";
+            this.btnCavebotAttack.Size = new System.Drawing.Size(107, 77);
+            this.btnCavebotAttack.TabIndex = 25;
+            this.btnCavebotAttack.Text = "Attacker: Stopped";
+            this.btnCavebotAttack.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnCavebotAttack.UseVisualStyleBackColor = true;
+            this.btnCavebotAttack.Click += new System.EventHandler(this.btnCavebotAttack_Click);
+            // 
+            // btnStartCavebot
+            // 
+            this.btnStartCavebot.BackgroundImage = global::PxgBot.Properties.Resources.Hunting_512;
+            this.btnStartCavebot.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnStartCavebot.Location = new System.Drawing.Point(23, 157);
+            this.btnStartCavebot.Name = "btnStartCavebot";
+            this.btnStartCavebot.Size = new System.Drawing.Size(107, 84);
+            this.btnStartCavebot.TabIndex = 22;
+            this.btnStartCavebot.Text = "Cavebot: Stopped";
+            this.btnStartCavebot.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnStartCavebot.UseVisualStyleBackColor = true;
+            this.btnStartCavebot.Click += new System.EventHandler(this.btnStartCavebot_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.panel1.Controls.Add(this.btnSaveSettings);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 483);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(294, 42);
+            this.panel1.TabIndex = 1;
+            // 
+            // btnSaveSettings
+            // 
+            this.btnSaveSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.btnSaveSettings.Location = new System.Drawing.Point(89, 6);
+            this.btnSaveSettings.Name = "btnSaveSettings";
+            this.btnSaveSettings.Size = new System.Drawing.Size(114, 29);
+            this.btnSaveSettings.TabIndex = 0;
+            this.btnSaveSettings.Text = "Save Settings";
+            this.btnSaveSettings.UseVisualStyleBackColor = true;
+            this.btnSaveSettings.Click += new System.EventHandler(this.btnSaveSettings_Click);
             // 
             // Main
             // 
@@ -895,20 +979,21 @@
             this.tabPokemon.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtHpToRevive)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtHpToRevive)).EndInit();
             this.tabCavebot.ResumeLayout(false);
             this.tabAttacker.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -986,6 +1071,8 @@
         private System.Windows.Forms.ListBox listAvailableMonsters;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.ComboBox cmbReviveHotkey;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnSaveSettings;
     }
 }
 

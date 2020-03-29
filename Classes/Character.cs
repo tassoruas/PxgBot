@@ -47,8 +47,6 @@ namespace PxgBot.Classes
             get => Task.Run(() => (ImageSearcher.UseImageSearch("IsAttacking.png", tolerance: 10, transparency: "0xFFFFFF") != null));
         }
 
-        public static string ReviveHotkey { get; set; }
-
         public static PXG.Position GetPosition()
         {
             return new PXG.Position(PosX, PosY, PosZ);

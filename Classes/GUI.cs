@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using AutoIt;
 using PxgBot.Helpers;
 
 namespace PxgBot.Classes
@@ -42,12 +43,7 @@ namespace PxgBot.Classes
         {
             if (ImageSearcher.UseImageSearch("Battle.png", tolerance: 20) == null)
             {
-                Console.WriteLine("Battle is not open");
                 InputHandler.SendKeys(new string[] { "{CTRLDOWN}", "{b}", "{CTRLUP}" }, 100);
-            }
-            else
-            {
-                Console.WriteLine("Battle is already open");
             }
         }
 
@@ -159,6 +155,11 @@ namespace PxgBot.Classes
             {
                 Console.WriteLine("SetWindowRect: Window not found");
             }
+        }
+
+        public static bool isPxgActive()
+        {
+            return AutoItX.WinActive(Addresses.PxgClientName) == 1 || AutoItX.WinActive(title: "PXG Bot") == 1;
         }
     }
 }

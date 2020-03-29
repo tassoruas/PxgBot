@@ -1,0 +1,51 @@
+[
+  {
+    "MonstersToAttack": [
+      "PidgeyTest",
+      "Doduo"
+    ],
+    "Revive": {
+      "enabled": true,
+      "AutoReviveHP": 0,
+      "ReviveItemHotkey": "{F10}"
+    },
+    "Spells": {
+      "F1": {
+        "enabled": true,
+        "cooldown": 15
+      },
+      "F2": {
+        "enabled": true,
+        "cooldown": 10
+      },
+      "F3": {
+        "enabled": true,
+        "cooldown": 20
+      },
+      "F4": {
+        "enabled": true,
+        "cooldown": 25
+      },
+      "F5": {
+        "enabled": true,
+        "cooldown": 30
+      },
+      "F6": {
+        "enabled": false,
+        "cooldown": 0
+      },
+      "F7": {
+        "enabled": false,
+        "cooldown": 0
+      },
+      "F8": {
+        "enabled": false,
+        "cooldown": 0
+      },
+      "F9": {
+        "enabled": false,
+        "cooldown": 0
+      }
+    }
+  }
+]
