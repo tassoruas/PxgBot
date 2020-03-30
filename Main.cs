@@ -7,11 +7,15 @@ using AutoIt;
 using System.IO;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
+using PxgBot.Classes.Actions;
 
 namespace PxgBot
 {
     public partial class Main : Form
     {
+        MouseHook mouseHook;
+        KeyboardHook keyboardHook;
+
         public Main()
         {
             InitializeComponent();
@@ -24,14 +28,18 @@ namespace PxgBot
 
             /// Find PXG Handle
             Addresses.RegisterHandle();
-            /// Start reading from memory
-            MemoryManager.StartMemoryManager(Addresses.PxgPointerAddress, Addresses.PxgProcessName);
 
             /// This sets all the rectangles of the screens
             UpdateGUI();
 
+            /// Start reading from memory
+            MemoryManager.StartMemoryManager(Addresses.PxgPointerAddress, Addresses.PxgProcessName);
+
             /// Init Pokemon settings
             Pokemon.Init();
+
+            /// Set fishing initial state
+            Fishing.Enabled = false;
 
             /// This loads all the available monsters to the ListBoxes on settings screen
             LoadAvailableMonsters();
@@ -53,12 +61,22 @@ namespace PxgBot
         private async void tmrUpdateInfo_Tick(object sender, EventArgs e)
         {
             ///
-            /// This timer runs in a 500ms interval
+            /// This timer runs in a 300ms interval
             /// 
 
             lblPokeHP.Text = Pokemon.HP.ToString();
 
-            if (Pokemon.AutoRevive && Pokemon.HP <= Pokemon.AutoReviveHP && Pokemon.Reviving == false && Character.HP > 0) Pokemon.Revive();
+            if (Pokemon.HasPokemonSet && Pokemon.AutoRevive &&
+                Pokemon.HP <= Pokemon.AutoReviveHP &&
+                Pokemon.Reviving == false && Character.HP > 0)
+            {
+                Pokemon.Revive();
+            }
+
+            if (Pokemon.HasPokemonSet && Pokemon.HP > 0 && await Character.isAttacking && Pokemon.isOutside() == false)
+            {
+                Pokemon.PutInOrOut();
+            }
 
             lblCharHP.Text = Character.HP.ToString();
             lblPosX.Text = Character.PosX.ToString();
@@ -102,17 +120,16 @@ namespace PxgBot
                     GUI.SetWindowRect();
 
                     /// Set Screen Grid => Squares on screen to see SQMs
-                    GUI.SetScreenGrid();
+                    //GUI.SetScreenGrid(); // Not using for anything right now
 
                     /// Set window size
                 });
                 this.Location = new Point(GUI.WindowRect.X, GUI.WindowRect.Y);
                 this.Size = new Size(GUI.WindowRect.Width, GUI.WindowRect.Height);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                Console.WriteLine("UpdateGUI error: " + ex.Message);
             }
         }
 
@@ -481,5 +498,45 @@ namespace PxgBot
 
         #endregion
 
+        #region Fishing Settings
+
+        private void btnSetFishingPosition_Click(object sender, EventArgs e)
+        {
+            if (btnSetFishingPosition.Text == "Clear Fishing Position")
+            {
+                Fishing.FishingPosition = new Point();
+                btnSetFishingPosition.Text = "Set Fishing Position";
+                return;
+            }
+            mouseHook = new MouseHook();
+            mouseHook.Start();
+            mouseHook.MouseUp += new MouseEventHandler(RegisterClick);
+            btnSettings.PerformClick();
+        }
+
+        private void RegisterClick(object sender, MouseEventArgs e)
+        {
+            Fishing.FishingPosition = new Point(e.X, e.Y);
+            btnSetFishingPosition.Text = "Clear Fishing Position";
+            mouseHook.Stop();
+            mouseHook.MouseUp -= new MouseEventHandler(RegisterClick);
+            btnSettings.PerformClick();
+        }
+
+        private void btnFishing_Click(object sender, EventArgs e)
+        {
+            if (Fishing.Enabled)
+            {
+                btnFishing.Text = "Fishing: Stopped";
+                Fishing.Enabled = false;
+            }
+            else
+            {
+                btnFishing.Text = "Fishing: Running";
+                Task.Run(() => Fishing.StartFishing());
+                Fishing.Enabled = true;
+            }
+        }
+        #endregion
     }
 }

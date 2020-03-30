@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Threading.Tasks;
 using AutoIt;
 using PxgBot.Helpers;
@@ -7,21 +8,39 @@ namespace PxgBot.Classes.Actions
 {
     public static class Fishing
     {
-        public async static Task<bool> StartFishing(int x, int y)
+        public static Point FishingPosition { get; set; }
+        public static bool Enabled { get; set; }
+        public async static void StartFishing()
         {
-            if (await isFishing())
+            while (Enabled)
             {
-                Console.WriteLine("Player is already fishing!");
-                return false;
-            }
+                AutoItX.Sleep(2000);
+                if (Pokemon.Reviving == false)
+                {
+                    if (await isFishing())
+                    {
+                        Console.WriteLine("Player is already fishing!");
+                    }
 
-            InputHandler.SendKeys(new string[] { "{CTRLDOWN}", "{z}", "{CTRLUP}" }, 100);
-            Console.WriteLine("Started fishing");
-            AutoItX.Sleep(300);
-            AutoItX.MouseClick("left", x, y);
-            AutoItX.Sleep(20000);
-            InputHandler.SendKeys(new string[] { "{CTRLDOWN}", "{z}", "{CTRLUP}" }, 100);
-            return true;
+                    if (Enabled)
+                        InputHandler.SendKeys(new string[] { "{CTRLDOWN}", "{z}", "{CTRLUP}" }, 50);
+                    else break;
+                    InputHandler.BlockUserInput(true);
+                    //Console.WriteLine("Started fishing");
+                    AutoItX.Sleep(100);
+                    if (Enabled)
+                        AutoItX.MouseClick("left", FishingPosition.X, FishingPosition.Y, speed: 3);
+                    else break;
+                    InputHandler.BlockUserInput(false);
+                    AutoItX.Sleep(20000);
+                    if (Pokemon.Reviving == false)
+                    {
+                        if (Enabled)
+                            InputHandler.SendKeys(new string[] { "{CTRLDOWN}", "{z}", "{CTRLUP}" }, 50);
+                        else break;
+                    }
+                }
+            }
         }
 
         public static async Task<bool> isFishing()

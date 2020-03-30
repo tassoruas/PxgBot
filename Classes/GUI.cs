@@ -149,6 +149,7 @@ namespace PxgBot.Classes
             bool windowFound = GetWindowRect(Addresses.PxgHandle, ref outRect);
             if (windowFound)
             {
+                //Console.WriteLine("Window Rect found");
                 WindowRect = outRect;
             }
             else

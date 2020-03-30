@@ -54,6 +54,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoItX3.Assembly, Version=3.0.0.0, Culture=neutral, PublicKeyToken=a646454c8d475470, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -82,9 +85,12 @@
     <Compile Include="Classes\Pokemon.cs" />
     <Compile Include="Classes\PXG.cs" />
     <Compile Include="Helpers\Addresses.cs" />
+    <Compile Include="Helpers\GlobalHook.cs" />
     <Compile Include="Helpers\ImageSearcher.cs" />
+    <Compile Include="Helpers\KeyboardHook.cs" />
     <Compile Include="Helpers\MemoryManager.cs" />
     <Compile Include="Helpers\InputHandler.cs" />
+    <Compile Include="Helpers\MouseHook.cs" />
     <Compile Include="HUD.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +117,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.manifest" />
     <None Include="settings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -170,6 +177,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Attack.png" />
+    <None Include="Resources\Fishing.png" />
     <None Include="Resources\Hunting-512.png" />
   </ItemGroup>
   <ItemGroup>

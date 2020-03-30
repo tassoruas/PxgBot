@@ -63,7 +63,7 @@ namespace PxgBot.Classes
 
             if (cbAction.Action == ActionTypes.Fishing)
             {
-                return await Actions.Fishing.StartFishing(int.Parse(cbAction.Arguments[0]), int.Parse(cbAction.Arguments[1]));
+                await Task.Run(() => Actions.Fishing.StartFishing());
             }
             else if (cbAction.Action == ActionTypes.Wait)
             {

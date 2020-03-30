@@ -11,6 +11,10 @@ namespace PxgBot.Helpers
 {
     public static class InputHandler
     {
+
+        [DllImport("user32.dll")]
+        static extern bool BlockInput(bool fBlockIt);
+
         [DllImport("user32.dll")]
         static extern void mouse_event(int dwFlags, int dx, int dy, int dwData, int dwExtraInfo);
 
@@ -50,11 +54,20 @@ namespace PxgBot.Helpers
         {
             AutoItX.WinActivate(Addresses.PxgHandle);
             AutoItX.Sleep(100);
+            BlockInput(true);
             foreach (string key in Keys)
             {
+                //Console.WriteLine("Key send: " + key);
+                AutoItX.WinActivate(Addresses.PxgHandle);
                 AutoItX.Send(key);
                 AutoItX.Sleep(DelayBetweenKeys);
             }
+            BlockInput(false);
+        }
+
+        public static void BlockUserInput(bool value)
+        {
+            BlockInput(value);
         }
     }
 }
