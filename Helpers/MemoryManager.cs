@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Diagnostics;
 using System.Windows.Forms;
+using PxgBot.Classes;
 
 namespace PxgBot.Helpers
 {
@@ -102,7 +103,7 @@ namespace PxgBot.Helpers
                 offset += (uint)pointerOffset;
 
             mReader.WriteMemory((IntPtr)offset, BitConverter.GetBytes(bytesToWrite), out bytesReadOut);
-            Console.WriteLine("WriteOnMemory: " + bytesReadOut + ", " + offset);
+            if (Settings.Debug) { Settings.DebugText += "\n WriteOnMemory: " + bytesReadOut + ", " + offset; }
         }
     }
 }

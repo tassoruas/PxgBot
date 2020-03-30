@@ -140,6 +140,7 @@ namespace PxgBot
             catch (Exception ex)
             {
                 Console.WriteLine("UpdateGUI error: " + ex.Message);
+                if (Settings.Debug) { Settings.DebugText += "\n UpdateGUI error: " + ex.Message; }
             }
         }
 
@@ -231,7 +232,7 @@ namespace PxgBot
                         }
                         else
                         {
-                            Console.WriteLine("Error: Monster '" + monster + "' image not available");
+                            if (Settings.Debug) { Settings.DebugText += "\n Error: Monster '" + monster + "' image not available"; }
                         }
                     }
                     UpdateMonstersToAttack();
@@ -476,6 +477,7 @@ namespace PxgBot
             catch (Exception ex)
             {
                 Console.WriteLine("Error while loading available monsters: " + ex.Message);
+                if (Settings.Debug) { Settings.DebugText += "\n Error while loading available monsters: " + ex.Message; }
             }
         }
 

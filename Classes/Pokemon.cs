@@ -107,7 +107,6 @@ namespace PxgBot.Classes
             else
             {
                 if (Settings.Debug) { Settings.DebugText += "\n Pokeball position not set for reviving"; }
-                Console.WriteLine("Pokeball position not set for reviving");
             }
         }
 
@@ -123,7 +122,7 @@ namespace PxgBot.Classes
             int[] pokeOutside = ImageSearcher.UseImageSearch("PokeOutside.png", x: GUI.WindowRect.X, y: GUI.WindowRect.Y, height: GUI.BattleRect.Y, tolerance: 50);
             if (pokeOutside != null)
             {
-                //Console.WriteLine("Poke was outside: " + pokeOutside[0] + ", " + pokeOutside[1]);
+                if (Settings.Debug) { Settings.DebugText += "\n Poke was outside: " + pokeOutside[0] + ", " + pokeOutside[1]; }
                 GUI.PokeballPosition = new Point(pokeOutside[0], pokeOutside[1] + 15);
                 Outside = true;
                 HasPokemonSet = true;
@@ -133,7 +132,7 @@ namespace PxgBot.Classes
             int[] pokeInside = ImageSearcher.UseImageSearch("PokeInside.png", x: GUI.WindowRect.X, y: GUI.WindowRect.Y, height: GUI.BattleRect.Y, tolerance: 10);
             if (pokeInside != null)
             {
-                //Console.WriteLine("Poke was inside: " + pokeInside[0] + ", " + pokeInside[1]);
+                if (Settings.Debug) { Settings.DebugText += "\n Poke was inside: " + pokeInside[0] + ", " + pokeInside[1]; }
                 GUI.PokeballPosition = new Point(pokeInside[0], pokeInside[1] + 15);
                 Outside = false;
                 HasPokemonSet = true;
@@ -142,7 +141,7 @@ namespace PxgBot.Classes
 
             if (pokeOutside == null && pokeInside == null)
             {
-                Console.WriteLine("Error initializing Pokemon: Pokeball Position not found");
+                if (Settings.Debug) { Settings.DebugText += "\n Error initializing Pokemon: Pokeball Position not found"; }
             }
 
             HasPokemonSet = false;
