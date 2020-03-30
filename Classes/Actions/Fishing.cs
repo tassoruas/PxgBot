@@ -25,13 +25,11 @@ namespace PxgBot.Classes.Actions
                     if (Enabled)
                         InputHandler.SendKeys(new string[] { "{CTRLDOWN}", "{z}", "{CTRLUP}" }, 50);
                     else break;
-                    InputHandler.BlockUserInput(true);
                     //Console.WriteLine("Started fishing");
                     AutoItX.Sleep(100);
                     if (Enabled)
                         AutoItX.MouseClick("left", FishingPosition.X, FishingPosition.Y, speed: 3);
                     else break;
-                    InputHandler.BlockUserInput(false);
                     AutoItX.Sleep(20000);
                     if (Pokemon.Reviving == false)
                     {

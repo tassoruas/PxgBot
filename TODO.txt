@@ -1,0 +1,4 @@
+﻿/// Todo's
+- Add hotkeys
+- Close bot button
+- Automate food eating

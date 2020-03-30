@@ -79,25 +79,29 @@ namespace PxgBot.Classes
         {
             try
             {
-                AutoItX.MouseClick("left", monsterRect.X, monsterRect.Y, speed: 3);
-                AutoItX.MouseMove(500, 500, speed: 3);
-                while (await Character.isAttacking)
+                if (await Character.isAttacking == false)
                 {
-                    foreach (PokemonSpell spell in Pokemon.PokemonSpells)
+                    AutoItX.MouseClick("left", monsterRect.X, monsterRect.Y, speed: 3);
+                    AutoItX.MouseMove(500, 500, speed: 3);
+                    while (await Character.isAttacking)
                     {
-                        if (spell.Available && spell.Enabled)
+                        foreach (PokemonSpell spell in Pokemon.PokemonSpells)
                         {
-                            spell.UseSpell();
-                            spell.Available = false;
-                            new Task(async () =>
+                            //Console.WriteLine("Spell: " + spell.Enabled + ", " + spell.Available);
+                            if (spell.Available && spell.Enabled)
                             {
-                                await Task.Delay(spell.Cooldown * 1000);
-                                spell.Available = true;
-                            }).Start();
-                            AutoItX.Sleep(1500);
+                                spell.UseSpell();
+                                spell.Available = false;
+                                new Task(async () =>
+                                {
+                                    await Task.Delay(spell.Cooldown * 1000);
+                                    spell.Available = true;
+                                }).Start();
+                                AutoItX.Sleep(1500);
+                            }
                         }
+                        AutoItX.Sleep(200);
                     }
-                    AutoItX.Sleep(200);
                 }
             }
             catch (Exception ex)

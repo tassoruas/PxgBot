@@ -106,26 +106,32 @@ namespace PxgBot
         {
             try
             {
-                await Task.Run(() =>
+                if (Pokemon.Reviving == false)
                 {
-                    GUI.OpenBattleList();
+                    await Task.Run(() =>
+                    {
+                        GUI.OpenBattleList();
 
-                    // Set Game Screen Rect
-                    GUI.SetScreenBorders();
+                        // Set Game Screen Rect
+                        GUI.SetScreenBorders();
 
-                    /// Set BattleList Rect
-                    GUI.SetBattleBorders();
+                        /// Set BattleList Rect
+                        GUI.SetBattleBorders();
 
-                    /// Set the PXG Client window size to WindowRect
-                    GUI.SetWindowRect();
+                        /// Set the PXG Client window size to WindowRect
+                        GUI.SetWindowRect();
 
-                    /// Set Screen Grid => Squares on screen to see SQMs
-                    //GUI.SetScreenGrid(); // Not using for anything right now
+                        /// Update Pokeball position
+                        Pokemon.isOutside();
 
-                    /// Set window size
-                });
-                this.Location = new Point(GUI.WindowRect.X, GUI.WindowRect.Y);
-                this.Size = new Size(GUI.WindowRect.Width, GUI.WindowRect.Height);
+                        /// Set Screen Grid => Squares on screen to see SQMs
+                        //GUI.SetScreenGrid(); // Not using for anything right now
+
+                        /// Set window size
+                    });
+                    this.Location = new Point(GUI.WindowRect.X, GUI.WindowRect.Y);
+                    this.Size = new Size(GUI.WindowRect.Width, GUI.WindowRect.Height);
+                }
             }
             catch (Exception ex)
             {

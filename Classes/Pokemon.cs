@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Threading.Tasks;
-using System.Timers;
-using System.Windows.Forms;
 using AutoIt;
 using PxgBot.Helpers;
 
@@ -29,16 +27,18 @@ namespace PxgBot.Classes
 
         public static void Init()
         {
-            Pokemon.PokemonSpells.Clear();
-            Pokemon.AddSpell("{F1}", 0, false);
-            Pokemon.AddSpell("{F2}", 0, false);
-            Pokemon.AddSpell("{F3}", 0, false);
-            Pokemon.AddSpell("{F4}", 0, false);
-            Pokemon.AddSpell("{F5}", 0, false);
-            Pokemon.AddSpell("{F6}", 0, false);
-            Pokemon.AddSpell("{F7}", 0, false);
-            Pokemon.AddSpell("{F8}", 0, false);
-            Pokemon.AddSpell("{F9}", 0, false);
+            if (Pokemon.PokemonSpells.Count == 0 || Pokemon.PokemonSpells.Count < 8)
+            {
+                Pokemon.AddSpell("{F1}", 0, false);
+                Pokemon.AddSpell("{F2}", 0, false);
+                Pokemon.AddSpell("{F3}", 0, false);
+                Pokemon.AddSpell("{F4}", 0, false);
+                Pokemon.AddSpell("{F5}", 0, false);
+                Pokemon.AddSpell("{F6}", 0, false);
+                Pokemon.AddSpell("{F7}", 0, false);
+                Pokemon.AddSpell("{F8}", 0, false);
+                Pokemon.AddSpell("{F9}", 0, false);
+            }
 
             /// I put this here because WindowRect is not being found easely. 
             /// So I needed to put this like an wait condition
@@ -84,7 +84,6 @@ namespace PxgBot.Classes
                 {
                     AutoItX.Sleep(70);
                     InputHandler.SendKeys(new string[] { AutoReviveHotkey });
-                    InputHandler.BlockUserInput(true);
                     AutoItX.Sleep(70);
                     AutoItX.MouseClick("left", GUI.PokeballPosition.X, GUI.PokeballPosition.Y, speed: 1);
                     AutoItX.Sleep(100);

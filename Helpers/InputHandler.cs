@@ -54,7 +54,6 @@ namespace PxgBot.Helpers
         {
             AutoItX.WinActivate(Addresses.PxgHandle);
             AutoItX.Sleep(100);
-            BlockInput(true);
             foreach (string key in Keys)
             {
                 //Console.WriteLine("Key send: " + key);
@@ -62,7 +61,6 @@ namespace PxgBot.Helpers
                 AutoItX.Send(key);
                 AutoItX.Sleep(DelayBetweenKeys);
             }
-            BlockInput(false);
         }
 
         public static void BlockUserInput(bool value)
