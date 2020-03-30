@@ -84,6 +84,7 @@
     <Compile Include="Classes\GUI.cs" />
     <Compile Include="Classes\Pokemon.cs" />
     <Compile Include="Classes\PXG.cs" />
+    <Compile Include="Classes\Settings.cs" />
     <Compile Include="Helpers\Addresses.cs" />
     <Compile Include="Helpers\GlobalHook.cs" />
     <Compile Include="Helpers\ImageSearcher.cs" />

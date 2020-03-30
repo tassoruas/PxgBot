@@ -58,10 +58,11 @@ namespace PxgBot
             Cavebot.CavebotScript.Add(cavebotAction2);
         }
 
+
         private async void tmrUpdateInfo_Tick(object sender, EventArgs e)
         {
             ///
-            /// This timer runs in a 300ms interval
+            /// This timer runs in a 350ms interval
             /// 
 
             lblPokeHP.Text = Pokemon.HP.ToString();
@@ -95,6 +96,8 @@ namespace PxgBot
             else
                 this.Hide();
 
+            txtDebug.Text = Settings.DebugText;
+
         }
         private void tmrUpdateGUI_Tick(object sender, EventArgs e)
         {
@@ -110,6 +113,7 @@ namespace PxgBot
                 {
                     await Task.Run(() =>
                     {
+                        ///
                         GUI.OpenBattleList();
 
                         // Set Game Screen Rect
@@ -232,6 +236,10 @@ namespace PxgBot
                     }
                     UpdateMonstersToAttack();
 
+                    chbHotkeys.Checked = playerSettings.Hotkeys.enabled;
+
+                    chbDebug.Checked = playerSettings.Debug;
+
                     chbAutoRevive.Checked = playerSettings.Revive.enabled;
                     txtHpToRevive.Value = playerSettings.Revive.AutoReviveHP;
                     cmbReviveHotkey.SelectedItem = playerSettings.Revive.ReviveItemHotkey.ToString().Replace("{", "").Replace("}", "");
@@ -328,9 +336,6 @@ namespace PxgBot
         #endregion
 
         #region Pokemon Settings Screen
-        /// 
-        /// 
-        ///
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
@@ -544,5 +549,21 @@ namespace PxgBot
             }
         }
         #endregion
+
+        #region Hotkeys Settings
+        private void chbHotkeys_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
+
+        #region Debug Settings
+        private void chbDebug_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Debug = chbDebug.Checked;
+        }
+        #endregion
+
     }
 }

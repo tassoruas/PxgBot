@@ -55,7 +55,7 @@ namespace PxgBot.Classes
             /// Call this to set Pokeball positions
             isOutside();
 
-            Console.WriteLine("AutoReviveHotkey: " + AutoReviveHotkey);
+            if (Settings.Debug) { Settings.DebugText += "\n AutoReviveHotkey: " + AutoReviveHotkey; }
         }
 
         public static void AddSpell(string hotkey, int cooldown, bool enabled)
@@ -73,7 +73,7 @@ namespace PxgBot.Classes
             if (GUI.isPxgActive() == false) AutoItX.WinActivate(Addresses.PxgClientName);
             if (GUI.PokeballPosition.X != 0 && GUI.PokeballPosition.Y != 0)
             {
-                //Console.WriteLine("Will revive");
+                if (Settings.Debug) { Settings.DebugText += "\n Will Revive"; }
                 Reviving = true;
                 InputHandler.BlockUserInput(true);
                 if (HP > 0 && isOutside())
@@ -96,7 +96,7 @@ namespace PxgBot.Classes
                 AutoItX.Sleep(100);
                 if (isOutside() == false && HP > AutoReviveHP)
                 {
-                    Console.WriteLine("Failed first PutInOrOut");
+                    if (Settings.Debug) { Settings.DebugText += "\n Failed first PutInOrOut"; }
                     PutInOrOut();
                 }
                 AutoItX.MouseMove(500, 500, 1);
@@ -106,6 +106,7 @@ namespace PxgBot.Classes
             }
             else
             {
+                if (Settings.Debug) { Settings.DebugText += "\n Pokeball position not set for reviving"; }
                 Console.WriteLine("Pokeball position not set for reviving");
             }
         }

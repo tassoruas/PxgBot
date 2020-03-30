@@ -14,7 +14,7 @@ namespace PxgBot.Classes.Actions
         {
             while (Enabled)
             {
-                AutoItX.Sleep(2000);
+                AutoItX.Sleep(3000);
                 if (Pokemon.Reviving == false)
                 {
                     if (await isFishing())
@@ -25,17 +25,20 @@ namespace PxgBot.Classes.Actions
                     if (Enabled)
                         InputHandler.SendKeys(new string[] { "{CTRLDOWN}", "{z}", "{CTRLUP}" }, 50);
                     else break;
-                    //Console.WriteLine("Started fishing");
                     AutoItX.Sleep(100);
                     if (Enabled)
                         AutoItX.MouseClick("left", FishingPosition.X, FishingPosition.Y, speed: 3);
                     else break;
-                    AutoItX.Sleep(20000);
-                    if (Pokemon.Reviving == false)
+                    AutoItX.Sleep(1000);
+                    if (await isFishing())
                     {
-                        if (Enabled)
-                            InputHandler.SendKeys(new string[] { "{CTRLDOWN}", "{z}", "{CTRLUP}" }, 50);
-                        else break;
+                        AutoItX.Sleep(20000);
+                        if (Pokemon.Reviving == false)
+                        {
+                            if (Enabled)
+                                InputHandler.SendKeys(new string[] { "{CTRLDOWN}", "{z}", "{CTRLUP}" }, 50);
+                            else break;
+                        }
                     }
                 }
             }

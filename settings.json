@@ -1,5 +1,11 @@
 [
   {
+    "Debug": false,
+    "Hotkeys": {
+      "enabled": true,
+      "items": {
+      }
+    },
     "MonstersToAttack": [
       "PidgeyTest",
       "Doduo"

@@ -2,3 +2,4 @@
 - Add hotkeys
 - Close bot button
 - Automate food eating
+- Print functions: on level up, on die

@@ -106,6 +106,13 @@
             this.btnFishing = new System.Windows.Forms.Button();
             this.btnCavebotAttack = new System.Windows.Forms.Button();
             this.btnStartCavebot = new System.Windows.Forms.Button();
+            this.tabHotkeys = new System.Windows.Forms.TabPage();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.chbHotkeys = new System.Windows.Forms.CheckBox();
+            this.tabDebug = new System.Windows.Forms.TabPage();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.txtDebug = new System.Windows.Forms.RichTextBox();
+            this.chbDebug = new System.Windows.Forms.CheckBox();
             this.pnlSettings.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -126,6 +133,10 @@
             this.groupBox3.SuspendLayout();
             this.tabFishing.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.tabHotkeys.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.tabDebug.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // tmrUpdateInfo
@@ -360,7 +371,7 @@
             this.pnlSettings.Controls.Add(this.tabControl1);
             this.pnlSettings.Location = new System.Drawing.Point(166, 157);
             this.pnlSettings.Name = "pnlSettings";
-            this.pnlSettings.Size = new System.Drawing.Size(294, 525);
+            this.pnlSettings.Size = new System.Drawing.Size(321, 525);
             this.pnlSettings.TabIndex = 27;
             this.pnlSettings.Visible = false;
             // 
@@ -371,7 +382,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 483);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(294, 42);
+            this.panel1.Size = new System.Drawing.Size(321, 42);
             this.panel1.TabIndex = 1;
             // 
             // btnSaveSettings
@@ -391,11 +402,13 @@
             this.tabControl1.Controls.Add(this.tabCavebot);
             this.tabControl1.Controls.Add(this.tabAttacker);
             this.tabControl1.Controls.Add(this.tabFishing);
+            this.tabControl1.Controls.Add(this.tabHotkeys);
+            this.tabControl1.Controls.Add(this.tabDebug);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(294, 525);
+            this.tabControl1.Size = new System.Drawing.Size(321, 525);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPokemon
@@ -404,7 +417,7 @@
             this.tabPokemon.Location = new System.Drawing.Point(4, 22);
             this.tabPokemon.Name = "tabPokemon";
             this.tabPokemon.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPokemon.Size = new System.Drawing.Size(286, 499);
+            this.tabPokemon.Size = new System.Drawing.Size(313, 499);
             this.tabPokemon.TabIndex = 2;
             this.tabPokemon.Text = "Pokemon";
             this.tabPokemon.UseVisualStyleBackColor = true;
@@ -445,7 +458,7 @@
             this.groupBox2.Controls.Add(this.chbAutoRevive);
             this.groupBox2.Location = new System.Drawing.Point(6, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(274, 449);
+            this.groupBox2.Size = new System.Drawing.Size(301, 449);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Pokemon";
@@ -826,7 +839,7 @@
             this.tabCavebot.Controls.Add(this.groupBox1);
             this.tabCavebot.Location = new System.Drawing.Point(4, 22);
             this.tabCavebot.Name = "tabCavebot";
-            this.tabCavebot.Size = new System.Drawing.Size(286, 499);
+            this.tabCavebot.Size = new System.Drawing.Size(313, 499);
             this.tabCavebot.TabIndex = 3;
             this.tabCavebot.Text = "Cavebot";
             this.tabCavebot.UseVisualStyleBackColor = true;
@@ -835,7 +848,7 @@
             // 
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(280, 453);
+            this.groupBox1.Size = new System.Drawing.Size(307, 453);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cavebot";
@@ -845,7 +858,7 @@
             this.tabAttacker.Controls.Add(this.groupBox3);
             this.tabAttacker.Location = new System.Drawing.Point(4, 22);
             this.tabAttacker.Name = "tabAttacker";
-            this.tabAttacker.Size = new System.Drawing.Size(286, 499);
+            this.tabAttacker.Size = new System.Drawing.Size(313, 499);
             this.tabAttacker.TabIndex = 4;
             this.tabAttacker.Text = "Attacker";
             this.tabAttacker.UseVisualStyleBackColor = true;
@@ -860,7 +873,7 @@
             this.groupBox3.Controls.Add(this.listAvailableMonsters);
             this.groupBox3.Location = new System.Drawing.Point(3, 3);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(280, 453);
+            this.groupBox3.Size = new System.Drawing.Size(307, 453);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Attacker";
@@ -877,7 +890,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(166, 31);
+            this.label20.Location = new System.Drawing.Point(181, 31);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(101, 13);
             this.label20.TabIndex = 4;
@@ -885,7 +898,7 @@
             // 
             // btnRemoveMonsterAttack
             // 
-            this.btnRemoveMonsterAttack.Location = new System.Drawing.Point(126, 163);
+            this.btnRemoveMonsterAttack.Location = new System.Drawing.Point(135, 163);
             this.btnRemoveMonsterAttack.Name = "btnRemoveMonsterAttack";
             this.btnRemoveMonsterAttack.Size = new System.Drawing.Size(37, 23);
             this.btnRemoveMonsterAttack.TabIndex = 3;
@@ -895,7 +908,7 @@
             // 
             // btnAddMonsterAttack
             // 
-            this.btnAddMonsterAttack.Location = new System.Drawing.Point(126, 134);
+            this.btnAddMonsterAttack.Location = new System.Drawing.Point(135, 134);
             this.btnAddMonsterAttack.Name = "btnAddMonsterAttack";
             this.btnAddMonsterAttack.Size = new System.Drawing.Size(37, 23);
             this.btnAddMonsterAttack.TabIndex = 2;
@@ -906,9 +919,9 @@
             // listMonstersToAttack
             // 
             this.listMonstersToAttack.FormattingEnabled = true;
-            this.listMonstersToAttack.Location = new System.Drawing.Point(169, 47);
+            this.listMonstersToAttack.Location = new System.Drawing.Point(178, 47);
             this.listMonstersToAttack.Name = "listMonstersToAttack";
-            this.listMonstersToAttack.Size = new System.Drawing.Size(105, 264);
+            this.listMonstersToAttack.Size = new System.Drawing.Size(123, 264);
             this.listMonstersToAttack.TabIndex = 1;
             // 
             // listAvailableMonsters
@@ -916,7 +929,7 @@
             this.listAvailableMonsters.FormattingEnabled = true;
             this.listAvailableMonsters.Location = new System.Drawing.Point(6, 47);
             this.listAvailableMonsters.Name = "listAvailableMonsters";
-            this.listAvailableMonsters.Size = new System.Drawing.Size(105, 264);
+            this.listAvailableMonsters.Size = new System.Drawing.Size(123, 264);
             this.listAvailableMonsters.TabIndex = 0;
             // 
             // tabFishing
@@ -924,7 +937,7 @@
             this.tabFishing.Controls.Add(this.groupBox4);
             this.tabFishing.Location = new System.Drawing.Point(4, 22);
             this.tabFishing.Name = "tabFishing";
-            this.tabFishing.Size = new System.Drawing.Size(286, 499);
+            this.tabFishing.Size = new System.Drawing.Size(313, 499);
             this.tabFishing.TabIndex = 5;
             this.tabFishing.Text = "Fishing";
             this.tabFishing.UseVisualStyleBackColor = true;
@@ -935,7 +948,7 @@
             this.groupBox4.Controls.Add(this.btnSetFishingPosition);
             this.groupBox4.Location = new System.Drawing.Point(6, 8);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(280, 453);
+            this.groupBox4.Size = new System.Drawing.Size(304, 453);
             this.groupBox4.TabIndex = 2;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Fishing";
@@ -999,6 +1012,77 @@
             this.btnStartCavebot.UseVisualStyleBackColor = true;
             this.btnStartCavebot.Click += new System.EventHandler(this.btnStartCavebot_Click);
             // 
+            // tabHotkeys
+            // 
+            this.tabHotkeys.Controls.Add(this.groupBox5);
+            this.tabHotkeys.Location = new System.Drawing.Point(4, 22);
+            this.tabHotkeys.Name = "tabHotkeys";
+            this.tabHotkeys.Size = new System.Drawing.Size(313, 499);
+            this.tabHotkeys.TabIndex = 6;
+            this.tabHotkeys.Text = "Hotkeys";
+            this.tabHotkeys.UseVisualStyleBackColor = true;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.chbHotkeys);
+            this.groupBox5.Location = new System.Drawing.Point(3, 3);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(307, 452);
+            this.groupBox5.TabIndex = 0;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Hotkeys";
+            // 
+            // chbHotkeys
+            // 
+            this.chbHotkeys.AutoSize = true;
+            this.chbHotkeys.Location = new System.Drawing.Point(6, 28);
+            this.chbHotkeys.Name = "chbHotkeys";
+            this.chbHotkeys.Size = new System.Drawing.Size(101, 17);
+            this.chbHotkeys.TabIndex = 0;
+            this.chbHotkeys.Text = "Enable Hotkeys";
+            this.chbHotkeys.UseVisualStyleBackColor = true;
+            this.chbHotkeys.CheckedChanged += new System.EventHandler(this.chbHotkeys_CheckedChanged);
+            // 
+            // tabDebug
+            // 
+            this.tabDebug.Controls.Add(this.groupBox6);
+            this.tabDebug.Location = new System.Drawing.Point(4, 22);
+            this.tabDebug.Name = "tabDebug";
+            this.tabDebug.Size = new System.Drawing.Size(313, 499);
+            this.tabDebug.TabIndex = 7;
+            this.tabDebug.Text = "Debug";
+            this.tabDebug.UseVisualStyleBackColor = true;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.chbDebug);
+            this.groupBox6.Controls.Add(this.txtDebug);
+            this.groupBox6.Location = new System.Drawing.Point(3, 3);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(307, 452);
+            this.groupBox6.TabIndex = 0;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Debug";
+            // 
+            // txtDebug
+            // 
+            this.txtDebug.Location = new System.Drawing.Point(6, 48);
+            this.txtDebug.Name = "txtDebug";
+            this.txtDebug.Size = new System.Drawing.Size(295, 404);
+            this.txtDebug.TabIndex = 0;
+            this.txtDebug.Text = "";
+            // 
+            // chbDebug
+            // 
+            this.chbDebug.AutoSize = true;
+            this.chbDebug.Location = new System.Drawing.Point(7, 25);
+            this.chbDebug.Name = "chbDebug";
+            this.chbDebug.Size = new System.Drawing.Size(94, 17);
+            this.chbDebug.TabIndex = 1;
+            this.chbDebug.Text = "Enable Debug";
+            this.chbDebug.UseVisualStyleBackColor = true;
+            this.chbDebug.CheckedChanged += new System.EventHandler(this.chbDebug_CheckedChanged);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1060,6 +1144,12 @@
             this.tabFishing.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.tabHotkeys.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.tabDebug.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1144,6 +1234,13 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Button btnSetFishingPosition;
         private System.Windows.Forms.Button btnFishing;
+        private System.Windows.Forms.TabPage tabHotkeys;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.CheckBox chbHotkeys;
+        private System.Windows.Forms.TabPage tabDebug;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.RichTextBox txtDebug;
+        private System.Windows.Forms.CheckBox chbDebug;
     }
 }
 

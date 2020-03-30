@@ -32,6 +32,8 @@ namespace PxgBot.Classes
                             Point res = FindMonster(monster);
                             if (res.IsEmpty == false)
                             {
+                                /// Found monster, so will attack it and break the foreach loop
+
                                 //Console.WriteLine("Monster '" + monster + "' found");
                                 await Task.Run(() => AttackMonster(res));
                                 break;
@@ -57,10 +59,9 @@ namespace PxgBot.Classes
             try
             {
                 int[] res = ImageSearcher.UseImageSearch("Monsters\\" + monsterName + ".png", GUI.BattleRect.X, GUI.BattleRect.Y, tolerance: 5);
-                //int[] res = ImageSearcher.UseImageSearch("Monsters\\" + monsterName + ".png", GUI.ScreenRect.X, GUI.ScreenRect.Y, GUI.ScreenRect.Width, GUI.ScreenRect.Height, tolerance: 10);
                 if (res != null)
                 {
-                    /// Find where of the screen the monster is:
+                    /// Find where of the BattleList the monster is:
                     int x = res[0];
                     int y = (int)(res[1] + GUI.BattleRect.Height * 0.01);
 
@@ -90,6 +91,11 @@ namespace PxgBot.Classes
                             //Console.WriteLine("Spell: " + spell.Enabled + ", " + spell.Available);
                             if (spell.Available && spell.Enabled)
                             {
+                                /// Here we need to check if it's attacking again
+                                /// because isAttacking state may change during the foreach loop
+
+                                if (await Character.isAttacking == false) break;
+
                                 spell.UseSpell();
                                 spell.Available = false;
                                 new Task(async () =>
