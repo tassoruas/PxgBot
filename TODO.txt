@@ -3,3 +3,9 @@
 - Close bot button
 - Automate food eating
 - Print functions: on level up, on die
+- Sometimes the always on top does not work
+- Add an option to move the waypoint up and down on the list
+- Add an option to clear all waypoints
+- Add an option to load a cavebot script when you first open the bot, so you don't need to load it on every execution
+- Add a condition to validate the Pos X, Y, Destin X and Y. If these positions are equal for more than 5 seconds and you are not fighting, move somewhere.
+- When you have 1 purple monster and 1 normal monster on the same screen, the bot does not attack the second, he keeps trying to fight the first monster and walk to the next waypoint.
