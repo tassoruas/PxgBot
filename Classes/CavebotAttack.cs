@@ -9,38 +9,41 @@ namespace PxgBot.Classes
 {
     public static class CavebotAttack
     {
-        static bool Enabled { get; set; }
+        public static bool Enabled { get; set; }
         public static List<string> MonstersToAttack = new List<string>();
-
-        public static bool isEnabled()
-        {
-            return Enabled;
-        }
 
         public async static void Start()
         {
             try
             {
-                Enabled = true;
-                while (Enabled)
+                while (true)
                 {
-                    if (await Character.isAttacking == false)
+                    if (Enabled)
                     {
-
-                        foreach (string monster in MonstersToAttack)
+                        if (await Character.isAttacking == false)
                         {
-                            Point res = FindMonster(monster);
-                            if (res.IsEmpty == false)
+                            foreach (string monster in MonstersToAttack)
                             {
-                                /// Found monster, so will attack it and break the foreach loop
+                                if (Enabled == false) break;
+                                Point res = FindMonster(monster);
+                                if (res.IsEmpty == false)
+                                {
+                                    /// Found monster, so will attack it and break the foreach loop
 
-                                //Console.WriteLine("Monster '" + monster + "' found");
-                                await Task.Run(() => AttackMonster(res));
-                                break;
+                                    //Console.WriteLine("Monster '" + monster + "' found");
+                                    if (await Character.isAttacking) break;
+                                    await Task.Run(() => AttackMonster(res));
+                                    AutoItX.Sleep(100);
+                                    break;
+                                }
+                                //Console.WriteLine("Monster '" + monster + "' NOT found");
                             }
-                            //Console.WriteLine("Monster '" + monster + "' NOT found");
                         }
-                        AutoItX.Sleep(500);
+                        AutoItX.Sleep(300);
+                    }
+                    else
+                    {
+                        AutoItX.Sleep(1000);
                     }
                 }
             }
@@ -50,10 +53,7 @@ namespace PxgBot.Classes
                 return;
             }
         }
-        public static void Stop()
-        {
-            Enabled = false;
-        }
+
         public static Point FindMonster(string monsterName)
         {
             try
@@ -82,8 +82,8 @@ namespace PxgBot.Classes
             {
                 if (await Character.isAttacking == false)
                 {
-                    AutoItX.MouseClick("left", monsterRect.X, monsterRect.Y, speed: 3);
-                    AutoItX.MouseMove(500, 500, speed: 3);
+                    InputHandler.MouseClick("left", monsterRect.X, monsterRect.Y, speed: 1);
+                    AutoItX.Sleep(1000);
                     while (await Character.isAttacking)
                     {
                         foreach (PokemonSpell spell in Pokemon.PokemonSpells)

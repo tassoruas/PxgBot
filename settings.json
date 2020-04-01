@@ -6,10 +6,7 @@
       "items": {
       }
     },
-    "MonstersToAttack": [
-      "PidgeyTest",
-      "Doduo"
-    ],
+    "MonstersToAttack": [],
     "Revive": {
       "enabled": true,
       "AutoReviveHP": 0,

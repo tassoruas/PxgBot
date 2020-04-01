@@ -71,51 +71,45 @@ namespace PxgBot.Classes
         public static void Revive()
         {
             if (GUI.isPxgActive() == false) AutoItX.WinActivate(Addresses.PxgClientName);
-            if (GUI.PokeballPosition.X != 0 && GUI.PokeballPosition.Y != 0)
-            {
-                if (Settings.Debug) { Settings.DebugText += "\n Will Revive"; }
-                Reviving = true;
-                InputHandler.BlockUserInput(true);
-                if (HP > 0 && isOutside())
-                {
-                    PutInOrOut();
-                }
-                if (HP <= AutoReviveHP)
-                {
-                    AutoItX.Sleep(70);
-                    InputHandler.SendKeys(new string[] { AutoReviveHotkey });
-                    AutoItX.Sleep(70);
-                    AutoItX.MouseClick("left", GUI.PokeballPosition.X, GUI.PokeballPosition.Y, speed: 1);
-                    AutoItX.Sleep(100);
-                }
-                if (isOutside() == false && HP > AutoReviveHP)
-                {
-                    PutInOrOut();
-                }
-                AutoItX.MouseMove(500, 500, 1);
-                AutoItX.Sleep(100);
-                if (isOutside() == false && HP > AutoReviveHP)
-                {
-                    if (Settings.Debug) { Settings.DebugText += "\n Failed first PutInOrOut"; }
-                    PutInOrOut();
-                }
-                AutoItX.MouseMove(500, 500, 1);
-                InputHandler.BlockUserInput(false);
-                AutoItX.Sleep(100);
-                Reviving = false;
-            }
-            else
+            if (GUI.PokeballPosition.X == 0 || GUI.PokeballPosition.Y == 0 || GUI.PokeballPosition.IsEmpty)
             {
                 if (Settings.Debug) { Settings.DebugText += "\n Pokeball position not set for reviving"; }
                 Console.WriteLine("Pokeball position not set for reviving");
+                return;
             }
+            if (Settings.Debug) { Settings.DebugText += "\n Will Revive"; }
+            Reviving = true;
+            InputHandler.BlockUserInput(true);
+            if (HP > 0 && isOutside())
+            {
+                PutInOrOut();
+            }
+            //AutoItX.Sleep(30);
+            InputHandler.SendKeys(new string[] { AutoReviveHotkey }, 5);
+            //AutoItX.Sleep(30);
+            InputHandler.MouseClick("left", GUI.PokeballPosition.X, GUI.PokeballPosition.Y, speed: 1);
+            //AutoItX.Sleep(30);
+
+            if (isOutside() == false && HP > AutoReviveHP)
+            {
+                PutInOrOut();
+            }
+            AutoItX.Sleep(50);
+            if (isOutside() == false && HP > AutoReviveHP)
+            {
+                if (Settings.Debug) { Settings.DebugText += "\n Failed first PutInOrOut"; }
+                PutInOrOut();
+            }
+            InputHandler.BlockUserInput(false);
+            AutoItX.Sleep(100);
+            Reviving = false;
+            Console.WriteLine("End");
         }
 
         public static void PutInOrOut()
         {
-            AutoItX.MouseClick("right", GUI.PokeballPosition.X, GUI.PokeballPosition.Y + 15, speed: 1);
-            AutoItX.Sleep(70);
-            AutoItX.MouseMove(500, 500, 1);
+            InputHandler.MouseClick("right", GUI.PokeballPosition.X, GUI.PokeballPosition.Y + 15, speed: 1);
+            AutoItX.Sleep(50);
         }
 
         public static bool isOutside()

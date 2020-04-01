@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Windows.Forms;
-using PxgBot.Helpers;
-using PxgBot.Classes;
 using System.Drawing;
 using AutoIt;
 using System.IO;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
+using PxgBot.Helpers;
+using PxgBot.Classes;
 using PxgBot.Classes.Actions;
+using PxgBot.Forms;
+using System.Web.Script.Serialization;
 
 namespace PxgBot
 {
@@ -47,15 +49,20 @@ namespace PxgBot
             /// This loads the Player settings in settings.json
             LoadPlayerSettings();
 
+            /// Cavebot placeholder actions
+            Cavebot.TestInit();
+            /// This is used populate Cavebot Tree
+            UpdateCavebotTree();
+
+            /// Create an "instance" of Cavebot and CavebotAttack
+            Task.Run(() => Cavebot.Start());
+            Task.Run(() => CavebotAttack.Start());
+
             ///
             /// Tests \/
             ///
 
-            //CavebotAction cavebotAction1 = new CavebotAction(null, ActionTypes.Fishing, new string[] { "894", "741" }, () => Pokemon.HP > 1000);
-            CavebotAction cavebotAction1 = new CavebotAction(new PXG.Position(4081, 3452, 5), ActionTypes.Walk);
-            CavebotAction cavebotAction2 = new CavebotAction(new PXG.Position(4085, 3434, 5), ActionTypes.Walk);
-            Cavebot.CavebotScript.Add(cavebotAction1);
-            Cavebot.CavebotScript.Add(cavebotAction2);
+
         }
 
 
@@ -80,9 +87,9 @@ namespace PxgBot
             }
 
             lblCharHP.Text = Character.HP.ToString();
-            lblPosX.Text = Character.PosX.ToString();
-            lblPosY.Text = Character.PosY.ToString();
-            lblPosZ.Text = Character.PosZ.ToString();
+            lblPosX.Text = Character.X.ToString();
+            lblPosY.Text = Character.Y.ToString();
+            lblPosZ.Text = Character.Z.ToString();
             lblDestinX.Text = Character.DestinX.ToString();
             lblDestinY.Text = Character.DestinY.ToString();
 
@@ -92,9 +99,27 @@ namespace PxgBot
             lblIsAttacking.Text = isAttacking.ToString();
 
             if (GUI.isPxgActive())
+            {
                 this.Show();
+                if (chbHotkeys.Checked == true)
+                {
+                    keyboardHook.Start();
+                }
+            }
             else
+            {
+                if (chbHotkeys.Checked == true)
+                {
+                    keyboardHook.Stop();
+                }
                 this.Hide();
+            }
+
+            if (Cavebot.Enabled) btnStartCavebot.Text = "Cavebot: Running";
+            else btnStartCavebot.Text = "Cavebot: Stopped";
+
+            if (CavebotAttack.Enabled) btnCavebotAttack.Text = "Attacker: Running";
+            else btnCavebotAttack.Text = "Attacker: Stopped";
 
             txtDebug.Text = Settings.DebugText;
 
@@ -113,26 +138,26 @@ namespace PxgBot
                 {
                     await Task.Run(() =>
                     {
+                        /// Set the PXG Client window size to WindowRect
+                        GUI.SetWindowRect();
+
                         ///
                         GUI.OpenBattleList();
 
                         // Set Game Screen Rect
                         GUI.SetScreenBorders();
 
+
                         /// Set BattleList Rect
                         GUI.SetBattleBorders();
-
-                        /// Set the PXG Client window size to WindowRect
-                        GUI.SetWindowRect();
 
                         /// Update Pokeball position
                         Pokemon.isOutside();
 
                         /// Set Screen Grid => Squares on screen to see SQMs
-                        //GUI.SetScreenGrid(); // Not using for anything right now
-
-                        /// Set window size
+                        GUI.SetScreenGrid(); // Not using for anything right now
                     });
+
                     this.Location = new Point(GUI.WindowRect.X, GUI.WindowRect.Y);
                     this.Size = new Size(GUI.WindowRect.Width, GUI.WindowRect.Height);
                 }
@@ -148,16 +173,23 @@ namespace PxgBot
             /// This timer runs in 2500ms interval
             /// Just for testing purposes. It wont be enabled on release
 
+            /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            /// !!!!!! GUI.DrawOnScreen only works on Main Monitor !!!!!!
+            /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             //GUI.DrawOnScreen(GUI.ScreenRect);
             //GUI.DrawOnScreen(GUI.BattleRect);
 
             /// Show all SQMs
-            //for (int i = 0; i < 11; i++)
+            //Console.WriteLine("GUI: " + GUI.ScreenGrid);
+            //if (GUI.ScreenGrid != null)
             //{
+            //    for (int x = 0; x < 15; x++)
             //    {
-            //        for (int j = 0; j < 15; j++)
             //        {
-            //            GUI.DrawOnScreen(GUI.ScreenGrid[i, j]);
+            //            for (int y = 0; y < 11; y++)
+            //            {
+            //                GUI.DrawOnScreen(GUI.ScreenGrid[x, y]);
+            //            }
             //        }
             //    }
             //}
@@ -183,35 +215,25 @@ namespace PxgBot
 
         private void btnStartCavebot_Click(object sender, EventArgs e)
         {
-            if (Cavebot.Enabled)
+            if (GUI.ScreenGrid != null)
             {
-                Cavebot.Stop();
+                Cavebot.Enabled = !Cavebot.Enabled;
             }
-            else
-            {
-                Cavebot.Start();
-            }
-            btnStartCavebot.Text = "Cavebot: " + (Cavebot.Enabled ? "Running" : "Stopped");
         }
 
         private void btnCavebotAttack_Click(object sender, EventArgs e)
         {
-            if (CavebotAttack.isEnabled())
-            {
-                CavebotAttack.Stop();
-            }
-            else
+            CavebotAttack.Enabled = !CavebotAttack.Enabled;
+            if (!CavebotAttack.Enabled)
             {
                 if (Pokemon.isOutside() == false)
                 {
                     Pokemon.PutInOrOut();
                 }
-                CavebotAttack.Start();
             }
-            btnCavebotAttack.Text = "Attacker: " + (CavebotAttack.isEnabled() ? "Running" : "Stopped");
         }
 
-        #region Settings Screen
+        #region General Settings Screen
 
         private void LoadPlayerSettings()
         {
@@ -237,6 +259,12 @@ namespace PxgBot
                     UpdateMonstersToAttack();
 
                     chbHotkeys.Checked = playerSettings.Hotkeys.enabled;
+                    Hotkeys.ReviveHotkey = playerSettings.Hotkeys.ReviveHotkey;
+                    txtReviveHotkey.Text = Hotkeys.ReviveHotkey;
+                    Hotkeys.PauseCavebotHotkey = playerSettings.Hotkeys.PauseCavebotHotkey;
+                    txtPauseCavebotHotkey.Text = Hotkeys.PauseCavebotHotkey;
+                    Hotkeys.PauseAttackerHotkey = playerSettings.Hotkeys.PauseAttackerHotkey;
+                    txtPauseAttackerHotkey.Text = Hotkeys.PauseAttackerHotkey;
 
                     chbDebug.Checked = playerSettings.Debug;
 
@@ -276,14 +304,24 @@ namespace PxgBot
             try
             {
                 dynamic playerSettings = new JObject();
-                JArray monstersToAttack = new JArray();
 
+                playerSettings.Debug = new JObject();
+                playerSettings.Debug = chbDebug.Checked;
+
+                playerSettings.Hotkeys = new JObject();
+                playerSettings.Hotkeys.enabled = chbHotkeys.Checked;
+                playerSettings.Hotkeys.ReviveHotkey = Hotkeys.ReviveHotkey;
+                playerSettings.Hotkeys.PauseCavebotHotkey = Hotkeys.PauseCavebotHotkey;
+                playerSettings.Hotkeys.PauseAttackerHotkey = Hotkeys.PauseAttackerHotkey;
+
+                JArray monstersToAttack = new JArray();
                 foreach (var monster in listMonstersToAttack.Items)
                 {
                     monstersToAttack.Add(monster.ToString());
                 }
 
                 playerSettings.MonstersToAttack = monstersToAttack;
+
 
                 playerSettings.Revive = new JObject();
                 playerSettings.Revive.enabled = chbAutoRevive.Checked;
@@ -333,6 +371,128 @@ namespace PxgBot
         {
             SavePlayerSettings();
         }
+        #endregion
+
+        #region Cavebot Screen
+        private void btnAddWaypoint_Click(object sender, EventArgs e)
+        {
+            FrmWaypoint frmWaypoint = new FrmWaypoint();
+            frmWaypoint.ShowDialog();
+            UpdateCavebotTree();
+            Console.WriteLine("Updated");
+        }
+
+        private void btnEditWaypoint_Click(object sender, EventArgs e)
+        {
+            FrmWaypoint frmWaypoint = new FrmWaypoint(CavebotTree.SelectedNode.ToString());
+            frmWaypoint.ShowDialog();
+            UpdateCavebotTree();
+            Console.WriteLine("Updated");
+        }
+
+        private void btnAddWaypointFast_Click(object sender, EventArgs e)
+        {
+            CavebotAction cavebotAction = new CavebotAction(new PXG.Position(Character.X, Character.Y, Character.Z), ActionTypes.Walk);
+            Cavebot.Script.Add(cavebotAction);
+            AddTreeNode(cavebotAction);
+        }
+
+        private void btnDeleteWaypoint_Click(object sender, EventArgs e)
+        {
+            string[] selectedNode = CavebotTree.SelectedNode.Text.Replace(" ", "").Split(';');
+            string[] pos = selectedNode[0].Replace("<", "").Replace(">", "").Split(',');
+            string action = selectedNode[1];
+            Console.WriteLine("data: " + pos[0] + ", " + pos[1] + ", " + pos[2] + ", " + action);
+            CavebotAction cbAction = Cavebot.Script.FindLast(x => x.Position.X == int.Parse(pos[0]) && x.Position.Y == int.Parse(pos[1]) && x.Position.Z == int.Parse(pos[2]) && x.Action == (ActionTypes)Enum.Parse(typeof(ActionTypes), action));
+            Cavebot.Script.Remove(cbAction);
+            UpdateCavebotTree();
+        }
+
+        private void UpdateCavebotTree()
+        {
+            CavebotTree.Nodes.Clear();
+            foreach (CavebotAction cbAction in Cavebot.Script)
+            {
+                AddTreeNode(cbAction);
+            }
+        }
+
+        private void AddTreeNode(CavebotAction cbAction)
+        {
+            string position = "<" + cbAction.Position.X + "," + cbAction.Position.Y + "," + cbAction.Position.Z + ">";
+            TreeNode node = new TreeNode(position + "; " + cbAction.Action);
+            CavebotTree.Nodes.Add(node);
+        }
+
+        private void btnOpenScript_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFileDialog ofd = new OpenFileDialog();
+                ofd.Filter = "JSON Files (*.json)|*.json";
+                ofd.FilterIndex = 0;
+                ofd.DefaultExt = "json";
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    if (!String.Equals(Path.GetExtension(ofd.FileName), ".json", StringComparison.OrdinalIgnoreCase))
+                    {
+                        MessageBox.Show("The type of the selected file is not supported by this application. You must select an JSON file.", "Invalid File Type",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        string fullPath = ofd.FileName;
+                        Console.WriteLine("Path: " + fullPath);
+                        string json = File.ReadAllText(fullPath);
+                        dynamic script = JArray.Parse(json)[0];
+                        JArray waypoints = script.Waypoints;
+                        JavaScriptSerializer jss = new JavaScriptSerializer();
+
+                        Cavebot.Script.Clear();
+                        for (int i = 0; i < waypoints.Count; i++)
+                        {
+                            var waypoint = jss.Deserialize<dynamic>(waypoints[i].ToString());
+                            string[] position = waypoint["position"].Split(',');
+                            ActionTypes action = Enum.Parse(typeof(ActionTypes), waypoint["action"]);
+                            CavebotAction cavebotAction = new CavebotAction(new PXG.Position(int.Parse(position[0]), int.Parse(position[1]), int.Parse(position[2])), action);
+                            Cavebot.Script.Add(cavebotAction);
+                        }
+
+                        UpdateCavebotTree();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: btnOpenScript: " + ex.Message);
+            }
+        }
+
+        private void btnSaveScript_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "JSON Files (*.json)|*.json";
+            sfd.FilterIndex = 0;
+            sfd.RestoreDirectory = true;
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                dynamic script = new JObject();
+
+                script.Waypoints = new JArray();
+                foreach (CavebotAction action in Cavebot.Script)
+                {
+                    script.Waypoints.Add(
+                        ("{|position|:|" + action.Position.X + ", " + action.Position.Y + ", " + action.Position.Z + "|, " +
+                        "|action|:|" + action.Action.ToString() + "|}").Replace('|', '"'));
+                }
+                string name = sfd.FileName;
+                File.WriteAllText(name, "[" + script.ToString() + "]");
+            }
+
+
+        }
+
         #endregion
 
         #region Pokemon Settings Screen
@@ -553,7 +713,30 @@ namespace PxgBot
         #region Hotkeys Settings
         private void chbHotkeys_CheckedChanged(object sender, EventArgs e)
         {
+            Hotkeys.Enabled = chbHotkeys.Checked;
+            if (chbHotkeys.Checked)
+            {
+                keyboardHook = new KeyboardHook();
+                keyboardHook.KeyDown += new KeyEventHandler(Hotkeys.KeyPress);
+            }
+        }
 
+        private void txtReviveHotkey_KeyDown(object sender, KeyEventArgs e)
+        {
+            txtReviveHotkey.Text = e.KeyData.ToString();
+            Hotkeys.ReviveHotkey = e.KeyData.ToString();
+        }
+
+        private void txtPauseCavebotHotkey_KeyDown(object sender, KeyEventArgs e)
+        {
+            txtPauseCavebotHotkey.Text = e.KeyData.ToString();
+            Hotkeys.PauseCavebotHotkey = e.KeyData.ToString();
+        }
+
+        private void txtPauseAttackerHotkey_KeyDown(object sender, KeyEventArgs e)
+        {
+            txtPauseAttackerHotkey.Text = e.KeyData.ToString();
+            Hotkeys.PauseAttackerHotkey = e.KeyData.ToString();
         }
 
         #endregion
@@ -564,6 +747,5 @@ namespace PxgBot
             Settings.Debug = chbDebug.Checked;
         }
         #endregion
-
     }
 }

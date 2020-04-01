@@ -17,8 +17,8 @@ namespace PxgBot.Classes
         public static double sqmWidth { get; set; }
         public static double sqmHeight { get; set; }
         public static Rectangle[,] ScreenGrid { get; set; }
+        /// Player center rect = [7,5]
         public static Point PokeballPosition { get; set; }
-        /// Player center rect = [5,7]
 
 
 
@@ -84,16 +84,32 @@ namespace PxgBot.Classes
             OpenBattleList();
             int[] battleIcon = ImageSearcher.UseImageSearch("Battle.png", tolerance: 20);
 
-            if (battleIcon == null) return;
-            int[] battleListEnd = ImageSearcher.UseImageSearch("Screen\\BattleBottomRight.png", battleIcon[0], battleIcon[1], tolerance: 10);
+            if (battleIcon == null)
+            {
+                Console.WriteLine("Battle Icon not found");
+                return;
+            }
+            int[] battleListEnd = ImageSearcher.UseImageSearch("Screen\\BattleBottomRight.png", x: battleIcon[0], y: battleIcon[1], tolerance: 15);
 
             if (battleListEnd == null)
             {
-                battleListEnd = ImageSearcher.UseImageSearch("Screen\\BattleBottomRightWhite.png", battleIcon[0], battleIcon[1], tolerance: 10);
+                battleListEnd = ImageSearcher.UseImageSearch("Screen\\BattleBottomRightWhite.png", x: battleIcon[0], y: battleIcon[1], tolerance: 15);
             }
-            if (battleListEnd == null) return;
 
-            BattleRect = new Rectangle(battleIcon[0], battleIcon[1], battleListEnd[0] - battleIcon[0], battleListEnd[1] - battleIcon[1] + 15);
+            if (battleListEnd == null)
+            {
+                Console.WriteLine("Battle list end not found: " + battleIcon[0] + ", " + battleIcon[1] + ", " + GUI.WindowRect.Width + ", " + GUI.WindowRect.Height);
+                return;
+            }
+
+
+            int startX = battleIcon[0];
+            int startY = battleIcon[1] + 40;
+            int endX = battleListEnd[0];
+            int endY = battleListEnd[1];
+
+            BattleRect = new Rectangle(startX, startY, endX - startX, endY - startY + 15);
+            //Console.WriteLine("Battle borders set: " + startX + ", " + startY + ", " + endX + ", " + endY);
         }
 
         public static void SetScreenBorders()
@@ -102,41 +118,30 @@ namespace PxgBot.Classes
             int[] bottomRight = ImageSearcher.UseImageSearch("Screen\\ScreenBottomRightBorder.png", transparency: "0xFFFFFF");
             Image screenBottom = Image.FromFile("Images\\Screen\\ScreenBottomRightBorder.png");
 
-            if (topLeft == null || bottomRight == null) return;
+            if (topLeft == null || bottomRight == null)
+            {
+                Console.WriteLine("Screen borders not set");
+                return;
+            }
 
             ScreenRect = new Rectangle(topLeft[0], topLeft[1], (bottomRight[0] + screenBottom.Width) - topLeft[0], (bottomRight[1] + screenBottom.Height) - topLeft[1]);
-        }
-
-        public static void SetPokemonBorders()
-        {
-            int[] battleIcon = ImageSearcher.UseImageSearch("Battle.png", tolerance: 20);
-
-            if (battleIcon == null) return;
-            int[] battleListEnd = ImageSearcher.UseImageSearch("Screen\\BattleBottomRight.png", battleIcon[0], battleIcon[1], tolerance: 10);
-
-            if (battleListEnd == null)
-            {
-                battleListEnd = ImageSearcher.UseImageSearch("Screen\\BattleBottomRightWhite.png", battleIcon[0], battleIcon[1], tolerance: 10);
-            }
-            if (battleListEnd == null) return;
-
-            BattleRect = new Rectangle(battleIcon[0], battleIcon[1], battleListEnd[0] - battleIcon[0], battleListEnd[1] - battleIcon[1] + 15);
+            //Console.WriteLine("Screen borders set");
         }
 
         public static void SetScreenGrid()
         {
-            ScreenGrid = new Rectangle[11, 15];
+            ScreenGrid = new Rectangle[15, 11];
             sqmWidth = ScreenRect.Width / 15;
             sqmHeight = ScreenRect.Height / 11;
 
             double height = ScreenRect.Y;
-            for (int i = 0; i < 11; i++)
+            for (int y = 0; y < 11; y++)
             {
                 double width = ScreenRect.X;
-                for (int j = 0; j < 15; j++)
+                for (int x = 0; x < 15; x++)
                 {
                     Rectangle rec = new Rectangle(Convert.ToInt32(width), Convert.ToInt32(height), Convert.ToInt32(sqmWidth), Convert.ToInt32(sqmHeight));
-                    ScreenGrid[i, j] = rec;
+                    ScreenGrid[x, y] = rec;
                     width += sqmWidth;
                 }
                 height += sqmHeight;
@@ -150,6 +155,8 @@ namespace PxgBot.Classes
             if (windowFound)
             {
                 //Console.WriteLine("Window Rect found");
+                outRect.X += 10;
+                outRect.Y += 10;
                 WindowRect = outRect;
             }
             else

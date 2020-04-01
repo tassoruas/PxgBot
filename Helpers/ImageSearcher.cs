@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PxgBot.Classes;
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.InteropServices;
@@ -22,8 +23,13 @@ namespace PxgBot.Helpers
         /// <param name="imgPath">File path</param>
         /// <param name="tolerance">0 to 255</param>
         /// <returns></returns>
-        public static int[] UseImageSearch(string imgName, int x = 0, int y = 0, int width = 1920, int height = 1080, int tolerance = 10, string transparency = "0xFF0000")
+        public static int[] UseImageSearch(string imgName, int x = 0, int y = 0, int width = 0, int height = 0, int tolerance = 10, string transparency = "0xFF0000")
         {
+            if (x == 0) x = GUI.WindowRect.X;
+            if (y == 0) y = GUI.WindowRect.Y;
+            if (width == 0) width = GUI.WindowRect.Width + (10 - GUI.WindowRect.Width % 10);
+            if (height == 0) height = GUI.WindowRect.Height + (10 - GUI.WindowRect.Height % 10);
+
             string imgPath = Application.StartupPath + "\\Images\\" + imgName;
             if (System.IO.File.Exists(imgPath) == false)
             {
