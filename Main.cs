@@ -841,5 +841,10 @@ namespace PxgBot
             Settings.Debug = chbDebug.Checked;
         }
         #endregion
+
+        private void chbAlwaysOnTop_CheckedChanged(object sender, EventArgs e)
+        {
+            this.TopMost = chbAlwaysOnTop.Checked;
+        }
     }
 }

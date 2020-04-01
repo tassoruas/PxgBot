@@ -126,7 +126,8 @@
             this.btnFishing = new System.Windows.Forms.Button();
             this.btnCavebotAttack = new System.Windows.Forms.Button();
             this.btnStartCavebot = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.chbAlwaysOnTop = new System.Windows.Forms.CheckBox();
+            this.label27 = new System.Windows.Forms.Label();
             this.pnlSettings.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -440,6 +441,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label27);
             this.groupBox2.Controls.Add(this.label22);
             this.groupBox2.Controls.Add(this.cmbReviveHotkey);
             this.groupBox2.Controls.Add(this.label19);
@@ -482,7 +484,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(2, 80);
+            this.label22.Location = new System.Drawing.Point(3, 87);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(104, 13);
             this.label22.TabIndex = 31;
@@ -504,7 +506,7 @@
             "F10",
             "F11",
             "F12"});
-            this.cmbReviveHotkey.Location = new System.Drawing.Point(112, 77);
+            this.cmbReviveHotkey.Location = new System.Drawing.Point(113, 84);
             this.cmbReviveHotkey.Name = "cmbReviveHotkey";
             this.cmbReviveHotkey.Size = new System.Drawing.Size(121, 21);
             this.cmbReviveHotkey.TabIndex = 30;
@@ -513,7 +515,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(109, 306);
+            this.label19.Location = new System.Drawing.Point(109, 347);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(60, 13);
             this.label19.TabIndex = 29;
@@ -522,7 +524,7 @@
             // txtCooldownF9
             // 
             this.txtCooldownF9.Enabled = false;
-            this.txtCooldownF9.Location = new System.Drawing.Point(175, 304);
+            this.txtCooldownF9.Location = new System.Drawing.Point(175, 345);
             this.txtCooldownF9.Maximum = new decimal(new int[] {
             300,
             0,
@@ -536,7 +538,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(109, 283);
+            this.label18.Location = new System.Drawing.Point(109, 324);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(60, 13);
             this.label18.TabIndex = 27;
@@ -545,7 +547,7 @@
             // txtCooldownF8
             // 
             this.txtCooldownF8.Enabled = false;
-            this.txtCooldownF8.Location = new System.Drawing.Point(175, 281);
+            this.txtCooldownF8.Location = new System.Drawing.Point(175, 322);
             this.txtCooldownF8.Maximum = new decimal(new int[] {
             300,
             0,
@@ -559,7 +561,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(109, 260);
+            this.label17.Location = new System.Drawing.Point(109, 301);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(60, 13);
             this.label17.TabIndex = 25;
@@ -568,7 +570,7 @@
             // txtCooldownF7
             // 
             this.txtCooldownF7.Enabled = false;
-            this.txtCooldownF7.Location = new System.Drawing.Point(175, 258);
+            this.txtCooldownF7.Location = new System.Drawing.Point(175, 299);
             this.txtCooldownF7.Maximum = new decimal(new int[] {
             300,
             0,
@@ -582,7 +584,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(109, 237);
+            this.label16.Location = new System.Drawing.Point(109, 278);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(60, 13);
             this.label16.TabIndex = 23;
@@ -591,7 +593,7 @@
             // txtCooldownF6
             // 
             this.txtCooldownF6.Enabled = false;
-            this.txtCooldownF6.Location = new System.Drawing.Point(175, 235);
+            this.txtCooldownF6.Location = new System.Drawing.Point(175, 276);
             this.txtCooldownF6.Maximum = new decimal(new int[] {
             300,
             0,
@@ -605,7 +607,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(109, 214);
+            this.label15.Location = new System.Drawing.Point(109, 255);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(60, 13);
             this.label15.TabIndex = 21;
@@ -614,7 +616,7 @@
             // txtCooldownF5
             // 
             this.txtCooldownF5.Enabled = false;
-            this.txtCooldownF5.Location = new System.Drawing.Point(175, 212);
+            this.txtCooldownF5.Location = new System.Drawing.Point(175, 253);
             this.txtCooldownF5.Maximum = new decimal(new int[] {
             300,
             0,
@@ -628,7 +630,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(109, 190);
+            this.label14.Location = new System.Drawing.Point(109, 231);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(60, 13);
             this.label14.TabIndex = 19;
@@ -637,7 +639,7 @@
             // txtCooldownF4
             // 
             this.txtCooldownF4.Enabled = false;
-            this.txtCooldownF4.Location = new System.Drawing.Point(175, 188);
+            this.txtCooldownF4.Location = new System.Drawing.Point(175, 229);
             this.txtCooldownF4.Maximum = new decimal(new int[] {
             300,
             0,
@@ -651,7 +653,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(109, 168);
+            this.label13.Location = new System.Drawing.Point(109, 209);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(60, 13);
             this.label13.TabIndex = 17;
@@ -660,7 +662,7 @@
             // txtCooldownF3
             // 
             this.txtCooldownF3.Enabled = false;
-            this.txtCooldownF3.Location = new System.Drawing.Point(175, 166);
+            this.txtCooldownF3.Location = new System.Drawing.Point(175, 207);
             this.txtCooldownF3.Maximum = new decimal(new int[] {
             300,
             0,
@@ -674,7 +676,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(109, 145);
+            this.label12.Location = new System.Drawing.Point(109, 186);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(60, 13);
             this.label12.TabIndex = 15;
@@ -683,7 +685,7 @@
             // txtCooldownF2
             // 
             this.txtCooldownF2.Enabled = false;
-            this.txtCooldownF2.Location = new System.Drawing.Point(175, 143);
+            this.txtCooldownF2.Location = new System.Drawing.Point(175, 184);
             this.txtCooldownF2.Maximum = new decimal(new int[] {
             300,
             0,
@@ -697,7 +699,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(109, 122);
+            this.label10.Location = new System.Drawing.Point(109, 163);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(60, 13);
             this.label10.TabIndex = 13;
@@ -706,7 +708,7 @@
             // txtCooldownF1
             // 
             this.txtCooldownF1.Enabled = false;
-            this.txtCooldownF1.Location = new System.Drawing.Point(175, 120);
+            this.txtCooldownF1.Location = new System.Drawing.Point(175, 161);
             this.txtCooldownF1.Maximum = new decimal(new int[] {
             300,
             0,
@@ -720,7 +722,7 @@
             // chbSpellF9
             // 
             this.chbSpellF9.AutoSize = true;
-            this.chbSpellF9.Location = new System.Drawing.Point(6, 305);
+            this.chbSpellF9.Location = new System.Drawing.Point(6, 346);
             this.chbSpellF9.Name = "chbSpellF9";
             this.chbSpellF9.Size = new System.Drawing.Size(38, 17);
             this.chbSpellF9.TabIndex = 11;
@@ -731,7 +733,7 @@
             // chbSpellF8
             // 
             this.chbSpellF8.AutoSize = true;
-            this.chbSpellF8.Location = new System.Drawing.Point(6, 282);
+            this.chbSpellF8.Location = new System.Drawing.Point(6, 323);
             this.chbSpellF8.Name = "chbSpellF8";
             this.chbSpellF8.Size = new System.Drawing.Size(38, 17);
             this.chbSpellF8.TabIndex = 10;
@@ -742,7 +744,7 @@
             // chbSpellF7
             // 
             this.chbSpellF7.AutoSize = true;
-            this.chbSpellF7.Location = new System.Drawing.Point(6, 259);
+            this.chbSpellF7.Location = new System.Drawing.Point(6, 300);
             this.chbSpellF7.Name = "chbSpellF7";
             this.chbSpellF7.Size = new System.Drawing.Size(38, 17);
             this.chbSpellF7.TabIndex = 9;
@@ -753,7 +755,7 @@
             // chbSpellF6
             // 
             this.chbSpellF6.AutoSize = true;
-            this.chbSpellF6.Location = new System.Drawing.Point(6, 236);
+            this.chbSpellF6.Location = new System.Drawing.Point(6, 277);
             this.chbSpellF6.Name = "chbSpellF6";
             this.chbSpellF6.Size = new System.Drawing.Size(38, 17);
             this.chbSpellF6.TabIndex = 8;
@@ -764,7 +766,7 @@
             // chbSpellF5
             // 
             this.chbSpellF5.AutoSize = true;
-            this.chbSpellF5.Location = new System.Drawing.Point(6, 213);
+            this.chbSpellF5.Location = new System.Drawing.Point(6, 254);
             this.chbSpellF5.Name = "chbSpellF5";
             this.chbSpellF5.Size = new System.Drawing.Size(38, 17);
             this.chbSpellF5.TabIndex = 7;
@@ -775,7 +777,7 @@
             // chbSpellF4
             // 
             this.chbSpellF4.AutoSize = true;
-            this.chbSpellF4.Location = new System.Drawing.Point(6, 190);
+            this.chbSpellF4.Location = new System.Drawing.Point(6, 231);
             this.chbSpellF4.Name = "chbSpellF4";
             this.chbSpellF4.Size = new System.Drawing.Size(38, 17);
             this.chbSpellF4.TabIndex = 6;
@@ -786,7 +788,7 @@
             // chbSpellF3
             // 
             this.chbSpellF3.AutoSize = true;
-            this.chbSpellF3.Location = new System.Drawing.Point(6, 167);
+            this.chbSpellF3.Location = new System.Drawing.Point(6, 208);
             this.chbSpellF3.Name = "chbSpellF3";
             this.chbSpellF3.Size = new System.Drawing.Size(38, 17);
             this.chbSpellF3.TabIndex = 5;
@@ -797,7 +799,7 @@
             // chbSpellF2
             // 
             this.chbSpellF2.AutoSize = true;
-            this.chbSpellF2.Location = new System.Drawing.Point(6, 144);
+            this.chbSpellF2.Location = new System.Drawing.Point(6, 185);
             this.chbSpellF2.Name = "chbSpellF2";
             this.chbSpellF2.Size = new System.Drawing.Size(38, 17);
             this.chbSpellF2.TabIndex = 4;
@@ -808,7 +810,7 @@
             // chbSpellF1
             // 
             this.chbSpellF1.AutoSize = true;
-            this.chbSpellF1.Location = new System.Drawing.Point(6, 121);
+            this.chbSpellF1.Location = new System.Drawing.Point(6, 162);
             this.chbSpellF1.Name = "chbSpellF1";
             this.chbSpellF1.Size = new System.Drawing.Size(38, 17);
             this.chbSpellF1.TabIndex = 3;
@@ -1247,23 +1249,35 @@
             this.btnStartCavebot.UseVisualStyleBackColor = true;
             this.btnStartCavebot.Click += new System.EventHandler(this.btnStartCavebot_Click);
             // 
-            // checkBox1
+            // chbAlwaysOnTop
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(9, 271);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(92, 17);
-            this.checkBox1.TabIndex = 29;
-            this.checkBox1.Text = "Always on top";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.chbAlwaysOnTop.AutoSize = true;
+            this.chbAlwaysOnTop.Checked = true;
+            this.chbAlwaysOnTop.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chbAlwaysOnTop.Location = new System.Drawing.Point(9, 272);
+            this.chbAlwaysOnTop.Name = "chbAlwaysOnTop";
+            this.chbAlwaysOnTop.Size = new System.Drawing.Size(92, 17);
+            this.chbAlwaysOnTop.TabIndex = 29;
+            this.chbAlwaysOnTop.Text = "Always on top";
+            this.chbAlwaysOnTop.UseVisualStyleBackColor = true;
+            this.chbAlwaysOnTop.CheckedChanged += new System.EventHandler(this.chbAlwaysOnTop_CheckedChanged);
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(53, 108);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(142, 26);
+            this.label27.TabIndex = 32;
+            this.label27.Text = "This hotkey must be set\r\non PXG Hotkeys \"Com mira\"";
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(122, 493);
-            this.Controls.Add(this.checkBox1);
+            this.ClientSize = new System.Drawing.Size(466, 493);
+            this.Controls.Add(this.chbAlwaysOnTop);
             this.Controls.Add(this.btnFishing);
             this.Controls.Add(this.pnlSettings);
             this.Controls.Add(this.btnSettings);
@@ -1429,7 +1443,8 @@
         private System.Windows.Forms.Button btnOpenScript;
         private System.Windows.Forms.TreeView CavebotTree;
         private System.Windows.Forms.Button btnAddWaypointFast;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox chbAlwaysOnTop;
+        private System.Windows.Forms.Label label27;
     }
 }
 
