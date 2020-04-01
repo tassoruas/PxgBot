@@ -17,6 +17,13 @@ namespace PxgBot.Classes.Actions
                     AutoItX.Sleep(500);
                 }
 
+                if (destinPosition.Z != Character.Z)
+                {
+                    Console.WriteLine("Not on the same floor");
+                    AutoItX.Sleep(100);
+                    return true;
+                }
+
                 PXG.Position lastPosition = new PXG.Position(Character.X, Character.Y, Character.Z);
 
                 int destX = 7;
@@ -27,7 +34,8 @@ namespace PxgBot.Classes.Actions
 
                 if (Settings.Debug) Console.WriteLine("Clicked: " + destX + ", " + destY);
 
-                InputHandler.MouseClick("left", GUI.ScreenGrid[destX, destY].X + (GUI.ScreenGrid[destX, destY].Width / 2), GUI.ScreenGrid[destX, destY].Y + (GUI.ScreenGrid[destX, destY].Height / 2), 1);
+                if (use == false) InputHandler.MouseClick("left", GUI.ScreenGrid[destX, destY].X + (GUI.ScreenGrid[destX, destY].Width / 2), GUI.ScreenGrid[destX, destY].Y + (GUI.ScreenGrid[destX, destY].Height / 2), 1);
+                else InputHandler.MouseClick("right", GUI.ScreenGrid[destX, destY].X + (GUI.ScreenGrid[destX, destY].Width / 2), GUI.ScreenGrid[destX, destY].Y + (GUI.ScreenGrid[destX, destY].Height / 2), 1);
 
                 AutoItX.Sleep(50);
                 if (Cavebot.Enabled == false) return true;
@@ -43,7 +51,6 @@ namespace PxgBot.Classes.Actions
 
                 if (Settings.Debug) Console.WriteLine("End walking");
 
-                if (use) InputHandler.MouseClick("right", GUI.ScreenGrid[destX, destY].X + (GUI.ScreenGrid[destX, destY].Width / 2), GUI.ScreenGrid[destX, destY].Y + (GUI.ScreenGrid[destX, destY].Height / 2), 1);
                 return true;
             }
             catch (Exception ex)

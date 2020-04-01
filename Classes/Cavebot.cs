@@ -18,7 +18,7 @@ namespace PxgBot.Classes
             {
                 while (true)
                 {
-                    if (Enabled)
+                    if (Enabled && Character.X != 0)
                     {
                         for (; Index < Script.Count; Index++)
                         {
@@ -80,6 +80,7 @@ namespace PxgBot.Classes
                 do
                 {
                     result = await Actions.Walk.WalkTo(cbAction.Position);
+                    AutoItX.Sleep(150);
                 } while (result == false);
                 return result;
             }
@@ -93,6 +94,7 @@ namespace PxgBot.Classes
                 do
                 {
                     result = await Actions.Walk.WalkTo(cbAction.Position, true);
+                    AutoItX.Sleep(150);
                 } while (result == false);
                 return result;
 
