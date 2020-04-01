@@ -24,6 +24,7 @@ namespace PxgBot.Classes
                         {
                             if (Pokemon.Reviving == false && Pokemon.isOutside() == false)
                             {
+                                if (Pokemon.HP == 0 || Pokemon.HP <= Pokemon.AutoReviveHP) Pokemon.Revive();
                                 Pokemon.PutInOrOut();
                             }
 

@@ -126,6 +126,7 @@
             this.btnFishing = new System.Windows.Forms.Button();
             this.btnCavebotAttack = new System.Windows.Forms.Button();
             this.btnStartCavebot = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.pnlSettings.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -170,7 +171,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(8, 288);
+            this.label1.Location = new System.Drawing.Point(12, 304);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(56, 13);
             this.label1.TabIndex = 3;
@@ -181,7 +182,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(11, 308);
+            this.label2.Location = new System.Drawing.Point(15, 324);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 4;
@@ -192,7 +193,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label3.Location = new System.Drawing.Point(23, 328);
+            this.label3.Location = new System.Drawing.Point(27, 344);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 13);
             this.label3.TabIndex = 5;
@@ -203,7 +204,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label4.Location = new System.Drawing.Point(23, 348);
+            this.label4.Location = new System.Drawing.Point(27, 364);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(41, 13);
             this.label4.TabIndex = 6;
@@ -214,7 +215,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label5.Location = new System.Drawing.Point(24, 368);
+            this.label5.Location = new System.Drawing.Point(28, 384);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(41, 13);
             this.label5.TabIndex = 7;
@@ -225,7 +226,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label6.Location = new System.Drawing.Point(13, 388);
+            this.label6.Location = new System.Drawing.Point(17, 404);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 13);
             this.label6.TabIndex = 8;
@@ -236,7 +237,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label7.Location = new System.Drawing.Point(13, 408);
+            this.label7.Location = new System.Drawing.Point(17, 424);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(53, 13);
             this.label7.TabIndex = 9;
@@ -247,7 +248,7 @@
             this.lblPokeHP.AutoSize = true;
             this.lblPokeHP.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPokeHP.ForeColor = System.Drawing.Color.Red;
-            this.lblPokeHP.Location = new System.Drawing.Point(80, 288);
+            this.lblPokeHP.Location = new System.Drawing.Point(84, 304);
             this.lblPokeHP.Name = "lblPokeHP";
             this.lblPokeHP.Size = new System.Drawing.Size(13, 13);
             this.lblPokeHP.TabIndex = 10;
@@ -258,7 +259,7 @@
             this.lblCharHP.AutoSize = true;
             this.lblCharHP.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCharHP.ForeColor = System.Drawing.Color.Red;
-            this.lblCharHP.Location = new System.Drawing.Point(80, 308);
+            this.lblCharHP.Location = new System.Drawing.Point(84, 324);
             this.lblCharHP.Name = "lblCharHP";
             this.lblCharHP.Size = new System.Drawing.Size(13, 13);
             this.lblCharHP.TabIndex = 11;
@@ -269,7 +270,7 @@
             this.lblPosX.AutoSize = true;
             this.lblPosX.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPosX.ForeColor = System.Drawing.Color.Red;
-            this.lblPosX.Location = new System.Drawing.Point(80, 328);
+            this.lblPosX.Location = new System.Drawing.Point(84, 344);
             this.lblPosX.Name = "lblPosX";
             this.lblPosX.Size = new System.Drawing.Size(13, 13);
             this.lblPosX.TabIndex = 12;
@@ -280,7 +281,7 @@
             this.lblPosY.AutoSize = true;
             this.lblPosY.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPosY.ForeColor = System.Drawing.Color.Red;
-            this.lblPosY.Location = new System.Drawing.Point(80, 348);
+            this.lblPosY.Location = new System.Drawing.Point(84, 364);
             this.lblPosY.Name = "lblPosY";
             this.lblPosY.Size = new System.Drawing.Size(13, 13);
             this.lblPosY.TabIndex = 13;
@@ -291,7 +292,7 @@
             this.lblDestinY.AutoSize = true;
             this.lblDestinY.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDestinY.ForeColor = System.Drawing.Color.Red;
-            this.lblDestinY.Location = new System.Drawing.Point(80, 408);
+            this.lblDestinY.Location = new System.Drawing.Point(84, 424);
             this.lblDestinY.Name = "lblDestinY";
             this.lblDestinY.Size = new System.Drawing.Size(13, 13);
             this.lblDestinY.TabIndex = 16;
@@ -302,7 +303,7 @@
             this.lblDestinX.AutoSize = true;
             this.lblDestinX.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDestinX.ForeColor = System.Drawing.Color.Red;
-            this.lblDestinX.Location = new System.Drawing.Point(80, 388);
+            this.lblDestinX.Location = new System.Drawing.Point(84, 404);
             this.lblDestinX.Name = "lblDestinX";
             this.lblDestinX.Size = new System.Drawing.Size(13, 13);
             this.lblDestinX.TabIndex = 15;
@@ -313,7 +314,7 @@
             this.lblPosZ.AutoSize = true;
             this.lblPosZ.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPosZ.ForeColor = System.Drawing.Color.Red;
-            this.lblPosZ.Location = new System.Drawing.Point(80, 368);
+            this.lblPosZ.Location = new System.Drawing.Point(84, 384);
             this.lblPosZ.Name = "lblPosZ";
             this.lblPosZ.Size = new System.Drawing.Size(13, 13);
             this.lblPosZ.TabIndex = 14;
@@ -324,7 +325,7 @@
             this.lblIsAttacking.AutoSize = true;
             this.lblIsAttacking.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIsAttacking.ForeColor = System.Drawing.Color.Red;
-            this.lblIsAttacking.Location = new System.Drawing.Point(80, 428);
+            this.lblIsAttacking.Location = new System.Drawing.Point(84, 444);
             this.lblIsAttacking.Name = "lblIsAttacking";
             this.lblIsAttacking.Size = new System.Drawing.Size(13, 13);
             this.lblIsAttacking.TabIndex = 19;
@@ -335,7 +336,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label11.Location = new System.Drawing.Point(8, 428);
+            this.label11.Location = new System.Drawing.Point(12, 444);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(58, 13);
             this.label11.TabIndex = 17;
@@ -346,7 +347,7 @@
             this.lblIsFishing.AutoSize = true;
             this.lblIsFishing.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIsFishing.ForeColor = System.Drawing.Color.Red;
-            this.lblIsFishing.Location = new System.Drawing.Point(80, 448);
+            this.lblIsFishing.Location = new System.Drawing.Point(84, 464);
             this.lblIsFishing.Name = "lblIsFishing";
             this.lblIsFishing.Size = new System.Drawing.Size(13, 13);
             this.lblIsFishing.TabIndex = 21;
@@ -357,7 +358,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label9.Location = new System.Drawing.Point(20, 448);
+            this.label9.Location = new System.Drawing.Point(24, 464);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(46, 13);
             this.label9.TabIndex = 20;
@@ -1246,12 +1247,23 @@
             this.btnStartCavebot.UseVisualStyleBackColor = true;
             this.btnStartCavebot.Click += new System.EventHandler(this.btnStartCavebot_Click);
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(9, 271);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(92, 17);
+            this.checkBox1.TabIndex = 29;
+            this.checkBox1.Text = "Always on top";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(122, 493);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.btnFishing);
             this.Controls.Add(this.pnlSettings);
             this.Controls.Add(this.btnSettings);
@@ -1417,6 +1429,7 @@
         private System.Windows.Forms.Button btnOpenScript;
         private System.Windows.Forms.TreeView CavebotTree;
         private System.Windows.Forms.Button btnAddWaypointFast;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 
