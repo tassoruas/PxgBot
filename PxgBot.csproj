@@ -64,6 +64,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -82,9 +83,16 @@
     <Compile Include="Classes\CavebotAttack.cs" />
     <Compile Include="Classes\Character.cs" />
     <Compile Include="Classes\GUI.cs" />
+    <Compile Include="Classes\Hotkeys.cs" />
     <Compile Include="Classes\Pokemon.cs" />
     <Compile Include="Classes\PXG.cs" />
     <Compile Include="Classes\Settings.cs" />
+    <Compile Include="Forms\FrmWaypoint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmWaypoint.Designer.cs">
+      <DependentUpon>FrmWaypoint.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\Addresses.cs" />
     <Compile Include="Helpers\GlobalHook.cs" />
     <Compile Include="Helpers\ImageSearcher.cs" />
@@ -92,12 +100,6 @@
     <Compile Include="Helpers\MemoryManager.cs" />
     <Compile Include="Helpers\InputHandler.cs" />
     <Compile Include="Helpers\MouseHook.cs" />
-    <Compile Include="HUD.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="HUD.Designer.cs">
-      <DependentUpon>HUD.cs</DependentUpon>
-    </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,8 +109,8 @@
     <Compile Include="Helpers\ProcessMemoryReader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="HUD.resx">
-      <DependentUpon>HUD.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FrmWaypoint.resx">
+      <DependentUpon>FrmWaypoint.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
@@ -119,6 +121,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.manifest" />
+    <None Include="cavebotPlaceholder.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="pxgclient.CT" />
     <None Include="settings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -242,6 +247,12 @@
     <Content Include="Images\Todo\Zubat.png" />
     <Content Include="PossibleFeatures.txt" />
     <Content Include="Resources\Attack.png" />
+    <None Include="Resources\Plus.png" />
+    <None Include="Resources\Edit.png" />
+    <None Include="Resources\Delete..png" />
+    <None Include="Resources\Save.png" />
+    <None Include="Resources\OpenFile.png" />
+    <None Include="Resources\fastWaypoint.png" />
     <Content Include="TODO.txt" />
     <None Include="Resources\Fishing.png" />
     <None Include="Resources\Hunting-512.png" />

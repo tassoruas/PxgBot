@@ -103,16 +103,29 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label23 = new System.Windows.Forms.Label();
             this.btnSetFishingPosition = new System.Windows.Forms.Button();
-            this.btnFishing = new System.Windows.Forms.Button();
-            this.btnCavebotAttack = new System.Windows.Forms.Button();
-            this.btnStartCavebot = new System.Windows.Forms.Button();
             this.tabHotkeys = new System.Windows.Forms.TabPage();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.txtPauseAttackerHotkey = new System.Windows.Forms.TextBox();
+            this.txtPauseCavebotHotkey = new System.Windows.Forms.TextBox();
+            this.txtReviveHotkey = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
             this.chbHotkeys = new System.Windows.Forms.CheckBox();
             this.tabDebug = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.txtDebug = new System.Windows.Forms.RichTextBox();
             this.chbDebug = new System.Windows.Forms.CheckBox();
+            this.txtDebug = new System.Windows.Forms.RichTextBox();
+            this.CavebotTree = new System.Windows.Forms.TreeView();
+            this.btnFishing = new System.Windows.Forms.Button();
+            this.btnAddWaypointFast = new System.Windows.Forms.Button();
+            this.btnOpenScript = new System.Windows.Forms.Button();
+            this.btnSaveScript = new System.Windows.Forms.Button();
+            this.btnDeleteWaypoint = new System.Windows.Forms.Button();
+            this.btnEditWaypoint = new System.Windows.Forms.Button();
+            this.btnAddWaypoint = new System.Windows.Forms.Button();
+            this.btnCavebotAttack = new System.Windows.Forms.Button();
+            this.btnStartCavebot = new System.Windows.Forms.Button();
             this.pnlSettings.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -129,6 +142,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHpToRevive)).BeginInit();
             this.tabCavebot.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.tabAttacker.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tabFishing.SuspendLayout();
@@ -148,7 +162,7 @@
             // tmrTest
             // 
             this.tmrTest.Enabled = true;
-            this.tmrTest.Interval = 2500;
+            this.tmrTest.Interval = 1000;
             this.tmrTest.Tick += new System.EventHandler(this.tmrTest_Tick);
             // 
             // label1
@@ -388,7 +402,7 @@
             // btnSaveSettings
             // 
             this.btnSaveSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.btnSaveSettings.Location = new System.Drawing.Point(89, 6);
+            this.btnSaveSettings.Location = new System.Drawing.Point(105, 6);
             this.btnSaveSettings.Name = "btnSaveSettings";
             this.btnSaveSettings.Size = new System.Drawing.Size(114, 29);
             this.btnSaveSettings.TabIndex = 0;
@@ -846,6 +860,13 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnAddWaypointFast);
+            this.groupBox1.Controls.Add(this.CavebotTree);
+            this.groupBox1.Controls.Add(this.btnOpenScript);
+            this.groupBox1.Controls.Add(this.btnSaveScript);
+            this.groupBox1.Controls.Add(this.btnDeleteWaypoint);
+            this.groupBox1.Controls.Add(this.btnEditWaypoint);
+            this.groupBox1.Controls.Add(this.btnAddWaypoint);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(307, 453);
@@ -973,45 +994,6 @@
             this.btnSetFishingPosition.UseVisualStyleBackColor = true;
             this.btnSetFishingPosition.Click += new System.EventHandler(this.btnSetFishingPosition_Click);
             // 
-            // btnFishing
-            // 
-            this.btnFishing.BackgroundImage = global::PxgBot.Properties.Resources.Fishing;
-            this.btnFishing.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnFishing.Location = new System.Drawing.Point(23, 330);
-            this.btnFishing.Name = "btnFishing";
-            this.btnFishing.Size = new System.Drawing.Size(107, 77);
-            this.btnFishing.TabIndex = 28;
-            this.btnFishing.Text = "Fishing: Stopped";
-            this.btnFishing.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnFishing.UseVisualStyleBackColor = true;
-            this.btnFishing.Click += new System.EventHandler(this.btnFishing_Click);
-            // 
-            // btnCavebotAttack
-            // 
-            this.btnCavebotAttack.BackgroundImage = global::PxgBot.Properties.Resources.Attack;
-            this.btnCavebotAttack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnCavebotAttack.Location = new System.Drawing.Point(23, 247);
-            this.btnCavebotAttack.Name = "btnCavebotAttack";
-            this.btnCavebotAttack.Size = new System.Drawing.Size(107, 77);
-            this.btnCavebotAttack.TabIndex = 25;
-            this.btnCavebotAttack.Text = "Attacker: Stopped";
-            this.btnCavebotAttack.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnCavebotAttack.UseVisualStyleBackColor = true;
-            this.btnCavebotAttack.Click += new System.EventHandler(this.btnCavebotAttack_Click);
-            // 
-            // btnStartCavebot
-            // 
-            this.btnStartCavebot.BackgroundImage = global::PxgBot.Properties.Resources.Hunting_512;
-            this.btnStartCavebot.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnStartCavebot.Location = new System.Drawing.Point(23, 157);
-            this.btnStartCavebot.Name = "btnStartCavebot";
-            this.btnStartCavebot.Size = new System.Drawing.Size(107, 84);
-            this.btnStartCavebot.TabIndex = 22;
-            this.btnStartCavebot.Text = "Cavebot: Stopped";
-            this.btnStartCavebot.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnStartCavebot.UseVisualStyleBackColor = true;
-            this.btnStartCavebot.Click += new System.EventHandler(this.btnStartCavebot_Click);
-            // 
             // tabHotkeys
             // 
             this.tabHotkeys.Controls.Add(this.groupBox5);
@@ -1024,6 +1006,12 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.txtPauseAttackerHotkey);
+            this.groupBox5.Controls.Add(this.txtPauseCavebotHotkey);
+            this.groupBox5.Controls.Add(this.txtReviveHotkey);
+            this.groupBox5.Controls.Add(this.label26);
+            this.groupBox5.Controls.Add(this.label25);
+            this.groupBox5.Controls.Add(this.label24);
             this.groupBox5.Controls.Add(this.chbHotkeys);
             this.groupBox5.Location = new System.Drawing.Point(3, 3);
             this.groupBox5.Name = "groupBox5";
@@ -1031,6 +1019,63 @@
             this.groupBox5.TabIndex = 0;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Hotkeys";
+            // 
+            // txtPauseAttackerHotkey
+            // 
+            this.txtPauseAttackerHotkey.BackColor = System.Drawing.SystemColors.Info;
+            this.txtPauseAttackerHotkey.Location = new System.Drawing.Point(99, 122);
+            this.txtPauseAttackerHotkey.Name = "txtPauseAttackerHotkey";
+            this.txtPauseAttackerHotkey.ReadOnly = true;
+            this.txtPauseAttackerHotkey.Size = new System.Drawing.Size(100, 20);
+            this.txtPauseAttackerHotkey.TabIndex = 9;
+            this.txtPauseAttackerHotkey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPauseAttackerHotkey_KeyDown);
+            // 
+            // txtPauseCavebotHotkey
+            // 
+            this.txtPauseCavebotHotkey.BackColor = System.Drawing.SystemColors.Info;
+            this.txtPauseCavebotHotkey.Location = new System.Drawing.Point(99, 93);
+            this.txtPauseCavebotHotkey.Name = "txtPauseCavebotHotkey";
+            this.txtPauseCavebotHotkey.ReadOnly = true;
+            this.txtPauseCavebotHotkey.Size = new System.Drawing.Size(100, 20);
+            this.txtPauseCavebotHotkey.TabIndex = 8;
+            this.txtPauseCavebotHotkey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPauseCavebotHotkey_KeyDown);
+            // 
+            // txtReviveHotkey
+            // 
+            this.txtReviveHotkey.BackColor = System.Drawing.SystemColors.Info;
+            this.txtReviveHotkey.Location = new System.Drawing.Point(99, 62);
+            this.txtReviveHotkey.Name = "txtReviveHotkey";
+            this.txtReviveHotkey.ReadOnly = true;
+            this.txtReviveHotkey.Size = new System.Drawing.Size(100, 20);
+            this.txtReviveHotkey.TabIndex = 7;
+            this.txtReviveHotkey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtReviveHotkey_KeyDown);
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(7, 125);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(86, 13);
+            this.label26.TabIndex = 6;
+            this.label26.Text = "Pause Attacker: ";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(6, 96);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(86, 13);
+            this.label25.TabIndex = 4;
+            this.label25.Text = "Pause Cavebot: ";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(46, 65);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(47, 13);
+            this.label24.TabIndex = 1;
+            this.label24.Text = "Revive: ";
             // 
             // chbHotkeys
             // 
@@ -1064,14 +1109,6 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Debug";
             // 
-            // txtDebug
-            // 
-            this.txtDebug.Location = new System.Drawing.Point(6, 48);
-            this.txtDebug.Name = "txtDebug";
-            this.txtDebug.Size = new System.Drawing.Size(295, 404);
-            this.txtDebug.TabIndex = 0;
-            this.txtDebug.Text = "";
-            // 
             // chbDebug
             // 
             this.chbDebug.AutoSize = true;
@@ -1082,6 +1119,128 @@
             this.chbDebug.Text = "Enable Debug";
             this.chbDebug.UseVisualStyleBackColor = true;
             this.chbDebug.CheckedChanged += new System.EventHandler(this.chbDebug_CheckedChanged);
+            // 
+            // txtDebug
+            // 
+            this.txtDebug.Location = new System.Drawing.Point(6, 48);
+            this.txtDebug.Name = "txtDebug";
+            this.txtDebug.Size = new System.Drawing.Size(295, 404);
+            this.txtDebug.TabIndex = 0;
+            this.txtDebug.Text = "";
+            // 
+            // CavebotTree
+            // 
+            this.CavebotTree.Location = new System.Drawing.Point(6, 65);
+            this.CavebotTree.Name = "CavebotTree";
+            this.CavebotTree.Size = new System.Drawing.Size(295, 382);
+            this.CavebotTree.TabIndex = 5;
+            // 
+            // btnFishing
+            // 
+            this.btnFishing.BackgroundImage = global::PxgBot.Properties.Resources.Fishing;
+            this.btnFishing.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnFishing.Location = new System.Drawing.Point(23, 330);
+            this.btnFishing.Name = "btnFishing";
+            this.btnFishing.Size = new System.Drawing.Size(107, 77);
+            this.btnFishing.TabIndex = 28;
+            this.btnFishing.Text = "Fishing: Stopped";
+            this.btnFishing.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnFishing.UseVisualStyleBackColor = true;
+            this.btnFishing.Click += new System.EventHandler(this.btnFishing_Click);
+            // 
+            // btnAddWaypointFast
+            // 
+            this.btnAddWaypointFast.BackgroundImage = global::PxgBot.Properties.Resources.fastWaypoint;
+            this.btnAddWaypointFast.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAddWaypointFast.Location = new System.Drawing.Point(158, 23);
+            this.btnAddWaypointFast.Name = "btnAddWaypointFast";
+            this.btnAddWaypointFast.Size = new System.Drawing.Size(30, 30);
+            this.btnAddWaypointFast.TabIndex = 6;
+            this.btnAddWaypointFast.UseVisualStyleBackColor = true;
+            this.btnAddWaypointFast.Click += new System.EventHandler(this.btnAddWaypointFast_Click);
+            // 
+            // btnOpenScript
+            // 
+            this.btnOpenScript.BackgroundImage = global::PxgBot.Properties.Resources.OpenFile;
+            this.btnOpenScript.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnOpenScript.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.btnOpenScript.Location = new System.Drawing.Point(11, 19);
+            this.btnOpenScript.Name = "btnOpenScript";
+            this.btnOpenScript.Size = new System.Drawing.Size(30, 30);
+            this.btnOpenScript.TabIndex = 4;
+            this.btnOpenScript.UseVisualStyleBackColor = true;
+            this.btnOpenScript.Click += new System.EventHandler(this.btnOpenScript_Click);
+            // 
+            // btnSaveScript
+            // 
+            this.btnSaveScript.BackgroundImage = global::PxgBot.Properties.Resources.Save;
+            this.btnSaveScript.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnSaveScript.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.btnSaveScript.Location = new System.Drawing.Point(52, 19);
+            this.btnSaveScript.Name = "btnSaveScript";
+            this.btnSaveScript.Size = new System.Drawing.Size(30, 30);
+            this.btnSaveScript.TabIndex = 1;
+            this.btnSaveScript.UseVisualStyleBackColor = true;
+            this.btnSaveScript.Click += new System.EventHandler(this.btnSaveScript_Click);
+            // 
+            // btnDeleteWaypoint
+            // 
+            this.btnDeleteWaypoint.BackgroundImage = global::PxgBot.Properties.Resources.Delete_;
+            this.btnDeleteWaypoint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnDeleteWaypoint.Location = new System.Drawing.Point(262, 23);
+            this.btnDeleteWaypoint.Name = "btnDeleteWaypoint";
+            this.btnDeleteWaypoint.Size = new System.Drawing.Size(30, 30);
+            this.btnDeleteWaypoint.TabIndex = 3;
+            this.btnDeleteWaypoint.UseVisualStyleBackColor = true;
+            this.btnDeleteWaypoint.Click += new System.EventHandler(this.btnDeleteWaypoint_Click);
+            // 
+            // btnEditWaypoint
+            // 
+            this.btnEditWaypoint.BackgroundImage = global::PxgBot.Properties.Resources.Edit;
+            this.btnEditWaypoint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnEditWaypoint.Location = new System.Drawing.Point(228, 23);
+            this.btnEditWaypoint.Name = "btnEditWaypoint";
+            this.btnEditWaypoint.Size = new System.Drawing.Size(30, 30);
+            this.btnEditWaypoint.TabIndex = 2;
+            this.btnEditWaypoint.UseVisualStyleBackColor = true;
+            this.btnEditWaypoint.Click += new System.EventHandler(this.btnEditWaypoint_Click);
+            // 
+            // btnAddWaypoint
+            // 
+            this.btnAddWaypoint.BackgroundImage = global::PxgBot.Properties.Resources.Plus;
+            this.btnAddWaypoint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAddWaypoint.Location = new System.Drawing.Point(194, 23);
+            this.btnAddWaypoint.Name = "btnAddWaypoint";
+            this.btnAddWaypoint.Size = new System.Drawing.Size(30, 30);
+            this.btnAddWaypoint.TabIndex = 1;
+            this.btnAddWaypoint.UseVisualStyleBackColor = true;
+            this.btnAddWaypoint.Click += new System.EventHandler(this.btnAddWaypoint_Click);
+            // 
+            // btnCavebotAttack
+            // 
+            this.btnCavebotAttack.BackgroundImage = global::PxgBot.Properties.Resources.Attack;
+            this.btnCavebotAttack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCavebotAttack.Location = new System.Drawing.Point(23, 247);
+            this.btnCavebotAttack.Name = "btnCavebotAttack";
+            this.btnCavebotAttack.Size = new System.Drawing.Size(107, 77);
+            this.btnCavebotAttack.TabIndex = 25;
+            this.btnCavebotAttack.Text = "Attacker: Stopped";
+            this.btnCavebotAttack.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnCavebotAttack.UseVisualStyleBackColor = true;
+            this.btnCavebotAttack.Click += new System.EventHandler(this.btnCavebotAttack_Click);
+            // 
+            // btnStartCavebot
+            // 
+            this.btnStartCavebot.BackgroundImage = global::PxgBot.Properties.Resources.Hunting_512;
+            this.btnStartCavebot.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnStartCavebot.Location = new System.Drawing.Point(23, 157);
+            this.btnStartCavebot.Name = "btnStartCavebot";
+            this.btnStartCavebot.Size = new System.Drawing.Size(107, 84);
+            this.btnStartCavebot.TabIndex = 22;
+            this.btnStartCavebot.Text = "Cavebot: Stopped";
+            this.btnStartCavebot.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnStartCavebot.UseVisualStyleBackColor = true;
+            this.btnStartCavebot.Click += new System.EventHandler(this.btnStartCavebot_Click);
             // 
             // Main
             // 
@@ -1138,6 +1297,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHpToRevive)).EndInit();
             this.tabCavebot.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
             this.tabAttacker.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
@@ -1241,6 +1401,19 @@
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.RichTextBox txtDebug;
         private System.Windows.Forms.CheckBox chbDebug;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.TextBox txtPauseAttackerHotkey;
+        private System.Windows.Forms.TextBox txtPauseCavebotHotkey;
+        private System.Windows.Forms.TextBox txtReviveHotkey;
+        private System.Windows.Forms.Button btnAddWaypoint;
+        private System.Windows.Forms.Button btnDeleteWaypoint;
+        private System.Windows.Forms.Button btnEditWaypoint;
+        private System.Windows.Forms.Button btnSaveScript;
+        private System.Windows.Forms.Button btnOpenScript;
+        private System.Windows.Forms.TreeView CavebotTree;
+        private System.Windows.Forms.Button btnAddWaypointFast;
     }
 }
 

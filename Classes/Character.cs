@@ -13,15 +13,15 @@ namespace PxgBot.Classes
         {
             get => MemoryManager.ReadDouble((int)Addresses.Offsets.CharHP, 8);
         }
-        public static int PosX
+        public static int X
         {
             get => MemoryManager.ReadInt((int)Addresses.Offsets.PosX, 8);
         }
-        public static int PosY
+        public static int Y
         {
             get => MemoryManager.ReadInt((int)Addresses.Offsets.PosY, 8);
         }
-        public static int PosZ
+        public static int Z
         {
             get => MemoryManager.ReadInt((int)Addresses.Offsets.PosZ, 8);
         }
@@ -44,12 +44,12 @@ namespace PxgBot.Classes
 
         public static Task<bool> isAttacking
         {
-            get => Task.Run(() => (ImageSearcher.UseImageSearch("IsAttacking.png", tolerance: 10, transparency: "0xFFFFFF") != null));
+            get => Task.Run(() => (ImageSearcher.UseImageSearch("IsAttacking.png", GUI.BattleRect.X, GUI.BattleRect.Y, tolerance: 10, transparency: "0xFFFFFF") != null));
         }
 
         public static PXG.Position GetPosition()
         {
-            return new PXG.Position(PosX, PosY, PosZ);
+            return new PXG.Position(X, Y, Z);
         }
 
         public static void SetDestinPosition(int x, int y)
