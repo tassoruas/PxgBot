@@ -20,43 +20,50 @@ namespace PxgBot
 
         public Main()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
 
-            /// This turns the Form transparent
-            //this.TransparencyKey = BackColor;
+                /// This turns the Form transparent
+                //this.TransparencyKey = BackColor;
 
-            /// Activate PXG screen
-            AutoItX.WinActivate(Addresses.PxgClientName);
+                /// Activate PXG screen
+                AutoItX.WinActivate(Addresses.PxgClientName);
 
-            /// Find PXG Handle
-            Addresses.RegisterHandle();
+                /// Find PXG Handle
+                Addresses.RegisterHandle();
 
-            /// This sets all the rectangles of the screens
-            UpdateGUI();
+                /// This sets all the rectangles of the screens
+                UpdateGUI();
 
-            /// Start reading from memory
-            MemoryManager.StartMemoryManager(Addresses.PxgPointerAddress, Addresses.PxgProcessName);
+                /// Start reading from memory
+                MemoryManager.StartMemoryManager(Addresses.PxgPointerAddress, Addresses.PxgProcessName);
 
-            /// Init Pokemon settings
-            Pokemon.Init();
+                /// Init Pokemon settings
+                Pokemon.Init();
 
-            /// This loads all the available monsters to the ListBoxes on settings screen
-            LoadAvailableMonsters();
+                /// This loads all the available monsters to the ListBoxes on settings screen
+                LoadAvailableMonsters();
 
-            /// This loads the Player settings in settings.json
-            LoadPlayerSettings();
+                /// This loads the Player settings in settings.json
+                LoadPlayerSettings();
 
-            /// Cavebot placeholder actions
-            //Cavebot.TestInit();
+                /// Cavebot placeholder actions
+                //Cavebot.TestInit();
 
-            /// This is used populate Cavebot Tree
-            UpdateCavebotTree();
+                /// This is used populate Cavebot Tree
+                UpdateCavebotTree();
 
-            /// Create an "instance" of Cavebot and CavebotAttack
-            Task.Run(() => Cavebot.Start());
-            Task.Run(() => CavebotAttack.Start());
+                /// Create an "instance" of Cavebot and CavebotAttack
+                Task.Run(() => Cavebot.Start());
+                Task.Run(() => CavebotAttack.Start());
 
-            this.Location = new Point(GUI.WindowRect.X, GUI.WindowRect.Y);
+                this.Location = new Point(GUI.WindowRect.X, GUI.WindowRect.Y + 130);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: Main constructor: " + ex.Message);
+            }
         }
 
 
@@ -65,63 +72,77 @@ namespace PxgBot
             ///
             /// This timer runs in a 350ms interval
             /// 
-
-            lblPokeHP.Text = Pokemon.HP.ToString();
-
-            if (Pokemon.HasPokemonSet && Pokemon.AutoRevive &&
-                Pokemon.HP <= Pokemon.AutoReviveHP &&
-                Pokemon.Reviving == false && Character.HP > 0)
+            try
             {
-                Pokemon.Revive();
-            }
 
-            if (Pokemon.HasPokemonSet && Pokemon.HP > 0 && await Character.isAttacking && Pokemon.isOutside() == false)
-            {
-                Pokemon.PutInOrOut();
-            }
 
-            lblCharHP.Text = Character.HP.ToString();
-            lblPosX.Text = Character.X.ToString();
-            lblPosY.Text = Character.Y.ToString();
-            lblPosZ.Text = Character.Z.ToString();
-            lblDestinX.Text = Character.DestinX.ToString();
-            lblDestinY.Text = Character.DestinY.ToString();
+                lblPokeHP.Text = Pokemon.HP.ToString();
 
-            bool isFishing = await Classes.Actions.Fishing.isFishing();
-            lblIsFishing.Text = isFishing.ToString();
-            bool isAttacking = await Character.isAttacking;
-            lblIsAttacking.Text = isAttacking.ToString();
-
-            if (GUI.isPxgActive())
-            {
-                this.Show();
-                if (chbHotkeys.Checked == true)
+                if (Pokemon.HasPokemonSet && Pokemon.AutoRevive &&
+                    Pokemon.HP <= Pokemon.AutoReviveHP &&
+                    Pokemon.Reviving == false && Character.HP > 0)
                 {
-                    keyboardHook.Start();
+                    Pokemon.Revive();
                 }
-            }
-            else
-            {
-                if (chbHotkeys.Checked == true)
+
+                if (Pokemon.HasPokemonSet && Pokemon.HP > 0 && await Character.isAttacking && Pokemon.isOutside() == false)
                 {
-                    keyboardHook.Stop();
+                    Pokemon.PutInOrOut();
                 }
-                this.Hide();
+
+                lblCharHP.Text = Character.HP.ToString();
+                lblPosX.Text = Character.X.ToString();
+                lblPosY.Text = Character.Y.ToString();
+                lblPosZ.Text = Character.Z.ToString();
+                lblDestinX.Text = Character.DestinX.ToString();
+                lblDestinY.Text = Character.DestinY.ToString();
+
+                bool isFishing = await Classes.Actions.Fishing.isFishing();
+                lblIsFishing.Text = isFishing.ToString();
+                bool isAttacking = await Character.isAttacking;
+                lblIsAttacking.Text = isAttacking.ToString();
+
+                if (GUI.isPxgActive())
+                {
+                    this.Show();
+                    if (chbHotkeys.Checked == true)
+                    {
+                        keyboardHook.Start();
+                    }
+                }
+                else
+                {
+                    if (chbHotkeys.Checked == true)
+                    {
+                        keyboardHook.Stop();
+                    }
+                    this.Hide();
+                }
+
+                if (Cavebot.Enabled) btnStartCavebot.Text = "Cavebot: Running";
+                else btnStartCavebot.Text = "Cavebot: Stopped";
+
+                if (CavebotAttack.Enabled) btnCavebotAttack.Text = "Attacker: Running";
+                else btnCavebotAttack.Text = "Attacker: Stopped";
+
+                txtDebug.Text = Settings.DebugText;
             }
-
-            if (Cavebot.Enabled) btnStartCavebot.Text = "Cavebot: Running";
-            else btnStartCavebot.Text = "Cavebot: Stopped";
-
-            if (CavebotAttack.Enabled) btnCavebotAttack.Text = "Attacker: Running";
-            else btnCavebotAttack.Text = "Attacker: Stopped";
-
-            txtDebug.Text = Settings.DebugText;
-
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: tmrUpdateInfo: " + ex.Message);
+            }
         }
         private void tmrUpdateGUI_Tick(object sender, EventArgs e)
         {
-            if (GUI.isPxgActive())
-                UpdateGUI();
+            try
+            {
+                if (GUI.isPxgActive())
+                    UpdateGUI();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: tmrUpdateGUI: " + ex.Message);
+            }
         }
 
         private async void UpdateGUI()
@@ -152,7 +173,6 @@ namespace PxgBot
                         GUI.SetScreenGrid(); // Not using for anything right now
                     });
 
-                    this.Location = new Point(GUI.WindowRect.X, GUI.WindowRect.Y);
                     //this.Size = new Size(GUI.WindowRect.Width, GUI.WindowRect.Height);
                 }
             }
@@ -210,9 +230,16 @@ namespace PxgBot
 
         private void btnStartCavebot_Click(object sender, EventArgs e)
         {
-            if (GUI.ScreenGrid != null)
+            try
             {
-                Cavebot.Enabled = !Cavebot.Enabled;
+                if (GUI.ScreenGrid != null)
+                {
+                    Cavebot.Enabled = !Cavebot.Enabled;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("btnStartCavebot error: " + ex.Message);
             }
         }
 
@@ -364,59 +391,108 @@ namespace PxgBot
 
         private void btnSaveSettings_Click(object sender, EventArgs e)
         {
-            SavePlayerSettings();
+            try
+            {
+                SavePlayerSettings();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: btnSaveSettings: " + ex.Message);
+            }
         }
         #endregion
 
         #region Cavebot Screen
         private void btnAddWaypoint_Click(object sender, EventArgs e)
         {
-            FrmWaypoint frmWaypoint = new FrmWaypoint();
-            frmWaypoint.ShowDialog();
-            UpdateCavebotTree();
-            Console.WriteLine("Updated");
+            try
+            {
+                FrmWaypoint frmWaypoint = new FrmWaypoint();
+                frmWaypoint.ShowDialog();
+                UpdateCavebotTree();
+                Console.WriteLine("Updated");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: btnAddWaypoint: " + ex.Message);
+            }
         }
 
         private void btnEditWaypoint_Click(object sender, EventArgs e)
         {
-            FrmWaypoint frmWaypoint = new FrmWaypoint(CavebotTree.SelectedNode.ToString());
-            frmWaypoint.ShowDialog();
-            UpdateCavebotTree();
-            Console.WriteLine("Updated");
+            try
+            {
+                FrmWaypoint frmWaypoint = new FrmWaypoint(CavebotTree.SelectedNode.ToString());
+                frmWaypoint.ShowDialog();
+                UpdateCavebotTree();
+                Console.WriteLine("Updated");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: btnAddWaypoint: " + ex.Message);
+            }
         }
 
         private void btnAddWaypointFast_Click(object sender, EventArgs e)
         {
-            CavebotAction cavebotAction = new CavebotAction(new PXG.Position(Character.X, Character.Y, Character.Z), ActionTypes.Walk);
-            Cavebot.Script.Add(cavebotAction);
-            AddTreeNode(cavebotAction);
+            try
+            {
+                CavebotAction cavebotAction = new CavebotAction(new PXG.Position(Character.X, Character.Y, Character.Z), ActionTypes.Walk);
+                Cavebot.Script.Add(cavebotAction);
+                AddTreeNode(cavebotAction);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: btnAddWaypoint: " + ex.Message);
+            }
         }
 
         private void btnDeleteWaypoint_Click(object sender, EventArgs e)
         {
-            string[] selectedNode = CavebotTree.SelectedNode.Text.Replace(" ", "").Split(';');
-            string[] pos = selectedNode[0].Replace("<", "").Replace(">", "").Split(',');
-            string action = selectedNode[1];
-            Console.WriteLine("data: " + pos[0] + ", " + pos[1] + ", " + pos[2] + ", " + action);
-            CavebotAction cbAction = Cavebot.Script.FindLast(x => x.Position.X == int.Parse(pos[0]) && x.Position.Y == int.Parse(pos[1]) && x.Position.Z == int.Parse(pos[2]) && x.Action == (ActionTypes)Enum.Parse(typeof(ActionTypes), action));
-            Cavebot.Script.Remove(cbAction);
-            UpdateCavebotTree();
+            try
+            {
+                string[] selectedNode = CavebotTree.SelectedNode.Text.Replace(" ", "").Split(';');
+                string[] pos = selectedNode[0].Replace("<", "").Replace(">", "").Split(',');
+                string action = selectedNode[1];
+                Console.WriteLine("data: " + pos[0] + ", " + pos[1] + ", " + pos[2] + ", " + action);
+                CavebotAction cbAction = Cavebot.Script.FindLast(x => x.Position.X == int.Parse(pos[0]) && x.Position.Y == int.Parse(pos[1]) && x.Position.Z == int.Parse(pos[2]) && x.Action == (ActionTypes)Enum.Parse(typeof(ActionTypes), action));
+                Cavebot.Script.Remove(cbAction);
+                UpdateCavebotTree();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: btnDeleteWaypoint: " + ex.Message);
+            }
         }
 
         private void UpdateCavebotTree()
         {
-            CavebotTree.Nodes.Clear();
-            foreach (CavebotAction cbAction in Cavebot.Script)
+            try
             {
-                AddTreeNode(cbAction);
+                CavebotTree.Nodes.Clear();
+                foreach (CavebotAction cbAction in Cavebot.Script)
+                {
+                    AddTreeNode(cbAction);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: UpdateCavebotTree: " + ex.Message);
             }
         }
 
         private void AddTreeNode(CavebotAction cbAction)
         {
-            string position = "<" + cbAction.Position.X + "," + cbAction.Position.Y + "," + cbAction.Position.Z + ">";
-            TreeNode node = new TreeNode(position + "; " + cbAction.Action);
-            CavebotTree.Nodes.Add(node);
+            try
+            {
+                string position = "<" + cbAction.Position.X + "," + cbAction.Position.Y + "," + cbAction.Position.Z + ">";
+                TreeNode node = new TreeNode(position + "; " + cbAction.Action);
+                CavebotTree.Nodes.Add(node);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: AddTreeNode: " + ex.Message);
+            }
         }
 
         private void btnOpenScript_Click(object sender, EventArgs e)
@@ -460,29 +536,36 @@ namespace PxgBot
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: btnOpenScript: " + ex.Message);
+                MessageBox.Show("Error: btnOpenScript: " + ex.Message);
             }
         }
 
         private void btnSaveScript_Click(object sender, EventArgs e)
         {
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "JSON Files (*.json)|*.json";
-            sfd.FilterIndex = 0;
-            sfd.RestoreDirectory = true;
-            if (sfd.ShowDialog() == DialogResult.OK)
+            try
             {
-                dynamic script = new JObject();
-
-                script.Waypoints = new JArray();
-                foreach (CavebotAction action in Cavebot.Script)
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "JSON Files (*.json)|*.json";
+                sfd.FilterIndex = 0;
+                sfd.RestoreDirectory = true;
+                if (sfd.ShowDialog() == DialogResult.OK)
                 {
-                    script.Waypoints.Add(
-                        ("{|position|:|" + action.Position.X + ", " + action.Position.Y + ", " + action.Position.Z + "|, " +
-                        "|action|:|" + action.Action.ToString() + "|}").Replace('|', '"'));
+                    dynamic script = new JObject();
+
+                    script.Waypoints = new JArray();
+                    foreach (CavebotAction action in Cavebot.Script)
+                    {
+                        script.Waypoints.Add(
+                            ("{|position|:|" + action.Position.X + ", " + action.Position.Y + ", " + action.Position.Z + "|, " +
+                            "|action|:|" + action.Action.ToString() + "|}").Replace('|', '"'));
+                    }
+                    string name = sfd.FileName;
+                    File.WriteAllText(name, "[" + script.ToString() + "]");
                 }
-                string name = sfd.FileName;
-                File.WriteAllText(name, "[" + script.ToString() + "]");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: btnSaveScript: " + ex.Message);
             }
 
 
@@ -494,14 +577,21 @@ namespace PxgBot
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
-            pnlSettings.Visible = !pnlSettings.Visible;
-            if (pnlSettings.Visible)
+            try
             {
-                this.Size = new Size(476, 523);
+                pnlSettings.Visible = !pnlSettings.Visible;
+                if (pnlSettings.Visible)
+                {
+                    this.Size = new Size(476, 523);
+                }
+                else
+                {
+                    this.Size = new Size(134, 523);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                this.Size = new Size(134, 523);
+                MessageBox.Show("Error: btnSettings: " + ex.Message);
             }
         }
 
