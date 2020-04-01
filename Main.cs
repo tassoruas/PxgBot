@@ -23,7 +23,7 @@ namespace PxgBot
             InitializeComponent();
 
             /// This turns the Form transparent
-            this.TransparencyKey = BackColor;
+            //this.TransparencyKey = BackColor;
 
             /// Activate PXG screen
             AutoItX.WinActivate(Addresses.PxgClientName);
@@ -52,10 +52,11 @@ namespace PxgBot
             /// This is used populate Cavebot Tree
             UpdateCavebotTree();
 
-
             /// Create an "instance" of Cavebot and CavebotAttack
             Task.Run(() => Cavebot.Start());
             Task.Run(() => CavebotAttack.Start());
+
+            this.Location = new Point(GUI.WindowRect.X, GUI.WindowRect.Y);
         }
 
 
@@ -152,7 +153,7 @@ namespace PxgBot
                     });
 
                     this.Location = new Point(GUI.WindowRect.X, GUI.WindowRect.Y);
-                    this.Size = new Size(GUI.WindowRect.Width, GUI.WindowRect.Height);
+                    //this.Size = new Size(GUI.WindowRect.Width, GUI.WindowRect.Height);
                 }
             }
             catch (Exception ex)
@@ -494,6 +495,14 @@ namespace PxgBot
         private void btnSettings_Click(object sender, EventArgs e)
         {
             pnlSettings.Visible = !pnlSettings.Visible;
+            if (pnlSettings.Visible)
+            {
+                this.Size = new Size(476, 523);
+            }
+            else
+            {
+                this.Size = new Size(134, 523);
+            }
         }
 
         private void chbAutoRevive_CheckedChanged(object sender, EventArgs e)

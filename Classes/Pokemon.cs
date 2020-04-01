@@ -109,6 +109,7 @@ namespace PxgBot.Classes
         public static void PutInOrOut()
         {
             InputHandler.MouseClick("right", GUI.PokeballPosition.X, GUI.PokeballPosition.Y + 15, speed: 1);
+            AutoItX.MouseMove(GUI.PokeballPosition.X - 30, GUI.PokeballPosition.Y, 1);
             AutoItX.Sleep(50);
         }
 

@@ -22,6 +22,10 @@ namespace PxgBot.Classes
                     {
                         if (await Character.isAttacking == false)
                         {
+                            if (Pokemon.Reviving == false && Pokemon.isOutside() == false)
+                            {
+                                Pokemon.PutInOrOut();
+                            }
                             foreach (string monster in MonstersToAttack)
                             {
                                 if (Enabled == false) break;
@@ -86,7 +90,8 @@ namespace PxgBot.Classes
             {
                 if (await Character.isAttacking == false)
                 {
-                    InputHandler.MouseClick("left", monsterRect.X, monsterRect.Y, speed: 1);
+                    InputHandler.MouseClick("left", monsterRect.X, monsterRect.Y, speed: 1, keepPosition: true);
+                    Character.isAttacking = Task.Run(() => (true == true));
                     AutoItX.Sleep(1000);
                     while (await Character.isAttacking)
                     {

@@ -45,6 +45,7 @@ namespace PxgBot.Classes
         public static Task<bool> isAttacking
         {
             get => Task.Run(() => (ImageSearcher.UseImageSearch("IsAttacking.png", GUI.BattleRect.X, GUI.BattleRect.Y, tolerance: 10, transparency: "0xFFFFFF") != null));
+            set { isAttacking = value; }
         }
 
         public static PXG.Position GetPosition()
