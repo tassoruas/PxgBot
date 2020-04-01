@@ -246,6 +246,7 @@
             this.Name = "FrmWaypoint";
             this.ShowIcon = false;
             this.Text = "Waypoint";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.FrmWaypoint_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtY)).EndInit();

@@ -405,10 +405,13 @@ namespace PxgBot
         {
             try
             {
+                this.TopMost = false;
+                bool lastTopMost = this.TopMost;
                 FrmWaypoint frmWaypoint = new FrmWaypoint();
                 frmWaypoint.ShowDialog();
                 UpdateCavebotTree();
                 Console.WriteLine("Updated");
+                this.TopMost = lastTopMost;
             }
             catch (Exception ex)
             {
@@ -420,10 +423,13 @@ namespace PxgBot
         {
             try
             {
+                bool lastTopMost = this.TopMost;
+                this.TopMost = false;
                 FrmWaypoint frmWaypoint = new FrmWaypoint(CavebotTree.SelectedNode.ToString());
                 frmWaypoint.ShowDialog();
                 UpdateCavebotTree();
                 Console.WriteLine("Updated");
+                this.TopMost = lastTopMost;
             }
             catch (Exception ex)
             {
