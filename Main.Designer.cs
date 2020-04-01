@@ -91,6 +91,13 @@
             this.chbAutoRevive = new System.Windows.Forms.CheckBox();
             this.tabCavebot = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnAddWaypointFast = new System.Windows.Forms.Button();
+            this.CavebotTree = new System.Windows.Forms.TreeView();
+            this.btnOpenScript = new System.Windows.Forms.Button();
+            this.btnSaveScript = new System.Windows.Forms.Button();
+            this.btnDeleteWaypoint = new System.Windows.Forms.Button();
+            this.btnEditWaypoint = new System.Windows.Forms.Button();
+            this.btnAddWaypoint = new System.Windows.Forms.Button();
             this.tabAttacker = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label21 = new System.Windows.Forms.Label();
@@ -116,14 +123,7 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.chbDebug = new System.Windows.Forms.CheckBox();
             this.txtDebug = new System.Windows.Forms.RichTextBox();
-            this.CavebotTree = new System.Windows.Forms.TreeView();
             this.btnFishing = new System.Windows.Forms.Button();
-            this.btnAddWaypointFast = new System.Windows.Forms.Button();
-            this.btnOpenScript = new System.Windows.Forms.Button();
-            this.btnSaveScript = new System.Windows.Forms.Button();
-            this.btnDeleteWaypoint = new System.Windows.Forms.Button();
-            this.btnEditWaypoint = new System.Windows.Forms.Button();
-            this.btnAddWaypoint = new System.Windows.Forms.Button();
             this.btnCavebotAttack = new System.Windows.Forms.Button();
             this.btnStartCavebot = new System.Windows.Forms.Button();
             this.pnlSettings.SuspendLayout();
@@ -874,6 +874,81 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cavebot";
             // 
+            // btnAddWaypointFast
+            // 
+            this.btnAddWaypointFast.BackgroundImage = global::PxgBot.Properties.Resources.fastWaypoint;
+            this.btnAddWaypointFast.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAddWaypointFast.Location = new System.Drawing.Point(158, 23);
+            this.btnAddWaypointFast.Name = "btnAddWaypointFast";
+            this.btnAddWaypointFast.Size = new System.Drawing.Size(30, 30);
+            this.btnAddWaypointFast.TabIndex = 6;
+            this.btnAddWaypointFast.UseVisualStyleBackColor = true;
+            this.btnAddWaypointFast.Click += new System.EventHandler(this.btnAddWaypointFast_Click);
+            // 
+            // CavebotTree
+            // 
+            this.CavebotTree.Location = new System.Drawing.Point(6, 65);
+            this.CavebotTree.Name = "CavebotTree";
+            this.CavebotTree.Size = new System.Drawing.Size(295, 382);
+            this.CavebotTree.TabIndex = 5;
+            // 
+            // btnOpenScript
+            // 
+            this.btnOpenScript.BackgroundImage = global::PxgBot.Properties.Resources.OpenFile;
+            this.btnOpenScript.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnOpenScript.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.btnOpenScript.Location = new System.Drawing.Point(11, 19);
+            this.btnOpenScript.Name = "btnOpenScript";
+            this.btnOpenScript.Size = new System.Drawing.Size(30, 30);
+            this.btnOpenScript.TabIndex = 4;
+            this.btnOpenScript.UseVisualStyleBackColor = true;
+            this.btnOpenScript.Click += new System.EventHandler(this.btnOpenScript_Click);
+            // 
+            // btnSaveScript
+            // 
+            this.btnSaveScript.BackgroundImage = global::PxgBot.Properties.Resources.Save;
+            this.btnSaveScript.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnSaveScript.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.btnSaveScript.Location = new System.Drawing.Point(52, 19);
+            this.btnSaveScript.Name = "btnSaveScript";
+            this.btnSaveScript.Size = new System.Drawing.Size(30, 30);
+            this.btnSaveScript.TabIndex = 1;
+            this.btnSaveScript.UseVisualStyleBackColor = true;
+            this.btnSaveScript.Click += new System.EventHandler(this.btnSaveScript_Click);
+            // 
+            // btnDeleteWaypoint
+            // 
+            this.btnDeleteWaypoint.BackgroundImage = global::PxgBot.Properties.Resources.Delete_;
+            this.btnDeleteWaypoint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnDeleteWaypoint.Location = new System.Drawing.Point(262, 23);
+            this.btnDeleteWaypoint.Name = "btnDeleteWaypoint";
+            this.btnDeleteWaypoint.Size = new System.Drawing.Size(30, 30);
+            this.btnDeleteWaypoint.TabIndex = 3;
+            this.btnDeleteWaypoint.UseVisualStyleBackColor = true;
+            this.btnDeleteWaypoint.Click += new System.EventHandler(this.btnDeleteWaypoint_Click);
+            // 
+            // btnEditWaypoint
+            // 
+            this.btnEditWaypoint.BackgroundImage = global::PxgBot.Properties.Resources.Edit;
+            this.btnEditWaypoint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnEditWaypoint.Location = new System.Drawing.Point(228, 23);
+            this.btnEditWaypoint.Name = "btnEditWaypoint";
+            this.btnEditWaypoint.Size = new System.Drawing.Size(30, 30);
+            this.btnEditWaypoint.TabIndex = 2;
+            this.btnEditWaypoint.UseVisualStyleBackColor = true;
+            this.btnEditWaypoint.Click += new System.EventHandler(this.btnEditWaypoint_Click);
+            // 
+            // btnAddWaypoint
+            // 
+            this.btnAddWaypoint.BackgroundImage = global::PxgBot.Properties.Resources.Plus;
+            this.btnAddWaypoint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAddWaypoint.Location = new System.Drawing.Point(194, 23);
+            this.btnAddWaypoint.Name = "btnAddWaypoint";
+            this.btnAddWaypoint.Size = new System.Drawing.Size(30, 30);
+            this.btnAddWaypoint.TabIndex = 1;
+            this.btnAddWaypoint.UseVisualStyleBackColor = true;
+            this.btnAddWaypoint.Click += new System.EventHandler(this.btnAddWaypoint_Click);
+            // 
             // tabAttacker
             // 
             this.tabAttacker.Controls.Add(this.groupBox3);
@@ -1128,13 +1203,6 @@
             this.txtDebug.TabIndex = 0;
             this.txtDebug.Text = "";
             // 
-            // CavebotTree
-            // 
-            this.CavebotTree.Location = new System.Drawing.Point(6, 65);
-            this.CavebotTree.Name = "CavebotTree";
-            this.CavebotTree.Size = new System.Drawing.Size(295, 382);
-            this.CavebotTree.TabIndex = 5;
-            // 
             // btnFishing
             // 
             this.btnFishing.BackgroundImage = global::PxgBot.Properties.Resources.Fishing;
@@ -1147,74 +1215,6 @@
             this.btnFishing.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnFishing.UseVisualStyleBackColor = true;
             this.btnFishing.Click += new System.EventHandler(this.btnFishing_Click);
-            // 
-            // btnAddWaypointFast
-            // 
-            this.btnAddWaypointFast.BackgroundImage = global::PxgBot.Properties.Resources.fastWaypoint;
-            this.btnAddWaypointFast.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnAddWaypointFast.Location = new System.Drawing.Point(158, 23);
-            this.btnAddWaypointFast.Name = "btnAddWaypointFast";
-            this.btnAddWaypointFast.Size = new System.Drawing.Size(30, 30);
-            this.btnAddWaypointFast.TabIndex = 6;
-            this.btnAddWaypointFast.UseVisualStyleBackColor = true;
-            this.btnAddWaypointFast.Click += new System.EventHandler(this.btnAddWaypointFast_Click);
-            // 
-            // btnOpenScript
-            // 
-            this.btnOpenScript.BackgroundImage = global::PxgBot.Properties.Resources.OpenFile;
-            this.btnOpenScript.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnOpenScript.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.btnOpenScript.Location = new System.Drawing.Point(11, 19);
-            this.btnOpenScript.Name = "btnOpenScript";
-            this.btnOpenScript.Size = new System.Drawing.Size(30, 30);
-            this.btnOpenScript.TabIndex = 4;
-            this.btnOpenScript.UseVisualStyleBackColor = true;
-            this.btnOpenScript.Click += new System.EventHandler(this.btnOpenScript_Click);
-            // 
-            // btnSaveScript
-            // 
-            this.btnSaveScript.BackgroundImage = global::PxgBot.Properties.Resources.Save;
-            this.btnSaveScript.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnSaveScript.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.btnSaveScript.Location = new System.Drawing.Point(52, 19);
-            this.btnSaveScript.Name = "btnSaveScript";
-            this.btnSaveScript.Size = new System.Drawing.Size(30, 30);
-            this.btnSaveScript.TabIndex = 1;
-            this.btnSaveScript.UseVisualStyleBackColor = true;
-            this.btnSaveScript.Click += new System.EventHandler(this.btnSaveScript_Click);
-            // 
-            // btnDeleteWaypoint
-            // 
-            this.btnDeleteWaypoint.BackgroundImage = global::PxgBot.Properties.Resources.Delete_;
-            this.btnDeleteWaypoint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnDeleteWaypoint.Location = new System.Drawing.Point(262, 23);
-            this.btnDeleteWaypoint.Name = "btnDeleteWaypoint";
-            this.btnDeleteWaypoint.Size = new System.Drawing.Size(30, 30);
-            this.btnDeleteWaypoint.TabIndex = 3;
-            this.btnDeleteWaypoint.UseVisualStyleBackColor = true;
-            this.btnDeleteWaypoint.Click += new System.EventHandler(this.btnDeleteWaypoint_Click);
-            // 
-            // btnEditWaypoint
-            // 
-            this.btnEditWaypoint.BackgroundImage = global::PxgBot.Properties.Resources.Edit;
-            this.btnEditWaypoint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnEditWaypoint.Location = new System.Drawing.Point(228, 23);
-            this.btnEditWaypoint.Name = "btnEditWaypoint";
-            this.btnEditWaypoint.Size = new System.Drawing.Size(30, 30);
-            this.btnEditWaypoint.TabIndex = 2;
-            this.btnEditWaypoint.UseVisualStyleBackColor = true;
-            this.btnEditWaypoint.Click += new System.EventHandler(this.btnEditWaypoint_Click);
-            // 
-            // btnAddWaypoint
-            // 
-            this.btnAddWaypoint.BackgroundImage = global::PxgBot.Properties.Resources.Plus;
-            this.btnAddWaypoint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnAddWaypoint.Location = new System.Drawing.Point(194, 23);
-            this.btnAddWaypoint.Name = "btnAddWaypoint";
-            this.btnAddWaypoint.Size = new System.Drawing.Size(30, 30);
-            this.btnAddWaypoint.TabIndex = 1;
-            this.btnAddWaypoint.UseVisualStyleBackColor = true;
-            this.btnAddWaypoint.Click += new System.EventHandler(this.btnAddWaypoint_Click);
             // 
             // btnCavebotAttack
             // 

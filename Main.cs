@@ -40,9 +40,6 @@ namespace PxgBot
             /// Init Pokemon settings
             Pokemon.Init();
 
-            /// Set fishing initial state
-            Fishing.Enabled = false;
-
             /// This loads all the available monsters to the ListBoxes on settings screen
             LoadAvailableMonsters();
 
@@ -50,19 +47,15 @@ namespace PxgBot
             LoadPlayerSettings();
 
             /// Cavebot placeholder actions
-            Cavebot.TestInit();
+            //Cavebot.TestInit();
+
             /// This is used populate Cavebot Tree
             UpdateCavebotTree();
+
 
             /// Create an "instance" of Cavebot and CavebotAttack
             Task.Run(() => Cavebot.Start());
             Task.Run(() => CavebotAttack.Start());
-
-            ///
-            /// Tests \/
-            ///
-
-
         }
 
 

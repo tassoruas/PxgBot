@@ -40,28 +40,6 @@ namespace PxgBot.Classes
             }
         }
 
-        public static void TestInit()
-        {
-            //CavebotAction cavebotAction1 = new CavebotAction(null, ActionTypes.Fishing, new string[] { "894", "741" }, () => Pokemon.HP > 1000);
-            CavebotAction cavebotAction1 = new CavebotAction(new PXG.Position(4068, 3456, 5), ActionTypes.Walk);
-            CavebotAction cavebotAction2 = new CavebotAction(new PXG.Position(4074, 3455, 5), ActionTypes.Walk);
-            CavebotAction cavebotAction3 = new CavebotAction(new PXG.Position(4079, 3453, 5), ActionTypes.Walk);
-            CavebotAction cavebotAction4 = new CavebotAction(new PXG.Position(4085, 3448, 5), ActionTypes.Walk);
-            CavebotAction cavebotAction5 = new CavebotAction(new PXG.Position(4087, 3443, 5), ActionTypes.Walk);
-            CavebotAction cavebotAction6 = new CavebotAction(new PXG.Position(4085, 3448, 5), ActionTypes.Walk);
-            CavebotAction cavebotAction7 = new CavebotAction(new PXG.Position(4079, 3453, 5), ActionTypes.Walk);
-            CavebotAction cavebotAction8 = new CavebotAction(new PXG.Position(4074, 3455, 5), ActionTypes.Walk);
-
-            Script.Add(cavebotAction1);
-            Script.Add(cavebotAction2);
-            Script.Add(cavebotAction3);
-            Script.Add(cavebotAction4);
-            Script.Add(cavebotAction5);
-            Script.Add(cavebotAction6);
-            Script.Add(cavebotAction7);
-            Script.Add(cavebotAction8);
-        }
-
         private async static Task<bool> ExecuteStep(CavebotAction cbAction)
         {
 
@@ -115,6 +93,28 @@ namespace PxgBot.Classes
             }
 
             return false;
+        }
+
+        public static void TestInit()
+        {
+            //CavebotAction cavebotAction1 = new CavebotAction(null, ActionTypes.Fishing, new string[] { "894", "741" }, () => Pokemon.HP > 1000);
+            CavebotAction cavebotAction1 = new CavebotAction(new PXG.Position(4068, 3456, 5), ActionTypes.Walk);
+            CavebotAction cavebotAction2 = new CavebotAction(new PXG.Position(4074, 3455, 5), ActionTypes.Walk);
+            CavebotAction cavebotAction3 = new CavebotAction(new PXG.Position(4079, 3453, 5), ActionTypes.Walk);
+            CavebotAction cavebotAction4 = new CavebotAction(new PXG.Position(4085, 3448, 5), ActionTypes.Walk);
+            CavebotAction cavebotAction5 = new CavebotAction(new PXG.Position(4087, 3443, 5), ActionTypes.Walk);
+            CavebotAction cavebotAction6 = new CavebotAction(new PXG.Position(4085, 3448, 5), ActionTypes.Walk);
+            CavebotAction cavebotAction7 = new CavebotAction(new PXG.Position(4079, 3453, 5), ActionTypes.Walk);
+            CavebotAction cavebotAction8 = new CavebotAction(new PXG.Position(4074, 3455, 5), ActionTypes.Walk);
+
+            Script.Add(cavebotAction1);
+            Script.Add(cavebotAction2);
+            Script.Add(cavebotAction3);
+            Script.Add(cavebotAction4);
+            Script.Add(cavebotAction5);
+            Script.Add(cavebotAction6);
+            Script.Add(cavebotAction7);
+            Script.Add(cavebotAction8);
         }
     }
 

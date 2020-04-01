@@ -9,7 +9,7 @@ namespace PxgBot.Classes.Actions
     public static class Fishing
     {
         public static Point FishingPosition { get; set; }
-        public static bool Enabled { get; set; }
+        public static bool Enabled = false;
         public async static void StartFishing()
         {
             while (Enabled)
