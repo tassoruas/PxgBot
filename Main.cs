@@ -104,7 +104,6 @@ namespace PxgBot
 
                 if (GUI.isPxgActive())
                 {
-                    this.Show();
                     if (chbHotkeys.Checked == true)
                     {
                         keyboardHook.Start();
@@ -116,7 +115,6 @@ namespace PxgBot
                     {
                         keyboardHook.Stop();
                     }
-                    this.Hide();
                 }
 
                 if (Cavebot.Enabled) btnStartCavebot.Text = "Cavebot: Running";

@@ -1305,7 +1305,6 @@
             this.MaximizeBox = false;
             this.Name = "Main";
             this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "PXG Bot";
             this.TopMost = true;
