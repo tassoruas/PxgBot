@@ -1276,7 +1276,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(466, 493);
+            this.ClientSize = new System.Drawing.Size(119, 493);
             this.Controls.Add(this.chbAlwaysOnTop);
             this.Controls.Add(this.btnFishing);
             this.Controls.Add(this.pnlSettings);
