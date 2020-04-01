@@ -31,11 +31,13 @@ namespace PxgBot.Classes
                                     /// Found monster, so will attack it and break the foreach loop
 
                                     //Console.WriteLine("Monster '" + monster + "' found");
+                                    if (Settings.Debug) { Settings.DebugText += "\n Monster '" + monster + "' found"; }
                                     if (await Character.isAttacking) break;
                                     await Task.Run(() => AttackMonster(res));
                                     AutoItX.Sleep(100);
                                     break;
                                 }
+                                if (Settings.Debug) { Settings.DebugText += "\n Monster '" + monster + "' NOT found"; }
                                 //Console.WriteLine("Monster '" + monster + "' NOT found");
                             }
                         }
@@ -50,6 +52,7 @@ namespace PxgBot.Classes
             catch (Exception ex)
             {
                 Console.WriteLine("Cavebot Attack: Start: " + ex.Message);
+                if (Settings.Debug) { Settings.DebugText += "\n Cavebot Attack: Start: " + ex.Message; }
                 return;
             }
         }
@@ -72,6 +75,7 @@ namespace PxgBot.Classes
             catch (Exception ex)
             {
                 Console.WriteLine("Cavebot Attack: FindMonster: " + ex.Message);
+                if (Settings.Debug) { Settings.DebugText += "\n Cavebot Attack: FindMonster: " + ex.Message; }
                 return new Point();
             }
         }
@@ -88,7 +92,7 @@ namespace PxgBot.Classes
                     {
                         foreach (PokemonSpell spell in Pokemon.PokemonSpells)
                         {
-                            //Console.WriteLine("Spell: " + spell.Enabled + ", " + spell.Available);
+                            if (Settings.Debug) { Settings.DebugText += "\n Spell: " + spell.Enabled + ", " + spell.Available; }
                             if (spell.Available && spell.Enabled)
                             {
                                 /// Here we need to check if it's attacking again
@@ -113,6 +117,7 @@ namespace PxgBot.Classes
             catch (Exception ex)
             {
                 Console.WriteLine("Cavebot Attack: AttackMonster: " + ex.Message);
+                if (Settings.Debug) { Settings.DebugText += "\n Cavebot Attack: AttackMonster: " + ex.Message; }
                 return;
             }
         }

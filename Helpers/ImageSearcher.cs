@@ -33,7 +33,7 @@ namespace PxgBot.Helpers
             string imgPath = Application.StartupPath + "\\Images\\" + imgName;
             if (System.IO.File.Exists(imgPath) == false)
             {
-                Console.WriteLine("Image '" + imgName + "' does not exist on path +" + imgPath);
+                if (Settings.Debug) { Settings.DebugText += "\n Image '" + imgName + "' does not exist on path +" + imgPath; }
                 return null;
             }
 

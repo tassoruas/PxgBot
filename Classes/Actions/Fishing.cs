@@ -19,7 +19,7 @@ namespace PxgBot.Classes.Actions
                 {
                     if (await isFishing())
                     {
-                        Console.WriteLine("Player is already fishing!");
+                        if (Settings.Debug) { Settings.DebugText += "\n Player is already fishing!"; }
                     }
 
                     if (Enabled)

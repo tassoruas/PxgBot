@@ -1,4 +1,5 @@
 ﻿using AutoIt;
+using PxgBot.Classes;
 using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
@@ -31,7 +32,7 @@ namespace PxgBot.Helpers
             AutoItX.Sleep(100);
             foreach (string key in Keys)
             {
-                //Console.WriteLine("Key send: " + key);
+                if (Settings.Debug) { Settings.DebugText += "\n Key send: " + key; }
                 AutoItX.WinActivate(Addresses.PxgHandle);
                 AutoItX.Send(key);
                 AutoItX.Sleep(DelayBetweenKeys);
