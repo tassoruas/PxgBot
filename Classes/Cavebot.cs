@@ -18,7 +18,7 @@ namespace PxgBot.Classes
             {
                 while (true)
                 {
-                    if (Enabled && Character.X != 0)
+                    if (Enabled && Character.X != 0 && Character.HP > 0)
                     {
                         for (; Index < Script.Count; Index++)
                         {

@@ -18,7 +18,7 @@ namespace PxgBot.Classes
             {
                 while (true)
                 {
-                    if (Enabled && Character.X != 0)
+                    if (Enabled && Character.X != 0 && Character.HP > 0)
                     {
                         if (await Character.isAttacking == false && Pokemon.Reviving == false)
                         {
