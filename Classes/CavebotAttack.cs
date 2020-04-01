@@ -20,11 +20,11 @@ namespace PxgBot.Classes
                 {
                     if (Enabled)
                     {
-                        if (await Character.isAttacking == false)
+                        if (await Character.isAttacking == false && Pokemon.Reviving == false)
                         {
                             if (Pokemon.Reviving == false && Pokemon.isOutside() == false)
                             {
-                                if (Pokemon.HP == 0 || Pokemon.HP <= Pokemon.AutoReviveHP) Pokemon.Revive();
+                                if (Pokemon.HP == 0 || (Pokemon.HP <= Pokemon.AutoReviveHP && Pokemon.AutoRevive)) Pokemon.Revive();
                                 Pokemon.PutInOrOut();
                             }
 
@@ -40,7 +40,7 @@ namespace PxgBot.Classes
                                     if (Settings.Debug) { Settings.DebugText += "\n Monster '" + monster + "' found"; }
                                     if (await Character.isAttacking) break;
                                     await Task.Run(() => AttackMonster(res));
-                                    AutoItX.Sleep(100);
+                                    AutoItX.Sleep(400);
                                     break;
                                 }
                                 if (Settings.Debug) { Settings.DebugText += "\n Monster '" + monster + "' NOT found"; }
@@ -92,8 +92,9 @@ namespace PxgBot.Classes
             {
                 if (await Character.isAttacking == false)
                 {
+                    AutoItX.Sleep(100);
                     InputHandler.MouseClick("left", monsterRect.X + 20, monsterRect.Y + 5, speed: 1, keepPosition: true);
-                    AutoItX.Sleep(1000);
+                    AutoItX.Sleep(800);
                     while (await Character.isAttacking)
                     {
                         foreach (PokemonSpell spell in Pokemon.PokemonSpells)

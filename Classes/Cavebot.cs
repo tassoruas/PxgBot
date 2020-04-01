@@ -47,12 +47,18 @@ namespace PxgBot.Classes
             {
                 while (cbAction.Condition())
                 {
-                    await ExecuteAction(cbAction);
+                    if (!Pokemon.Reviving)
+                    {
+                        await ExecuteAction(cbAction);
+                    }
                 }
             }
             else
             {
-                await ExecuteAction(cbAction);
+                if (!Pokemon.Reviving)
+                {
+                    await ExecuteAction(cbAction);
+                }
             }
             return true;
         }
