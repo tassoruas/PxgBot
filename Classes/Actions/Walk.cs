@@ -11,7 +11,6 @@ namespace PxgBot.Classes.Actions
         {
             try
             {
-
                 while (await Character.isAttacking)
                 {
                     AutoItX.Sleep(500);
@@ -21,7 +20,7 @@ namespace PxgBot.Classes.Actions
                 {
                     Console.WriteLine("Not on the same floor");
                     AutoItX.Sleep(100);
-                    return true;
+                    return false;
                 }
 
                 PXG.Position lastPosition = new PXG.Position(Character.X, Character.Y, Character.Z);
@@ -34,16 +33,24 @@ namespace PxgBot.Classes.Actions
 
                 if (Settings.Debug) Console.WriteLine("Clicked: " + destX + ", " + destY);
 
-                if (use == false) InputHandler.MouseClick("left", GUI.ScreenGrid[destX, destY].X + (GUI.ScreenGrid[destX, destY].Width / 2), GUI.ScreenGrid[destX, destY].Y + (GUI.ScreenGrid[destX, destY].Height / 2), 1);
-                else InputHandler.MouseClick("right", GUI.ScreenGrid[destX, destY].X + (GUI.ScreenGrid[destX, destY].Width / 2), GUI.ScreenGrid[destX, destY].Y + (GUI.ScreenGrid[destX, destY].Height / 2), 1);
-
-                AutoItX.Sleep(50);
+                AutoItX.Sleep(100);
                 if (Cavebot.Enabled == false) return true;
+                if (use == false) InputHandler.MouseClick("left", GUI.ScreenGrid[destX, destY].X + (GUI.ScreenGrid[destX, destY].Width / 2), GUI.ScreenGrid[destX, destY].Y + (GUI.ScreenGrid[destX, destY].Height / 2), speed: 2);
+                else InputHandler.MouseClick("right", GUI.ScreenGrid[destX, destY].X + (GUI.ScreenGrid[destX, destY].Width / 2), GUI.ScreenGrid[destX, destY].Y + (GUI.ScreenGrid[destX, destY].Height / 2), speed: 2);
+
+                AutoItX.Sleep(100);
+                int counter = 0;
                 while (Character.DestinX != -1 || Character.DestinY != -1 || Character.X != lastPosition.X || Character.Y != lastPosition.Y || Character.Z != lastPosition.Z || await Character.isAttacking)
                 {
+                    counter++;
+                    while (await Character.isAttacking)
+                    {
+                        AutoItX.Sleep(500);
+                    }
                     if (Cavebot.Enabled == false) return true;
                     lastPosition = new PXG.Position(Character.X, Character.Y, Character.Z);
                     AutoItX.Sleep(50);
+                    if (counter > 50) break;
                 }
 
                 if (Character.X != destinPosition.X || Character.Y != destinPosition.Y || Character.Z != destinPosition.Z)
@@ -56,7 +63,7 @@ namespace PxgBot.Classes.Actions
             catch (Exception ex)
             {
                 Console.WriteLine("Walk error: " + ex.Message);
-                return false;
+                return true;
             }
         }
     }

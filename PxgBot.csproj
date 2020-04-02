@@ -228,6 +228,7 @@
     <Content Include="Images\Todo\Butterfree.png" />
     <Content Include="Images\Todo\Charizard.png" />
     <Content Include="Images\Todo\Crobat.png" />
+    <Content Include="Images\Todo\DeathScreen.png" />
     <Content Include="Images\Todo\Ekans.png" />
     <Content Include="Images\Todo\Electabuzz.png" />
     <Content Include="Images\Todo\Elite Farfetch.png" />
@@ -240,6 +241,7 @@
     <Content Include="Images\Todo\Hitmontop.png" />
     <Content Include="Images\Todo\Honchkrow.png" />
     <Content Include="Images\Todo\Jynx.png" />
+    <Content Include="Images\Todo\LevelUp.png" />
     <Content Include="Images\Todo\Machoke.png" />
     <Content Include="Images\Todo\Magcargo.png" />
     <Content Include="Images\Todo\Manectric.png" />
@@ -250,6 +252,7 @@
     <Content Include="Images\Todo\Pachirisu.png" />
     <Content Include="Images\Todo\Pidgeot.png" />
     <Content Include="Images\Todo\Pikachu.png" />
+    <Content Include="Images\Todo\ReviveCount.png" />
     <Content Include="Images\Todo\Rhyperior.png" />
     <Content Include="Images\Todo\Squirtle.png" />
     <Content Include="Images\Todo\Sudowoodo.png" />

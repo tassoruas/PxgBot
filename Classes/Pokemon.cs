@@ -84,11 +84,11 @@ namespace PxgBot.Classes
             {
                 PutInOrOut();
             }
-            //AutoItX.Sleep(30);
+
             InputHandler.SendKeys(new string[] { AutoReviveHotkey }, 5);
-            //AutoItX.Sleep(30);
             InputHandler.MouseClick("left", GUI.PokeballPosition.X, GUI.PokeballPosition.Y, speed: 1);
-            //AutoItX.Sleep(30);
+            AutoItX.MouseMove(823, 476, 1);
+            Settings.DebugText += "Run Revive";
 
             if (isOutside() == false && HP > AutoReviveHP)
             {
@@ -102,8 +102,11 @@ namespace PxgBot.Classes
             }
             InputHandler.BlockUserInput(false);
             AutoItX.Sleep(100);
+            foreach (PokemonSpell spell in Pokemon.PokemonSpells)
+            {
+                spell.Available = true;
+            }
             Reviving = false;
-            Console.WriteLine("End");
         }
 
         public static void PutInOrOut()

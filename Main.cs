@@ -57,6 +57,7 @@ namespace PxgBot
                 /// Create an "instance" of Cavebot and CavebotAttack
                 Task.Run(() => Cavebot.Start());
                 Task.Run(() => CavebotAttack.Start());
+                Task.Run(() => CavebotAttack.AttackSpells());
 
                 this.Location = new Point(GUI.WindowRect.X, GUI.WindowRect.Y + 130);
             }
@@ -64,6 +65,11 @@ namespace PxgBot
             {
                 MessageBox.Show("Error: Main constructor: " + ex.Message);
             }
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+            this.Size = new Size(136, 537);
         }
 
 
@@ -75,6 +81,9 @@ namespace PxgBot
             try
             {
 
+                Console.WriteLine("CavebotTree.SelectedNode: ");
+
+                lblCavebotIndex.Text = Cavebot.Index.ToString();
 
                 lblPokeHP.Text = Pokemon.HP.ToString();
 
@@ -534,6 +543,8 @@ namespace PxgBot
                             Cavebot.Script.Add(cavebotAction);
                         }
 
+                        Cavebot.Index = 0;
+
                         UpdateCavebotTree();
                     }
                 }
@@ -586,11 +597,11 @@ namespace PxgBot
                 pnlSettings.Visible = !pnlSettings.Visible;
                 if (pnlSettings.Visible)
                 {
-                    this.Size = new Size(476, 523);
+                    this.Size = new Size(476, 537);
                 }
                 else
                 {
-                    this.Size = new Size(134, 523);
+                    this.Size = new Size(134, 537);
                 }
             }
             catch (Exception ex)

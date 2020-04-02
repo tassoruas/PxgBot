@@ -35,19 +35,20 @@ namespace PxgBot.Classes
                                 if (res.IsEmpty == false)
                                 {
                                     /// Found monster, so will attack it and break the foreach loop
-
                                     //Console.WriteLine("Monster '" + monster + "' found");
                                     if (Settings.Debug) { Settings.DebugText += "\n Monster '" + monster + "' found"; }
+                                    AutoItX.Sleep(70);
                                     if (await Character.isAttacking) break;
+                                    AutoItX.Sleep(70);
                                     await Task.Run(() => AttackMonster(res));
-                                    AutoItX.Sleep(400);
-                                    break;
+                                    AutoItX.Sleep(100);
+                                    if (await Character.isAttacking) break;
                                 }
                                 if (Settings.Debug) { Settings.DebugText += "\n Monster '" + monster + "' NOT found"; }
                                 //Console.WriteLine("Monster '" + monster + "' NOT found");
                             }
                         }
-                        AutoItX.Sleep(300);
+                        AutoItX.Sleep(150);
                     }
                     else
                     {
@@ -92,33 +93,9 @@ namespace PxgBot.Classes
             {
                 if (await Character.isAttacking == false)
                 {
-                    AutoItX.Sleep(100);
-                    InputHandler.MouseClick("left", monsterRect.X + 20, monsterRect.Y + 5, speed: 1, keepPosition: true);
-                    AutoItX.Sleep(800);
-                    while (await Character.isAttacking)
-                    {
-                        foreach (PokemonSpell spell in Pokemon.PokemonSpells)
-                        {
-                            if (Settings.Debug) { Settings.DebugText += "\n Spell: " + spell.Enabled + ", " + spell.Available; }
-                            if (spell.Available && spell.Enabled)
-                            {
-                                /// Here we need to check if it's attacking again
-                                /// because isAttacking state may change during the foreach loop
-
-                                if (await Character.isAttacking == false) break;
-
-                                spell.UseSpell();
-                                spell.Available = false;
-                                new Task(async () =>
-                                {
-                                    await Task.Delay(spell.Cooldown * 1000);
-                                    spell.Available = true;
-                                }).Start();
-                                AutoItX.Sleep(1500);
-                            }
-                        }
-                        AutoItX.Sleep(200);
-                    }
+                    InputHandler.MouseClick("left", monsterRect.X + 20, monsterRect.Y + 5, speed: 1);
+                    AutoItX.MouseMove(863, 476, 1);
+                    AutoItX.Sleep(150);
                 }
             }
             catch (Exception ex)
@@ -126,6 +103,40 @@ namespace PxgBot.Classes
                 Console.WriteLine("Cavebot Attack: AttackMonster: " + ex.Message);
                 if (Settings.Debug) { Settings.DebugText += "\n Cavebot Attack: AttackMonster: " + ex.Message; }
                 return;
+            }
+        }
+
+        public static async void AttackSpells()
+        {
+            while (true)
+            {
+                if (Enabled && await Character.isAttacking)
+                {
+                    foreach (PokemonSpell spell in Pokemon.PokemonSpells)
+                    {
+                        if (Settings.Debug) { Settings.DebugText += "\n Spell: " + spell.Enabled + ", " + spell.Available; }
+                        if (spell.Available && spell.Enabled)
+                        {
+                            /// Here we need to check if it's attacking again
+                            /// because isAttacking state may change during the foreach loop
+                            if (await Character.isAttacking == false) break;
+
+                            spell.UseSpell();
+                            spell.Available = false;
+                            new Task(async () =>
+                            {
+                                await Task.Delay(spell.Cooldown * 1000);
+                                spell.Available = true;
+                            }).Start();
+                            AutoItX.Sleep(1500);
+                        }
+                    }
+                }
+                else
+                {
+                    AutoItX.Sleep(1000);
+                }
+                AutoItX.Sleep(200);
             }
         }
     }

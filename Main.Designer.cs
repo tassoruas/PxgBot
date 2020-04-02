@@ -57,6 +57,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPokemon = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label27 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.cmbReviveHotkey = new System.Windows.Forms.ComboBox();
             this.label19 = new System.Windows.Forms.Label();
@@ -127,7 +128,8 @@
             this.btnCavebotAttack = new System.Windows.Forms.Button();
             this.btnStartCavebot = new System.Windows.Forms.Button();
             this.chbAlwaysOnTop = new System.Windows.Forms.CheckBox();
-            this.label27 = new System.Windows.Forms.Label();
+            this.lblCavebotIndex = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
             this.pnlSettings.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -480,6 +482,15 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Pokemon";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(53, 108);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(142, 26);
+            this.label27.TabIndex = 32;
+            this.label27.Text = "This hotkey must be set\r\non PXG Hotkeys \"Com mira\"";
             // 
             // label22
             // 
@@ -1262,21 +1273,36 @@
             this.chbAlwaysOnTop.UseVisualStyleBackColor = true;
             this.chbAlwaysOnTop.CheckedChanged += new System.EventHandler(this.chbAlwaysOnTop_CheckedChanged);
             // 
-            // label27
+            // lblCavebotIndex
             // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(53, 108);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(142, 26);
-            this.label27.TabIndex = 32;
-            this.label27.Text = "This hotkey must be set\r\non PXG Hotkeys \"Com mira\"";
+            this.lblCavebotIndex.AutoSize = true;
+            this.lblCavebotIndex.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCavebotIndex.ForeColor = System.Drawing.Color.Red;
+            this.lblCavebotIndex.Location = new System.Drawing.Point(89, 485);
+            this.lblCavebotIndex.Name = "lblCavebotIndex";
+            this.lblCavebotIndex.Size = new System.Drawing.Size(13, 13);
+            this.lblCavebotIndex.TabIndex = 31;
+            this.lblCavebotIndex.Text = "0";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label29.Location = new System.Drawing.Point(1, 485);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(82, 13);
+            this.label29.TabIndex = 30;
+            this.label29.Text = "Cavebot Index: ";
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(119, 493);
+            this.ClientSize = new System.Drawing.Size(468, 507);
+            this.Controls.Add(this.lblCavebotIndex);
+            this.Controls.Add(this.label29);
             this.Controls.Add(this.chbAlwaysOnTop);
             this.Controls.Add(this.btnFishing);
             this.Controls.Add(this.pnlSettings);
@@ -1308,6 +1334,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "PXG Bot";
             this.TopMost = true;
+            this.Load += new System.EventHandler(this.Main_Load);
             this.pnlSettings.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
@@ -1444,6 +1471,8 @@
         private System.Windows.Forms.Button btnAddWaypointFast;
         private System.Windows.Forms.CheckBox chbAlwaysOnTop;
         private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label lblCavebotIndex;
+        private System.Windows.Forms.Label label29;
     }
 }
 

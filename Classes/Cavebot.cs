@@ -12,6 +12,8 @@ namespace PxgBot.Classes
         public static bool Enabled { get; set; }
         public static List<CavebotAction> Script = new List<CavebotAction>();
         public static int Index = 0;
+        private static int lastIndex = 0;
+        private static int counterIndex = 0;
         public async static void Start()
         {
             try
@@ -42,6 +44,16 @@ namespace PxgBot.Classes
 
         private async static Task<bool> ExecuteStep(CavebotAction cbAction)
         {
+            if (Index == lastIndex)
+            {
+                counterIndex++;
+            }
+            else
+            {
+                lastIndex = Index;
+            }
+
+            if (counterIndex > 5) Index++;
 
             if (cbAction.Condition != null)
             {
@@ -77,11 +89,13 @@ namespace PxgBot.Classes
             else if (cbAction.Action == ActionTypes.Walk)
             {
                 bool result = false;
+                int counter = 0;
                 do
                 {
                     result = await Actions.Walk.WalkTo(cbAction.Position);
-                    AutoItX.Sleep(150);
-                } while (result == false);
+                    counter++;
+                } while (result == false || counter < 5);
+                counter = 0;
                 return result;
             }
             else if (cbAction.Action == ActionTypes.Talk)
@@ -91,11 +105,13 @@ namespace PxgBot.Classes
             else if (cbAction.Action == ActionTypes.Use)
             {
                 bool result = false;
+                int counter = 0;
                 do
                 {
                     result = await Actions.Walk.WalkTo(cbAction.Position, true);
-                    AutoItX.Sleep(150);
-                } while (result == false);
+                    counter++;
+                } while (result == false || counter < 5);
+                counter = 0;
                 return result;
 
             }
