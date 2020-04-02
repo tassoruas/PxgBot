@@ -130,6 +130,9 @@
             this.chbAlwaysOnTop = new System.Windows.Forms.CheckBox();
             this.lblCavebotIndex = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.cmbFoodHotkey = new System.Windows.Forms.ComboBox();
+            this.tmrFood = new System.Windows.Forms.Timer(this.components);
             this.pnlSettings.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -443,6 +446,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label30);
+            this.groupBox2.Controls.Add(this.cmbFoodHotkey);
             this.groupBox2.Controls.Add(this.label27);
             this.groupBox2.Controls.Add(this.label22);
             this.groupBox2.Controls.Add(this.cmbReviveHotkey);
@@ -486,16 +491,16 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(53, 108);
+            this.label27.Location = new System.Drawing.Point(46, 73);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(142, 26);
             this.label27.TabIndex = 32;
-            this.label27.Text = "This hotkey must be set\r\non PXG Hotkeys \"Com mira\"";
+            this.label27.Text = "These hotkeys must be set\r\non PXG Hotkeys \"Com mira\"";
             // 
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(3, 87);
+            this.label22.Location = new System.Drawing.Point(0, 105);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(104, 13);
             this.label22.TabIndex = 31;
@@ -517,7 +522,7 @@
             "F10",
             "F11",
             "F12"});
-            this.cmbReviveHotkey.Location = new System.Drawing.Point(113, 84);
+            this.cmbReviveHotkey.Location = new System.Drawing.Point(110, 102);
             this.cmbReviveHotkey.Name = "cmbReviveHotkey";
             this.cmbReviveHotkey.Size = new System.Drawing.Size(121, 21);
             this.cmbReviveHotkey.TabIndex = 30;
@@ -526,7 +531,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(109, 347);
+            this.label19.Location = new System.Drawing.Point(110, 382);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(60, 13);
             this.label19.TabIndex = 29;
@@ -535,7 +540,7 @@
             // txtCooldownF9
             // 
             this.txtCooldownF9.Enabled = false;
-            this.txtCooldownF9.Location = new System.Drawing.Point(175, 345);
+            this.txtCooldownF9.Location = new System.Drawing.Point(176, 380);
             this.txtCooldownF9.Maximum = new decimal(new int[] {
             300,
             0,
@@ -549,7 +554,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(109, 324);
+            this.label18.Location = new System.Drawing.Point(110, 359);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(60, 13);
             this.label18.TabIndex = 27;
@@ -558,7 +563,7 @@
             // txtCooldownF8
             // 
             this.txtCooldownF8.Enabled = false;
-            this.txtCooldownF8.Location = new System.Drawing.Point(175, 322);
+            this.txtCooldownF8.Location = new System.Drawing.Point(176, 357);
             this.txtCooldownF8.Maximum = new decimal(new int[] {
             300,
             0,
@@ -572,7 +577,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(109, 301);
+            this.label17.Location = new System.Drawing.Point(110, 336);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(60, 13);
             this.label17.TabIndex = 25;
@@ -581,7 +586,7 @@
             // txtCooldownF7
             // 
             this.txtCooldownF7.Enabled = false;
-            this.txtCooldownF7.Location = new System.Drawing.Point(175, 299);
+            this.txtCooldownF7.Location = new System.Drawing.Point(176, 334);
             this.txtCooldownF7.Maximum = new decimal(new int[] {
             300,
             0,
@@ -595,7 +600,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(109, 278);
+            this.label16.Location = new System.Drawing.Point(110, 313);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(60, 13);
             this.label16.TabIndex = 23;
@@ -604,7 +609,7 @@
             // txtCooldownF6
             // 
             this.txtCooldownF6.Enabled = false;
-            this.txtCooldownF6.Location = new System.Drawing.Point(175, 276);
+            this.txtCooldownF6.Location = new System.Drawing.Point(176, 311);
             this.txtCooldownF6.Maximum = new decimal(new int[] {
             300,
             0,
@@ -618,7 +623,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(109, 255);
+            this.label15.Location = new System.Drawing.Point(110, 290);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(60, 13);
             this.label15.TabIndex = 21;
@@ -627,7 +632,7 @@
             // txtCooldownF5
             // 
             this.txtCooldownF5.Enabled = false;
-            this.txtCooldownF5.Location = new System.Drawing.Point(175, 253);
+            this.txtCooldownF5.Location = new System.Drawing.Point(176, 288);
             this.txtCooldownF5.Maximum = new decimal(new int[] {
             300,
             0,
@@ -641,7 +646,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(109, 231);
+            this.label14.Location = new System.Drawing.Point(110, 266);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(60, 13);
             this.label14.TabIndex = 19;
@@ -650,7 +655,7 @@
             // txtCooldownF4
             // 
             this.txtCooldownF4.Enabled = false;
-            this.txtCooldownF4.Location = new System.Drawing.Point(175, 229);
+            this.txtCooldownF4.Location = new System.Drawing.Point(176, 264);
             this.txtCooldownF4.Maximum = new decimal(new int[] {
             300,
             0,
@@ -664,7 +669,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(109, 209);
+            this.label13.Location = new System.Drawing.Point(110, 244);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(60, 13);
             this.label13.TabIndex = 17;
@@ -673,7 +678,7 @@
             // txtCooldownF3
             // 
             this.txtCooldownF3.Enabled = false;
-            this.txtCooldownF3.Location = new System.Drawing.Point(175, 207);
+            this.txtCooldownF3.Location = new System.Drawing.Point(176, 242);
             this.txtCooldownF3.Maximum = new decimal(new int[] {
             300,
             0,
@@ -687,7 +692,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(109, 186);
+            this.label12.Location = new System.Drawing.Point(110, 221);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(60, 13);
             this.label12.TabIndex = 15;
@@ -696,7 +701,7 @@
             // txtCooldownF2
             // 
             this.txtCooldownF2.Enabled = false;
-            this.txtCooldownF2.Location = new System.Drawing.Point(175, 184);
+            this.txtCooldownF2.Location = new System.Drawing.Point(176, 219);
             this.txtCooldownF2.Maximum = new decimal(new int[] {
             300,
             0,
@@ -710,7 +715,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(109, 163);
+            this.label10.Location = new System.Drawing.Point(110, 198);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(60, 13);
             this.label10.TabIndex = 13;
@@ -719,7 +724,7 @@
             // txtCooldownF1
             // 
             this.txtCooldownF1.Enabled = false;
-            this.txtCooldownF1.Location = new System.Drawing.Point(175, 161);
+            this.txtCooldownF1.Location = new System.Drawing.Point(176, 196);
             this.txtCooldownF1.Maximum = new decimal(new int[] {
             300,
             0,
@@ -733,7 +738,7 @@
             // chbSpellF9
             // 
             this.chbSpellF9.AutoSize = true;
-            this.chbSpellF9.Location = new System.Drawing.Point(6, 346);
+            this.chbSpellF9.Location = new System.Drawing.Point(7, 381);
             this.chbSpellF9.Name = "chbSpellF9";
             this.chbSpellF9.Size = new System.Drawing.Size(38, 17);
             this.chbSpellF9.TabIndex = 11;
@@ -744,7 +749,7 @@
             // chbSpellF8
             // 
             this.chbSpellF8.AutoSize = true;
-            this.chbSpellF8.Location = new System.Drawing.Point(6, 323);
+            this.chbSpellF8.Location = new System.Drawing.Point(7, 358);
             this.chbSpellF8.Name = "chbSpellF8";
             this.chbSpellF8.Size = new System.Drawing.Size(38, 17);
             this.chbSpellF8.TabIndex = 10;
@@ -755,7 +760,7 @@
             // chbSpellF7
             // 
             this.chbSpellF7.AutoSize = true;
-            this.chbSpellF7.Location = new System.Drawing.Point(6, 300);
+            this.chbSpellF7.Location = new System.Drawing.Point(7, 335);
             this.chbSpellF7.Name = "chbSpellF7";
             this.chbSpellF7.Size = new System.Drawing.Size(38, 17);
             this.chbSpellF7.TabIndex = 9;
@@ -766,7 +771,7 @@
             // chbSpellF6
             // 
             this.chbSpellF6.AutoSize = true;
-            this.chbSpellF6.Location = new System.Drawing.Point(6, 277);
+            this.chbSpellF6.Location = new System.Drawing.Point(7, 312);
             this.chbSpellF6.Name = "chbSpellF6";
             this.chbSpellF6.Size = new System.Drawing.Size(38, 17);
             this.chbSpellF6.TabIndex = 8;
@@ -777,7 +782,7 @@
             // chbSpellF5
             // 
             this.chbSpellF5.AutoSize = true;
-            this.chbSpellF5.Location = new System.Drawing.Point(6, 254);
+            this.chbSpellF5.Location = new System.Drawing.Point(7, 289);
             this.chbSpellF5.Name = "chbSpellF5";
             this.chbSpellF5.Size = new System.Drawing.Size(38, 17);
             this.chbSpellF5.TabIndex = 7;
@@ -788,7 +793,7 @@
             // chbSpellF4
             // 
             this.chbSpellF4.AutoSize = true;
-            this.chbSpellF4.Location = new System.Drawing.Point(6, 231);
+            this.chbSpellF4.Location = new System.Drawing.Point(7, 266);
             this.chbSpellF4.Name = "chbSpellF4";
             this.chbSpellF4.Size = new System.Drawing.Size(38, 17);
             this.chbSpellF4.TabIndex = 6;
@@ -799,7 +804,7 @@
             // chbSpellF3
             // 
             this.chbSpellF3.AutoSize = true;
-            this.chbSpellF3.Location = new System.Drawing.Point(6, 208);
+            this.chbSpellF3.Location = new System.Drawing.Point(7, 243);
             this.chbSpellF3.Name = "chbSpellF3";
             this.chbSpellF3.Size = new System.Drawing.Size(38, 17);
             this.chbSpellF3.TabIndex = 5;
@@ -810,7 +815,7 @@
             // chbSpellF2
             // 
             this.chbSpellF2.AutoSize = true;
-            this.chbSpellF2.Location = new System.Drawing.Point(6, 185);
+            this.chbSpellF2.Location = new System.Drawing.Point(7, 220);
             this.chbSpellF2.Name = "chbSpellF2";
             this.chbSpellF2.Size = new System.Drawing.Size(38, 17);
             this.chbSpellF2.TabIndex = 4;
@@ -821,7 +826,7 @@
             // chbSpellF1
             // 
             this.chbSpellF1.AutoSize = true;
-            this.chbSpellF1.Location = new System.Drawing.Point(6, 162);
+            this.chbSpellF1.Location = new System.Drawing.Point(7, 197);
             this.chbSpellF1.Name = "chbSpellF1";
             this.chbSpellF1.Size = new System.Drawing.Size(38, 17);
             this.chbSpellF1.TabIndex = 3;
@@ -1295,6 +1300,43 @@
             this.label29.TabIndex = 30;
             this.label29.Text = "Cavebot Index: ";
             // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(32, 132);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(72, 13);
+            this.label30.TabIndex = 34;
+            this.label30.Text = "Food hotkey: ";
+            // 
+            // cmbFoodHotkey
+            // 
+            this.cmbFoodHotkey.FormattingEnabled = true;
+            this.cmbFoodHotkey.Items.AddRange(new object[] {
+            "F1",
+            "F2",
+            "F3",
+            "F4",
+            "F5",
+            "F6",
+            "F7",
+            "F8",
+            "F9",
+            "F10",
+            "F11",
+            "F12"});
+            this.cmbFoodHotkey.Location = new System.Drawing.Point(110, 129);
+            this.cmbFoodHotkey.Name = "cmbFoodHotkey";
+            this.cmbFoodHotkey.Size = new System.Drawing.Size(121, 21);
+            this.cmbFoodHotkey.TabIndex = 33;
+            this.cmbFoodHotkey.SelectedValueChanged += new System.EventHandler(this.cmbFoodHotkey_SelectedValueChanged);
+            // 
+            // tmrFood
+            // 
+            this.tmrFood.Enabled = true;
+            this.tmrFood.Interval = 300000;
+            this.tmrFood.Tick += new System.EventHandler(this.tmrFood_Tick);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1473,6 +1515,9 @@
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label lblCavebotIndex;
         private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.ComboBox cmbFoodHotkey;
+        private System.Windows.Forms.Timer tmrFood;
     }
 }
 

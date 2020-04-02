@@ -19,11 +19,15 @@ namespace PxgBot.Helpers
         [DllImport("user32.dll")]
         static extern bool SetForegroundWindow(IntPtr hWnd);
 
+        public static bool Locked = false;
+
         public static void MouseClick(string button, int x, int y, int numClicks = 1, int speed = -1, bool keepPosition = false)
         {
+            Locked = true;
             Point oldMousePosition = Cursor.Position;
             AutoItX.MouseClick(button, x, y, numClicks, speed);
             if (keepPosition) Cursor.Position = oldMousePosition;
+            Locked = false;
         }
 
         public static void SendKeys(string[] Keys, int DelayBetweenKeys = 100)

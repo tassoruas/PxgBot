@@ -10,6 +10,9 @@
       "AutoReviveHP": 0,
       "ReviveItemHotkey": "{F10}"
     },
+    "Food": {
+      "FoodHotkey": "{F11}"
+    },
     "Spells": {
       "F1": {
         "enabled": true,

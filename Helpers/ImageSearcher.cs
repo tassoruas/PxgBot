@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace PxgBot.Helpers
 {
-    static class ImageSearcher
+    public static class ImageSearcher
     {
         [DllImport("ImageSearch.dll")]
         private static extern IntPtr ImageSearch(int x, int y, int right, int bottom, [MarshalAs(UnmanagedType.LPStr)]string imagePath);
@@ -114,6 +114,30 @@ namespace PxgBot.Helpers
                 g.DrawImage(bmp, new Rectangle(0, 0, cropRect.Width, cropRect.Height), cropRect, GraphicsUnit.Pixel);
             }
             return output;
+        }
+
+        public static Rectangle FindObjectSQM(string imagePath)
+        {
+
+            var res = UseImageSearch(imagePath, GUI.ScreenRect.X, GUI.ScreenRect.Y, GUI.ScreenRect.Width, GUI.ScreenRect.Height, tolerance: 10);
+            if (res != null)
+            {
+                /// Find where of the screen Doduo is:
+                int x = res[0];
+                int y = (int)(res[1] + GUI.ScreenRect.Height * 0.08);
+
+                int posOnMatrixI = (int)Math.Floor((y - GUI.ScreenRect.Y) / GUI.sqmHeight);
+                int posOnMatrixJ = (int)Math.Floor((x - GUI.ScreenRect.X) / GUI.sqmWidth);
+
+                Console.WriteLine("Pos: " + posOnMatrixI + "," + posOnMatrixJ);
+                Rectangle monsterPos = GUI.ScreenGrid[posOnMatrixI, posOnMatrixJ];
+                return monsterPos;
+            }
+            else
+            {
+                Console.WriteLine("Not Found");
+                return new Rectangle();
+            }
         }
     }
 }

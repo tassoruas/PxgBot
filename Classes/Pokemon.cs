@@ -22,8 +22,10 @@ namespace PxgBot.Classes
         public static bool AutoRevive { get; set; }
         public static int AutoReviveHP { get; set; }
         public static string AutoReviveHotkey { get; set; }
+        public static string FoodHotkey { get; set; }
         public static bool Reviving { get; set; }
         public static bool HasPokemonSet { get; set; }
+
 
         public static void Init()
         {
@@ -80,22 +82,21 @@ namespace PxgBot.Classes
             if (Settings.Debug) { Settings.DebugText += "\n Will Revive"; }
             Reviving = true;
             InputHandler.BlockUserInput(true);
-            if (HP > 0 && isOutside())
+            if (HP > 0 && HasPokemonSet)
             {
                 PutInOrOut();
             }
 
             InputHandler.SendKeys(new string[] { AutoReviveHotkey }, 5);
+            while (InputHandler.Locked) AutoItX.Sleep(4);
             InputHandler.MouseClick("left", GUI.PokeballPosition.X, GUI.PokeballPosition.Y, speed: 1);
             AutoItX.MouseMove(823, 476, 1);
             Settings.DebugText += "Run Revive";
-
-            if (isOutside() == false && HP > AutoReviveHP)
-            {
-                PutInOrOut();
-            }
-            AutoItX.Sleep(50);
-            if (isOutside() == false && HP > AutoReviveHP)
+            AutoItX.Sleep(20);
+            while (InputHandler.Locked) AutoItX.Sleep(4);
+            InputHandler.MouseClick("right", GUI.PokeballPosition.X, GUI.PokeballPosition.Y, speed: 1);
+            AutoItX.Sleep(30);
+            if (HasPokemonSet == false && HP > AutoReviveHP)
             {
                 if (Settings.Debug) { Settings.DebugText += "\n Failed first PutInOrOut"; }
                 PutInOrOut();
@@ -113,9 +114,10 @@ namespace PxgBot.Classes
         {
             if (Pokemon.HP > 0 && Character.HP > 0)
             {
+                while (InputHandler.Locked) AutoItX.Sleep(10);
                 InputHandler.MouseClick("right", GUI.PokeballPosition.X, GUI.PokeballPosition.Y + 15, speed: 1);
                 AutoItX.MouseMove(GUI.PokeballPosition.X - 30, GUI.PokeballPosition.Y, 1);
-                AutoItX.Sleep(50);
+                HasPokemonSet = !HasPokemonSet;
             }
         }
 
@@ -148,6 +150,33 @@ namespace PxgBot.Classes
 
             HasPokemonSet = false;
             return false;
+        }
+
+        public static void EatFood()
+        {
+            if (GUI.isPxgActive() == false) AutoItX.WinActivate(Addresses.PxgClientName);
+
+            if (Settings.Debug) { Settings.DebugText += "\n Will Eat Food"; }
+
+            if (HasPokemonSet == false)
+            {
+                return;
+            }
+
+            while (InputHandler.Locked) AutoItX.Sleep(100);
+            InputHandler.SendKeys(new string[] { FoodHotkey }, 5);
+            AutoItX.Sleep(50);
+            InputHandler.MouseClick("left", GUI.BattleRect.X + 20, GUI.BattleRect.Y, speed: 1);
+
+            AutoItX.Sleep(500);
+
+            while (InputHandler.Locked) AutoItX.Sleep(100);
+            InputHandler.SendKeys(new string[] { FoodHotkey }, 5);
+            AutoItX.Sleep(50);
+            InputHandler.MouseClick("left", GUI.ScreenGrid[7, 5].X + (int)(GUI.sqmWidth / 2), GUI.ScreenGrid[7, 5].Y + (int)(GUI.sqmHeight / 2), speed: 1);
+            AutoItX.Sleep(30);
+
+            AutoItX.MouseMove(823, 476, 1);
         }
     }
 

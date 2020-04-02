@@ -80,9 +80,6 @@ namespace PxgBot
             /// 
             try
             {
-
-                Console.WriteLine("CavebotTree.SelectedNode: ");
-
                 lblCavebotIndex.Text = Cavebot.Index.ToString();
 
                 lblPokeHP.Text = Pokemon.HP.ToString();
@@ -106,7 +103,7 @@ namespace PxgBot
                 lblDestinX.Text = Character.DestinX.ToString();
                 lblDestinY.Text = Character.DestinY.ToString();
 
-                bool isFishing = await Classes.Actions.Fishing.isFishing();
+                bool isFishing = await Fishing.isFishing();
                 lblIsFishing.Text = isFishing.ToString();
                 bool isAttacking = await Character.isAttacking;
                 lblIsAttacking.Text = isAttacking.ToString();
@@ -190,6 +187,11 @@ namespace PxgBot
             }
         }
 
+        private void tmrFood_Tick(object sender, EventArgs e)
+        {
+            Pokemon.EatFood();
+        }
+
         private void tmrTest_Tick(object sender, EventArgs e)
         {
             /// This timer runs in 2500ms interval
@@ -214,24 +216,6 @@ namespace PxgBot
             //            }
             //        }
             //    }
-            //}
-
-            //var res = ImageSearcher.UseImageSearch("Monsters\\Doduo.png", GUI.ScreenRect.X, GUI.ScreenRect.Y, GUI.ScreenRect.Width, GUI.ScreenRect.Height, tolerance: 10);
-            //if (res != null)
-            //{
-            //    /// Find where of the screen Doduo is:
-            //    int x = res[0];
-            //    int y = (int)(res[1] + GUI.ScreenRect.Height * 0.08);
-            //
-            //    int posOnMatrixI = (int)Math.Floor((y - GUI.ScreenRect.Y) / GUI.sqmHeight);
-            //    int posOnMatrixJ = (int)Math.Floor((x - GUI.ScreenRect.X) / GUI.sqmWidth);
-            //
-            //    Rectangle monsterPos = GUI.ScreenGrid[posOnMatrixI, posOnMatrixJ];
-            //    Console.WriteLine("Pos: " + posOnMatrixI + "," + posOnMatrixJ);
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Not Found");
             //}
         }
 
@@ -263,6 +247,11 @@ namespace PxgBot
         }
 
         #region General Settings Screen
+
+        private void chbAlwaysOnTop_CheckedChanged(object sender, EventArgs e)
+        {
+            this.TopMost = chbAlwaysOnTop.Checked;
+        }
 
         private void LoadPlayerSettings()
         {
@@ -300,6 +289,7 @@ namespace PxgBot
                     chbAutoRevive.Checked = playerSettings.Revive.enabled;
                     txtHpToRevive.Value = playerSettings.Revive.AutoReviveHP;
                     cmbReviveHotkey.SelectedItem = playerSettings.Revive.ReviveItemHotkey.ToString().Replace("{", "").Replace("}", "");
+                    cmbFoodHotkey.SelectedItem = playerSettings.Food.FoodHotkey.ToString().Replace("{", "").Replace("}", "");
 
                     chbSpellF1.Checked = playerSettings.Spells.F1.enabled;
                     chbSpellF2.Checked = playerSettings.Spells.F2.enabled;
@@ -356,6 +346,9 @@ namespace PxgBot
                 playerSettings.Revive.enabled = chbAutoRevive.Checked;
                 playerSettings.Revive.AutoReviveHP = (int)txtHpToRevive.Value;
                 playerSettings.Revive.ReviveItemHotkey = "{" + cmbReviveHotkey.SelectedItem + "}";
+
+                playerSettings.Food = new JObject();
+                playerSettings.Food.FoodHotkey = "{" + cmbFoodHotkey.SelectedItem + "}";
 
                 playerSettings.Spells = new JObject();
                 playerSettings.Spells.F1 = new JObject();
@@ -626,6 +619,11 @@ namespace PxgBot
             Pokemon.AutoReviveHotkey = "{" + cmbReviveHotkey.SelectedItem + "}";
         }
 
+        private void cmbFoodHotkey_SelectedValueChanged(object sender, EventArgs e)
+        {
+            Pokemon.FoodHotkey = "{" + cmbFoodHotkey.SelectedItem + "}";
+        }
+
         private void chbSpellF1_CheckedChanged(object sender, EventArgs e)
         {
             Pokemon.PokemonSpells.Find(x => x.SpellHotkey == "{F1}").Enabled = chbSpellF1.Checked;
@@ -856,10 +854,5 @@ namespace PxgBot
             Settings.Debug = chbDebug.Checked;
         }
         #endregion
-
-        private void chbAlwaysOnTop_CheckedChanged(object sender, EventArgs e)
-        {
-            this.TopMost = chbAlwaysOnTop.Checked;
-        }
     }
 }

@@ -35,6 +35,10 @@ namespace PxgBot.Classes.Actions
 
                 AutoItX.Sleep(100);
                 if (Cavebot.Enabled == false) return true;
+                while (InputHandler.Locked)
+                {
+                    AutoItX.Sleep(100);
+                }
                 if (use == false) InputHandler.MouseClick("left", GUI.ScreenGrid[destX, destY].X + (GUI.ScreenGrid[destX, destY].Width / 2), GUI.ScreenGrid[destX, destY].Y + (GUI.ScreenGrid[destX, destY].Height / 2), speed: 2);
                 else InputHandler.MouseClick("right", GUI.ScreenGrid[destX, destY].X + (GUI.ScreenGrid[destX, destY].Width / 2), GUI.ScreenGrid[destX, destY].Y + (GUI.ScreenGrid[destX, destY].Height / 2), speed: 2);
 

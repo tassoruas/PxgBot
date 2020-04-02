@@ -121,9 +121,12 @@
     <value>17, 17</value>
   </metadata>
   <metadata name="tmrTest.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>273, 21</value>
+    <value>270, 19</value>
   </metadata>
   <metadata name="tmrUpdateGUI.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>144, 16</value>
+  </metadata>
+  <metadata name="tmrFood.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>363, 19</value>
   </metadata>
 </root>

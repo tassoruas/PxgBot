@@ -93,6 +93,10 @@ namespace PxgBot.Classes
             {
                 if (await Character.isAttacking == false)
                 {
+                    while (InputHandler.Locked)
+                    {
+                        AutoItX.Sleep(20);
+                    }
                     InputHandler.MouseClick("left", monsterRect.X + 20, monsterRect.Y + 5, speed: 1);
                     AutoItX.MouseMove(863, 476, 1);
                     AutoItX.Sleep(150);
