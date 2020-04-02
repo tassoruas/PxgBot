@@ -107,6 +107,7 @@ namespace PxgBot.Classes
             {
                 spell.Available = true;
             }
+            InputHandler.SendKeys(new string[] { "{ESC}" }, 50);
             Reviving = false;
         }
 

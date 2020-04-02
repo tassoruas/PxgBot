@@ -10,6 +10,7 @@ using PxgBot.Classes;
 using PxgBot.Classes.Actions;
 using PxgBot.Forms;
 using System.Web.Script.Serialization;
+using System.Linq;
 
 namespace PxgBot
 {
@@ -17,6 +18,7 @@ namespace PxgBot
     {
         MouseHook mouseHook;
         KeyboardHook keyboardHook;
+        TreeNode lastNode;
 
         public Main()
         {
@@ -57,7 +59,7 @@ namespace PxgBot
                 /// Create an "instance" of Cavebot and CavebotAttack
                 Task.Run(() => Cavebot.Start());
                 Task.Run(() => CavebotAttack.Start());
-                Task.Run(() => CavebotAttack.AttackSpells());
+                Task.Run(() => CavebotAttack.StartSpells());
 
                 this.Location = new Point(GUI.WindowRect.X, GUI.WindowRect.Y + 130);
             }
@@ -81,6 +83,12 @@ namespace PxgBot
             try
             {
                 lblCavebotIndex.Text = Cavebot.Index.ToString();
+
+                if (Cavebot.Script.Count > 0)
+                {
+                    SetActiveTreeNode(Cavebot.Script[Cavebot.Index]);
+                }
+
 
                 lblPokeHP.Text = Pokemon.HP.ToString();
 
@@ -176,7 +184,6 @@ namespace PxgBot
                         /// Set Screen Grid => Squares on screen to see SQMs
                         GUI.SetScreenGrid(); // Not using for anything right now
                     });
-
                     //this.Size = new Size(GUI.WindowRect.Width, GUI.WindowRect.Height);
                 }
             }
@@ -409,10 +416,22 @@ namespace PxgBot
             {
                 this.TopMost = false;
                 bool lastTopMost = this.TopMost;
-                FrmWaypoint frmWaypoint = new FrmWaypoint();
+                string node = "";
+                if (CavebotTree.SelectedNode != null)
+                {
+                    lastNode = CavebotTree.SelectedNode;
+                    node = CavebotTree.SelectedNode.ToString();
+                }
+                else
+                {
+                    if (lastNode != null)
+                    {
+                        node = lastNode.ToString();
+                    }
+                }
+                FrmWaypoint frmWaypoint = new FrmWaypoint(false, node);
                 frmWaypoint.ShowDialog();
                 UpdateCavebotTree();
-                Console.WriteLine("Updated");
                 this.TopMost = lastTopMost;
             }
             catch (Exception ex)
@@ -425,17 +444,20 @@ namespace PxgBot
         {
             try
             {
-                bool lastTopMost = this.TopMost;
-                this.TopMost = false;
-                FrmWaypoint frmWaypoint = new FrmWaypoint(CavebotTree.SelectedNode.ToString());
-                frmWaypoint.ShowDialog();
-                UpdateCavebotTree();
-                Console.WriteLine("Updated");
-                this.TopMost = lastTopMost;
+                if (CavebotTree.SelectedNode != null)
+                {
+                    lastNode = CavebotTree.SelectedNode;
+                    bool lastTopMost = this.TopMost;
+                    this.TopMost = false;
+                    FrmWaypoint frmWaypoint = new FrmWaypoint(true, CavebotTree.SelectedNode.ToString());
+                    frmWaypoint.ShowDialog();
+                    UpdateCavebotTree();
+                    this.TopMost = lastTopMost;
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: btnAddWaypoint: " + ex.Message);
+                MessageBox.Show("Error: btnEditWaypoint: " + ex.Message);
             }
         }
 
@@ -443,7 +465,7 @@ namespace PxgBot
         {
             try
             {
-                CavebotAction cavebotAction = new CavebotAction(new PXG.Position(Character.X, Character.Y, Character.Z), ActionTypes.Walk);
+                CavebotAction cavebotAction = new CavebotAction(Cavebot.Script.Count, new PXG.Position(Character.X, Character.Y, Character.Z), ActionTypes.Walk);
                 Cavebot.Script.Add(cavebotAction);
                 AddTreeNode(cavebotAction);
             }
@@ -471,11 +493,25 @@ namespace PxgBot
             }
         }
 
+
+        private void btnClearScript_Click(object sender, EventArgs e)
+        {
+            if (Cavebot.Enabled)
+            {
+                MessageBox.Show("You need to stop Cavebot first!");
+                return;
+            }
+
+            Cavebot.Script.Clear();
+            UpdateCavebotTree();
+        }
+
         private void UpdateCavebotTree()
         {
             try
             {
                 CavebotTree.Nodes.Clear();
+                Cavebot.Script = Cavebot.Script.OrderBy(x => x.ID).ToList();
                 foreach (CavebotAction cbAction in Cavebot.Script)
                 {
                     AddTreeNode(cbAction);
@@ -491,14 +527,47 @@ namespace PxgBot
         {
             try
             {
+                string name = "";
+                if (cbAction.Name != "")
+                    name = "'" + cbAction.Name + "' ";
+
                 string position = "<" + cbAction.Position.X + "," + cbAction.Position.Y + "," + cbAction.Position.Z + ">";
-                TreeNode node = new TreeNode(position + "; " + cbAction.Action);
+                TreeNode node = new TreeNode(cbAction.ID + ": " + name + position + "; " + cbAction.Action);
                 CavebotTree.Nodes.Add(node);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: AddTreeNode: " + ex.Message);
             }
+        }
+
+        private void SetActiveTreeNode(CavebotAction cbAction)
+        {
+            try
+            {
+                TreeNode nextNode = CavebotTree.Nodes.Cast<TreeNode>().Where(r => r.Text.Contains(cbAction.ID + ":")).ToArray()[0];
+                if (nextNode.Text.Contains("> ") == false)
+                {
+                    nextNode.Text = "> " + nextNode.Text;
+                }
+                if ((cbAction.ID - 1) > -1)
+                {
+                    TreeNode lastNode = CavebotTree.Nodes.Cast<TreeNode>().Where(r => r.Text.Contains(cbAction.ID - 1 + ":")).ToArray()[0];
+                    if (lastNode.Text.Contains("> "))
+                    {
+                        lastNode.Text = lastNode.Text.Replace("> ", "");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: SetTreeNode: " + ex.Message);
+            }
+        }
+
+        private void CavebotTree_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+
         }
 
         private void btnOpenScript_Click(object sender, EventArgs e)
@@ -530,9 +599,14 @@ namespace PxgBot
                         for (int i = 0; i < waypoints.Count; i++)
                         {
                             var waypoint = jss.Deserialize<dynamic>(waypoints[i].ToString());
+
+                            string name = "";
+                            try { name = waypoint["name"]; }
+                            catch (Exception) { name = ""; }
+
                             string[] position = waypoint["position"].Split(',');
                             ActionTypes action = Enum.Parse(typeof(ActionTypes), waypoint["action"]);
-                            CavebotAction cavebotAction = new CavebotAction(new PXG.Position(int.Parse(position[0]), int.Parse(position[1]), int.Parse(position[2])), action);
+                            CavebotAction cavebotAction = new CavebotAction(Cavebot.Script.Count, new PXG.Position(int.Parse(position[0]), int.Parse(position[1]), int.Parse(position[2])), action, name);
                             Cavebot.Script.Add(cavebotAction);
                         }
 
@@ -564,7 +638,7 @@ namespace PxgBot
                     foreach (CavebotAction action in Cavebot.Script)
                     {
                         script.Waypoints.Add(
-                            ("{|position|:|" + action.Position.X + ", " + action.Position.Y + ", " + action.Position.Z + "|, " +
+                            ("{|name|:|" + action.Name + "|," + "|position|:|" + action.Position.X + ", " + action.Position.Y + ", " + action.Position.Z + "|, " +
                             "|action|:|" + action.Action.ToString() + "|}").Replace('|', '"'));
                     }
                     string name = sfd.FileName;
@@ -590,7 +664,7 @@ namespace PxgBot
                 pnlSettings.Visible = !pnlSettings.Visible;
                 if (pnlSettings.Visible)
                 {
-                    this.Size = new Size(476, 537);
+                    this.Size = new Size(472, 537);
                 }
                 else
                 {

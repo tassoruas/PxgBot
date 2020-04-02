@@ -100,6 +100,7 @@
     <Compile Include="Helpers\MemoryManager.cs" />
     <Compile Include="Helpers\InputHandler.cs" />
     <Compile Include="Helpers\MouseHook.cs" />
+    <Compile Include="Helpers\NodeSorter.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>

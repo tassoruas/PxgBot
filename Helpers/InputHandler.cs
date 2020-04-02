@@ -25,8 +25,12 @@ namespace PxgBot.Helpers
         {
             Locked = true;
             Point oldMousePosition = Cursor.Position;
-            AutoItX.MouseClick(button, x, y, numClicks, speed);
-            if (keepPosition) Cursor.Position = oldMousePosition;
+            AutoItX.MouseMove(x, y, speed);
+            AutoItX.Sleep(2);
+            AutoItX.MouseClick(button, numClicks: numClicks, speed: speed);
+            AutoItX.Sleep(3);
+            if (keepPosition) AutoItX.MouseMove(oldMousePosition.X, oldMousePosition.Y, speed);
+            AutoItX.Sleep(2);
             Locked = false;
         }
 

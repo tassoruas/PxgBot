@@ -110,7 +110,7 @@ namespace PxgBot.Classes
             }
         }
 
-        public static async void AttackSpells()
+        public static async void StartSpells()
         {
             while (true)
             {

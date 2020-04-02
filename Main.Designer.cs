@@ -57,6 +57,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPokemon = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.cmbFoodHotkey = new System.Windows.Forms.ComboBox();
             this.label27 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.cmbReviveHotkey = new System.Windows.Forms.ComboBox();
@@ -92,6 +94,7 @@
             this.chbAutoRevive = new System.Windows.Forms.CheckBox();
             this.tabCavebot = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnClearScript = new System.Windows.Forms.Button();
             this.btnAddWaypointFast = new System.Windows.Forms.Button();
             this.CavebotTree = new System.Windows.Forms.TreeView();
             this.btnOpenScript = new System.Windows.Forms.Button();
@@ -130,8 +133,6 @@
             this.chbAlwaysOnTop = new System.Windows.Forms.CheckBox();
             this.lblCavebotIndex = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.cmbFoodHotkey = new System.Windows.Forms.ComboBox();
             this.tmrFood = new System.Windows.Forms.Timer(this.components);
             this.pnlSettings.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -487,6 +488,37 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Pokemon";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(32, 132);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(72, 13);
+            this.label30.TabIndex = 34;
+            this.label30.Text = "Food hotkey: ";
+            // 
+            // cmbFoodHotkey
+            // 
+            this.cmbFoodHotkey.FormattingEnabled = true;
+            this.cmbFoodHotkey.Items.AddRange(new object[] {
+            "F1",
+            "F2",
+            "F3",
+            "F4",
+            "F5",
+            "F6",
+            "F7",
+            "F8",
+            "F9",
+            "F10",
+            "F11",
+            "F12"});
+            this.cmbFoodHotkey.Location = new System.Drawing.Point(110, 129);
+            this.cmbFoodHotkey.Name = "cmbFoodHotkey";
+            this.cmbFoodHotkey.Size = new System.Drawing.Size(121, 21);
+            this.cmbFoodHotkey.TabIndex = 33;
+            this.cmbFoodHotkey.SelectedValueChanged += new System.EventHandler(this.cmbFoodHotkey_SelectedValueChanged);
             // 
             // label27
             // 
@@ -880,6 +912,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnClearScript);
             this.groupBox1.Controls.Add(this.btnAddWaypointFast);
             this.groupBox1.Controls.Add(this.CavebotTree);
             this.groupBox1.Controls.Add(this.btnOpenScript);
@@ -894,11 +927,21 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cavebot";
             // 
+            // btnClearScript
+            // 
+            this.btnClearScript.Location = new System.Drawing.Point(98, 19);
+            this.btnClearScript.Name = "btnClearScript";
+            this.btnClearScript.Size = new System.Drawing.Size(75, 30);
+            this.btnClearScript.TabIndex = 7;
+            this.btnClearScript.Text = "Clear script";
+            this.btnClearScript.UseVisualStyleBackColor = true;
+            this.btnClearScript.Click += new System.EventHandler(this.btnClearScript_Click);
+            // 
             // btnAddWaypointFast
             // 
             this.btnAddWaypointFast.BackgroundImage = global::PxgBot.Properties.Resources.fastWaypoint;
             this.btnAddWaypointFast.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnAddWaypointFast.Location = new System.Drawing.Point(158, 23);
+            this.btnAddWaypointFast.Location = new System.Drawing.Point(272, 64);
             this.btnAddWaypointFast.Name = "btnAddWaypointFast";
             this.btnAddWaypointFast.Size = new System.Drawing.Size(30, 30);
             this.btnAddWaypointFast.TabIndex = 6;
@@ -907,10 +950,13 @@
             // 
             // CavebotTree
             // 
+            this.CavebotTree.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CavebotTree.HideSelection = false;
             this.CavebotTree.Location = new System.Drawing.Point(6, 65);
             this.CavebotTree.Name = "CavebotTree";
-            this.CavebotTree.Size = new System.Drawing.Size(295, 339);
+            this.CavebotTree.Size = new System.Drawing.Size(260, 339);
             this.CavebotTree.TabIndex = 5;
+            this.CavebotTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.CavebotTree_AfterSelect);
             // 
             // btnOpenScript
             // 
@@ -940,7 +986,7 @@
             // 
             this.btnDeleteWaypoint.BackgroundImage = global::PxgBot.Properties.Resources.Delete_;
             this.btnDeleteWaypoint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnDeleteWaypoint.Location = new System.Drawing.Point(262, 23);
+            this.btnDeleteWaypoint.Location = new System.Drawing.Point(272, 172);
             this.btnDeleteWaypoint.Name = "btnDeleteWaypoint";
             this.btnDeleteWaypoint.Size = new System.Drawing.Size(30, 30);
             this.btnDeleteWaypoint.TabIndex = 3;
@@ -951,7 +997,7 @@
             // 
             this.btnEditWaypoint.BackgroundImage = global::PxgBot.Properties.Resources.Edit;
             this.btnEditWaypoint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnEditWaypoint.Location = new System.Drawing.Point(228, 23);
+            this.btnEditWaypoint.Location = new System.Drawing.Point(272, 136);
             this.btnEditWaypoint.Name = "btnEditWaypoint";
             this.btnEditWaypoint.Size = new System.Drawing.Size(30, 30);
             this.btnEditWaypoint.TabIndex = 2;
@@ -962,7 +1008,7 @@
             // 
             this.btnAddWaypoint.BackgroundImage = global::PxgBot.Properties.Resources.Plus;
             this.btnAddWaypoint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnAddWaypoint.Location = new System.Drawing.Point(194, 23);
+            this.btnAddWaypoint.Location = new System.Drawing.Point(272, 100);
             this.btnAddWaypoint.Name = "btnAddWaypoint";
             this.btnAddWaypoint.Size = new System.Drawing.Size(30, 30);
             this.btnAddWaypoint.TabIndex = 1;
@@ -1300,37 +1346,6 @@
             this.label29.TabIndex = 30;
             this.label29.Text = "Cavebot Index: ";
             // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(32, 132);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(72, 13);
-            this.label30.TabIndex = 34;
-            this.label30.Text = "Food hotkey: ";
-            // 
-            // cmbFoodHotkey
-            // 
-            this.cmbFoodHotkey.FormattingEnabled = true;
-            this.cmbFoodHotkey.Items.AddRange(new object[] {
-            "F1",
-            "F2",
-            "F3",
-            "F4",
-            "F5",
-            "F6",
-            "F7",
-            "F8",
-            "F9",
-            "F10",
-            "F11",
-            "F12"});
-            this.cmbFoodHotkey.Location = new System.Drawing.Point(110, 129);
-            this.cmbFoodHotkey.Name = "cmbFoodHotkey";
-            this.cmbFoodHotkey.Size = new System.Drawing.Size(121, 21);
-            this.cmbFoodHotkey.TabIndex = 33;
-            this.cmbFoodHotkey.SelectedValueChanged += new System.EventHandler(this.cmbFoodHotkey_SelectedValueChanged);
-            // 
             // tmrFood
             // 
             this.tmrFood.Enabled = true;
@@ -1342,7 +1357,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(468, 507);
+            this.ClientSize = new System.Drawing.Size(460, 507);
             this.Controls.Add(this.lblCavebotIndex);
             this.Controls.Add(this.label29);
             this.Controls.Add(this.chbAlwaysOnTop);
@@ -1518,6 +1533,7 @@
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.ComboBox cmbFoodHotkey;
         private System.Windows.Forms.Timer tmrFood;
+        private System.Windows.Forms.Button btnClearScript;
     }
 }
 

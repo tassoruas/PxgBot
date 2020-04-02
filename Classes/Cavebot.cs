@@ -26,7 +26,7 @@ namespace PxgBot.Classes
                         {
                             if (Enabled == false) break;
                             await ExecuteStep(Script[Index]);
-                            AutoItX.Sleep(100);
+                            AutoItX.Sleep(30);
                         }
                         Index = 0;
                     }
@@ -122,14 +122,14 @@ namespace PxgBot.Classes
         public static void TestInit()
         {
             //CavebotAction cavebotAction1 = new CavebotAction(null, ActionTypes.Fishing, new string[] { "894", "741" }, () => Pokemon.HP > 1000);
-            CavebotAction cavebotAction1 = new CavebotAction(new PXG.Position(4068, 3456, 5), ActionTypes.Walk);
-            CavebotAction cavebotAction2 = new CavebotAction(new PXG.Position(4074, 3455, 5), ActionTypes.Walk);
-            CavebotAction cavebotAction3 = new CavebotAction(new PXG.Position(4079, 3453, 5), ActionTypes.Walk);
-            CavebotAction cavebotAction4 = new CavebotAction(new PXG.Position(4085, 3448, 5), ActionTypes.Walk);
-            CavebotAction cavebotAction5 = new CavebotAction(new PXG.Position(4087, 3443, 5), ActionTypes.Walk);
-            CavebotAction cavebotAction6 = new CavebotAction(new PXG.Position(4085, 3448, 5), ActionTypes.Walk);
-            CavebotAction cavebotAction7 = new CavebotAction(new PXG.Position(4079, 3453, 5), ActionTypes.Walk);
-            CavebotAction cavebotAction8 = new CavebotAction(new PXG.Position(4074, 3455, 5), ActionTypes.Walk);
+            CavebotAction cavebotAction1 = new CavebotAction(0, new PXG.Position(4068, 3456, 5), ActionTypes.Walk);
+            CavebotAction cavebotAction2 = new CavebotAction(1, new PXG.Position(4074, 3455, 5), ActionTypes.Walk);
+            CavebotAction cavebotAction3 = new CavebotAction(2, new PXG.Position(4079, 3453, 5), ActionTypes.Walk);
+            CavebotAction cavebotAction4 = new CavebotAction(3, new PXG.Position(4085, 3448, 5), ActionTypes.Walk);
+            CavebotAction cavebotAction5 = new CavebotAction(4, new PXG.Position(4087, 3443, 5), ActionTypes.Walk);
+            CavebotAction cavebotAction6 = new CavebotAction(5, new PXG.Position(4085, 3448, 5), ActionTypes.Walk);
+            CavebotAction cavebotAction7 = new CavebotAction(6, new PXG.Position(4079, 3453, 5), ActionTypes.Walk);
+            CavebotAction cavebotAction8 = new CavebotAction(7, new PXG.Position(4074, 3455, 5), ActionTypes.Walk);
 
             Script.Add(cavebotAction1);
             Script.Add(cavebotAction2);
@@ -152,6 +152,8 @@ namespace PxgBot.Classes
 
     class CavebotAction
     {
+        public int ID { get; set; }
+        public string Name { get; set; }
         public PXG.Position Position { get; set; }
         public ActionTypes Action { get; set; }
         public string[] Arguments { get; set; }
@@ -162,8 +164,10 @@ namespace PxgBot.Classes
         /// </summary>
         /// <param name="step"></param>
         /// <param name="position"></param>
-        public CavebotAction(PXG.Position position, ActionTypes action)
+        public CavebotAction(int id, PXG.Position position, ActionTypes action)
         {
+            ID = id;
+            Name = "";
             Action = action;
             Position = position;
         }
@@ -176,8 +180,10 @@ namespace PxgBot.Classes
         /// <param name="action"></param>
         /// <param name="args"></param>
         /// <param name="condition"></param>
-        public CavebotAction(PXG.Position position, ActionTypes action, string[] args = null, Func<bool> condition = null)
+        public CavebotAction(int id, PXG.Position position, ActionTypes action, string name = "", string[] args = null, Func<bool> condition = null)
         {
+            ID = id;
+            Name = name;
             Position = position;
             Action = action;
             Arguments = args;
