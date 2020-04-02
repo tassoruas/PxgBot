@@ -14,4 +14,4 @@
 - Sometimes when the waypoint is near a wall (north) looks like the left click does not work fine. I suggest that the left click to walk must be placed at the center of the SQM.
 - Show the experience acquired and experience per hour
 - Show revives used
-- 
+- Add a loop to validade the quantity of revives you still have. If less than X you get out that loop to maybe to go the city to buy more and get back to hunt.
