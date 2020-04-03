@@ -97,9 +97,13 @@ namespace PxgBot
                     Pokemon.Reviving == false && Character.HP > 0)
                 {
                     Pokemon.Revive();
+                    AutoItX.Sleep(200);
+                    bool isOutside = Pokemon.isOutside();
+                    Console.WriteLine("isOutside: " + isOutside);
+                    if (isOutside) Pokemon.PutInOrOut();
                 }
 
-                if (Pokemon.HasPokemonSet && Pokemon.HP > 0 && await Character.isAttacking && Pokemon.isOutside() == false)
+                if (Pokemon.HasPokemonSet && Pokemon.HP > 0 && (await Character.isAttacking || CavebotAttack.Enabled) && Pokemon.isOutside() == false && Pokemon.Reviving == false)
                 {
                     Pokemon.PutInOrOut();
                 }

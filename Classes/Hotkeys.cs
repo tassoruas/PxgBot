@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
 namespace PxgBot.Classes
 {
@@ -14,7 +15,10 @@ namespace PxgBot.Classes
             //Console.WriteLine("Key press: " + key);
             if (key == ReviveHotkey)
             {
-                Pokemon.Revive();
+                Pokemon.Revive(true);
+                bool isOutside = Pokemon.isOutside();
+                Console.WriteLine("isOutside: " + isOutside);
+                if (isOutside == false) Pokemon.PutInOrOut();
             }
             else if (key == PauseCavebotHotkey)
             {

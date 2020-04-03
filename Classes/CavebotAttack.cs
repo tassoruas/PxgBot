@@ -41,6 +41,9 @@ namespace PxgBot.Classes
                                     if (await Character.isAttacking) break;
                                     AutoItX.Sleep(70);
                                     await Task.Run(() => AttackMonster(res));
+                                    AutoItX.Sleep(70);
+                                    if (await Character.isAttacking == false)
+                                        await Task.Run(() => AttackMonster(res));
                                     AutoItX.Sleep(100);
                                     if (await Character.isAttacking) break;
                                 }

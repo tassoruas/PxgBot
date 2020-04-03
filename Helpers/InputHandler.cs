@@ -25,23 +25,18 @@ namespace PxgBot.Helpers
         {
             Locked = true;
             Point oldMousePosition = Cursor.Position;
-            AutoItX.MouseMove(x, y, speed);
-            AutoItX.Sleep(2);
-            AutoItX.MouseClick(button, numClicks: numClicks, speed: speed);
-            AutoItX.Sleep(3);
+            AutoItX.MouseClick(button, x, y, numClicks: numClicks, speed: speed);
             if (keepPosition) AutoItX.MouseMove(oldMousePosition.X, oldMousePosition.Y, speed);
-            AutoItX.Sleep(2);
             Locked = false;
         }
 
         public static void SendKeys(string[] Keys, int DelayBetweenKeys = 100)
         {
+            AutoItX.Sleep(30);
             AutoItX.WinActivate(Addresses.PxgHandle);
-            AutoItX.Sleep(100);
             foreach (string key in Keys)
             {
                 if (Settings.Debug) { Settings.DebugText += "\n Key send: " + key; }
-                AutoItX.WinActivate(Addresses.PxgHandle);
                 AutoItX.Send(key);
                 AutoItX.Sleep(DelayBetweenKeys);
             }
