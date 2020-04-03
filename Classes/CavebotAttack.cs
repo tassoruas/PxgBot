@@ -11,6 +11,7 @@ namespace PxgBot.Classes
     {
         public static bool Enabled { get; set; }
         public static List<string> MonstersToAttack = new List<string>();
+        public static bool MonsterFound = false;
 
         public async static void Start()
         {
@@ -31,6 +32,12 @@ namespace PxgBot.Classes
                                 {
                                     /// Found monster, so will attack it and break the foreach loop
                                     //Console.WriteLine("Monster '" + monster + "' found");
+                                    MonsterFound = true;
+                                    new Task(async () =>
+                                    {
+                                        await Task.Delay(5000);
+                                        MonsterFound = false;
+                                    }).Start();
                                     if (Settings.Debug) { Settings.DebugText += "\n Monster '" + monster + "' found"; }
                                     if (await Character.isAttacking) break;
                                     AutoItX.Sleep(100);
@@ -39,8 +46,8 @@ namespace PxgBot.Classes
                                     if (clickResult) break;
                                 }
                                 if (Settings.Debug) { Settings.DebugText += "\n Monster '" + monster + "' NOT found"; }
-                                Console.WriteLine("Monster '" + monster + "' NOT found");
-                                AutoItX.Sleep(100);
+                                //Console.WriteLine("Monster '" + monster + "' NOT found");
+                                AutoItX.Sleep(50);
 
                             }
                         }

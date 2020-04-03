@@ -20,11 +20,21 @@ namespace PxgBot.Classes
             {
                 while (true)
                 {
-                    if (Enabled && Character.X != 0 && Character.HP > 0)
+                    if (Enabled && Character.X != 0 && Pokemon.HasPokemonSet
+                        && Character.HP > 0 && Pokemon.HP > 0 &&
+                        (Pokemon.AutoRevive && Pokemon.HP > Pokemon.AutoReviveHP))
                     {
                         for (; Index < Script.Count; Index++)
                         {
                             if (Enabled == false) break;
+                            if (Character.HP == 0) break;
+
+                            if (Pokemon.HasPokemonSet && Pokemon.HP == 0 || CavebotAttack.MonsterFound || Pokemon.Reviving ||
+                                (Pokemon.AutoRevive && Pokemon.HP < Pokemon.AutoReviveHP))
+                            {
+                                AutoItX.Sleep(3000);
+                                break;
+                            }
                             await ExecuteStep(Script[Index]);
                             AutoItX.Sleep(30);
                         }
@@ -34,6 +44,7 @@ namespace PxgBot.Classes
                     {
                         AutoItX.Sleep(1000);
                     }
+                    AutoItX.Sleep(1000);
                 }
             }
             catch (Exception ex)
@@ -44,6 +55,7 @@ namespace PxgBot.Classes
 
         private async static Task<bool> ExecuteStep(CavebotAction cbAction)
         {
+            bool result = false;
             if (Index == lastIndex)
             {
                 counterIndex++;
@@ -59,20 +71,20 @@ namespace PxgBot.Classes
             {
                 while (cbAction.Condition())
                 {
-                    if (!Pokemon.Reviving)
+                    if (Pokemon.Reviving == false)
                     {
-                        await ExecuteAction(cbAction);
+                        result = await ExecuteAction(cbAction);
                     }
                 }
             }
             else
             {
-                if (!Pokemon.Reviving)
+                if (Pokemon.Reviving == false)
                 {
-                    await ExecuteAction(cbAction);
+                    result = await ExecuteAction(cbAction);
                 }
             }
-            return true;
+            return result;
         }
 
         private async static Task<bool> ExecuteAction(CavebotAction cbAction)
@@ -94,7 +106,7 @@ namespace PxgBot.Classes
                 {
                     result = await Actions.Walk.WalkTo(cbAction.Position);
                     counter++;
-                } while (result == false && counter < 5);
+                } while (result == false && counter < 5 || await Character.isAttacking || Pokemon.Reviving || CavebotAttack.MonsterFound || Pokemon.HP == 0 || Pokemon.HP < Pokemon.AutoReviveHP);
                 counter = 0;
                 return result;
             }
@@ -110,7 +122,7 @@ namespace PxgBot.Classes
                 {
                     result = await Actions.Walk.WalkTo(cbAction.Position, true);
                     counter++;
-                } while (result == false && counter < 5);
+                } while (result == false && counter < 5 || await Character.isAttacking || Pokemon.Reviving || CavebotAttack.MonsterFound || Pokemon.HP == 0 || Pokemon.HP < Pokemon.AutoReviveHP);
                 counter = 0;
                 return result;
 

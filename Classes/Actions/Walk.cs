@@ -34,7 +34,14 @@ namespace PxgBot.Classes.Actions
                 if (Settings.Debug) Console.WriteLine("Clicked: " + destX + ", " + destY);
 
                 AutoItX.Sleep(30);
+
                 if (Cavebot.Enabled == false) return true;
+                if (Pokemon.Reviving) return true;
+                if (CavebotAttack.MonsterFound) return true;
+                if (await Character.isAttacking) return true;
+                if (Pokemon.HP == 0 || (Pokemon.AutoRevive && Pokemon.HP < Pokemon.AutoReviveHP)) return true;
+
+
                 while (InputHandler.Locked)
                 {
                     AutoItX.Sleep(10);
