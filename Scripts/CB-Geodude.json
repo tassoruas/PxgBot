@@ -1,0 +1,27 @@
+[{
+  "Waypoints": [
+    "{\"name\":\"Inicio\",\"position\":\"4229, 3489, 7\", \"action\":\"Walk\"}",
+    "{\"name\":\"\",\"position\":\"4233, 3484, 7\", \"action\":\"Walk\"}",
+    "{\"name\":\"\",\"position\":\"4233, 3480, 7\", \"action\":\"Walk\"}",
+    "{\"name\":\"\",\"position\":\"4235, 3484, 7\", \"action\":\"Walk\"}",
+    "{\"name\":\"\",\"position\":\"4239, 3486, 7\", \"action\":\"Walk\"}",
+    "{\"name\":\"\",\"position\":\"4242, 3490, 7\", \"action\":\"Walk\"}",
+    "{\"name\":\"\",\"position\":\"4243, 3494, 7\", \"action\":\"Walk\"}",
+    "{\"name\":\"\",\"position\":\"4241, 3498, 7\", \"action\":\"Walk\"}",
+    "{\"name\":\"\",\"position\":\"4242, 3503, 7\", \"action\":\"Walk\"}",
+    "{\"name\":\"\",\"position\":\"4243, 3508, 7\", \"action\":\"Walk\"}",
+    "{\"name\":\"\",\"position\":\"4242, 3513, 7\", \"action\":\"Walk\"}",
+    "{\"name\":\"\",\"position\":\"4243, 3518, 7\", \"action\":\"Walk\"}",
+    "{\"name\":\"\",\"position\":\"4242, 3523, 7\", \"action\":\"Walk\"}",
+    "{\"name\":\"\",\"position\":\"4238, 3525, 7\", \"action\":\"Walk\"}",
+    "{\"name\":\"\",\"position\":\"4234, 3523, 7\", \"action\":\"Walk\"}",
+    "{\"name\":\"\",\"position\":\"4234, 3518, 7\", \"action\":\"Walk\"}",
+    "{\"name\":\"\",\"position\":\"4235, 3513, 7\", \"action\":\"Walk\"}",
+    "{\"name\":\"\",\"position\":\"4239, 3510, 7\", \"action\":\"Walk\"}",
+    "{\"name\":\"\",\"position\":\"4239, 3505, 7\", \"action\":\"Walk\"}",
+    "{\"name\":\"\",\"position\":\"4237, 3500, 7\", \"action\":\"Walk\"}",
+    "{\"name\":\"\",\"position\":\"4233, 3497, 7\", \"action\":\"Walk\"}",
+    "{\"name\":\"\",\"position\":\"4229, 3496, 7\", \"action\":\"Walk\"}",
+    "{\"name\":\"\",\"position\":\"4225, 3493, 7\", \"action\":\"Walk\"}"
+  ]
+}]

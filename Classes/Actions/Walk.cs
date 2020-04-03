@@ -33,16 +33,16 @@ namespace PxgBot.Classes.Actions
 
                 if (Settings.Debug) Console.WriteLine("Clicked: " + destX + ", " + destY);
 
-                AutoItX.Sleep(100);
+                AutoItX.Sleep(30);
                 if (Cavebot.Enabled == false) return true;
                 while (InputHandler.Locked)
                 {
-                    AutoItX.Sleep(100);
+                    AutoItX.Sleep(10);
                 }
                 if (use == false) InputHandler.MouseClick("left", GUI.ScreenGrid[destX, destY].X + (GUI.ScreenGrid[destX, destY].Width / 2), GUI.ScreenGrid[destX, destY].Y + (GUI.ScreenGrid[destX, destY].Height / 2), speed: 2);
                 else InputHandler.MouseClick("right", GUI.ScreenGrid[destX, destY].X + (GUI.ScreenGrid[destX, destY].Width / 2), GUI.ScreenGrid[destX, destY].Y + (GUI.ScreenGrid[destX, destY].Height / 2), speed: 2);
 
-                AutoItX.Sleep(100);
+                AutoItX.Sleep(30);
                 int counter = 0;
                 while (Character.DestinX != -1 || Character.DestinY != -1 || Character.X != lastPosition.X || Character.Y != lastPosition.Y || Character.Z != lastPosition.Z || await Character.isAttacking)
                 {
