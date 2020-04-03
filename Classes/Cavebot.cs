@@ -94,7 +94,7 @@ namespace PxgBot.Classes
                 {
                     result = await Actions.Walk.WalkTo(cbAction.Position);
                     counter++;
-                } while (result == false || counter < 5);
+                } while (result == false && counter < 5);
                 counter = 0;
                 return result;
             }
@@ -110,7 +110,7 @@ namespace PxgBot.Classes
                 {
                     result = await Actions.Walk.WalkTo(cbAction.Position, true);
                     counter++;
-                } while (result == false || counter < 5);
+                } while (result == false && counter < 5);
                 counter = 0;
                 return result;
 

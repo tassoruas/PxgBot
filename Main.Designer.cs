@@ -877,7 +877,6 @@
             // 
             // txtHpToRevive
             // 
-            this.txtHpToRevive.Enabled = false;
             this.txtHpToRevive.Location = new System.Drawing.Point(175, 26);
             this.txtHpToRevive.Maximum = new decimal(new int[] {
             100000,
@@ -1349,7 +1348,7 @@
             // tmrFood
             // 
             this.tmrFood.Enabled = true;
-            this.tmrFood.Interval = 300000;
+            this.tmrFood.Interval = 600000;
             this.tmrFood.Tick += new System.EventHandler(this.tmrFood_Tick);
             // 
             // Main

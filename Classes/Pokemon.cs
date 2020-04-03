@@ -23,6 +23,8 @@ namespace PxgBot.Classes
         public static string AutoReviveHotkey { get; set; }
         public static string FoodHotkey { get; set; }
         public static bool Reviving { get; set; }
+        public static bool ReviveCooldown = false;
+        public static bool PutOutCooldown = false;
         public static bool HasPokemonSet { get; set; }
 
 
@@ -69,54 +71,93 @@ namespace PxgBot.Classes
             PokemonSpells.Add(newSpell);
         }
 
-        public static void PutInOrOut()
+        public static void PutOut()
         {
             if (Pokemon.HP > 0 && Character.HP > 0)
             {
                 while (InputHandler.Locked) AutoItX.Sleep(10);
-                AutoItX.Sleep(10);
-                InputHandler.MouseClick("right", GUI.PokeballPosition.X, GUI.PokeballPosition.Y + 10, speed: 2);
-                AutoItX.MouseMove(GUI.PokeballPosition.X - 30, GUI.PokeballPosition.Y, 2);
+                if (isOutside() == false && PutOutCooldown == false)
+                {
+                    InputHandler.MouseClick("right", GUI.PokeballPosition.X, GUI.PokeballPosition.Y + 10, speed: 1);
+                    AutoItX.MouseMove(GUI.PokeballPosition.X - 50, GUI.PokeballPosition.Y, 1);
+                    PutOutCooldown = true;
+                    Task.Run(async () =>
+                    {
+                        await Task.Delay(1000);
+                        PutOutCooldown = false;
+                    });
+                    AutoItX.Sleep(100);
+                }
             }
         }
 
-        public static void Revive(bool manual = true)
+        public static void PutIn()
         {
-            Reviving = true;
-            if (GUI.isPxgActive() == false) AutoItX.WinActivate(Addresses.PxgClientName);
-            if (GUI.PokeballPosition.X == 0 || GUI.PokeballPosition.Y == 0 || GUI.PokeballPosition.IsEmpty)
+            while (InputHandler.Locked) AutoItX.Sleep(10);
+            if (isOutside() == true)
             {
-                if (Settings.Debug) { Settings.DebugText += "\n Pokeball position not set for reviving"; }
-                Console.WriteLine("Pokeball position not set for reviving");
+                InputHandler.MouseClick("right", GUI.PokeballPosition.X, GUI.PokeballPosition.Y + 10, speed: 1);
+                AutoItX.MouseMove(GUI.PokeballPosition.X - 50, GUI.PokeballPosition.Y, 1);
+                AutoItX.Sleep(100);
+            }
+        }
+
+        public static void Revive(bool manual = false)
+        {
+            try
+            {
+
+
+                System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
+                stopwatch.Start();
+                if (GUI.isPxgActive() == false) AutoItX.WinActivate(Addresses.PxgClientName);
+                if (GUI.PokeballPosition.X == 0 || GUI.PokeballPosition.Y == 0 || GUI.PokeballPosition.IsEmpty)
+                {
+                    if (Settings.Debug) { Settings.DebugText += "\n Pokeball position not set for reviving"; }
+                    Console.WriteLine("Pokeball position not set for reviving");
+                    Reviving = false;
+                    return;
+                }
+                if (manual == false && Pokemon.HP > Pokemon.AutoReviveHP)
+                {
+                    return;
+                }
+
+                Reviving = true;
+                ReviveCooldown = true;
+                if (Settings.Debug) { Settings.DebugText += "\n Will Revive"; }
+                InputHandler.BlockUserInput(true);
+
+                /////////////////////////
+                if (HP > 0 && isOutside())
+                {
+                    PutIn();
+                }
+
+                if (HP <= AutoReviveHP || manual)
+                {
+                    InputHandler.SendKeys(new string[] { AutoReviveHotkey }, 5);
+                    while (InputHandler.Locked) AutoItX.Sleep(4);
+                    InputHandler.MouseClick("left", GUI.PokeballPosition.X, GUI.PokeballPosition.Y, speed: 1);
+                    Settings.DebugText += "Run Revive";
+                }
+                /////////////////////////
+
+                InputHandler.BlockUserInput(false);
+                foreach (PokemonSpell spell in Pokemon.PokemonSpells)
+                {
+                    spell.Available = true;
+                }
+                Task.Run(async () => { await Task.Delay(1000); ReviveCooldown = false; });
                 Reviving = false;
-                return;
+                Console.WriteLine("Revive time: " + stopwatch.Elapsed);
+                stopwatch.Stop();
+                AutoItX.Sleep(100);
             }
-            if (Settings.Debug) { Settings.DebugText += "\n Will Revive"; }
-            InputHandler.BlockUserInput(true);
-            if (HP > 0 && isOutside())
+            catch (Exception ex)
             {
-                PutInOrOut();
+                Console.WriteLine("Error: Revive: " + ex.Message);
             }
-
-            if (HP == 0 || HP <= AutoReviveHP || manual)
-            {
-                InputHandler.SendKeys(new string[] { AutoReviveHotkey }, 5);
-                while (InputHandler.Locked) AutoItX.Sleep(4);
-                InputHandler.MouseClick("left", GUI.PokeballPosition.X, GUI.PokeballPosition.Y + 10, speed: 1);
-                Settings.DebugText += "Run Revive";
-            }
-
-            if (HP > AutoReviveHP && isOutside() == false)
-            {
-                PutInOrOut();
-            }
-            InputHandler.BlockUserInput(false);
-            foreach (PokemonSpell spell in Pokemon.PokemonSpells)
-            {
-                spell.Available = true;
-            }
-            AutoItX.Sleep(200);
-            Reviving = false;
         }
 
         public static bool isOutside()

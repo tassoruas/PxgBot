@@ -89,19 +89,19 @@ namespace PxgBot
                     SetActiveTreeNode(Cavebot.Script[Cavebot.Index]);
                 }
 
-
                 lblPokeHP.Text = Pokemon.HP.ToString();
 
                 if (Pokemon.HasPokemonSet && Pokemon.AutoRevive &&
                     Pokemon.HP <= Pokemon.AutoReviveHP &&
-                    Pokemon.Reviving == false && Character.HP > 0)
+                    Pokemon.Reviving == false && Character.HP > 0 && Pokemon.ReviveCooldown == false)
                 {
                     Pokemon.Revive();
+                    if (Pokemon.isOutside() == false) Pokemon.PutOut();
                 }
 
-                if (Pokemon.Reviving == false && Pokemon.isOutside() == false && CavebotAttack.Enabled)
+                if (Pokemon.HasPokemonSet && Pokemon.HP > 0 && Pokemon.HP > Pokemon.AutoReviveHP && (await Character.isAttacking || CavebotAttack.Enabled) && Pokemon.isOutside() == false)
                 {
-                    Pokemon.PutInOrOut();
+                    Pokemon.PutOut();
                 }
 
                 lblCharHP.Text = Character.HP.ToString();
@@ -120,14 +120,14 @@ namespace PxgBot
                 {
                     if (chbHotkeys.Checked == true)
                     {
-                        keyboardHook.Start();
+                        if (keyboardHook.IsStarted == false) keyboardHook.Start();
                     }
                 }
                 else
                 {
                     if (chbHotkeys.Checked == true)
                     {
-                        keyboardHook.Stop();
+                        if (keyboardHook.IsStarted == true) keyboardHook.Stop();
                     }
                 }
 
@@ -230,6 +230,11 @@ namespace PxgBot
         {
             try
             {
+                if (Cavebot.Script.Count == 0 && Cavebot.Enabled == false)
+                {
+                    MessageBox.Show("No script loaded!");
+                    return;
+                }
                 if (GUI.ScreenGrid != null)
                 {
                     Cavebot.Enabled = !Cavebot.Enabled;
@@ -248,7 +253,7 @@ namespace PxgBot
             {
                 if (Pokemon.isOutside() == false)
                 {
-                    Pokemon.PutInOrOut();
+                    Pokemon.PutOut();
                 }
             }
         }
@@ -479,13 +484,17 @@ namespace PxgBot
         {
             try
             {
-                string[] selectedNode = CavebotTree.SelectedNode.Text.Replace(" ", "").Split(';');
-                string[] pos = selectedNode[0].Replace("<", "").Replace(">", "").Split(',');
-                string action = selectedNode[1];
-                Console.WriteLine("data: " + pos[0] + ", " + pos[1] + ", " + pos[2] + ", " + action);
-                CavebotAction cbAction = Cavebot.Script.FindLast(x => x.Position.X == int.Parse(pos[0]) && x.Position.Y == int.Parse(pos[1]) && x.Position.Z == int.Parse(pos[2]) && x.Action == (ActionTypes)Enum.Parse(typeof(ActionTypes), action));
-                Cavebot.Script.Remove(cbAction);
-                UpdateCavebotTree();
+                if (CavebotTree.SelectedNode != null)
+                {
+                    string[] values = CavebotTree.SelectedNode.ToString().Replace("TreeNode:", "").Split(';');
+                    int ID = int.Parse(values[0].Split(':')[0].Replace(" ", "").Replace(">", ""));
+                    string[] pos = values[0].Split('<')[1].Replace(">", "").Split(',');
+                    PXG.Position position = new PXG.Position(int.Parse(pos[0]), int.Parse(pos[1]), int.Parse(pos[2]));
+                    ActionTypes actionTypes = (ActionTypes)Enum.Parse(typeof(ActionTypes), values[1]);
+                    CavebotAction cbAction = Cavebot.Script.FindLast(x => x.ID == ID && x.Position.X == int.Parse(pos[0]) && x.Position.Y == int.Parse(pos[1]) && x.Position.Z == int.Parse(pos[2]) && x.Action == actionTypes);
+                    Cavebot.Script.Remove(cbAction);
+                    UpdateCavebotTree();
+                }
             }
             catch (Exception ex)
             {
@@ -679,7 +688,6 @@ namespace PxgBot
 
         private void chbAutoRevive_CheckedChanged(object sender, EventArgs e)
         {
-            txtHpToRevive.Enabled = chbAutoRevive.Checked;
             Pokemon.AutoRevive = chbAutoRevive.Checked;
         }
 

@@ -17,11 +17,15 @@ namespace PxgBot.Classes
             if (key == ReviveHotkey)
             {
                 Pokemon.Revive(true);
-                AutoItX.Sleep(200);
-                if (Pokemon.isOutside() == false) Pokemon.PutInOrOut();
+                AutoItX.Sleep(100);
+                if (Pokemon.isOutside() == false) Pokemon.PutOut();
             }
             else if (key == PauseCavebotHotkey)
             {
+                if (Cavebot.Script.Count == 0 && Cavebot.Enabled == false)
+                {
+                    return;
+                }
                 Cavebot.Enabled = !Cavebot.Enabled;
             }
             else if (key == PauseAttackerHotkey)

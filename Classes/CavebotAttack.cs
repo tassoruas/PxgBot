@@ -24,24 +24,27 @@ namespace PxgBot.Classes
                         {
                             foreach (string monster in MonstersToAttack)
                             {
+                                if (await Character.isAttacking) { };
                                 if (Enabled == false) break;
                                 Point res = FindMonster(monster);
                                 if (res.IsEmpty == false)
                                 {
                                     /// Found monster, so will attack it and break the foreach loop
                                     //Console.WriteLine("Monster '" + monster + "' found");
-                                    AutoItX.Sleep(150);
                                     if (Settings.Debug) { Settings.DebugText += "\n Monster '" + monster + "' found"; }
                                     if (await Character.isAttacking) break;
                                     AutoItX.Sleep(100);
-                                    AttackMonster(res);
+                                    bool clickResult = await ClickMonster(res);
                                     AutoItX.Sleep(150);
-                                    if (await Character.isAttacking) break;
+                                    if (clickResult) break;
                                 }
                                 if (Settings.Debug) { Settings.DebugText += "\n Monster '" + monster + "' NOT found"; }
-                                //Console.WriteLine("Monster '" + monster + "' NOT found");
+                                Console.WriteLine("Monster '" + monster + "' NOT found");
+                                AutoItX.Sleep(100);
+
                             }
                         }
+                        AutoItX.Sleep(50);
                     }
                     else
                     {
@@ -80,7 +83,7 @@ namespace PxgBot.Classes
             }
         }
 
-        private async static void AttackMonster(Point monsterRect)
+        private async static Task<bool> ClickMonster(Point monsterRect)
         {
             try
             {
@@ -94,13 +97,16 @@ namespace PxgBot.Classes
                     InputHandler.MouseClick("left", monsterRect.X + 20, monsterRect.Y + 5, speed: 1);
                     AutoItX.MouseMove(863, 476, 1);
                     AutoItX.Sleep(200);
+                    if (await Character.isAttacking) return true;
+                    else return false;
                 }
+                return true;
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Cavebot Attack: AttackMonster: " + ex.Message);
                 if (Settings.Debug) { Settings.DebugText += "\n Cavebot Attack: AttackMonster: " + ex.Message; }
-                return;
+                return false;
             }
         }
 
@@ -126,7 +132,7 @@ namespace PxgBot.Classes
                                 await Task.Delay(spell.Cooldown * 1000);
                                 spell.Available = true;
                             }).Start();
-                            AutoItX.Sleep(1500);
+                            AutoItX.Sleep(1300);
                         }
                     }
                 }
