@@ -115,6 +115,7 @@ namespace PxgBot.Classes
             {
                 spell.Available = true;
             }
+            AutoItX.Sleep(200);
             Reviving = false;
         }
 
@@ -158,14 +159,14 @@ namespace PxgBot.Classes
                 return;
             }
 
-            while (InputHandler.Locked) AutoItX.Sleep(100);
+            while (InputHandler.Locked) AutoItX.Sleep(10);
             InputHandler.SendKeys(new string[] { FoodHotkey }, 5);
             AutoItX.Sleep(50);
             InputHandler.MouseClick("left", GUI.BattleRect.X + 20, GUI.BattleRect.Y, speed: 1);
 
-            AutoItX.Sleep(500);
+            AutoItX.Sleep(300);
 
-            while (InputHandler.Locked) AutoItX.Sleep(100);
+            while (InputHandler.Locked) AutoItX.Sleep(10);
             InputHandler.SendKeys(new string[] { FoodHotkey }, 5);
             AutoItX.Sleep(50);
             InputHandler.MouseClick("left", GUI.ScreenGrid[7, 5].X + (int)(GUI.sqmWidth / 2), GUI.ScreenGrid[7, 5].Y + (int)(GUI.sqmHeight / 2), speed: 1);

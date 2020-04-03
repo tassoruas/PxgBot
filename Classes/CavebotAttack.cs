@@ -22,12 +22,6 @@ namespace PxgBot.Classes
                     {
                         if (await Character.isAttacking == false && Pokemon.Reviving == false)
                         {
-                            if (Pokemon.Reviving == false && Pokemon.isOutside() == false)
-                            {
-                                if (Pokemon.HP == 0 || (Pokemon.HP <= Pokemon.AutoReviveHP && Pokemon.AutoRevive)) Pokemon.Revive();
-                                Pokemon.PutInOrOut();
-                            }
-
                             foreach (string monster in MonstersToAttack)
                             {
                                 if (Enabled == false) break;
@@ -36,22 +30,18 @@ namespace PxgBot.Classes
                                 {
                                     /// Found monster, so will attack it and break the foreach loop
                                     //Console.WriteLine("Monster '" + monster + "' found");
+                                    AutoItX.Sleep(150);
                                     if (Settings.Debug) { Settings.DebugText += "\n Monster '" + monster + "' found"; }
-                                    AutoItX.Sleep(70);
                                     if (await Character.isAttacking) break;
-                                    AutoItX.Sleep(70);
-                                    await Task.Run(() => AttackMonster(res));
-                                    AutoItX.Sleep(70);
-                                    if (await Character.isAttacking == false)
-                                        await Task.Run(() => AttackMonster(res));
                                     AutoItX.Sleep(100);
+                                    AttackMonster(res);
+                                    AutoItX.Sleep(150);
                                     if (await Character.isAttacking) break;
                                 }
                                 if (Settings.Debug) { Settings.DebugText += "\n Monster '" + monster + "' NOT found"; }
                                 //Console.WriteLine("Monster '" + monster + "' NOT found");
                             }
                         }
-                        AutoItX.Sleep(150);
                     }
                     else
                     {
@@ -100,9 +90,10 @@ namespace PxgBot.Classes
                     {
                         AutoItX.Sleep(20);
                     }
+                    AutoItX.Sleep(200);
                     InputHandler.MouseClick("left", monsterRect.X + 20, monsterRect.Y + 5, speed: 1);
                     AutoItX.MouseMove(863, 476, 1);
-                    AutoItX.Sleep(150);
+                    AutoItX.Sleep(200);
                 }
             }
             catch (Exception ex)

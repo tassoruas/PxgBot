@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoIt;
+using System;
 using System.Windows.Forms;
 
 namespace PxgBot.Classes
@@ -16,9 +17,8 @@ namespace PxgBot.Classes
             if (key == ReviveHotkey)
             {
                 Pokemon.Revive(true);
-                bool isOutside = Pokemon.isOutside();
-                Console.WriteLine("isOutside: " + isOutside);
-                if (isOutside == false) Pokemon.PutInOrOut();
+                AutoItX.Sleep(200);
+                if (Pokemon.isOutside() == false) Pokemon.PutInOrOut();
             }
             else if (key == PauseCavebotHotkey)
             {
@@ -26,7 +26,7 @@ namespace PxgBot.Classes
             }
             else if (key == PauseAttackerHotkey)
             {
-                CavebotAttack.Enabled = !Cavebot.Enabled;
+                CavebotAttack.Enabled = !CavebotAttack.Enabled;
             }
         }
     }

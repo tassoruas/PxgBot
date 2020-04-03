@@ -97,13 +97,9 @@ namespace PxgBot
                     Pokemon.Reviving == false && Character.HP > 0)
                 {
                     Pokemon.Revive();
-                    AutoItX.Sleep(200);
-                    bool isOutside = Pokemon.isOutside();
-                    Console.WriteLine("isOutside: " + isOutside);
-                    if (isOutside) Pokemon.PutInOrOut();
                 }
 
-                if (Pokemon.HasPokemonSet && Pokemon.HP > 0 && (await Character.isAttacking || CavebotAttack.Enabled) && Pokemon.isOutside() == false && Pokemon.Reviving == false)
+                if (Pokemon.Reviving == false && Pokemon.isOutside() == false && CavebotAttack.Enabled)
                 {
                     Pokemon.PutInOrOut();
                 }
@@ -200,7 +196,7 @@ namespace PxgBot
 
         private void tmrFood_Tick(object sender, EventArgs e)
         {
-            Pokemon.EatFood();
+            Task.Run(() => Pokemon.EatFood());
         }
 
         private void tmrTest_Tick(object sender, EventArgs e)

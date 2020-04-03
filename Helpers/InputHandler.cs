@@ -23,6 +23,7 @@ namespace PxgBot.Helpers
 
         public static void MouseClick(string button, int x, int y, int numClicks = 1, int speed = -1, bool keepPosition = false)
         {
+            AutoItX.WinActivate(Addresses.PxgHandle);
             Locked = true;
             Point oldMousePosition = Cursor.Position;
             AutoItX.MouseClick(button, x, y, numClicks: numClicks, speed: speed);
