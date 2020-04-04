@@ -27,7 +27,7 @@ namespace PxgBot.Forms
                 ID = int.Parse(values[0].Split(':')[0].Replace(" ", "").Replace(">", ""));
                 string[] pos = values[0].Split('<')[1].Replace(">", "").Split(',');
                 position = new PXG.Position(int.Parse(pos[0]), int.Parse(pos[1]), int.Parse(pos[2]));
-                actionTypes = (ActionTypes)Enum.Parse(typeof(ActionTypes), values[1]);
+                actionTypes = (ActionTypes)Enum.Parse(typeof(ActionTypes), values[1].Replace(" ", ""));
             }
 
             InitializeComponent();
@@ -73,7 +73,7 @@ namespace PxgBot.Forms
                 CavebotAction cbAction = Cavebot.Script.FindLast(x => x.Position.X == position.X && x.Position.Y == position.Y && x.Position.Z == position.Z && x.Action == actionTypes);
                 cbAction.Name = txtName.Text;
                 cbAction.Position = new PXG.Position(int.Parse(txtX.Text), int.Parse(txtY.Text), int.Parse(txtZ.Text));
-                cbAction.Action = (ActionTypes)Enum.Parse(typeof(ActionTypes), cmbActionTypes.SelectedItem.ToString());
+                cbAction.Action = (ActionTypes)Enum.Parse(typeof(ActionTypes), cmbActionTypes.SelectedItem.ToString().Replace(" ", ""));
             }
             else
             {
@@ -91,7 +91,7 @@ namespace PxgBot.Forms
                 }
                 Console.WriteLine("id added: " + id);
                 CavebotAction cbAction = new CavebotAction(id, new PXG.Position(int.Parse(txtX.Text), int.Parse(txtY.Text), int.Parse(txtZ.Text)),
-                                                        (ActionTypes)Enum.Parse(typeof(ActionTypes), cmbActionTypes.SelectedItem.ToString()), name: txtName.Text);
+                                                        (ActionTypes)Enum.Parse(typeof(ActionTypes), cmbActionTypes.SelectedItem.ToString().Replace(" ", "")), name: txtName.Text);
                 Cavebot.Script.Add(cbAction);
             }
             this.Close();

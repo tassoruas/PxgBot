@@ -570,7 +570,7 @@ namespace PxgBot
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: SetTreeNode: " + ex.Message);
+                MessageBox.Show("Error: SetActiveTreeNode: " + ex.Message);
             }
         }
 

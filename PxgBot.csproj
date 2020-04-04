@@ -165,57 +165,95 @@
     <Content Include="Images\IsFishing.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\Monsters\Aggron.png" />
+    <Content Include="Images\Monsters\Ancient Hypno.png" />
+    <Content Include="Images\Monsters\Arbok.png" />
     <Content Include="Images\Monsters\Bellossom.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\Monsters\Blaziken.png" />
+    <Content Include="Images\Monsters\Brave Noctowl.png" />
+    <Content Include="Images\Monsters\Butterfree.png" />
     <Content Include="Images\Monsters\Caterpie.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\Monsters\Charizard.png" />
     <Content Include="Images\Monsters\Chikorita.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\Monsters\Crobat.png" />
     <Content Include="Images\Monsters\Diglett.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\Monsters\Ekans.png" />
+    <Content Include="Images\Monsters\Electabuzz.png" />
+    <Content Include="Images\Monsters\Elite Farfetch.png" />
     <Content Include="Images\Monsters\Fearow.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\Monsters\Gardevoir.png" />
+    <Content Include="Images\Monsters\Gastly.png" />
+    <Content Include="Images\Monsters\Gengar.png" />
     <Content Include="Images\Monsters\Geodude.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Monsters\Gloom.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\Monsters\Golbat.png" />
+    <Content Include="Images\Monsters\Grimer.png" />
+    <Content Include="Images\Monsters\Haunter.png" />
+    <Content Include="Images\Monsters\Hitmontop.png" />
+    <Content Include="Images\Monsters\Honchkrow.png" />
+    <Content Include="Images\Monsters\Jynx.png" />
     <Content Include="Images\Monsters\Krabby.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\Monsters\Machoke.png" />
     <Content Include="Images\Monsters\Machop.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Monsters\Magby.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\Monsters\Magcargo.png" />
+    <Content Include="Images\Monsters\Manectric.png" />
+    <Content Include="Images\Monsters\Mightyena.png" />
+    <Content Include="Images\Monsters\Misdreavus.png" />
+    <Content Include="Images\Monsters\Muk.png" />
+    <Content Include="Images\Monsters\Nidoqueen.png" />
     <Content Include="Images\Monsters\Oddish.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\Monsters\Pachirisu.png" />
+    <Content Include="Images\Monsters\Pidgeot.png" />
     <Content Include="Images\Monsters\Pidgeotto.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Monsters\Pidgey.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\Monsters\Pikachu.png" />
     <Content Include="Images\Monsters\Rattata.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\Monsters\Rhyperior.png" />
     <Content Include="Images\Monsters\Shellder.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\Monsters\Squirtle.png" />
     <Content Include="Images\Monsters\Staryu.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\Monsters\Sudowoodo.png" />
+    <Content Include="Images\Monsters\Tauros.png" />
     <Content Include="Images\Monsters\Tentacool.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\Monsters\Togekiss.png" />
+    <Content Include="Images\Monsters\Togetic.png" />
+    <Content Include="Images\Monsters\Weepinbell.png" />
+    <Content Include="Images\Monsters\Zubat.png" />
     <Content Include="Images\PokeInside.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -234,49 +272,12 @@
     <Content Include="Images\Screen\ScreenTopLeftBorder.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Todo\Aggron.png" />
-    <Content Include="Images\Todo\Ancient Hypno.png" />
-    <Content Include="Images\Todo\Arbok.png" />
-    <Content Include="Images\Todo\Blaziken.png" />
-    <Content Include="Images\Todo\Brave Noctowl.png" />
-    <Content Include="Images\Todo\Butterfree.png" />
-    <Content Include="Images\Todo\Charizard.png" />
-    <Content Include="Images\Todo\Crobat.png" />
     <Content Include="Images\Todo\DeathScreen.png" />
-    <Content Include="Images\Todo\Ekans.png" />
-    <Content Include="Images\Todo\Electabuzz.png" />
-    <Content Include="Images\Todo\Elite Farfetch.png" />
-    <Content Include="Images\Todo\Gardevoir.png" />
-    <Content Include="Images\Todo\Gastly.png" />
-    <Content Include="Images\Todo\Gengar.png" />
-    <Content Include="Images\Todo\Golbat.png" />
-    <Content Include="Images\Todo\Grimer.png" />
-    <Content Include="Images\Todo\Haunter.png" />
-    <Content Include="Images\Todo\Hitmontop.png" />
-    <Content Include="Images\Todo\Honchkrow.png" />
-    <Content Include="Images\Todo\Jynx.png" />
     <Content Include="Images\Todo\LevelUp.png" />
-    <Content Include="Images\Todo\Machoke.png" />
-    <Content Include="Images\Todo\Magcargo.png" />
-    <Content Include="Images\Todo\Manectric.png" />
-    <Content Include="Images\Todo\Mightyena.png" />
-    <Content Include="Images\Todo\Misdreavus.png" />
-    <Content Include="Images\Todo\Muk.png" />
-    <Content Include="Images\Todo\Nidoqueen.png" />
-    <Content Include="Images\Todo\Pachirisu.png" />
-    <Content Include="Images\Todo\Pidgeot.png" />
-    <Content Include="Images\Todo\Pikachu.png" />
     <Content Include="Images\Todo\ReviveCount.png" />
-    <Content Include="Images\Todo\Rhyperior.png" />
-    <Content Include="Images\Todo\Squirtle.png" />
-    <Content Include="Images\Todo\Sudowoodo.png" />
     <Content Include="Images\Monsters\Tangela.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Todo\Togekiss.png" />
-    <Content Include="Images\Todo\Togetic.png" />
-    <Content Include="Images\Todo\Weepinbell.png" />
-    <Content Include="Images\Todo\Zubat.png" />
     <Content Include="PossibleFeatures.txt" />
     <Content Include="Resources\Attack.png" />
     <None Include="Resources\Plus.png" />
