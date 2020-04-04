@@ -419,8 +419,8 @@ namespace PxgBot
         {
             try
             {
-                this.TopMost = false;
                 bool lastTopMost = this.TopMost;
+                this.TopMost = false;
                 string node = "";
                 if (CavebotTree.SelectedNode != null)
                 {
