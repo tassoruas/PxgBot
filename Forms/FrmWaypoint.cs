@@ -29,6 +29,7 @@ namespace PxgBot.Forms
                 position = new PXG.Position(int.Parse(pos[0]), int.Parse(pos[1]), int.Parse(pos[2]));
                 actionTypes = (ActionTypes)Enum.Parse(typeof(ActionTypes), values[1]);
             }
+
             InitializeComponent();
         }
 
@@ -37,7 +38,15 @@ namespace PxgBot.Forms
             var values = Enum.GetValues(typeof(ActionTypes));
             foreach (var value in values)
             {
-                cmbActionTypes.Items.Add(value);
+                string newValue = "";
+                foreach (char letter in value.ToString().ToCharArray())
+                {
+                    if (Char.IsUpper(letter) && newValue.Length > 0)
+                        newValue += " " + letter;
+                    else
+                        newValue += letter;
+                }
+                cmbActionTypes.Items.Add(newValue);
             }
 
             if (Edit)
@@ -103,7 +112,7 @@ namespace PxgBot.Forms
 
         private void btnN_Click(object sender, EventArgs e)
         {
-            txtX.Text = (int.Parse(txtX.Text) - 1).ToString();
+            txtY.Text = (int.Parse(txtY.Text) - 1).ToString();
         }
 
         private void btnNE_Click(object sender, EventArgs e)

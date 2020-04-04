@@ -127,6 +127,16 @@ namespace PxgBot.Classes
                 return result;
 
             }
+            else if (cbAction.Action == ActionTypes.StartAttacker)
+            {
+                CavebotAttack.Enabled = true;
+                return true;
+            }
+            else if (cbAction.Action == ActionTypes.StopAttacker)
+            {
+                CavebotAttack.Enabled = false;
+                return true;
+            }
 
             return false;
         }
@@ -159,7 +169,9 @@ namespace PxgBot.Classes
         Wait,
         Walk,
         Talk,
-        Use
+        Use,
+        StopAttacker,
+        StartAttacker
     }
 
     class CavebotAction

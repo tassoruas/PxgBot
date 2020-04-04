@@ -35,7 +35,7 @@ namespace PxgBot.Classes
                                     MonsterFound = true;
                                     new Task(async () =>
                                     {
-                                        await Task.Delay(5000);
+                                        await Task.Delay(2000);
                                         MonsterFound = false;
                                     }).Start();
                                     if (Settings.Debug) { Settings.DebugText += "\n Monster '" + monster + "' found"; }
