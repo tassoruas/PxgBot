@@ -129,11 +129,11 @@
             this.txtDebug = new System.Windows.Forms.RichTextBox();
             this.btnFishing = new System.Windows.Forms.Button();
             this.btnCavebotAttack = new System.Windows.Forms.Button();
-            this.btnStartCavebot = new System.Windows.Forms.Button();
             this.chbAlwaysOnTop = new System.Windows.Forms.CheckBox();
             this.lblCavebotIndex = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.tmrFood = new System.Windows.Forms.Timer(this.components);
+            this.btnStartCavebot = new System.Windows.Forms.Button();
             this.pnlSettings.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -502,6 +502,7 @@
             // 
             this.cmbFoodHotkey.FormattingEnabled = true;
             this.cmbFoodHotkey.Items.AddRange(new object[] {
+            "Disabled",
             "F1",
             "F2",
             "F3",
@@ -523,11 +524,11 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(46, 73);
+            this.label27.Location = new System.Drawing.Point(9, 73);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(142, 26);
+            this.label27.Size = new System.Drawing.Size(225, 26);
             this.label27.TabIndex = 32;
-            this.label27.Text = "These hotkeys must be set\r\non PXG Hotkeys \"Com mira\"";
+            this.label27.Text = "Essas hotkeys devem ser configuradas\r\nnas hotkeys do PXG com a opção \"Com mira\"";
             // 
             // label22
             // 
@@ -1296,20 +1297,6 @@
             this.btnCavebotAttack.UseVisualStyleBackColor = true;
             this.btnCavebotAttack.Click += new System.EventHandler(this.btnCavebotAttack_Click);
             // 
-            // btnStartCavebot
-            // 
-            this.btnStartCavebot.BackgroundImage = global::PxgBot.Properties.Resources.Hunting_512;
-            this.btnStartCavebot.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnStartCavebot.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStartCavebot.Location = new System.Drawing.Point(7, 12);
-            this.btnStartCavebot.Name = "btnStartCavebot";
-            this.btnStartCavebot.Size = new System.Drawing.Size(105, 70);
-            this.btnStartCavebot.TabIndex = 22;
-            this.btnStartCavebot.Text = "Cavebot: Stopped";
-            this.btnStartCavebot.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnStartCavebot.UseVisualStyleBackColor = true;
-            this.btnStartCavebot.Click += new System.EventHandler(this.btnStartCavebot_Click);
-            // 
             // chbAlwaysOnTop
             // 
             this.chbAlwaysOnTop.AutoSize = true;
@@ -1350,6 +1337,20 @@
             this.tmrFood.Enabled = true;
             this.tmrFood.Interval = 600000;
             this.tmrFood.Tick += new System.EventHandler(this.tmrFood_Tick);
+            // 
+            // btnStartCavebot
+            // 
+            this.btnStartCavebot.BackgroundImage = global::PxgBot.Properties.Resources.Hunting_512;
+            this.btnStartCavebot.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnStartCavebot.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStartCavebot.Location = new System.Drawing.Point(7, 12);
+            this.btnStartCavebot.Name = "btnStartCavebot";
+            this.btnStartCavebot.Size = new System.Drawing.Size(105, 70);
+            this.btnStartCavebot.TabIndex = 22;
+            this.btnStartCavebot.Text = "Cavebot: Stopped";
+            this.btnStartCavebot.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnStartCavebot.UseVisualStyleBackColor = true;
+            this.btnStartCavebot.Click += new System.EventHandler(this.btnStartCavebot_Click);
             // 
             // Main
             // 
@@ -1448,7 +1449,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label lblIsFishing;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button btnStartCavebot;
         private System.Windows.Forms.Timer tmrUpdateGUI;
         private System.Windows.Forms.Button btnCavebotAttack;
         private System.Windows.Forms.Button btnSettings;
@@ -1533,6 +1533,7 @@
         private System.Windows.Forms.ComboBox cmbFoodHotkey;
         private System.Windows.Forms.Timer tmrFood;
         private System.Windows.Forms.Button btnClearScript;
+        private System.Windows.Forms.Button btnStartCavebot;
     }
 }
 

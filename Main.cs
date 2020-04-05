@@ -56,7 +56,8 @@ namespace PxgBot
                 /// This is used populate Cavebot Tree
                 UpdateCavebotTree();
 
-                /// Create an "instance" of Cavebot and CavebotAttack
+                /// Create an "instance" of Cavebot and CavebotAttack and start InputHandler loop
+                Task.Run(() => InputHandler.Start());
                 Task.Run(() => Cavebot.Start());
                 Task.Run(() => CavebotAttack.Start());
                 Task.Run(() => CavebotAttack.StartSpells());
@@ -99,7 +100,7 @@ namespace PxgBot
                     if (Pokemon.isOutside() == false) Pokemon.PutOut();
                 }
 
-                if (Pokemon.HasPokemonSet && Pokemon.HP > 0 && Pokemon.HP > Pokemon.AutoReviveHP && (await Character.isAttacking || CavebotAttack.Enabled) && Pokemon.isOutside() == false)
+                if (Pokemon.HP > 0 && Pokemon.HP > Pokemon.AutoReviveHP && (await Character.isAttacking || CavebotAttack.Enabled) && Pokemon.isOutside() == false)
                 {
                     Pokemon.PutOut();
                 }
@@ -196,7 +197,8 @@ namespace PxgBot
 
         private void tmrFood_Tick(object sender, EventArgs e)
         {
-            Task.Run(() => Pokemon.EatFood());
+            if ((string)cmbFoodHotkey.SelectedItem != "Disabled")
+                Task.Run(() => Pokemon.EatFood());
         }
 
         private void tmrTest_Tick(object sender, EventArgs e)

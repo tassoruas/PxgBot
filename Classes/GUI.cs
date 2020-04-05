@@ -43,7 +43,7 @@ namespace PxgBot.Classes
         {
             if (ImageSearcher.UseImageSearch("Battle.png", tolerance: 20) == null)
             {
-                InputHandler.SendKeys(new string[] { "{CTRLDOWN}", "{b}", "{CTRLUP}" }, 50);
+                InputHandler.SendKeys(50, new string[] { "{CTRLDOWN}", "{b}", "{CTRLUP}" }, 50);
             }
         }
 

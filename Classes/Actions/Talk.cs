@@ -12,7 +12,7 @@ namespace PxgBot.Classes.Actions
     {
         public static bool TalkToNurse()
         {
-            InputHandler.SendKeys(new string[] { "hi" }, 200);
+            InputHandler.SendKeys(5, new string[] { "hi" }, 200);
             return true;
         }
     }

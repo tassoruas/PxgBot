@@ -35,7 +35,7 @@ namespace PxgBot.Classes
                                     MonsterFound = true;
                                     new Task(async () =>
                                     {
-                                        await Task.Delay(2000);
+                                        await Task.Delay(3000);
                                         MonsterFound = false;
                                     }).Start();
                                     if (Settings.Debug) { Settings.DebugText += "\n Monster '" + monster + "' found"; }
@@ -96,14 +96,7 @@ namespace PxgBot.Classes
             {
                 if (await Character.isAttacking == false)
                 {
-                    while (InputHandler.Locked)
-                    {
-                        AutoItX.Sleep(20);
-                    }
-                    AutoItX.Sleep(200);
-                    InputHandler.MouseClick("left", monsterRect.X + 20, monsterRect.Y + 5, speed: 1);
-                    AutoItX.MouseMove(863, 476, 1);
-                    AutoItX.Sleep(200);
+                    InputHandler.MouseClick(30, "left", monsterRect.X + 20, monsterRect.Y + 5, speed: 1, true);
                     if (await Character.isAttacking) return true;
                     else return false;
                 }
