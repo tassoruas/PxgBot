@@ -104,9 +104,10 @@ namespace PxgBot.Classes
                 int counter = 0;
                 do
                 {
-                    result = await Actions.Walk.WalkTo(cbAction.Position);
+                    result = await Actions.Walk.WalkTo(cbAction.Position, "left");
+                    Console.WriteLine("result: " + result);
                     counter++;
-                } while (result == false && counter < 5 || await Character.isAttacking || Pokemon.Reviving || CavebotAttack.MonsterFound || Pokemon.HP == 0 || Pokemon.HP < Pokemon.AutoReviveHP);
+                } while (result == false && (counter < 5 || await Character.isAttacking || Pokemon.Reviving || CavebotAttack.MonsterFound || Pokemon.HP == 0 || Pokemon.HP < Pokemon.AutoReviveHP));
                 counter = 0;
                 return result;
             }
@@ -120,8 +121,12 @@ namespace PxgBot.Classes
                 int counter = 0;
                 do
                 {
-                    result = await Actions.Walk.WalkTo(cbAction.Position, true);
+                    result = await Actions.Walk.WalkTo(cbAction.Position, "right");
                     counter++;
+                    if (counter > 5)
+                    {
+                        result = await Actions.Walk.WalkTo(cbAction.Position, "right", 90);
+                    }
                 } while (result == false && counter < 5 || await Character.isAttacking || Pokemon.Reviving || CavebotAttack.MonsterFound || Pokemon.HP == 0 || Pokemon.HP < Pokemon.AutoReviveHP);
                 counter = 0;
                 return result;
@@ -136,6 +141,18 @@ namespace PxgBot.Classes
             {
                 CavebotAttack.Enabled = false;
                 return true;
+            }
+            else if (cbAction.Action == ActionTypes.OrderPokemon)
+            {
+                bool result = false;
+                int counter = 0;
+                do
+                {
+                    result = await Actions.Walk.WalkTo(cbAction.Position, "middle");
+                    counter++;
+                } while (result == false && counter < 5 || await Character.isAttacking || Pokemon.Reviving || CavebotAttack.MonsterFound || Pokemon.HP == 0 || Pokemon.HP < Pokemon.AutoReviveHP);
+                counter = 0;
+                return result;
             }
 
             return false;
@@ -171,7 +188,8 @@ namespace PxgBot.Classes
         Talk,
         Use,
         StopAttacker,
-        StartAttacker
+        StartAttacker,
+        OrderPokemon
     }
 
     class CavebotAction
