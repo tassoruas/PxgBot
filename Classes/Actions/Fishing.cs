@@ -23,11 +23,11 @@ namespace PxgBot.Classes.Actions
                     }
 
                     if (Enabled)
-                        InputHandler.SendKeys(14, new string[] { "{CTRLDOWN}", "{z}", "{CTRLUP}" }, 50);
+                        InputHandler.SendKeys(new string[] { "{CTRLDOWN}", "{z}", "{CTRLUP}" }, 50);
                     else break;
                     AutoItX.Sleep(100);
                     if (Enabled)
-                        InputHandler.MouseClick(13, "left", FishingPosition.X, FishingPosition.Y, speed: 3);
+                        InputHandler.MouseClick("left", FishingPosition.X, FishingPosition.Y, speed: 3);
                     else break;
                     AutoItX.Sleep(1000);
                     if (await isFishing())
@@ -36,7 +36,7 @@ namespace PxgBot.Classes.Actions
                         if (Pokemon.Reviving == false)
                         {
                             if (Enabled)
-                                InputHandler.SendKeys(12, new string[] { "{CTRLDOWN}", "{z}", "{CTRLUP}" }, 50);
+                                InputHandler.SendKeys(new string[] { "{CTRLDOWN}", "{z}", "{CTRLUP}" }, 50);
                             else break;
                         }
                     }

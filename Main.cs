@@ -57,7 +57,6 @@ namespace PxgBot
                 UpdateCavebotTree();
 
                 /// Create an "instance" of Cavebot and CavebotAttack and start InputHandler loop
-                Task.Run(() => InputHandler.Start());
                 Task.Run(() => Cavebot.Start());
                 Task.Run(() => CavebotAttack.Start());
                 Task.Run(() => CavebotAttack.StartSpells());

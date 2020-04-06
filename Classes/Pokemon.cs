@@ -77,7 +77,7 @@ namespace PxgBot.Classes
             {
                 if (isOutside() == false && PutOutCooldown == false)
                 {
-                    InputHandler.MouseClick(92, "right", GUI.PokeballPosition.X, GUI.PokeballPosition.Y + 10, speed: 1);
+                    InputHandler.MouseClick("right", GUI.PokeballPosition.X, GUI.PokeballPosition.Y + 10, speed: 1);
                     AutoItX.MouseMove(GUI.PokeballPosition.X - 50, GUI.PokeballPosition.Y, 1);
                     PutOutCooldown = true;
                     Task.Run(async () =>
@@ -94,7 +94,7 @@ namespace PxgBot.Classes
         {
             if (isOutside() == true)
             {
-                InputHandler.MouseClick(95, "right", GUI.PokeballPosition.X, GUI.PokeballPosition.Y + 10, speed: 1);
+                InputHandler.MouseClick("right", GUI.PokeballPosition.X, GUI.PokeballPosition.Y + 10, speed: 1);
             }
         }
 
@@ -132,8 +132,8 @@ namespace PxgBot.Classes
                 AutoItX.Sleep(200);
                 if (HP <= AutoReviveHP || manual)
                 {
-                    InputHandler.SendKeys(94, new string[] { AutoReviveHotkey }, 5);
-                    InputHandler.MouseClick(93, "left", GUI.PokeballPosition.X, GUI.PokeballPosition.Y, speed: 1);
+                    InputHandler.SendKeys(new string[] { AutoReviveHotkey }, 5);
+                    InputHandler.MouseClick("left", GUI.PokeballPosition.X, GUI.PokeballPosition.Y, speed: 1);
                     Settings.DebugText += "Run Revive";
                 }
 
@@ -197,15 +197,15 @@ namespace PxgBot.Classes
 
             if (FoodHotkey == null) return;
 
-            InputHandler.SendKeys(13, new string[] { FoodHotkey }, 5);
+            InputHandler.SendKeys(new string[] { FoodHotkey }, 5);
             AutoItX.Sleep(50);
-            InputHandler.MouseClick(12, "left", GUI.BattleRect.X + 20, GUI.BattleRect.Y, speed: 1);
+            InputHandler.MouseClick("left", GUI.BattleRect.X + 20, GUI.BattleRect.Y, speed: 1);
 
             AutoItX.Sleep(300);
 
-            InputHandler.SendKeys(11, new string[] { FoodHotkey }, 5);
+            InputHandler.SendKeys(new string[] { FoodHotkey }, 5);
             AutoItX.Sleep(50);
-            InputHandler.MouseClick(10, "left", GUI.ScreenGrid[7, 5].X + (int)(GUI.sqmWidth / 2), GUI.ScreenGrid[7, 5].Y + (int)(GUI.sqmHeight / 2), speed: 1);
+            InputHandler.MouseClick("left", GUI.ScreenGrid[7, 5].X + (int)(GUI.sqmWidth / 2), GUI.ScreenGrid[7, 5].Y + (int)(GUI.sqmHeight / 2), speed: 1);
             AutoItX.Sleep(30);
 
             AutoItX.MouseMove(823, 476, 1);
@@ -223,7 +223,7 @@ namespace PxgBot.Classes
 
         public void UseSpell()
         {
-            InputHandler.SendKeys(60, new string[] { SpellHotkey }, 100);
+            InputHandler.SendKeys(new string[] { SpellHotkey }, 100);
         }
     }
 }

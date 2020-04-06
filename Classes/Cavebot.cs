@@ -125,7 +125,7 @@ namespace PxgBot.Classes
                     counter++;
                     if (counter > 5)
                     {
-                        result = await Actions.Walk.WalkTo(cbAction.Position, "right", 90);
+                        result = await Actions.Walk.WalkTo(cbAction.Position, "right");
                     }
                 } while (result == false && counter < 5 || await Character.isAttacking || Pokemon.Reviving || CavebotAttack.MonsterFound || Pokemon.HP == 0 || Pokemon.HP < Pokemon.AutoReviveHP);
                 counter = 0;
