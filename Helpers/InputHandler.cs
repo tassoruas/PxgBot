@@ -21,7 +21,7 @@ namespace PxgBot.Helpers
         [DllImport("user32.dll")]
         static extern bool SetForegroundWindow(IntPtr hWnd);
 
-        public static void MouseClick(string button, int x, int y, int speed = -1, bool keepPosition = false)
+        public static void MouseClick(string button, int x, int y, int speed = 3, bool keepPosition = false)
         {
             AutoItX.WinActivate(Addresses.PxgHandle);
             Point oldMousePosition = Cursor.Position;

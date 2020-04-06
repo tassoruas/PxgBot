@@ -44,7 +44,7 @@ namespace PxgBot.Classes.Actions
                 }
                 if (Pokemon.HP == 0 || (Pokemon.AutoRevive && Pokemon.HP < Pokemon.AutoReviveHP)) return true;
 
-                InputHandler.MouseClick(button, GUI.ScreenGrid[destX, destY].X + (GUI.ScreenGrid[destX, destY].Width / 2), GUI.ScreenGrid[destX, destY].Y + (GUI.ScreenGrid[destX, destY].Height / 2), speed: 2);
+                InputHandler.MouseClick(button, GUI.ScreenGrid[destX, destY].X + (GUI.ScreenGrid[destX, destY].Width / 2), GUI.ScreenGrid[destX, destY].Y + (GUI.ScreenGrid[destX, destY].Height / 2));
                 Console.WriteLine("Called");
                 AutoItX.Sleep(500);
                 int counter = 0;

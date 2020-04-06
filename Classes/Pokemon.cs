@@ -77,7 +77,7 @@ namespace PxgBot.Classes
             {
                 if (isOutside() == false && PutOutCooldown == false)
                 {
-                    InputHandler.MouseClick("right", GUI.PokeballPosition.X, GUI.PokeballPosition.Y + 10, speed: 1);
+                    InputHandler.MouseClick("right", GUI.PokeballPosition.X, GUI.PokeballPosition.Y + 10);
                     AutoItX.MouseMove(GUI.PokeballPosition.X - 50, GUI.PokeballPosition.Y, 1);
                     PutOutCooldown = true;
                     Task.Run(async () =>
@@ -94,7 +94,7 @@ namespace PxgBot.Classes
         {
             if (isOutside() == true)
             {
-                InputHandler.MouseClick("right", GUI.PokeballPosition.X, GUI.PokeballPosition.Y + 10, speed: 1);
+                InputHandler.MouseClick("right", GUI.PokeballPosition.X, GUI.PokeballPosition.Y + 10);
             }
         }
 
@@ -133,7 +133,7 @@ namespace PxgBot.Classes
                 if (HP <= AutoReviveHP || manual)
                 {
                     InputHandler.SendKeys(new string[] { AutoReviveHotkey }, 5);
-                    InputHandler.MouseClick("left", GUI.PokeballPosition.X, GUI.PokeballPosition.Y, speed: 1);
+                    InputHandler.MouseClick("left", GUI.PokeballPosition.X, GUI.PokeballPosition.Y);
                     Settings.DebugText += "Run Revive";
                 }
 
@@ -199,13 +199,13 @@ namespace PxgBot.Classes
 
             InputHandler.SendKeys(new string[] { FoodHotkey }, 5);
             AutoItX.Sleep(50);
-            InputHandler.MouseClick("left", GUI.BattleRect.X + 20, GUI.BattleRect.Y, speed: 1);
+            InputHandler.MouseClick("left", GUI.BattleRect.X + 20, GUI.BattleRect.Y);
 
             AutoItX.Sleep(300);
 
             InputHandler.SendKeys(new string[] { FoodHotkey }, 5);
             AutoItX.Sleep(50);
-            InputHandler.MouseClick("left", GUI.ScreenGrid[7, 5].X + (int)(GUI.sqmWidth / 2), GUI.ScreenGrid[7, 5].Y + (int)(GUI.sqmHeight / 2), speed: 1);
+            InputHandler.MouseClick("left", GUI.ScreenGrid[7, 5].X + (int)(GUI.sqmWidth / 2), GUI.ScreenGrid[7, 5].Y + (int)(GUI.sqmHeight / 2));
             AutoItX.Sleep(30);
 
             AutoItX.MouseMove(823, 476, 1);

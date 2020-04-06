@@ -27,7 +27,7 @@ namespace PxgBot.Classes.Actions
                     else break;
                     AutoItX.Sleep(100);
                     if (Enabled)
-                        InputHandler.MouseClick("left", FishingPosition.X, FishingPosition.Y, speed: 3);
+                        InputHandler.MouseClick("left", FishingPosition.X, FishingPosition.Y);
                     else break;
                     AutoItX.Sleep(1000);
                     if (await isFishing())
