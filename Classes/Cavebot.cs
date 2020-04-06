@@ -29,7 +29,7 @@ namespace PxgBot.Classes
                             if (Enabled == false) break;
                             if (Character.HP == 0) break;
 
-                            if (Pokemon.HasPokemonSet && Pokemon.HP == 0 || CavebotAttack.MonsterFound || Pokemon.Reviving ||
+                            if (Pokemon.HasPokemonSet && Pokemon.HP == 0 || Pokemon.Reviving ||
                                 (Pokemon.AutoRevive && Pokemon.HP < Pokemon.AutoReviveHP))
                             {
                                 AutoItX.Sleep(3000);
