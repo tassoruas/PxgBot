@@ -134,6 +134,8 @@
             this.label29 = new System.Windows.Forms.Label();
             this.tmrFood = new System.Windows.Forms.Timer(this.components);
             this.btnStartCavebot = new System.Windows.Forms.Button();
+            this.label28 = new System.Windows.Forms.Label();
+            this.txtHpToReviveOutOfBattle = new System.Windows.Forms.NumericUpDown();
             this.pnlSettings.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -159,6 +161,7 @@
             this.groupBox5.SuspendLayout();
             this.tabDebug.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtHpToReviveOutOfBattle)).BeginInit();
             this.SuspendLayout();
             // 
             // tmrUpdateInfo
@@ -447,6 +450,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label28);
+            this.groupBox2.Controls.Add(this.txtHpToReviveOutOfBattle);
             this.groupBox2.Controls.Add(this.label30);
             this.groupBox2.Controls.Add(this.cmbFoodHotkey);
             this.groupBox2.Controls.Add(this.label27);
@@ -492,7 +497,7 @@
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(32, 132);
+            this.label30.Location = new System.Drawing.Point(32, 163);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(72, 13);
             this.label30.TabIndex = 34;
@@ -515,7 +520,7 @@
             "F10",
             "F11",
             "F12"});
-            this.cmbFoodHotkey.Location = new System.Drawing.Point(110, 129);
+            this.cmbFoodHotkey.Location = new System.Drawing.Point(110, 160);
             this.cmbFoodHotkey.Name = "cmbFoodHotkey";
             this.cmbFoodHotkey.Size = new System.Drawing.Size(121, 21);
             this.cmbFoodHotkey.TabIndex = 33;
@@ -524,7 +529,7 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(9, 73);
+            this.label27.Location = new System.Drawing.Point(9, 104);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(225, 26);
             this.label27.TabIndex = 32;
@@ -533,7 +538,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(0, 105);
+            this.label22.Location = new System.Drawing.Point(0, 136);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(104, 13);
             this.label22.TabIndex = 31;
@@ -555,7 +560,7 @@
             "F10",
             "F11",
             "F12"});
-            this.cmbReviveHotkey.Location = new System.Drawing.Point(110, 102);
+            this.cmbReviveHotkey.Location = new System.Drawing.Point(110, 133);
             this.cmbReviveHotkey.Name = "cmbReviveHotkey";
             this.cmbReviveHotkey.Size = new System.Drawing.Size(121, 21);
             this.cmbReviveHotkey.TabIndex = 30;
@@ -1352,6 +1357,28 @@
             this.btnStartCavebot.UseVisualStyleBackColor = true;
             this.btnStartCavebot.Click += new System.EventHandler(this.btnStartCavebot_Click);
             // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(39, 70);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(131, 13);
+            this.label28.TabIndex = 36;
+            this.label28.Text = "HP to revive out of battle: ";
+            // 
+            // txtHpToReviveOutOfBattle
+            // 
+            this.txtHpToReviveOutOfBattle.Location = new System.Drawing.Point(176, 68);
+            this.txtHpToReviveOutOfBattle.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.txtHpToReviveOutOfBattle.Name = "txtHpToReviveOutOfBattle";
+            this.txtHpToReviveOutOfBattle.Size = new System.Drawing.Size(58, 20);
+            this.txtHpToReviveOutOfBattle.TabIndex = 35;
+            this.txtHpToReviveOutOfBattle.ValueChanged += new System.EventHandler(this.txtHpToReviveOutOfBattle_ValueChanged);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1422,6 +1449,7 @@
             this.tabDebug.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtHpToReviveOutOfBattle)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1534,6 +1562,8 @@
         private System.Windows.Forms.Timer tmrFood;
         private System.Windows.Forms.Button btnClearScript;
         private System.Windows.Forms.Button btnStartCavebot;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.NumericUpDown txtHpToReviveOutOfBattle;
     }
 }
 

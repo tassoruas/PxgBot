@@ -82,6 +82,7 @@ namespace PxgBot
             /// 
             try
             {
+                bool isAttacking = await Character.isAttacking;
                 lblCavebotIndex.Text = Cavebot.Index.ToString();
 
                 if (Cavebot.Script.Count > 0)
@@ -99,7 +100,14 @@ namespace PxgBot
                     if (Pokemon.isOutside() == false) Pokemon.PutOut();
                 }
 
-                if (Pokemon.HP > 0 && Pokemon.HP > Pokemon.AutoReviveHP && (await Character.isAttacking || CavebotAttack.Enabled) && Pokemon.isOutside() == false)
+                if (Pokemon.HasPokemonSet && Pokemon.Reviving == false && isAttacking == false &&
+                    Pokemon.HP < Pokemon.AutoReviveOutOfBattleHP)
+                {
+                    Pokemon.Revive(true);
+                    if (Pokemon.isOutside() == false) Pokemon.PutOut();
+                }
+
+                if (Pokemon.HP > 0 && Pokemon.HP > Pokemon.AutoReviveHP && (isAttacking || CavebotAttack.Enabled) && Pokemon.isOutside() == false)
                 {
                     Pokemon.PutOut();
                 }
@@ -113,7 +121,6 @@ namespace PxgBot
 
                 bool isFishing = await Fishing.isFishing();
                 lblIsFishing.Text = isFishing.ToString();
-                bool isAttacking = await Character.isAttacking;
                 lblIsAttacking.Text = isAttacking.ToString();
 
                 if (GUI.isPxgActive())
@@ -138,6 +145,8 @@ namespace PxgBot
                 else btnCavebotAttack.Text = "Attacker: Stopped";
 
                 txtDebug.Text = Settings.DebugText;
+                txtDebug.SelectionStart = txtDebug.Text.Length;
+                txtDebug.ScrollToCaret();
             }
             catch (Exception ex)
             {
@@ -301,6 +310,7 @@ namespace PxgBot
 
                     chbAutoRevive.Checked = playerSettings.Revive.enabled;
                     txtHpToRevive.Value = playerSettings.Revive.AutoReviveHP;
+                    txtHpToReviveOutOfBattle.Value = playerSettings.Revive.AutoReviveOutOfBattleHP;
                     cmbReviveHotkey.SelectedItem = playerSettings.Revive.ReviveItemHotkey.ToString().Replace("{", "").Replace("}", "");
                     cmbFoodHotkey.SelectedItem = playerSettings.Food.FoodHotkey.ToString().Replace("{", "").Replace("}", "");
 
@@ -358,6 +368,7 @@ namespace PxgBot
                 playerSettings.Revive = new JObject();
                 playerSettings.Revive.enabled = chbAutoRevive.Checked;
                 playerSettings.Revive.AutoReviveHP = (int)txtHpToRevive.Value;
+                playerSettings.Revive.AutoReviveOutOfBattleHP = (int)txtHpToReviveOutOfBattle.Value;
                 playerSettings.Revive.ReviveItemHotkey = "{" + cmbReviveHotkey.SelectedItem + "}";
 
                 playerSettings.Food = new JObject();
@@ -695,6 +706,11 @@ namespace PxgBot
         private void txtHpToRevive_ValueChanged(object sender, EventArgs e)
         {
             Pokemon.AutoReviveHP = Convert.ToInt16(txtHpToRevive.Value);
+        }
+
+        private void txtHpToReviveOutOfBattle_ValueChanged(object sender, EventArgs e)
+        {
+            Pokemon.AutoReviveOutOfBattleHP = Convert.ToInt16(txtHpToReviveOutOfBattle.Value);
         }
 
         private void cmbReviveHotkey_SelectedValueChanged(object sender, EventArgs e)

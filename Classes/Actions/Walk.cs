@@ -31,13 +31,10 @@ namespace PxgBot.Classes.Actions
                 int destY = 5;
                 destY += destinPosition.Y - Character.Y;
 
-                if (Settings.Debug) Console.WriteLine("Clicked: " + destX + ", " + destY);
-
                 AutoItX.Sleep(30);
 
                 if (Cavebot.Enabled == false) return true;
                 if (Pokemon.Reviving) return true;
-                if (CavebotAttack.MonsterFound) return true;
                 while (await Character.isAttacking)
                 {
                     AutoItX.Sleep(500);
@@ -45,13 +42,12 @@ namespace PxgBot.Classes.Actions
                 if (Pokemon.HP == 0 || (Pokemon.AutoRevive && Pokemon.HP < Pokemon.AutoReviveHP)) return true;
 
                 InputHandler.MouseClick(button, GUI.ScreenGrid[destX, destY].X + (GUI.ScreenGrid[destX, destY].Width / 2), GUI.ScreenGrid[destX, destY].Y + (GUI.ScreenGrid[destX, destY].Height / 2));
-                Console.WriteLine("Called");
                 AutoItX.Sleep(500);
                 int counter = 0;
                 while (true)
                 {
                     counter++;
-                    while (await Character.isAttacking || CavebotAttack.MonsterFound)
+                    while (await Character.isAttacking)
                     {
                         AutoItX.Sleep(500);
                     }
@@ -68,11 +64,6 @@ namespace PxgBot.Classes.Actions
                         return false;
                     }
                 }
-
-
-                //if (Settings.Debug) Console.WriteLine("End walking");
-
-                //return true;
             }
             catch (Exception ex)
             {

@@ -20,6 +20,7 @@ namespace PxgBot.Classes
         public static List<PokemonSpell> PokemonSpells = new List<PokemonSpell>();
         public static bool AutoRevive { get; set; }
         public static int AutoReviveHP { get; set; }
+        public static int AutoReviveOutOfBattleHP { get; set; }
         public static string AutoReviveHotkey { get; set; }
         public static string FoodHotkey { get; set; }
         public static bool Reviving { get; set; }
@@ -102,8 +103,6 @@ namespace PxgBot.Classes
         {
             try
             {
-                System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
-                stopwatch.Start();
                 if (GUI.isPxgActive() == false) AutoItX.WinActivate(Addresses.PxgClientName);
                 if (GUI.PokeballPosition.X == 0 || GUI.PokeballPosition.Y == 0 || GUI.PokeballPosition.IsEmpty)
                 {
@@ -145,9 +144,6 @@ namespace PxgBot.Classes
                 }
                 Task.Run(async () => { await Task.Delay(1000); ReviveCooldown = false; });
                 Reviving = false;
-                Console.WriteLine("Revive time: " + stopwatch.Elapsed);
-                stopwatch.Stop();
-                AutoItX.Sleep(100);
             }
             catch (Exception ex)
             {

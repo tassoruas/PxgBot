@@ -11,7 +11,6 @@ namespace PxgBot.Classes
     {
         public static bool Enabled { get; set; }
         public static List<string> MonstersToAttack = new List<string>();
-        public static bool MonsterFound = false;
 
         public async static void Start()
         {
@@ -25,19 +24,13 @@ namespace PxgBot.Classes
                         {
                             foreach (string monster in MonstersToAttack)
                             {
-                                if (await Character.isAttacking) { };
+                                if (await Character.isAttacking) AutoItX.Sleep(1000);
                                 if (Enabled == false) break;
                                 Point res = FindMonster(monster);
                                 if (res.IsEmpty == false)
                                 {
                                     /// Found monster, so will attack it and break the foreach loop
                                     //Console.WriteLine("Monster '" + monster + "' found");
-                                    MonsterFound = true;
-                                    new Task(async () =>
-                                    {
-                                        await Task.Delay(3000);
-                                        MonsterFound = false;
-                                    }).Start();
                                     if (Settings.Debug) { Settings.DebugText += "\n Monster '" + monster + "' found"; }
                                     if (await Character.isAttacking) break;
                                     AutoItX.Sleep(100);
@@ -45,9 +38,9 @@ namespace PxgBot.Classes
                                     AutoItX.Sleep(150);
                                     if (clickResult) break;
                                 }
-                                if (Settings.Debug) { Settings.DebugText += "\n Monster '" + monster + "' NOT found"; }
+                                //if (Settings.Debug) { Settings.DebugText += "\n Monster '" + monster + "' NOT found"; }
                                 //Console.WriteLine("Monster '" + monster + "' NOT found");
-                                AutoItX.Sleep(50);
+                                AutoItX.Sleep(100);
 
                             }
                         }
@@ -119,7 +112,7 @@ namespace PxgBot.Classes
                 {
                     foreach (PokemonSpell spell in Pokemon.PokemonSpells)
                     {
-                        if (Settings.Debug) { Settings.DebugText += "\n Spell: " + spell.Enabled + ", " + spell.Available; }
+                        //if (Settings.Debug) { Settings.DebugText += "\n Spell: " + spell.Enabled + ", " + spell.Available; }
                         if (spell.Available && spell.Enabled)
                         {
                             /// Here we need to check if it's attacking again
@@ -133,7 +126,7 @@ namespace PxgBot.Classes
                                 await Task.Delay(spell.Cooldown * 1000);
                                 spell.Available = true;
                             }).Start();
-                            AutoItX.Sleep(1300);
+                            AutoItX.Sleep(1000);
                         }
                     }
                 }
@@ -141,7 +134,6 @@ namespace PxgBot.Classes
                 {
                     AutoItX.Sleep(1000);
                 }
-                AutoItX.Sleep(200);
             }
         }
     }
