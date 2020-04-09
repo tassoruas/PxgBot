@@ -92,22 +92,23 @@ namespace PxgBot
 
                 lblPokeHP.Text = Pokemon.HP.ToString();
 
-                if (Pokemon.HasPokemonSet && Pokemon.AutoRevive &&
-                    Pokemon.HP <= Pokemon.AutoReviveHP &&
-                    Pokemon.Reviving == false && Character.HP > 0 && Pokemon.ReviveCooldown == false)
+                if (Pokemon.HasPokemonSet && Pokemon.AutoRevive && Pokemon.HP <= Pokemon.AutoReviveHP &&
+                    Pokemon.AutoReviveHP < Pokemon.AutoReviveHP && Pokemon.Reviving == false &&
+                    Character.HP > 0 && Pokemon.ReviveCooldown == false)
                 {
                     Pokemon.Revive();
                     if (Pokemon.isOutside() == false) Pokemon.PutOut();
                 }
 
-                if (Pokemon.HasPokemonSet && Pokemon.Reviving == false && isAttacking == false &&
-                    Pokemon.HP < Pokemon.AutoReviveOutOfBattleHP)
+                if (Pokemon.HasPokemonSet && Pokemon.AutoRevive && Pokemon.MaxHP > Pokemon.AutoReviveOutOfBattleHP &&
+                    Pokemon.Reviving == false && isAttacking == false && Pokemon.HP < Pokemon.AutoReviveOutOfBattleHP)
                 {
                     Pokemon.Revive(true);
                     if (Pokemon.isOutside() == false) Pokemon.PutOut();
                 }
 
-                if (Pokemon.HP > 0 && Pokemon.HP > Pokemon.AutoReviveHP && (isAttacking || CavebotAttack.Enabled) && Pokemon.isOutside() == false)
+                if (Pokemon.HP > 0 && Pokemon.HP > Pokemon.AutoReviveHP &&
+                    (isAttacking || CavebotAttack.Enabled) && Pokemon.isOutside() == false)
                 {
                     Pokemon.PutOut();
                 }

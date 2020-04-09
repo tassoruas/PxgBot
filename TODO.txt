@@ -1,13 +1,9 @@
 ﻿/// Todo's
-- Sometimes the always on top does not work
 - Print functions: on level up, on die
 - Add an option to move the waypoint up and down on the list
-- Add an option to insert a new waypoint from the selection (to help creating new waypoints in the middle of a script)
 - Add an option to load a cavebot script when you first open the bot, so you don't need to load it on every execution
-- Add a condition to validate the Pos X, Y, Destin X and Y. If these positions are equal for more than 5 seconds and you are not fighting, move somewhere.
 - When you have 1 purple monster and 1 normal monster on the same screen, the bot does not attack the second, he keeps trying to fight the first monster and walk to the next waypoint.
 - Some pokemons have the ability to heal themselves, it would be nice to identify the hotkey for this spell and add a "Life Less then X" to use it. (Like Staryu).
-- Sometimes when the waypoint is near a wall (north) looks like the left click does not work fine. I suggest that the left click to walk must be placed at the center of the SQM.
 - Show the experience acquired and experience per hour
 - Show revives used
 - Add a loop to validade the quantity of revives you still have. If less than X you get out that loop to maybe to go the city to buy more and get back to hunt.
@@ -18,3 +14,7 @@ DONE:
 - Close bot button
 - Automate food eating
 - Add an option to clear all waypoints
+- Sometimes the always on top does not work
+- Add an option to insert a new waypoint from the selection (to help creating new waypoints in the middle of a script)
+- Add a condition to validate the Pos X, Y, Destin X and Y. If these positions are equal for more than 5 seconds and you are not fighting, move somewhere.
+- Sometimes when the waypoint is near a wall (north) looks like the left click does not work fine. I suggest that the left click to walk must be placed at the center of the SQM.

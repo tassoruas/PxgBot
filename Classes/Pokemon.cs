@@ -17,6 +17,14 @@ namespace PxgBot.Classes
             }
         }
 
+        public static double MaxHP
+        {
+            get
+            {
+                return MemoryManager.ReadDouble((int)Addresses.Offsets.PokeMaxHP, 8);
+            }
+        }
+
         public static List<PokemonSpell> PokemonSpells = new List<PokemonSpell>();
         public static bool AutoRevive { get; set; }
         public static int AutoReviveHP { get; set; }
@@ -26,6 +34,7 @@ namespace PxgBot.Classes
         public static bool Reviving { get; set; }
         public static bool ReviveCooldown = false;
         public static bool PutOutCooldown = false;
+        public static bool PutInCooldown = false;
         public static bool HasPokemonSet { get; set; }
 
 
@@ -79,6 +88,7 @@ namespace PxgBot.Classes
                 if (isOutside() == false && PutOutCooldown == false)
                 {
                     InputHandler.MouseClick("right", GUI.PokeballPosition.X, GUI.PokeballPosition.Y + 10);
+                    AutoItX.Sleep(30);
                     AutoItX.MouseMove(GUI.PokeballPosition.X - 50, GUI.PokeballPosition.Y, 1);
                     PutOutCooldown = true;
                     Task.Run(async () =>
@@ -93,9 +103,17 @@ namespace PxgBot.Classes
 
         public static void PutIn()
         {
-            if (isOutside() == true)
+            if (isOutside() == true && PutInCooldown == false)
             {
+                PutInCooldown = true;
                 InputHandler.MouseClick("right", GUI.PokeballPosition.X, GUI.PokeballPosition.Y + 10);
+                AutoItX.MouseMove(GUI.PokeballPosition.X - 50, GUI.PokeballPosition.Y, 1);
+                Task.Run(async () =>
+                {
+                    await Task.Delay(1000);
+                    PutInCooldown = false;
+                });
+                AutoItX.Sleep(100);
             }
         }
 
@@ -103,7 +121,9 @@ namespace PxgBot.Classes
         {
             try
             {
-                if (GUI.isPxgActive() == false) AutoItX.WinActivate(Addresses.PxgClientName);
+                if (GUI.isPxgActive() == false)
+                    AutoItX.WinActivate(Addresses.PxgClientName);
+
                 if (GUI.PokeballPosition.X == 0 || GUI.PokeballPosition.Y == 0 || GUI.PokeballPosition.IsEmpty)
                 {
                     if (Settings.Debug) { Settings.DebugText += "\n Pokeball position not set for reviving"; }
@@ -111,30 +131,27 @@ namespace PxgBot.Classes
                     Reviving = false;
                     return;
                 }
-                if (manual == false && Pokemon.HP > Pokemon.AutoReviveHP)
-                {
-                    return;
-                }
 
                 Reviving = true;
                 ReviveCooldown = true;
+                Cavebot.Enabled = false;
+                CavebotAttack.Enabled = false;
                 if (Settings.Debug) { Settings.DebugText += "\n Will Revive"; }
 
                 /////////////////////////
-                if (HP > 0 && isOutside())
+                if (manual || HP > 0)
                 {
                     PutIn();
                 }
 
                 InputHandler.BlockUserInput(true);
 
-                AutoItX.Sleep(200);
-                if (HP <= AutoReviveHP || manual)
-                {
-                    InputHandler.SendKeys(new string[] { AutoReviveHotkey }, 5);
-                    InputHandler.MouseClick("left", GUI.PokeballPosition.X, GUI.PokeballPosition.Y);
-                    Settings.DebugText += "Run Revive";
-                }
+                InputHandler.SendKeys(new string[] { AutoReviveHotkey }, 15);
+                AutoItX.Sleep(15);
+                InputHandler.MouseClick("left", GUI.PokeballPosition.X, GUI.PokeballPosition.Y);
+                Settings.DebugText += "Run Revive";
+                AutoItX.Sleep(100);
+                PutOut();
 
                 InputHandler.BlockUserInput(false);
 
@@ -142,8 +159,14 @@ namespace PxgBot.Classes
                 {
                     spell.Available = true;
                 }
-                Task.Run(async () => { await Task.Delay(1000); ReviveCooldown = false; });
+                if (HP > AutoReviveHP)
+                    Task.Run(async () => { await Task.Delay(2000); ReviveCooldown = false; });
+                else
+                    ReviveCooldown = false;
+
                 Reviving = false;
+                Cavebot.Enabled = true;
+                CavebotAttack.Enabled = true;
             }
             catch (Exception ex)
             {

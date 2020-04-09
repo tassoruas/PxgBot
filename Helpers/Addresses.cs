@@ -20,8 +20,10 @@ namespace PxgBot.Helpers
         public enum Offsets
         {
             PokeHP = 0x3e8, // Pokemon current HP
+            PokeMaxHP = 0x3f0, // Pokemon maximum HP
             CharHP = 0x3b0, // Character current HP
-            CharName = 0x28,
+            CharMaxHP = 0x3b8, // Character maximum HP
+            CharName = 0x28, // Character name
             PosX = 0xC, // Position X of character
             PosY = 0x10, // Position Y of character
             PosZ = 0x14, // Position Z of character

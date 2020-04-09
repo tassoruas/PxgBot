@@ -27,7 +27,12 @@ namespace PxgBot.Classes
                         for (; Index < Script.Count; Index++)
                         {
                             if (Enabled == false) break;
-                            if (Character.HP == 0) break;
+                            if (Character.HP == 0)
+                            {
+                                Cavebot.Enabled = false;
+                                CavebotAttack.Enabled = false;
+                                break;
+                            }
 
                             if (Pokemon.HasPokemonSet && Pokemon.HP == 0 || Pokemon.Reviving ||
                                 (Pokemon.AutoRevive && Pokemon.HP < Pokemon.AutoReviveHP))

@@ -92,18 +92,26 @@ namespace PxgBot.Helpers
 
         public static void WriteOnMemory(int pointerOffset, uint bytesToWrite)
         {
-            int bytesReadOut = 0;
+            try
+            {
 
-            byte[] memoryRead = mReader.ReadMemory((IntPtr)(Pointer), bytesToWrite, out bytesReadOut);
-            var offset = BitConverter.ToUInt32(memoryRead, 0);
+                int bytesReadOut = 0;
 
-            if (pointerOffset < 0)
-                offset -= (uint)(Math.Abs(pointerOffset));
-            else
-                offset += (uint)pointerOffset;
+                byte[] memoryRead = mReader.ReadMemory((IntPtr)(Pointer), bytesToWrite, out bytesReadOut);
+                var offset = BitConverter.ToUInt32(memoryRead, 0);
 
-            mReader.WriteMemory((IntPtr)offset, BitConverter.GetBytes(bytesToWrite), out bytesReadOut);
-            if (Settings.Debug) { Settings.DebugText += "\n WriteOnMemory: " + bytesReadOut + ", " + offset; }
+                if (pointerOffset < 0)
+                    offset -= (uint)(Math.Abs(pointerOffset));
+                else
+                    offset += (uint)pointerOffset;
+
+                mReader.WriteMemory((IntPtr)offset, BitConverter.GetBytes(bytesToWrite), out bytesReadOut);
+                if (Settings.Debug) { Settings.DebugText += "\n WriteOnMemory: " + bytesReadOut + ", " + offset; }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("MemoryManager: WriteOnMemory: error " + ex.Message);
+            }
         }
     }
 }
