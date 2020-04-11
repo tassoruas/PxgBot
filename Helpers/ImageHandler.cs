@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace PxgBot.Helpers
 {
-    public static class ImageSearcher
+    public static class ImageHandler
     {
         [DllImport("ImageSearch.dll")]
         private static extern IntPtr ImageSearch(int x, int y, int right, int bottom, [MarshalAs(UnmanagedType.LPStr)]string imagePath);
@@ -33,7 +33,8 @@ namespace PxgBot.Helpers
             string imgPath = Application.StartupPath + "\\Images\\" + imgName;
             if (System.IO.File.Exists(imgPath) == false)
             {
-                if (Settings.Debug) { Settings.DebugText += "\n Image '" + imgName + "' does not exist on path +" + imgPath; }
+                if (Settings.Debug) { Settings.DebugText += "\n Error: Image '" + imgName + "' does not exist on path +" + imgPath; }
+                Console.WriteLine("Error: Image '" + imgName + "' does not exist on path +" + imgPath);
                 return null;
             }
 
@@ -91,11 +92,10 @@ namespace PxgBot.Helpers
 
         public static Bitmap GetPxgScreenshoot()
         {
-            // TODO: get pxg position and search only in its position/size
-            Bitmap bmp = new Bitmap(1920, 1080);
+            Bitmap bmp = new Bitmap(GUI.WindowRect.Width, GUI.WindowRect.Height);
             using (Graphics graphics = Graphics.FromImage(bmp as Image))
             {
-                graphics.CopyFromScreen(0, 0, 0, 0, bmp.Size);
+                graphics.CopyFromScreen(GUI.WindowRect.X, GUI.WindowRect.Y, 0, 0, new Size(GUI.WindowRect.Width, GUI.WindowRect.Height));
             }
             return bmp;
         }

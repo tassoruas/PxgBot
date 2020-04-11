@@ -48,7 +48,7 @@ namespace PxgBot.Classes.Actions
         {
             bool result = await Task.Run(() =>
             {
-                if (ImageSearcher.UseImageSearch("isFishing.png", tolerance: 5) == null)
+                if (ImageHandler.UseImageSearch("isFishing.png", tolerance: 5) == null)
                     return false;
                 else
                     return true;

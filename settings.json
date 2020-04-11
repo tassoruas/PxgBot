@@ -1,17 +1,23 @@
 [
   {
-    "Debug": false,
+    "Debug": true,
     "Hotkeys": {
+      "enabled": true,
+      "ReviveHotkey": "Delete",
+      "PauseCavebotHotkey": "Home",
+      "PauseAttackerHotkey": "End"
+    },
+    "Alarms": {
       "enabled": true
     },
     "MonstersToAttack": [],
     "Revive": {
       "enabled": true,
       "AutoReviveHP": 0,
-      "ReviveItemHotkey": "{F10}"
+      "ReviveItemHotkey": "{F9}"
     },
     "Food": {
-      "FoodHotkey": "{F11}"
+      "FoodHotkey": "{F10}"
     },
     "Spells": {
       "F1": {

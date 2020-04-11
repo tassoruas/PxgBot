@@ -176,7 +176,7 @@ namespace PxgBot.Classes
 
         public static bool isOutside()
         {
-            int[] pokeOutside = ImageSearcher.UseImageSearch("PokeOutside.png", x: GUI.WindowRect.X, y: GUI.WindowRect.Y, height: GUI.BattleRect.Y, tolerance: 50);
+            int[] pokeOutside = ImageHandler.UseImageSearch("PokeOutside.png", x: GUI.WindowRect.X, y: GUI.WindowRect.Y, height: GUI.BattleRect.Y, tolerance: 50);
             if (pokeOutside != null)
             {
                 if (Settings.Debug) { Settings.DebugText += "\n Poke was outside: " + pokeOutside[0] + ", " + pokeOutside[1]; }
@@ -185,7 +185,7 @@ namespace PxgBot.Classes
                 return true;
             }
 
-            int[] pokeInside = ImageSearcher.UseImageSearch("PokeInside.png", x: GUI.WindowRect.X, y: GUI.WindowRect.Y, height: GUI.BattleRect.Y, tolerance: 10);
+            int[] pokeInside = ImageHandler.UseImageSearch("PokeInside.png", x: GUI.WindowRect.X, y: GUI.WindowRect.Y, height: GUI.BattleRect.Y, tolerance: 10);
             if (pokeInside != null)
             {
                 if (Settings.Debug) { Settings.DebugText += "\n Poke was inside: " + pokeInside[0] + ", " + pokeInside[1]; }

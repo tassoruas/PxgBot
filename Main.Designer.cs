@@ -57,6 +57,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPokemon = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.txtHpToReviveOutOfBattle = new System.Windows.Forms.NumericUpDown();
             this.label30 = new System.Windows.Forms.Label();
             this.cmbFoodHotkey = new System.Windows.Forms.ComboBox();
             this.label27 = new System.Windows.Forms.Label();
@@ -127,20 +129,21 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.chbDebug = new System.Windows.Forms.CheckBox();
             this.txtDebug = new System.Windows.Forms.RichTextBox();
-            this.btnFishing = new System.Windows.Forms.Button();
-            this.btnCavebotAttack = new System.Windows.Forms.Button();
             this.chbAlwaysOnTop = new System.Windows.Forms.CheckBox();
             this.lblCavebotIndex = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.tmrFood = new System.Windows.Forms.Timer(this.components);
-            this.btnStartCavebot = new System.Windows.Forms.Button();
-            this.label28 = new System.Windows.Forms.Label();
-            this.txtHpToReviveOutOfBattle = new System.Windows.Forms.NumericUpDown();
+            this.chbCavebot = new System.Windows.Forms.CheckBox();
+            this.chbAttacker = new System.Windows.Forms.CheckBox();
+            this.chbFishing = new System.Windows.Forms.CheckBox();
+            this.tmrAlarms = new System.Windows.Forms.Timer(this.components);
+            this.chbAlarms = new System.Windows.Forms.CheckBox();
             this.pnlSettings.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPokemon.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtHpToReviveOutOfBattle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF7)).BeginInit();
@@ -161,7 +164,6 @@
             this.groupBox5.SuspendLayout();
             this.tabDebug.SuspendLayout();
             this.groupBox6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtHpToReviveOutOfBattle)).BeginInit();
             this.SuspendLayout();
             // 
             // tmrUpdateInfo
@@ -181,7 +183,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(12, 304);
+            this.label1.Location = new System.Drawing.Point(9, 167);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(56, 13);
             this.label1.TabIndex = 3;
@@ -192,7 +194,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(15, 324);
+            this.label2.Location = new System.Drawing.Point(12, 187);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 4;
@@ -203,7 +205,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label3.Location = new System.Drawing.Point(27, 344);
+            this.label3.Location = new System.Drawing.Point(24, 207);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 13);
             this.label3.TabIndex = 5;
@@ -214,7 +216,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label4.Location = new System.Drawing.Point(27, 364);
+            this.label4.Location = new System.Drawing.Point(24, 227);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(41, 13);
             this.label4.TabIndex = 6;
@@ -225,7 +227,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label5.Location = new System.Drawing.Point(28, 384);
+            this.label5.Location = new System.Drawing.Point(25, 247);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(41, 13);
             this.label5.TabIndex = 7;
@@ -236,7 +238,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label6.Location = new System.Drawing.Point(17, 404);
+            this.label6.Location = new System.Drawing.Point(14, 267);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 13);
             this.label6.TabIndex = 8;
@@ -247,7 +249,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label7.Location = new System.Drawing.Point(17, 424);
+            this.label7.Location = new System.Drawing.Point(14, 287);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(53, 13);
             this.label7.TabIndex = 9;
@@ -258,7 +260,7 @@
             this.lblPokeHP.AutoSize = true;
             this.lblPokeHP.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPokeHP.ForeColor = System.Drawing.Color.Red;
-            this.lblPokeHP.Location = new System.Drawing.Point(84, 304);
+            this.lblPokeHP.Location = new System.Drawing.Point(73, 167);
             this.lblPokeHP.Name = "lblPokeHP";
             this.lblPokeHP.Size = new System.Drawing.Size(13, 13);
             this.lblPokeHP.TabIndex = 10;
@@ -269,7 +271,7 @@
             this.lblCharHP.AutoSize = true;
             this.lblCharHP.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCharHP.ForeColor = System.Drawing.Color.Red;
-            this.lblCharHP.Location = new System.Drawing.Point(84, 324);
+            this.lblCharHP.Location = new System.Drawing.Point(73, 187);
             this.lblCharHP.Name = "lblCharHP";
             this.lblCharHP.Size = new System.Drawing.Size(13, 13);
             this.lblCharHP.TabIndex = 11;
@@ -280,7 +282,7 @@
             this.lblPosX.AutoSize = true;
             this.lblPosX.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPosX.ForeColor = System.Drawing.Color.Red;
-            this.lblPosX.Location = new System.Drawing.Point(84, 344);
+            this.lblPosX.Location = new System.Drawing.Point(73, 207);
             this.lblPosX.Name = "lblPosX";
             this.lblPosX.Size = new System.Drawing.Size(13, 13);
             this.lblPosX.TabIndex = 12;
@@ -291,7 +293,7 @@
             this.lblPosY.AutoSize = true;
             this.lblPosY.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPosY.ForeColor = System.Drawing.Color.Red;
-            this.lblPosY.Location = new System.Drawing.Point(84, 364);
+            this.lblPosY.Location = new System.Drawing.Point(73, 227);
             this.lblPosY.Name = "lblPosY";
             this.lblPosY.Size = new System.Drawing.Size(13, 13);
             this.lblPosY.TabIndex = 13;
@@ -302,7 +304,7 @@
             this.lblDestinY.AutoSize = true;
             this.lblDestinY.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDestinY.ForeColor = System.Drawing.Color.Red;
-            this.lblDestinY.Location = new System.Drawing.Point(84, 424);
+            this.lblDestinY.Location = new System.Drawing.Point(73, 287);
             this.lblDestinY.Name = "lblDestinY";
             this.lblDestinY.Size = new System.Drawing.Size(13, 13);
             this.lblDestinY.TabIndex = 16;
@@ -313,7 +315,7 @@
             this.lblDestinX.AutoSize = true;
             this.lblDestinX.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDestinX.ForeColor = System.Drawing.Color.Red;
-            this.lblDestinX.Location = new System.Drawing.Point(84, 404);
+            this.lblDestinX.Location = new System.Drawing.Point(73, 267);
             this.lblDestinX.Name = "lblDestinX";
             this.lblDestinX.Size = new System.Drawing.Size(13, 13);
             this.lblDestinX.TabIndex = 15;
@@ -324,7 +326,7 @@
             this.lblPosZ.AutoSize = true;
             this.lblPosZ.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPosZ.ForeColor = System.Drawing.Color.Red;
-            this.lblPosZ.Location = new System.Drawing.Point(84, 384);
+            this.lblPosZ.Location = new System.Drawing.Point(73, 247);
             this.lblPosZ.Name = "lblPosZ";
             this.lblPosZ.Size = new System.Drawing.Size(13, 13);
             this.lblPosZ.TabIndex = 14;
@@ -335,7 +337,7 @@
             this.lblIsAttacking.AutoSize = true;
             this.lblIsAttacking.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIsAttacking.ForeColor = System.Drawing.Color.Red;
-            this.lblIsAttacking.Location = new System.Drawing.Point(84, 444);
+            this.lblIsAttacking.Location = new System.Drawing.Point(73, 307);
             this.lblIsAttacking.Name = "lblIsAttacking";
             this.lblIsAttacking.Size = new System.Drawing.Size(13, 13);
             this.lblIsAttacking.TabIndex = 19;
@@ -346,7 +348,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label11.Location = new System.Drawing.Point(12, 444);
+            this.label11.Location = new System.Drawing.Point(9, 307);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(58, 13);
             this.label11.TabIndex = 17;
@@ -357,7 +359,7 @@
             this.lblIsFishing.AutoSize = true;
             this.lblIsFishing.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIsFishing.ForeColor = System.Drawing.Color.Red;
-            this.lblIsFishing.Location = new System.Drawing.Point(84, 464);
+            this.lblIsFishing.Location = new System.Drawing.Point(73, 327);
             this.lblIsFishing.Name = "lblIsFishing";
             this.lblIsFishing.Size = new System.Drawing.Size(13, 13);
             this.lblIsFishing.TabIndex = 21;
@@ -368,7 +370,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label9.Location = new System.Drawing.Point(24, 464);
+            this.label9.Location = new System.Drawing.Point(21, 327);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(46, 13);
             this.label9.TabIndex = 20;
@@ -383,9 +385,9 @@
             // btnSettings
             // 
             this.btnSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSettings.Location = new System.Drawing.Point(9, 240);
+            this.btnSettings.Location = new System.Drawing.Point(6, 104);
             this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(103, 25);
+            this.btnSettings.Size = new System.Drawing.Size(86, 25);
             this.btnSettings.TabIndex = 26;
             this.btnSettings.Text = "Settings >>";
             this.btnSettings.UseVisualStyleBackColor = true;
@@ -395,7 +397,7 @@
             // 
             this.pnlSettings.Controls.Add(this.panel1);
             this.pnlSettings.Controls.Add(this.tabControl1);
-            this.pnlSettings.Location = new System.Drawing.Point(135, 12);
+            this.pnlSettings.Location = new System.Drawing.Point(117, 12);
             this.pnlSettings.Name = "pnlSettings";
             this.pnlSettings.Size = new System.Drawing.Size(321, 474);
             this.pnlSettings.TabIndex = 27;
@@ -493,6 +495,28 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Pokemon";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(39, 70);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(131, 13);
+            this.label28.TabIndex = 36;
+            this.label28.Text = "HP to revive out of battle: ";
+            // 
+            // txtHpToReviveOutOfBattle
+            // 
+            this.txtHpToReviveOutOfBattle.Location = new System.Drawing.Point(176, 68);
+            this.txtHpToReviveOutOfBattle.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.txtHpToReviveOutOfBattle.Name = "txtHpToReviveOutOfBattle";
+            this.txtHpToReviveOutOfBattle.Size = new System.Drawing.Size(58, 20);
+            this.txtHpToReviveOutOfBattle.TabIndex = 35;
+            this.txtHpToReviveOutOfBattle.ValueChanged += new System.EventHandler(this.txtHpToReviveOutOfBattle_ValueChanged);
             // 
             // label30
             // 
@@ -1274,40 +1298,12 @@
             this.txtDebug.TabIndex = 0;
             this.txtDebug.Text = "";
             // 
-            // btnFishing
-            // 
-            this.btnFishing.BackgroundImage = global::PxgBot.Properties.Resources.Fishing;
-            this.btnFishing.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnFishing.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFishing.Location = new System.Drawing.Point(7, 164);
-            this.btnFishing.Name = "btnFishing";
-            this.btnFishing.Size = new System.Drawing.Size(105, 70);
-            this.btnFishing.TabIndex = 28;
-            this.btnFishing.Text = "Fishing: Stopped";
-            this.btnFishing.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnFishing.UseVisualStyleBackColor = true;
-            this.btnFishing.Click += new System.EventHandler(this.btnFishing_Click);
-            // 
-            // btnCavebotAttack
-            // 
-            this.btnCavebotAttack.BackgroundImage = global::PxgBot.Properties.Resources.Attack;
-            this.btnCavebotAttack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnCavebotAttack.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCavebotAttack.Location = new System.Drawing.Point(7, 88);
-            this.btnCavebotAttack.Name = "btnCavebotAttack";
-            this.btnCavebotAttack.Size = new System.Drawing.Size(105, 70);
-            this.btnCavebotAttack.TabIndex = 25;
-            this.btnCavebotAttack.Text = "Attacker: Stopped";
-            this.btnCavebotAttack.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnCavebotAttack.UseVisualStyleBackColor = true;
-            this.btnCavebotAttack.Click += new System.EventHandler(this.btnCavebotAttack_Click);
-            // 
             // chbAlwaysOnTop
             // 
             this.chbAlwaysOnTop.AutoSize = true;
             this.chbAlwaysOnTop.Checked = true;
             this.chbAlwaysOnTop.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chbAlwaysOnTop.Location = new System.Drawing.Point(9, 272);
+            this.chbAlwaysOnTop.Location = new System.Drawing.Point(7, 143);
             this.chbAlwaysOnTop.Name = "chbAlwaysOnTop";
             this.chbAlwaysOnTop.Size = new System.Drawing.Size(92, 17);
             this.chbAlwaysOnTop.TabIndex = 29;
@@ -1320,7 +1316,7 @@
             this.lblCavebotIndex.AutoSize = true;
             this.lblCavebotIndex.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCavebotIndex.ForeColor = System.Drawing.Color.Red;
-            this.lblCavebotIndex.Location = new System.Drawing.Point(89, 485);
+            this.lblCavebotIndex.Location = new System.Drawing.Point(73, 348);
             this.lblCavebotIndex.Name = "lblCavebotIndex";
             this.lblCavebotIndex.Size = new System.Drawing.Size(13, 13);
             this.lblCavebotIndex.TabIndex = 31;
@@ -1331,7 +1327,7 @@
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label29.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label29.Location = new System.Drawing.Point(1, 485);
+            this.label29.Location = new System.Drawing.Point(-2, 348);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(82, 13);
             this.label29.TabIndex = 30;
@@ -1340,59 +1336,74 @@
             // tmrFood
             // 
             this.tmrFood.Enabled = true;
-            this.tmrFood.Interval = 600000;
+            this.tmrFood.Interval = 400000;
             this.tmrFood.Tick += new System.EventHandler(this.tmrFood_Tick);
             // 
-            // btnStartCavebot
+            // chbCavebot
             // 
-            this.btnStartCavebot.BackgroundImage = global::PxgBot.Properties.Resources.Hunting_512;
-            this.btnStartCavebot.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnStartCavebot.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStartCavebot.Location = new System.Drawing.Point(7, 12);
-            this.btnStartCavebot.Name = "btnStartCavebot";
-            this.btnStartCavebot.Size = new System.Drawing.Size(105, 70);
-            this.btnStartCavebot.TabIndex = 22;
-            this.btnStartCavebot.Text = "Cavebot: Stopped";
-            this.btnStartCavebot.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnStartCavebot.UseVisualStyleBackColor = true;
-            this.btnStartCavebot.Click += new System.EventHandler(this.btnStartCavebot_Click);
+            this.chbCavebot.AutoSize = true;
+            this.chbCavebot.Location = new System.Drawing.Point(10, 12);
+            this.chbCavebot.Name = "chbCavebot";
+            this.chbCavebot.Size = new System.Drawing.Size(66, 17);
+            this.chbCavebot.TabIndex = 32;
+            this.chbCavebot.Text = "Cavebot";
+            this.chbCavebot.UseVisualStyleBackColor = true;
+            this.chbCavebot.CheckedChanged += new System.EventHandler(this.chbCavebot_CheckedChanged);
             // 
-            // label28
+            // chbAttacker
             // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(39, 70);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(131, 13);
-            this.label28.TabIndex = 36;
-            this.label28.Text = "HP to revive out of battle: ";
+            this.chbAttacker.AutoSize = true;
+            this.chbAttacker.Location = new System.Drawing.Point(10, 35);
+            this.chbAttacker.Name = "chbAttacker";
+            this.chbAttacker.Size = new System.Drawing.Size(66, 17);
+            this.chbAttacker.TabIndex = 33;
+            this.chbAttacker.Text = "Attacker";
+            this.chbAttacker.UseVisualStyleBackColor = true;
+            this.chbAttacker.CheckedChanged += new System.EventHandler(this.chbAttacker_CheckedChanged);
             // 
-            // txtHpToReviveOutOfBattle
+            // chbFishing
             // 
-            this.txtHpToReviveOutOfBattle.Location = new System.Drawing.Point(176, 68);
-            this.txtHpToReviveOutOfBattle.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-            this.txtHpToReviveOutOfBattle.Name = "txtHpToReviveOutOfBattle";
-            this.txtHpToReviveOutOfBattle.Size = new System.Drawing.Size(58, 20);
-            this.txtHpToReviveOutOfBattle.TabIndex = 35;
-            this.txtHpToReviveOutOfBattle.ValueChanged += new System.EventHandler(this.txtHpToReviveOutOfBattle_ValueChanged);
+            this.chbFishing.AutoSize = true;
+            this.chbFishing.Location = new System.Drawing.Point(10, 58);
+            this.chbFishing.Name = "chbFishing";
+            this.chbFishing.Size = new System.Drawing.Size(59, 17);
+            this.chbFishing.TabIndex = 34;
+            this.chbFishing.Text = "Fishing";
+            this.chbFishing.UseVisualStyleBackColor = true;
+            this.chbFishing.CheckedChanged += new System.EventHandler(this.chbFishing_CheckedChanged);
+            // 
+            // tmrAlarms
+            // 
+            this.tmrAlarms.Enabled = true;
+            this.tmrAlarms.Interval = 3000;
+            this.tmrAlarms.Tick += new System.EventHandler(this.tmrAlarms_Tick);
+            // 
+            // chbAlarms
+            // 
+            this.chbAlarms.AutoSize = true;
+            this.chbAlarms.Location = new System.Drawing.Point(10, 81);
+            this.chbAlarms.Name = "chbAlarms";
+            this.chbAlarms.Size = new System.Drawing.Size(57, 17);
+            this.chbAlarms.TabIndex = 35;
+            this.chbAlarms.Text = "Alarms";
+            this.chbAlarms.UseVisualStyleBackColor = true;
+            this.chbAlarms.CheckedChanged += new System.EventHandler(this.chbAlarms_CheckedChanged);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(460, 507);
+            this.ClientSize = new System.Drawing.Size(104, 367);
+            this.Controls.Add(this.chbAlarms);
+            this.Controls.Add(this.chbFishing);
+            this.Controls.Add(this.chbAttacker);
+            this.Controls.Add(this.chbCavebot);
             this.Controls.Add(this.lblCavebotIndex);
             this.Controls.Add(this.label29);
             this.Controls.Add(this.chbAlwaysOnTop);
-            this.Controls.Add(this.btnFishing);
             this.Controls.Add(this.pnlSettings);
             this.Controls.Add(this.btnSettings);
-            this.Controls.Add(this.btnCavebotAttack);
-            this.Controls.Add(this.btnStartCavebot);
             this.Controls.Add(this.lblIsFishing);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.lblIsAttacking);
@@ -1425,6 +1436,7 @@
             this.tabPokemon.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtHpToReviveOutOfBattle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCooldownF7)).EndInit();
@@ -1449,7 +1461,6 @@
             this.tabDebug.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtHpToReviveOutOfBattle)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1478,7 +1489,6 @@
         private System.Windows.Forms.Label lblIsFishing;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Timer tmrUpdateGUI;
-        private System.Windows.Forms.Button btnCavebotAttack;
         private System.Windows.Forms.Button btnSettings;
         private System.Windows.Forms.Panel pnlSettings;
         private System.Windows.Forms.TabControl tabControl1;
@@ -1532,7 +1542,6 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Button btnSetFishingPosition;
-        private System.Windows.Forms.Button btnFishing;
         private System.Windows.Forms.TabPage tabHotkeys;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.CheckBox chbHotkeys;
@@ -1561,9 +1570,13 @@
         private System.Windows.Forms.ComboBox cmbFoodHotkey;
         private System.Windows.Forms.Timer tmrFood;
         private System.Windows.Forms.Button btnClearScript;
-        private System.Windows.Forms.Button btnStartCavebot;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.NumericUpDown txtHpToReviveOutOfBattle;
+        private System.Windows.Forms.CheckBox chbCavebot;
+        private System.Windows.Forms.CheckBox chbAttacker;
+        private System.Windows.Forms.CheckBox chbFishing;
+        private System.Windows.Forms.Timer tmrAlarms;
+        private System.Windows.Forms.CheckBox chbAlarms;
     }
 }
 

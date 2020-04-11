@@ -64,7 +64,7 @@ namespace PxgBot.Classes
         {
             try
             {
-                int[] res = ImageSearcher.UseImageSearch("Monsters\\" + monsterName + ".png", GUI.BattleRect.X, GUI.BattleRect.Y, tolerance: 5);
+                int[] res = ImageHandler.UseImageSearch("Monsters\\" + monsterName + ".png", GUI.BattleRect.X, GUI.BattleRect.Y, tolerance: 5);
                 if (res != null)
                 {
                     /// Find where of the BattleList the monster is:

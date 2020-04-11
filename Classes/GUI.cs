@@ -14,6 +14,7 @@ namespace PxgBot.Classes
         public static Rectangle ScreenRect { get; set; }
         public static Rectangle BattleRect { get; set; }
         public static Rectangle PokemonRect { get; set; }
+        public static Rectangle ChatRect { get; set; }
         public static double sqmWidth { get; set; }
         public static double sqmHeight { get; set; }
         public static Rectangle[,] ScreenGrid { get; set; }
@@ -23,11 +24,11 @@ namespace PxgBot.Classes
 
 
         [DllImport("User32.dll")]
-        public static extern bool GetWindowRect(IntPtr hwnd, ref Rectangle WindowRect);
+        private static extern bool GetWindowRect(IntPtr hwnd, ref Rectangle WindowRect);
         [DllImport("User32.dll")]
-        public static extern IntPtr GetDC(IntPtr hwnd);
+        private static extern IntPtr GetDC(IntPtr hwnd);
         [DllImport("User32.dll")]
-        static extern int ReleaseDC(IntPtr hwnd, IntPtr dc);
+        private static extern int ReleaseDC(IntPtr hwnd, IntPtr dc);
 
         public static void DrawOnScreen(Rectangle rect)
         {
@@ -41,18 +42,18 @@ namespace PxgBot.Classes
 
         public static void OpenBattleList()
         {
-            if (ImageSearcher.UseImageSearch("Battle.png", tolerance: 20) == null)
+            if (ImageHandler.UseImageSearch("Battle.png", tolerance: 20) == null)
             {
                 InputHandler.SendKeys(new string[] { "{CTRLDOWN}", "{b}", "{CTRLUP}" }, 50);
             }
         }
 
-        public static string GetBattleList()
+        public static string GetBattleTesseract()
         {
             try
             {
                 DrawOnScreen(BattleRect);
-                Bitmap print = ImageSearcher.GetPxgScreenshoot(BattleRect);
+                Bitmap print = ImageHandler.GetPxgScreenshoot(BattleRect);
                 Bitmap resizedImage1 = new Bitmap(print, new Size(print.Width * 3, Convert.ToInt32(print.Height * 1.5)));
                 Bitmap resizedImage2 = new Bitmap(print, new Size(print.Width * 8, print.Height * 5));
                 Random rnd = new Random();
@@ -60,8 +61,8 @@ namespace PxgBot.Classes
                 resizedImage1.Save("resized1" + newNumber + ".bmp");
                 resizedImage2.Save("resized2" + newNumber + ".bmp");
 
-                string resizedText1 = ImageSearcher.Tesseract("resized1" + newNumber + ".bmp");
-                string resizedText2 = ImageSearcher.Tesseract("resized2" + newNumber + ".bmp");
+                string resizedText1 = ImageHandler.Tesseract("resized1" + newNumber + ".bmp");
+                string resizedText2 = ImageHandler.Tesseract("resized2" + newNumber + ".bmp");
                 resizedText1 = Regex.Replace(resizedText1, @"[^0-9a-zA-Z:,\n]+", "");
                 resizedText2 = Regex.Replace(resizedText2, @"[^0-9a-zA-Z:,\n]+", "");
                 print.Dispose();
@@ -79,21 +80,42 @@ namespace PxgBot.Classes
             }
         }
 
-        public static void SetBattleBorders()
+        public static void GetChatBorders()
+        {
+            int[] chatInit = ImageHandler.UseImageSearch("Screen\\ChatTop.png");
+            if (chatInit == null)
+            {
+                chatInit = ImageHandler.UseImageSearch("Screen\\ChatTopWhite.png");
+            }
+
+            int[] chatEnd = ImageHandler.UseImageSearch("Screen\\ChatBottom.png");
+
+            if (chatInit == null || chatEnd == null)
+            {
+                Console.WriteLine("Failed to find chat");
+                return;
+            }
+
+            ChatRect = new Rectangle(chatInit[0], chatInit[1], chatEnd[0] - chatInit[0] + 50, chatEnd[1] - chatInit[1]);
+            Console.WriteLine("Chat set");
+        }
+
+
+        public static void GetBattleBorders()
         {
             OpenBattleList();
-            int[] battleIcon = ImageSearcher.UseImageSearch("Battle.png", tolerance: 20);
+            int[] battleIcon = ImageHandler.UseImageSearch("Battle.png", tolerance: 20);
 
             if (battleIcon == null)
             {
                 Console.WriteLine("Battle Icon not found");
                 return;
             }
-            int[] battleListEnd = ImageSearcher.UseImageSearch("Screen\\BattleBottomRight.png", x: battleIcon[0], y: battleIcon[1], tolerance: 15);
+            int[] battleListEnd = ImageHandler.UseImageSearch("Screen\\BattleBottomRight.png", x: battleIcon[0], y: battleIcon[1], tolerance: 15);
 
             if (battleListEnd == null)
             {
-                battleListEnd = ImageSearcher.UseImageSearch("Screen\\BattleBottomRightWhite.png", x: battleIcon[0], y: battleIcon[1], tolerance: 15);
+                battleListEnd = ImageHandler.UseImageSearch("Screen\\BattleBottomRightWhite.png", x: battleIcon[0], y: battleIcon[1], tolerance: 15);
             }
 
             if (battleListEnd == null)
@@ -112,10 +134,10 @@ namespace PxgBot.Classes
             //Console.WriteLine("Battle borders set: " + startX + ", " + startY + ", " + endX + ", " + endY);
         }
 
-        public static void SetScreenBorders()
+        public static void GetScreenBorders()
         {
-            int[] topLeft = ImageSearcher.UseImageSearch("Screen\\ScreenTopLeftBorder.png", transparency: "0xFFFFFF");
-            int[] bottomRight = ImageSearcher.UseImageSearch("Screen\\ScreenBottomRightBorder.png", transparency: "0xFFFFFF");
+            int[] topLeft = ImageHandler.UseImageSearch("Screen\\ScreenTopLeftBorder.png", transparency: "0xFFFFFF");
+            int[] bottomRight = ImageHandler.UseImageSearch("Screen\\ScreenBottomRightBorder.png", transparency: "0xFFFFFF");
             Image screenBottom = Image.FromFile("Images\\Screen\\ScreenBottomRightBorder.png");
 
             if (topLeft == null || bottomRight == null)
@@ -128,7 +150,7 @@ namespace PxgBot.Classes
             //Console.WriteLine("Screen borders set");
         }
 
-        public static void SetScreenGrid()
+        public static void GetScreenGrid()
         {
             ScreenGrid = new Rectangle[15, 11];
             sqmWidth = ScreenRect.Width / 15;
@@ -148,7 +170,7 @@ namespace PxgBot.Classes
             }
         }
 
-        public static void SetWindowRect()
+        public static void GetWindowRect()
         {
             Rectangle outRect = new Rectangle();
             bool windowFound = GetWindowRect(Addresses.PxgHandle, ref outRect);

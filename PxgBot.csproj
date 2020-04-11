@@ -79,6 +79,7 @@
     <Compile Include="Classes\Actions\Fishing.cs" />
     <Compile Include="Classes\Actions\Talk.cs" />
     <Compile Include="Classes\Actions\Walk.cs" />
+    <Compile Include="Classes\Alarms.cs" />
     <Compile Include="Classes\Cavebot.cs" />
     <Compile Include="Classes\CavebotAttack.cs" />
     <Compile Include="Classes\Character.cs" />
@@ -95,7 +96,7 @@
     </Compile>
     <Compile Include="Helpers\Addresses.cs" />
     <Compile Include="Helpers\GlobalHook.cs" />
-    <Compile Include="Helpers\ImageSearcher.cs" />
+    <Compile Include="Helpers\ImageHandler.cs" />
     <Compile Include="Helpers\KeyboardHook.cs" />
     <Compile Include="Helpers\MemoryManager.cs" />
     <Compile Include="Helpers\InputHandler.cs" />
@@ -377,10 +378,25 @@
     <Content Include="Images\Screen\BattleBottomRightWhite.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\Screen\bluePixel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Screen\ChatBottom.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Screen\ChatTop.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Screen\ChatTopWhite.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Screen\ScreenBottomRightBorder.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Screen\ScreenTopLeftBorder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Screen\yellowPixel.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Todo\DeathScreen.png" />

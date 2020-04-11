@@ -26,9 +26,6 @@ namespace PxgBot
             {
                 InitializeComponent();
 
-                /// This turns the Form transparent
-                //this.TransparencyKey = BackColor;
-
                 /// Activate PXG screen
                 AutoItX.WinActivate(Addresses.PxgClientName);
 
@@ -61,7 +58,7 @@ namespace PxgBot
                 Task.Run(() => CavebotAttack.Start());
                 Task.Run(() => CavebotAttack.StartSpells());
 
-                this.Location = new Point(GUI.WindowRect.X, GUI.WindowRect.Y + 130);
+                this.Location = new Point(GUI.WindowRect.X + 10, GUI.WindowRect.Y + 160);
             }
             catch (Exception ex)
             {
@@ -71,7 +68,7 @@ namespace PxgBot
 
         private void Main_Load(object sender, EventArgs e)
         {
-            this.Size = new Size(136, 537);
+            this.Size = new Size(116, 397);
         }
 
 
@@ -84,11 +81,6 @@ namespace PxgBot
             {
                 bool isAttacking = await Character.isAttacking;
                 lblCavebotIndex.Text = Cavebot.Index.ToString();
-
-                if (Cavebot.Script.Count > 0)
-                {
-                    SetActiveTreeNode(Cavebot.Script[Cavebot.Index]);
-                }
 
                 lblPokeHP.Text = Pokemon.HP.ToString();
 
@@ -139,12 +131,6 @@ namespace PxgBot
                     }
                 }
 
-                if (Cavebot.Enabled) btnStartCavebot.Text = "Cavebot: Running";
-                else btnStartCavebot.Text = "Cavebot: Stopped";
-
-                if (CavebotAttack.Enabled) btnCavebotAttack.Text = "Attacker: Running";
-                else btnCavebotAttack.Text = "Attacker: Stopped";
-
                 txtDebug.Text = Settings.DebugText;
                 txtDebug.SelectionStart = txtDebug.Text.Length;
                 txtDebug.ScrollToCaret();
@@ -176,23 +162,25 @@ namespace PxgBot
                     await Task.Run(() =>
                     {
                         /// Set the PXG Client window size to WindowRect
-                        GUI.SetWindowRect();
+                        GUI.GetWindowRect();
 
-                        ///
+                        /// 
                         GUI.OpenBattleList();
 
                         // Set Game Screen Rect
-                        GUI.SetScreenBorders();
-
+                        GUI.GetScreenBorders();
 
                         /// Set BattleList Rect
-                        GUI.SetBattleBorders();
+                        GUI.GetBattleBorders();
 
                         /// Update Pokeball position
                         Pokemon.isOutside();
 
                         /// Set Screen Grid => Squares on screen to see SQMs
-                        GUI.SetScreenGrid(); // Not using for anything right now
+                        GUI.GetScreenGrid();
+
+                        /// Set Chat Rect
+                        GUI.GetChatBorders();
                     });
                     //this.Size = new Size(GUI.WindowRect.Width, GUI.WindowRect.Height);
                 }
@@ -206,20 +194,38 @@ namespace PxgBot
 
         private void tmrFood_Tick(object sender, EventArgs e)
         {
-            if ((string)cmbFoodHotkey.SelectedItem != "Disabled")
-                Task.Run(() => Pokemon.EatFood());
+            if (Pokemon.Reviving == false)
+            {
+                if ((string)cmbFoodHotkey.SelectedItem != "Disabled")
+                    Task.Run(() => Pokemon.EatFood());
+                AutoItX.Sleep(2000);
+                InputHandler.SendKeys(new string[] { "!love" }, 10);
+            }
+        }
+
+        private void chbAlarms_CheckedChanged(object sender, EventArgs e)
+        {
+            tmrAlarms.Enabled = chbAlarms.Checked;
+        }
+
+        private void tmrAlarms_Tick(object sender, EventArgs e)
+        {
+            // TODO: Implement alarm sounds
         }
 
         private void tmrTest_Tick(object sender, EventArgs e)
         {
-            /// This timer runs in 2500ms interval
+            /// This timer runs in 1000ms interval
             /// Just for testing purposes. It wont be enabled on release
 
             /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             /// !!!!!! GUI.DrawOnScreen only works on Main Monitor !!!!!!
             /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
             //GUI.DrawOnScreen(GUI.ScreenRect);
-            //GUI.DrawOnScreen(GUI.BattleRect);
+
+            if (GUI.ChatRect.IsEmpty == false)
+                GUI.DrawOnScreen(GUI.ChatRect);
 
             /// Show all SQMs
             //Console.WriteLine("GUI: " + GUI.ScreenGrid);
@@ -235,6 +241,39 @@ namespace PxgBot
             //        }
             //    }
             //}
+        }
+
+        private void chbCavebot_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Cavebot.Script.Count == 0 && Cavebot.Enabled == false)
+                {
+                    chbCavebot.Checked = false;
+                    MessageBox.Show("No script loaded!");
+                    return;
+                }
+                if (GUI.ScreenGrid != null)
+                {
+                    Cavebot.Enabled = chbCavebot.Checked;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("chbCavebot error: " + ex.Message);
+            }
+        }
+
+        private void chbAttacker_CheckedChanged(object sender, EventArgs e)
+        {
+            CavebotAttack.Enabled = chbAttacker.Checked;
+            if (CavebotAttack.Enabled)
+            {
+                if (Pokemon.isOutside() == false)
+                {
+                    Pokemon.PutOut();
+                }
+            }
         }
 
         private void btnStartCavebot_Click(object sender, EventArgs e)
@@ -299,41 +338,47 @@ namespace PxgBot
                     }
                     UpdateMonstersToAttack();
 
-                    chbHotkeys.Checked = playerSettings.Hotkeys.enabled;
-                    Hotkeys.ReviveHotkey = playerSettings.Hotkeys.ReviveHotkey;
+
+                    try { chbAlarms.Checked = playerSettings.Alarms.enabled; } catch (Exception) { }
+                    try { chbHotkeys.Checked = playerSettings.Hotkeys.enabled; } catch (Exception) { }
+                    try { Hotkeys.ReviveHotkey = playerSettings.Hotkeys.ReviveHotkey; } catch (Exception) { }
                     txtReviveHotkey.Text = Hotkeys.ReviveHotkey;
-                    Hotkeys.PauseCavebotHotkey = playerSettings.Hotkeys.PauseCavebotHotkey;
+                    try { Hotkeys.PauseCavebotHotkey = playerSettings.Hotkeys.PauseCavebotHotkey; } catch (Exception) { }
                     txtPauseCavebotHotkey.Text = Hotkeys.PauseCavebotHotkey;
-                    Hotkeys.PauseAttackerHotkey = playerSettings.Hotkeys.PauseAttackerHotkey;
+                    try { Hotkeys.PauseAttackerHotkey = playerSettings.Hotkeys.PauseAttackerHotkey; } catch (Exception) { }
                     txtPauseAttackerHotkey.Text = Hotkeys.PauseAttackerHotkey;
+                    try { chbDebug.Checked = playerSettings.Debug; } catch (Exception) { }
+                    try { chbAutoRevive.Checked = playerSettings.Revive.enabled; } catch (Exception) { }
+                    try { txtHpToRevive.Value = playerSettings.Revive.AutoReviveHP; } catch (Exception) { }
+                    try { txtHpToReviveOutOfBattle.Value = playerSettings.Revive.AutoReviveOutOfBattleHP; } catch (Exception) { }
+                    try { cmbReviveHotkey.SelectedItem = playerSettings.Revive.ReviveItemHotkey.ToString().Replace("{", "").Replace("}", ""); } catch (Exception) { }
+                    try { cmbFoodHotkey.SelectedItem = playerSettings.Food.FoodHotkey.ToString().Replace("{", "").Replace("}", ""); } catch (Exception) { }
 
-                    chbDebug.Checked = playerSettings.Debug;
 
-                    chbAutoRevive.Checked = playerSettings.Revive.enabled;
-                    txtHpToRevive.Value = playerSettings.Revive.AutoReviveHP;
-                    txtHpToReviveOutOfBattle.Value = playerSettings.Revive.AutoReviveOutOfBattleHP;
-                    cmbReviveHotkey.SelectedItem = playerSettings.Revive.ReviveItemHotkey.ToString().Replace("{", "").Replace("}", "");
-                    cmbFoodHotkey.SelectedItem = playerSettings.Food.FoodHotkey.ToString().Replace("{", "").Replace("}", "");
+                    try
+                    {
+                        chbSpellF1.Checked = playerSettings.Spells.F1.enabled;
+                        chbSpellF2.Checked = playerSettings.Spells.F2.enabled;
+                        chbSpellF3.Checked = playerSettings.Spells.F3.enabled;
+                        chbSpellF4.Checked = playerSettings.Spells.F4.enabled;
+                        chbSpellF5.Checked = playerSettings.Spells.F5.enabled;
+                        chbSpellF6.Checked = playerSettings.Spells.F6.enabled;
+                        chbSpellF7.Checked = playerSettings.Spells.F7.enabled;
+                        chbSpellF8.Checked = playerSettings.Spells.F8.enabled;
+                        chbSpellF9.Checked = playerSettings.Spells.F9.enabled;
 
-                    chbSpellF1.Checked = playerSettings.Spells.F1.enabled;
-                    chbSpellF2.Checked = playerSettings.Spells.F2.enabled;
-                    chbSpellF3.Checked = playerSettings.Spells.F3.enabled;
-                    chbSpellF4.Checked = playerSettings.Spells.F4.enabled;
-                    chbSpellF5.Checked = playerSettings.Spells.F5.enabled;
-                    chbSpellF6.Checked = playerSettings.Spells.F6.enabled;
-                    chbSpellF7.Checked = playerSettings.Spells.F7.enabled;
-                    chbSpellF8.Checked = playerSettings.Spells.F8.enabled;
-                    chbSpellF9.Checked = playerSettings.Spells.F9.enabled;
+                        txtCooldownF1.Value = playerSettings.Spells.F1.cooldown;
+                        txtCooldownF2.Value = playerSettings.Spells.F2.cooldown;
+                        txtCooldownF3.Value = playerSettings.Spells.F3.cooldown;
+                        txtCooldownF4.Value = playerSettings.Spells.F4.cooldown;
+                        txtCooldownF5.Value = playerSettings.Spells.F5.cooldown;
+                        txtCooldownF6.Value = playerSettings.Spells.F6.cooldown;
+                        txtCooldownF7.Value = playerSettings.Spells.F7.cooldown;
+                        txtCooldownF8.Value = playerSettings.Spells.F8.cooldown;
+                        txtCooldownF9.Value = playerSettings.Spells.F9.cooldown;
+                    }
+                    catch (Exception) { }
 
-                    txtCooldownF1.Value = playerSettings.Spells.F1.cooldown;
-                    txtCooldownF2.Value = playerSettings.Spells.F2.cooldown;
-                    txtCooldownF3.Value = playerSettings.Spells.F3.cooldown;
-                    txtCooldownF4.Value = playerSettings.Spells.F4.cooldown;
-                    txtCooldownF5.Value = playerSettings.Spells.F5.cooldown;
-                    txtCooldownF6.Value = playerSettings.Spells.F6.cooldown;
-                    txtCooldownF7.Value = playerSettings.Spells.F7.cooldown;
-                    txtCooldownF8.Value = playerSettings.Spells.F8.cooldown;
-                    txtCooldownF9.Value = playerSettings.Spells.F9.cooldown;
                 }
             }
             catch (Exception ex)
@@ -356,6 +401,8 @@ namespace PxgBot
                 playerSettings.Hotkeys.ReviveHotkey = Hotkeys.ReviveHotkey;
                 playerSettings.Hotkeys.PauseCavebotHotkey = Hotkeys.PauseCavebotHotkey;
                 playerSettings.Hotkeys.PauseAttackerHotkey = Hotkeys.PauseAttackerHotkey;
+
+                playerSettings.Alarms.enabled = chbAlarms.Checked;
 
                 JArray monstersToAttack = new JArray();
                 foreach (var monster in listMonstersToAttack.Items)
@@ -563,30 +610,6 @@ namespace PxgBot
             }
         }
 
-        private void SetActiveTreeNode(CavebotAction cbAction)
-        {
-            try
-            {
-                TreeNode nextNode = CavebotTree.Nodes.Cast<TreeNode>().Where(r => r.Text.Contains(cbAction.ID + ":")).ToArray()[0];
-                if (nextNode.Text.Contains("> ") == false)
-                {
-                    nextNode.Text = "> " + nextNode.Text;
-                }
-                if ((cbAction.ID - 1) > -1)
-                {
-                    TreeNode lastNode = CavebotTree.Nodes.Cast<TreeNode>().Where(r => r.Text.Contains(cbAction.ID - 1 + ":")).ToArray()[0];
-                    if (lastNode.Text.Contains("> "))
-                    {
-                        lastNode.Text = lastNode.Text.Replace("> ", "");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: SetActiveTreeNode: " + ex.Message);
-            }
-        }
-
         private void CavebotTree_AfterSelect(object sender, TreeViewEventArgs e)
         {
 
@@ -686,11 +709,11 @@ namespace PxgBot
                 pnlSettings.Visible = !pnlSettings.Visible;
                 if (pnlSettings.Visible)
                 {
-                    this.Size = new Size(472, 537);
+                    this.Size = new Size(455, 537);
                 }
                 else
                 {
-                    this.Size = new Size(134, 537);
+                    this.Size = new Size(116, 397);
                 }
             }
             catch (Exception ex)
@@ -901,20 +924,22 @@ namespace PxgBot
             btnSettings.PerformClick();
         }
 
-        private void btnFishing_Click(object sender, EventArgs e)
+        private void chbFishing_CheckedChanged(object sender, EventArgs e)
         {
+            Fishing.Enabled = chbFishing.Checked;
+
             if (Fishing.Enabled)
             {
-                btnFishing.Text = "Fishing: Stopped";
-                Fishing.Enabled = false;
-            }
-            else
-            {
-                btnFishing.Text = "Fishing: Running";
+                if (Fishing.FishingPosition.IsEmpty)
+                {
+                    chbFishing.Checked = false;
+                    MessageBox.Show("Fishing position is not set!", "Error");
+                    return;
+                }
                 Task.Run(() => Fishing.StartFishing());
-                Fishing.Enabled = true;
             }
         }
+
         #endregion
 
         #region Hotkeys Settings
