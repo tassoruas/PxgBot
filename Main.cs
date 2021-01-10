@@ -68,7 +68,7 @@ namespace PxgBot
 
         private void Main_Load(object sender, EventArgs e)
         {
-            this.Size = new Size(116, 397);
+            this.Size = new Size(116, 408);
         }
 
 
@@ -216,7 +216,7 @@ namespace PxgBot
         private void tmrTest_Tick(object sender, EventArgs e)
         {
             /// This timer runs in 1000ms interval
-            /// Just for testing purposes. It wont be enabled on release
+            /// Just for testing purposes. It shouldn't be enabled on release
 
             /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             /// !!!!!! GUI.DrawOnScreen only works on Main Monitor !!!!!!
@@ -224,8 +224,8 @@ namespace PxgBot
 
             //GUI.DrawOnScreen(GUI.ScreenRect);
 
-            if (GUI.ChatRect.IsEmpty == false)
-                GUI.DrawOnScreen(GUI.ChatRect);
+            //if (GUI.ChatRect.IsEmpty == false)
+            //    GUI.DrawOnScreen(GUI.ChatRect);
 
             /// Show all SQMs
             //Console.WriteLine("GUI: " + GUI.ScreenGrid);
@@ -713,7 +713,7 @@ namespace PxgBot
                 }
                 else
                 {
-                    this.Size = new Size(116, 397);
+                    this.Size = new Size(116, 408);
                 }
             }
             catch (Exception ex)
@@ -842,8 +842,6 @@ namespace PxgBot
         {
             Pokemon.PokemonSpells.Find(x => x.SpellHotkey == "{F9}").Cooldown = Convert.ToInt16(txtCooldownF9.Value);
         }
-
-
         #endregion
 
         #region Attacker Settings Screen

@@ -12,25 +12,22 @@ namespace PxgBot.Helpers
         [DllImport("user32.dll")]
         private static extern IntPtr FindWindow(string ClassName, string WindowName);
 
-
-        public static uint PxgPointerAddress = 0x007C5320; // Base PXG Client pointer address
+        public static uint PxgPointerAddress = 0x007BE328; // Base PXG Client pointer address
         public static string PxgProcessName = "pxgclient"; // Name of PXG Proccess
         public static string PxgClientName = "PXG Client"; // Name of window
         public static IntPtr PxgHandle;
         public enum Offsets
         {
-            PokeHP = 0x3e8, // Pokemon current HP
-            PokeMaxHP = 0x3f0, // Pokemon maximum HP
-            CharHP = 0x3b0, // Character current HP
-            CharMaxHP = 0x3b8, // Character maximum HP
+            PokeHP = 0x3E0, // Pokemon current HP
+            PokeMaxHP = 0x3E8, // Pokemon maximum HP
+            CharHP = 0x3A8, // Character current HP
+            CharMaxHP = 0x3B0, // Character maximum HP
             CharName = 0x28, // Character name
             PosX = 0xC, // Position X of character
             PosY = 0x10, // Position Y of character
             PosZ = 0x14, // Position Z of character
-            DestinX = 0x2c4, // Destin X of where character is going to when auto walking
-            DestinXConf = 0x2d0,
-            DestinY = 0x2c8, // Destin Y of where character is going to when auto walking
-            DestinYConf = 0x2d4,
+            DestinX = 0x2C8, // Destin X of where character is going to when auto walking
+            DestinY = 0x2C0, // Destin Y of where character is going to when auto walking
         }
 
         public static void RegisterHandle()

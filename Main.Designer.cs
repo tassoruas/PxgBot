@@ -1394,7 +1394,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(104, 367);
+            this.ClientSize = new System.Drawing.Size(104, 369);
             this.Controls.Add(this.chbAlarms);
             this.Controls.Add(this.chbFishing);
             this.Controls.Add(this.chbAttacker);
