@@ -8,13 +8,4 @@
 - Show revives used
 - Add a loop to validade the quantity of revives you still have. If less than X you get out that loop to maybe to go the city to buy more and get back to hunt.
 
-
-DONE:
-- Add hotkeys
-- Close bot button
-- Automate food eating
-- Add an option to clear all waypoints
-- Sometimes the always on top does not work
-- Add an option to insert a new waypoint from the selection (to help creating new waypoints in the middle of a script)
-- Add a condition to validate the Pos X, Y, Destin X and Y. If these positions are equal for more than 5 seconds and you are not fighting, move somewhere.
 - Sometimes when the waypoint is near a wall (north) looks like the left click does not work fine. I suggest that the left click to walk must be placed at the center of the SQM.

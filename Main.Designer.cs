@@ -555,9 +555,10 @@
             this.label27.AutoSize = true;
             this.label27.Location = new System.Drawing.Point(9, 104);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(225, 26);
+            this.label27.Size = new System.Drawing.Size(257, 26);
             this.label27.TabIndex = 32;
-            this.label27.Text = "Essas hotkeys devem ser configuradas\r\nnas hotkeys do PXG com a opção \"Com mira\"";
+            this.label27.Text = "These hotkeys should be configured on PxG hotkeys\r\nwith the option \"With crosshai" +
+    "r\"";
             // 
             // label22
             // 
@@ -1394,7 +1395,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(104, 369);
+            this.ClientSize = new System.Drawing.Size(104, 371);
             this.Controls.Add(this.chbAlarms);
             this.Controls.Add(this.chbFishing);
             this.Controls.Add(this.chbAttacker);

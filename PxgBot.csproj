@@ -123,10 +123,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.manifest" />
-    <None Include="cavebotPlaceholder.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="pxgclient.CT" />
+    <None Include="README.md" />
     <None Include="Scripts\CB-Geodude.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -165,12 +163,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AutoItX3.Assembly.xml" />
+    <Content Include="External\AutoItX3.Assembly.xml" />
     <Content Include="External\AutoItX3.Assembly.dll" />
     <Content Include="External\AutoItX3.dll" />
-    <Content Include="ImageSearch.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="External\ImageSearch.dll" />
     <Content Include="Images\Battle.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -405,7 +401,7 @@
     <Content Include="Images\Monsters\Tangela.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="PossibleFeatures.txt" />
+    <None Include="LICENSE" />
     <Content Include="Resources\Attack.png" />
     <None Include="Resources\Plus.png" />
     <None Include="Resources\Edit.png" />
