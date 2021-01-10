@@ -25,7 +25,7 @@ to make it even easier than dealing with User32.dll calls.
 
 **Cavebot running:**
 
-![Cavebot running](https://media.giphy.com/media/MyM1NEzdiEkj4XNDZz/giphy.gif)
+![Cavebot running](pxgCavebot.gif)
 
 ## Usage
 All files are already in the project folder, so it's only build and run it on the main monitor.
