@@ -402,6 +402,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="LICENSE" />
+    <Content Include="pxgCavebot.gif" />
     <Content Include="Resources\Attack.png" />
     <None Include="Resources\Plus.png" />
     <None Include="Resources\Edit.png" />
