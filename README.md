@@ -1,6 +1,6 @@
 ﻿## What is this?
 
-PxgBot is a bot with some great functionalities such as cavebot, auto revive, auto food eating, auto fishing, auto attacking and others.
+PxgBot is a bot for the game PokeXGames with some great functionalities such as cavebot, auto revive, auto food eating, auto fishing, auto attacking and others.
 
 You can manually assign hotkeys to the bot functions, to make your life easier while playing too.
 
