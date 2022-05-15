@@ -20,7 +20,7 @@ namespace PxgBot.Classes
             {
                 while (true)
                 {
-                    if (Enabled && Character.X != 0 && Pokemon.HasPokemonSet
+                    if (Enabled && Character.X != 0
                         && Character.HP > 0 && Pokemon.HP > 0 &&
                         (Pokemon.AutoRevive && Pokemon.HP > Pokemon.AutoReviveHP))
                     {
@@ -34,7 +34,7 @@ namespace PxgBot.Classes
                                 break;
                             }
 
-                            if (Pokemon.HasPokemonSet && Pokemon.HP == 0 || Pokemon.Reviving ||
+                            if (Pokemon.HP == 0 || Pokemon.Reviving ||
                                 (Pokemon.AutoRevive && Pokemon.HP < Pokemon.AutoReviveHP))
                             {
                                 AutoItX.Sleep(2000);
@@ -94,7 +94,7 @@ namespace PxgBot.Classes
 
         private async static Task<bool> ExecuteAction(CavebotAction cbAction)
         {
-            while (await Character.isAttacking)
+            while (Character.IsAttacking)
             {
                 AutoItX.Sleep(500);
             }
@@ -110,10 +110,10 @@ namespace PxgBot.Classes
                 int counter = 0;
                 do
                 {
-                    result = await Actions.Walk.WalkTo(cbAction.Position, "left");
+                    result = Actions.Walk.WalkTo(cbAction.Position, "left");
                     Console.WriteLine("result: " + result);
                     counter++;
-                } while (result == false && (counter < 5 || await Character.isAttacking || Pokemon.Reviving || Pokemon.HP == 0 || Pokemon.HP < Pokemon.AutoReviveHP));
+                } while (result == false && (counter < 5 || Character.IsAttacking || Pokemon.Reviving || Pokemon.HP == 0 || Pokemon.HP < Pokemon.AutoReviveHP));
                 counter = 0;
                 return result;
             }
@@ -127,13 +127,13 @@ namespace PxgBot.Classes
                 int counter = 0;
                 do
                 {
-                    result = await Actions.Walk.WalkTo(cbAction.Position, "right");
+                    result = Actions.Walk.WalkTo(cbAction.Position, "right");
                     counter++;
                     if (counter > 5)
                     {
-                        result = await Actions.Walk.WalkTo(cbAction.Position, "right");
+                        result = Actions.Walk.WalkTo(cbAction.Position, "right");
                     }
-                } while (result == false && counter < 5 || await Character.isAttacking || Pokemon.Reviving || Pokemon.HP == 0 || Pokemon.HP < Pokemon.AutoReviveHP);
+                } while (result == false && counter < 5 || Character.IsAttacking || Pokemon.Reviving || Pokemon.HP == 0 || Pokemon.HP < Pokemon.AutoReviveHP);
                 counter = 0;
                 return result;
 
@@ -154,9 +154,9 @@ namespace PxgBot.Classes
                 int counter = 0;
                 do
                 {
-                    result = await Actions.Walk.WalkTo(cbAction.Position, "middle");
+                    result = Actions.Walk.WalkTo(cbAction.Position, "middle");
                     counter++;
-                } while (result == false && counter < 5 || await Character.isAttacking || Pokemon.Reviving || Pokemon.HP == 0 || Pokemon.HP < Pokemon.AutoReviveHP);
+                } while (result == false && counter < 5 || Character.IsAttacking || Pokemon.Reviving || Pokemon.HP == 0 || Pokemon.HP < Pokemon.AutoReviveHP);
                 counter = 0;
                 return result;
             }

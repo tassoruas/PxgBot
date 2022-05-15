@@ -8,23 +8,21 @@ namespace PxgBot.Helpers
 {
     static class MemoryManager
     {
-        static int Pointer { get; set; }
         static int BaseAddress { get; set; }
         static string ProcessName { get; set; }
         static ProcessMemoryReader memoryReader;
 
-        public static void StartMemoryManager(uint BasePointer, string BaseProcessName)
+        public static void StartMemoryManager(string BaseProcessName)
         {
             try
             {
-                Pointer = (int)BasePointer;
                 ProcessName = BaseProcessName;
 
                 memoryReader = new ProcessMemoryReader();
                 Process process = Process.GetProcessesByName(ProcessName).ToList().FirstOrDefault();
                 if (process != null)
                 {
-                    BaseAddress = process.MainModule.BaseAddress.ToInt32() + Pointer;
+                    BaseAddress = process.MainModule.BaseAddress.ToInt32();
                     memoryReader.OpenProcess(process);
                 }
                 else
@@ -38,13 +36,19 @@ namespace PxgBot.Helpers
             }
         }
 
-        public static int ReadInt(int offset, uint bytesToRead)
+        public static int ReadInt(int pointer, int offset, uint bytesToRead, bool isPointer = true)
         {
             try
             {
                 int bytesReadOut = 0;
-                byte[] memoryRead = memoryReader.ReadMemory((IntPtr)(BaseAddress), bytesToRead, out bytesReadOut);
-                var address = BitConverter.ToUInt32(memoryRead, 0);
+                uint address = 0;
+                if (isPointer)
+                {
+                    byte[] memoryRead = memoryReader.ReadMemory((IntPtr)(BaseAddress + pointer), bytesToRead, out bytesReadOut);
+                    address = BitConverter.ToUInt32(memoryRead, 0);
+                }
+                else
+                    address = (uint)(BaseAddress + pointer);
 
                 if (offset < 0)
                     address -= (uint)(Math.Abs(offset));
@@ -64,14 +68,19 @@ namespace PxgBot.Helpers
             }
         }
 
-        public static double ReadDouble(int offset, uint bytesToRead)
+        public static double ReadDouble(int pointer, int offset, uint bytesToRead, bool isPointer = true)
         {
             try
             {
                 int bytesReadOut = 0;
-
-                byte[] memoryRead = memoryReader.ReadMemory((IntPtr)(BaseAddress), bytesToRead, out bytesReadOut);
-                var address = BitConverter.ToUInt32(memoryRead, 0);
+                uint address = 0;
+                if (isPointer)
+                {
+                    byte[] memoryRead = memoryReader.ReadMemory((IntPtr)(BaseAddress + pointer), bytesToRead, out bytesReadOut);
+                    address = BitConverter.ToUInt32(memoryRead, 0);
+                }
+                else
+                    address = (uint)(BaseAddress + pointer);
 
                 if (offset < 0)
                     address -= (uint)(Math.Abs(offset));
@@ -91,15 +100,20 @@ namespace PxgBot.Helpers
             }
         }
 
-        public static void WriteOnMemory(int offset, uint bytesToWrite)
+        public static void WriteOnMemory(int pointer, int offset, uint bytesToWrite, bool isPointer = true)
         {
             try
             {
 
                 int bytesReadOut = 0;
-
-                byte[] memoryRead = memoryReader.ReadMemory((IntPtr)(BaseAddress), bytesToWrite, out bytesReadOut);
-                var address = BitConverter.ToUInt32(memoryRead, 0);
+                uint address = 0;
+                if (isPointer)
+                {
+                    byte[] memoryRead = memoryReader.ReadMemory((IntPtr)(BaseAddress + pointer), bytesToWrite, out bytesReadOut);
+                    address = BitConverter.ToUInt32(memoryRead, 0);
+                }
+                else
+                    address = (uint)(BaseAddress + pointer);
 
                 if (offset < 0)
                     address -= (uint)(Math.Abs(offset));

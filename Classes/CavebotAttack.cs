@@ -12,7 +12,7 @@ namespace PxgBot.Classes
         public static bool Enabled { get; set; }
         public static List<string> MonstersToAttack = new List<string>();
 
-        public async static void Start()
+        public static void Start()
         {
             try
             {
@@ -20,11 +20,11 @@ namespace PxgBot.Classes
                 {
                     if (Enabled && Character.X != 0 && Character.HP > 0)
                     {
-                        if (await Character.isAttacking == false && Pokemon.Reviving == false)
+                        if (Character.IsAttacking == false && Pokemon.Reviving == false)
                         {
                             foreach (string monster in MonstersToAttack)
                             {
-                                if (await Character.isAttacking) AutoItX.Sleep(1000);
+                                if (Character.IsAttacking) AutoItX.Sleep(1000);
                                 if (Enabled == false) break;
                                 Point res = FindMonster(monster);
                                 if (res.IsEmpty == false)
@@ -32,9 +32,9 @@ namespace PxgBot.Classes
                                     /// Found monster, so will attack it and break the foreach loop
                                     //Console.WriteLine("Monster '" + monster + "' found");
                                     if (Settings.Debug) { Settings.DebugText += "\n Monster '" + monster + "' found"; }
-                                    if (await Character.isAttacking) break;
+                                    if (Character.IsAttacking) break;
                                     AutoItX.Sleep(100);
-                                    bool clickResult = await ClickMonster(res);
+                                    bool clickResult = ClickMonster(res);
                                     AutoItX.Sleep(150);
                                     if (clickResult) break;
                                 }
@@ -83,15 +83,15 @@ namespace PxgBot.Classes
             }
         }
 
-        private async static Task<bool> ClickMonster(Point monsterRect)
+        private static bool ClickMonster(Point monsterRect)
         {
             try
             {
-                if (await Character.isAttacking == false)
+                if (Character.IsAttacking == false)
                 {
                     InputHandler.MouseClick("left", monsterRect.X + 20, monsterRect.Y + 5, keepPosition: true);
                     AutoItX.MouseMove(GUI.ScreenGrid[7, 5].X, GUI.ScreenGrid[7, 5].Y, 3);
-                    if (await Character.isAttacking) return true;
+                    if (Character.IsAttacking) return true;
                     else return false;
                 }
                 return true;
@@ -104,11 +104,11 @@ namespace PxgBot.Classes
             }
         }
 
-        public static async void StartSpells()
+        public static void StartSpells()
         {
             while (true)
             {
-                if (Enabled && await Character.isAttacking)
+                if (Enabled && Character.IsAttacking)
                 {
                     foreach (PokemonSpell spell in Pokemon.PokemonSpells)
                     {
@@ -117,7 +117,7 @@ namespace PxgBot.Classes
                         {
                             /// Here we need to check if it's attacking again
                             /// because isAttacking state may change during the foreach loop
-                            if (await Character.isAttacking == false) break;
+                            if (Character.IsAttacking == false) break;
 
                             spell.UseSpell();
                             spell.Available = false;

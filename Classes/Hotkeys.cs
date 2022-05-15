@@ -16,9 +16,10 @@ namespace PxgBot.Classes
             //Console.WriteLine("Key press: " + key);
             if (key == ReviveHotkey)
             {
+                if (Pokemon.isOutside() == true) Pokemon.PutInOrOut();
                 Pokemon.Revive(true);
                 AutoItX.Sleep(100);
-                if (Pokemon.isOutside() == false) Pokemon.PutOut();
+                if (Pokemon.isOutside() == false) Pokemon.PutInOrOut();
             }
             else if (key == PauseCavebotHotkey)
             {

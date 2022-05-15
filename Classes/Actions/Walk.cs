@@ -7,11 +7,11 @@ namespace PxgBot.Classes.Actions
 {
     public static class Walk
     {
-        public async static Task<bool> WalkTo(PXG.Position destinPosition, string button)
+        public static bool WalkTo(PXG.Position destinPosition, string button)
         {
             try
             {
-                while (await Character.isAttacking)
+                while (Character.IsAttacking)
                 {
                     AutoItX.Sleep(500);
                 }
@@ -35,7 +35,7 @@ namespace PxgBot.Classes.Actions
 
                 if (Cavebot.Enabled == false) return true;
                 if (Pokemon.Reviving) return true;
-                while (await Character.isAttacking)
+                while (Character.IsAttacking)
                 {
                     AutoItX.Sleep(500);
                 }
@@ -47,7 +47,7 @@ namespace PxgBot.Classes.Actions
                 while (true)
                 {
                     counter++;
-                    while (await Character.isAttacking)
+                    while (Character.IsAttacking)
                     {
                         AutoItX.Sleep(500);
                     }

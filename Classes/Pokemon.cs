@@ -13,7 +13,7 @@ namespace PxgBot.Classes
         {
             get
             {
-                return MemoryManager.ReadDouble((int)Addresses.Offsets.PokeHP, 8);
+                return MemoryManager.ReadDouble((int)Addresses.General.PlayerPointerAddress, (int)Addresses.PlayerOffsets.PokeHP, 8);
             }
         }
 
@@ -21,7 +21,7 @@ namespace PxgBot.Classes
         {
             get
             {
-                return MemoryManager.ReadDouble((int)Addresses.Offsets.PokeMaxHP, 8);
+                return MemoryManager.ReadDouble((int)Addresses.General.PlayerPointerAddress, (int)Addresses.PlayerOffsets.PokeMaxHP, 8);
             }
         }
 
@@ -81,39 +81,12 @@ namespace PxgBot.Classes
             PokemonSpells.Add(newSpell);
         }
 
-        public static void PutOut()
+        /// Option "Mover o Pokemon ativo ao topo" is required
+        public static void PutInOrOut()
         {
-            if (Pokemon.HP > 0 && Character.HP > 0)
+            if (Character.HP > 0)
             {
-                if (isOutside() == false && PutOutCooldown == false)
-                {
-                    InputHandler.MouseClick("right", GUI.PokeballPosition.X, GUI.PokeballPosition.Y + 10);
-                    AutoItX.Sleep(30);
-                    AutoItX.MouseMove(GUI.PokeballPosition.X - 50, GUI.PokeballPosition.Y, 1);
-                    PutOutCooldown = true;
-                    Task.Run(async () =>
-                    {
-                        await Task.Delay(1000);
-                        PutOutCooldown = false;
-                    });
-                    AutoItX.Sleep(100);
-                }
-            }
-        }
-
-        public static void PutIn()
-        {
-            if (isOutside() == true && PutInCooldown == false)
-            {
-                PutInCooldown = true;
-                InputHandler.MouseClick("right", GUI.PokeballPosition.X, GUI.PokeballPosition.Y + 10);
-                AutoItX.MouseMove(GUI.PokeballPosition.X - 50, GUI.PokeballPosition.Y, 1);
-                Task.Run(async () =>
-                {
-                    await Task.Delay(1000);
-                    PutInCooldown = false;
-                });
-                AutoItX.Sleep(100);
+                InputHandler.SendKeys(new string[] { "{CTRLDOWN}", "1", "{CTRLUP}" });
             }
         }
 
@@ -139,19 +112,19 @@ namespace PxgBot.Classes
                 if (Settings.Debug) { Settings.DebugText += "\n Will Revive"; }
 
                 /////////////////////////
-                if (manual || HP > 0)
+                if (manual || Pokemon.HP > 0)
                 {
-                    PutIn();
+                    PutInOrOut();
                 }
 
                 InputHandler.BlockUserInput(true);
 
+                InputHandler.MouseMove(GUI.PokeballPosition.X, GUI.PokeballPosition.Y);
+                AutoItX.Sleep(50);
                 InputHandler.SendKeys(new string[] { AutoReviveHotkey }, 15);
-                AutoItX.Sleep(15);
-                InputHandler.MouseClick("left", GUI.PokeballPosition.X, GUI.PokeballPosition.Y);
                 Settings.DebugText += "Run Revive";
                 AutoItX.Sleep(100);
-                PutOut();
+                PutInOrOut();
 
                 InputHandler.BlockUserInput(false);
 
@@ -176,30 +149,26 @@ namespace PxgBot.Classes
 
         public static bool isOutside()
         {
-            int[] pokeOutside = ImageHandler.UseImageSearch("PokeOutside.png", x: GUI.WindowRect.X, y: GUI.WindowRect.Y, height: GUI.BattleRect.Y, tolerance: 50);
-            if (pokeOutside != null)
+            bool pokeOutside = MaxHP != 0 && HP != 0;
+            int[] pokeballPosition = ImageHandler.UseImageSearch("PokePosition.png", x: GUI.WindowRect.X, y: GUI.WindowRect.Y, height: GUI.BattleRect.Y, tolerance: 50);
+            if (pokeOutside && pokeballPosition != null)
             {
-                if (Settings.Debug) { Settings.DebugText += "\n Poke was outside: " + pokeOutside[0] + ", " + pokeOutside[1]; }
-                GUI.PokeballPosition = new Point(pokeOutside[0], pokeOutside[1] + 15);
-                HasPokemonSet = true;
+                if (Settings.Debug) { Settings.DebugText += "\n Poke was outside: " + pokeballPosition[0] + ", " + pokeballPosition[1]; }
+                GUI.PokeballPosition = new Point(pokeballPosition[0], pokeballPosition[1] + 15);
                 return true;
             }
 
-            int[] pokeInside = ImageHandler.UseImageSearch("PokeInside.png", x: GUI.WindowRect.X, y: GUI.WindowRect.Y, height: GUI.BattleRect.Y, tolerance: 10);
-            if (pokeInside != null)
+            if (!pokeOutside)
             {
-                if (Settings.Debug) { Settings.DebugText += "\n Poke was inside: " + pokeInside[0] + ", " + pokeInside[1]; }
-                GUI.PokeballPosition = new Point(pokeInside[0], pokeInside[1] + 15);
-                HasPokemonSet = true;
+                int[] pokeInside = ImageHandler.UseImageSearch("PokeInside.png", x: GUI.WindowRect.X, y: GUI.WindowRect.Y, height: GUI.BattleRect.Y, tolerance: 10);
+                if (pokeInside != null)
+                {
+                    if (Settings.Debug) { Settings.DebugText += "\n Poke was inside: " + pokeInside[0] + ", " + pokeInside[1]; }
+                    GUI.PokeballPosition = new Point(pokeInside[0], pokeInside[1]);
+                } 
                 return false;
             }
 
-            if (pokeOutside == null && pokeInside == null)
-            {
-                if (Settings.Debug) { Settings.DebugText += "\n Error initializing Pokemon: Pokeball Position not found"; }
-            }
-
-            HasPokemonSet = false;
             return false;
         }
 
@@ -209,7 +178,7 @@ namespace PxgBot.Classes
 
             if (Settings.Debug) { Settings.DebugText += "\n Will Eat Food"; }
 
-            if (HasPokemonSet == false)
+            if (isOutside() == false)
             {
                 return;
             }

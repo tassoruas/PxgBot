@@ -11,32 +11,32 @@ namespace PxgBot.Classes
     {
         public static double HP
         {
-            get => MemoryManager.ReadDouble((int)Addresses.Offsets.CharHP, 8);
+            get => MemoryManager.ReadDouble((int)Addresses.General.PlayerPointerAddress, (int)Addresses.PlayerOffsets.CharHP, 8);
         }
         public static int X
         {
-            get => MemoryManager.ReadInt((int)Addresses.Offsets.PosX, 4);
+            get => MemoryManager.ReadInt((int)Addresses.General.PlayerPointerAddress, (int)Addresses.PlayerOffsets.PosX, 4);
         }
         public static int Y
         {
-            get => MemoryManager.ReadInt((int)Addresses.Offsets.PosY, 4);
+            get => MemoryManager.ReadInt((int)Addresses.General.PlayerPointerAddress, (int)Addresses.PlayerOffsets.PosY, 4);
         }
         public static int Z
         {
-            get => MemoryManager.ReadInt((int)Addresses.Offsets.PosZ, 4);
+            get => MemoryManager.ReadInt((int)Addresses.General.PosZ, 0, 4, false);
         }
         public static int DestinX
         {
-            get => MemoryManager.ReadInt((int)Addresses.Offsets.DestinX, 4);
+            get => MemoryManager.ReadInt((int)Addresses.General.PlayerPointerAddress, (int)Addresses.PlayerOffsets.DestinX, 4);
         }
         public static int DestinY
         {
-            get => MemoryManager.ReadInt((int)Addresses.Offsets.DestinY, 4);
+            get => MemoryManager.ReadInt((int)Addresses.General.PlayerPointerAddress, (int)Addresses.PlayerOffsets.DestinY, 4);
         }
 
-        public static Task<bool> isAttacking
+        public static bool IsAttacking
         {
-            get => Task.Run(() => (ImageHandler.UseImageSearch("IsAttacking.png", GUI.BattleRect.X - 60, GUI.BattleRect.Y, tolerance: 10, transparency: "0xFFFFFF") != null));
+            get => MemoryManager.ReadInt((int)Addresses.General.AttackingAddress, 0, 4, false) != 0;
         }
 
         public static PXG.Position GetPosition()
@@ -46,8 +46,8 @@ namespace PxgBot.Classes
 
         public static void SetDestinPosition(int x, int y)
         {
-            MemoryManager.WriteOnMemory((int)Addresses.Offsets.DestinX, (uint)x);
-            MemoryManager.WriteOnMemory((int)Addresses.Offsets.DestinY, (uint)y);
+            MemoryManager.WriteOnMemory((int)Addresses.General.PlayerPointerAddress, (int)Addresses.PlayerOffsets.DestinX, (uint)x);
+            MemoryManager.WriteOnMemory((int)Addresses.General.PlayerPointerAddress, (int)Addresses.PlayerOffsets.DestinY, (uint)y);
         }
     }
 }

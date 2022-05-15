@@ -44,7 +44,7 @@ namespace PxgBot.Classes
         {
             if (ImageHandler.UseImageSearch("Battle.png", tolerance: 20) == null)
             {
-                InputHandler.SendKeys(new string[] { "{CTRLDOWN}", "{b}", "{CTRLUP}" }, 50);
+                InputHandler.SendKeys(new string[] { "{b}" }, 50);
             }
         }
 

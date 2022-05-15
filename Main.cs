@@ -36,7 +36,7 @@ namespace PxgBot
                 UpdateGUI();
 
                 /// Start reading from memory
-                MemoryManager.StartMemoryManager((uint)Addresses.PxgPointerAddress, Addresses.PxgProcessName);
+                MemoryManager.StartMemoryManager(Addresses.PxgProcessName);
 
                 /// Init Pokemon settings
                 Pokemon.Init();
@@ -79,30 +79,30 @@ namespace PxgBot
             /// 
             try
             {
-                bool isAttacking = await Character.isAttacking;
+                bool isAttacking = Character.IsAttacking;
                 lblCavebotIndex.Text = Cavebot.Index.ToString();
 
                 lblPokeHP.Text = Pokemon.HP.ToString();
 
-                if (Pokemon.HasPokemonSet && Pokemon.AutoRevive && Pokemon.HP <= Pokemon.AutoReviveHP &&
+                if (Pokemon.AutoRevive && Pokemon.HP <= Pokemon.AutoReviveHP &&
                     Pokemon.AutoReviveHP < Pokemon.AutoReviveHP && Pokemon.Reviving == false &&
                     Character.HP > 0 && Pokemon.ReviveCooldown == false)
                 {
                     Pokemon.Revive();
-                    if (Pokemon.isOutside() == false) Pokemon.PutOut();
+                    if (Pokemon.isOutside() == false) Pokemon.PutInOrOut();
                 }
 
-                if (Pokemon.HasPokemonSet && Pokemon.AutoRevive && Pokemon.MaxHP > Pokemon.AutoReviveOutOfBattleHP &&
+                if (Pokemon.AutoRevive && Pokemon.MaxHP > Pokemon.AutoReviveOutOfBattleHP &&
                     Pokemon.Reviving == false && isAttacking == false && Pokemon.HP < Pokemon.AutoReviveOutOfBattleHP)
                 {
                     Pokemon.Revive(true);
-                    if (Pokemon.isOutside() == false) Pokemon.PutOut();
+                    if (Pokemon.isOutside() == false) Pokemon.PutInOrOut();
                 }
 
                 if (Pokemon.HP > 0 && Pokemon.HP > Pokemon.AutoReviveHP &&
                     (isAttacking || CavebotAttack.Enabled) && Pokemon.isOutside() == false)
                 {
-                    Pokemon.PutOut();
+                    Pokemon.PutInOrOut();
                 }
 
                 lblCharHP.Text = Character.HP.ToString();
@@ -271,7 +271,7 @@ namespace PxgBot
             {
                 if (Pokemon.isOutside() == false)
                 {
-                    Pokemon.PutOut();
+                    Pokemon.PutInOrOut();
                 }
             }
         }
@@ -303,7 +303,7 @@ namespace PxgBot
             {
                 if (Pokemon.isOutside() == false)
                 {
-                    Pokemon.PutOut();
+                    Pokemon.PutInOrOut();
                 }
             }
         }
