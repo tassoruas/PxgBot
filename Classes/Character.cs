@@ -15,23 +15,23 @@ namespace PxgBot.Classes
         }
         public static int X
         {
-            get => MemoryManager.ReadInt((int)Addresses.Offsets.PosX, 8);
+            get => MemoryManager.ReadInt((int)Addresses.Offsets.PosX, 4);
         }
         public static int Y
         {
-            get => MemoryManager.ReadInt((int)Addresses.Offsets.PosY, 8);
+            get => MemoryManager.ReadInt((int)Addresses.Offsets.PosY, 4);
         }
         public static int Z
         {
-            get => MemoryManager.ReadInt((int)Addresses.Offsets.PosZ, 8);
+            get => MemoryManager.ReadInt((int)Addresses.Offsets.PosZ, 4);
         }
         public static int DestinX
         {
-            get => MemoryManager.ReadInt((int)Addresses.Offsets.DestinX, 8);
+            get => MemoryManager.ReadInt((int)Addresses.Offsets.DestinX, 4);
         }
         public static int DestinY
         {
-            get => MemoryManager.ReadInt((int)Addresses.Offsets.DestinY, 8);
+            get => MemoryManager.ReadInt((int)Addresses.Offsets.DestinY, 4);
         }
 
         public static Task<bool> isAttacking

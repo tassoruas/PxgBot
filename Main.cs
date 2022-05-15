@@ -36,7 +36,7 @@ namespace PxgBot
                 UpdateGUI();
 
                 /// Start reading from memory
-                MemoryManager.StartMemoryManager(Addresses.PxgPointerAddress, Addresses.PxgProcessName);
+                MemoryManager.StartMemoryManager((uint)Addresses.PxgPointerAddress, Addresses.PxgProcessName);
 
                 /// Init Pokemon settings
                 Pokemon.Init();

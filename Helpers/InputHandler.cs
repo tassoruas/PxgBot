@@ -23,7 +23,7 @@ namespace PxgBot.Helpers
 
         public static void MouseClick(string button, int x, int y, int speed = 3, bool keepPosition = false)
         {
-            AutoItX.WinActivate(Addresses.PxgHandle);
+            AutoItX.WinActivate(Addresses.PxgClientName);
             Point oldMousePosition = Cursor.Position;
             AutoItX.MouseMove(x, y, speed);
             AutoItX.MouseDown(button);
@@ -32,9 +32,18 @@ namespace PxgBot.Helpers
             if (keepPosition) AutoItX.MouseMove(oldMousePosition.X, oldMousePosition.Y, speed);
         }
 
+        public static void MouseMove(int x, int y, int speed = 3, bool keepPosition = false)
+        {
+            AutoItX.WinActivate(Addresses.PxgClientName);
+            Point oldMousePosition = Cursor.Position;
+            AutoItX.MouseMove(x, y, speed);
+            AutoItX.Sleep(15);
+            if (keepPosition) AutoItX.MouseMove(oldMousePosition.X, oldMousePosition.Y, speed);
+        }
+
         public static void SendKeys(string[] Keys, int DelayBetweenKeys = 100)
         {
-            AutoItX.WinActivate(Addresses.PxgHandle);
+            AutoItX.WinActivate(Addresses.PxgClientName);
             foreach (string key in Keys)
             {
                 if (Settings.Debug) { Settings.DebugText += "\n Key send: " + key; }

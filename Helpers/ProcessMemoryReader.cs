@@ -6,11 +6,10 @@ namespace PxgBot
 {
     public class ProcessMemoryReader
     {
-        public Process ReadProcess { get; set; }
 
         private IntPtr handle;
 
-        public void OpenProcess()
+        public void OpenProcess(Process ReadProcess)
         {
             ProcessMemoryReaderApi.ProcessAccessType access = ProcessMemoryReaderApi.ProcessAccessType.PROCESS_QUERY_INFORMATION |
                 ProcessMemoryReaderApi.ProcessAccessType.PROCESS_VM_READ |
