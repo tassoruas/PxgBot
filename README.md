@@ -1,4 +1,11 @@
-﻿## What is this?
+
+# IMPORTANT:
+
+The bot needs a rework, mainly in the cavebot functionalities.
+It was created before the new interface, and since it reads a lot of information in the screen, almost everything is not working anymore.
+I am trying to find some time to fix it and doing it little by little. 
+
+## What is this?
 
 PxgBot is a bot for the game PokeXGames with some great functionalities such as cavebot, auto revive, auto food eating, auto fishing, auto attacking and others.
 
