@@ -112,7 +112,7 @@ namespace PxgBot
                 lblDestinX.Text = Character.DestinX.ToString();
                 lblDestinY.Text = Character.DestinY.ToString();
 
-                bool isFishing = await Fishing.isFishing();
+                bool isFishing = Character.IsFishing;
                 lblIsFishing.Text = isFishing.ToString();
                 lblIsAttacking.Text = isAttacking.ToString();
 

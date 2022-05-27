@@ -18,11 +18,8 @@ namespace PxgBot.Helpers
 
         public enum General
         {
-            PlayerPointerAddress = 0x00CE9380, // Base Player pointer address
-            AttackingAddress = 0x00CE9384, // Attacking pointer address / Has no offset
-            PosX = 0x00CF00DC, // Alternative player X pos / Has no offset
-            PosY = 0x00CF00E0, // Alternative player Y pos / Has no offset
-            PosZ = 0x00CF00E4, // Alternative player Z pos / Has no offset
+            AttackingAddress = 0x00CE9384, // How to find this one?
+            PlayerPointerAddress = 0x00CEB380, // Base Player pointer address
         }
         public enum PlayerOffsets
         {
@@ -33,9 +30,11 @@ namespace PxgBot.Helpers
             CharName = 0x34, // Character name
             PosX = 0x10, // Position X of character
             PosY = 0x14, // Position Y of character
+            PosZ = 0x18, // Position Z of character
             DestinX = 0x2F0, // Destin X of where character is going to when auto walking
             DestinY = 0x2F4, // Destin Y of where character is going to when auto walking
             IsBattle = 0x394, // If it is in combat or being attacked/targeted. > 0 means true
+            Addon = 0x50, // Character current addon (141 is fishing)
         }
 
         public static void RegisterHandle()

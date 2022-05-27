@@ -10,14 +10,14 @@ namespace PxgBot.Classes.Actions
     {
         public static Point FishingPosition { get; set; }
         public static bool Enabled = false;
-        public async static void StartFishing()
+        public static void StartFishing()
         {
             while (Enabled)
             {
                 AutoItX.Sleep(3000);
                 if (Pokemon.Reviving == false)
                 {
-                    if (await isFishing())
+                    if (Character.IsFishing)
                     {
                         if (Settings.Debug) { Settings.DebugText += "\n Player is already fishing!"; }
                     }
@@ -30,7 +30,7 @@ namespace PxgBot.Classes.Actions
                     }
                     else break;
                     AutoItX.Sleep(1000);
-                    if (await isFishing())
+                    if (Character.IsFishing)
                     {
                         AutoItX.Sleep(20000);
                         if (Pokemon.Reviving == false)
@@ -42,19 +42,6 @@ namespace PxgBot.Classes.Actions
                     }
                 }
             }
-        }
-
-        public static async Task<bool> isFishing()
-        {
-            bool result = await Task.Run(() =>
-            {
-                if (ImageHandler.UseImageSearch("isFishing.png", tolerance: 5) == null)
-                    return false;
-                else
-                    return true;
-            });
-
-            return result;
         }
     }
 }

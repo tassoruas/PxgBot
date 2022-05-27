@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PxgBot.Helpers;
+﻿using PxgBot.Helpers;
 
 namespace PxgBot.Classes
 {
@@ -23,7 +18,7 @@ namespace PxgBot.Classes
         }
         public static int Z
         {
-            get => MemoryManager.ReadInt((int)Addresses.General.PosZ, 0, 4, false);
+            get => MemoryManager.ReadInt((int)Addresses.General.PlayerPointerAddress, (int)Addresses.PlayerOffsets.PosZ, 4, false);
         }
         public static int DestinX
         {
@@ -37,6 +32,10 @@ namespace PxgBot.Classes
         public static bool IsAttacking
         {
             get => MemoryManager.ReadInt((int)Addresses.General.AttackingAddress, 0, 4, false) != 0;
+        }
+        public static bool IsFishing
+        {
+            get => MemoryManager.ReadInt((int)Addresses.General.PlayerPointerAddress, (int)Addresses.PlayerOffsets.Addon, 4) == 141;
         }
 
         public static PXG.Position GetPosition()
